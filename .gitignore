@@ -1,0 +1,6 @@
+*.jsonl
+node_modules/
+*.log
+.DS_Store
+/tmp/
+
