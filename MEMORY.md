@@ -28,6 +28,14 @@
 
 ## Known Issues (to fix)
 - YouTube scan jobs failing (cron delivery target missing)
+
+## New Capabilities (Feb 18 2026)
+- **chrome-devtools-mcp**: Can debug dashboard visually via mcporter
+- **GitHub version control**: Dashboard code at johntaylormfc/arr-dashboard
+- **Self-test API**: http://localhost:4000/api/self-test for health checks
+- **dashboard-debug skill**: /home/john/openclaw/skills/dashboard-debug/SKILL.md
+
+Always use mcporter + chrome-devtools-mcp when debugging dashboard issues - check console errors before declaring fix complete.
 - Memory search needs API key configuration
 
 ## Completed Recently
