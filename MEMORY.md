@@ -1,56 +1,35 @@
 # ARR_Bot Memory
 
-## Current Setup
+## Setup
 - Dashboard: http://192.168.1.146:4000
-- Database: SQLite (/tmp/dashboard.db) - much more stable than JSON files
+- DB: SQLite (/tmp/dashboard.db)
 
 ## John's Preferences
-- Ideas go to kanban queue, not done immediately
-- Use PRs for GM repo changes
+- Ideas → kanban queue, not done immediately
+- PRs for GitHub repo changes
 - WhatsApp for communication
-- No usage alerts - let it run and see how long until limit
+- No usage alerts
 
 ## Kanban Workflow
-- Backlog/Todo → pick up → work → complete
-- 3 columns: Ideas, Backlog/Todo, In Progress
-- Completed hidden by default (button to show)
+- Backlog → pick up → work → complete
 
 ## Second Brain
-- Notes stored in SQLite database
-- Tags: business-central, openclaw, arr, docker, ideas, general
-- Web clipper for URLs
+- SQLite DB with tags: business-central, openclaw, arr, docker, ideas, general
 
-## Active Cron Jobs (Feb 2026)
+## Active Cron Jobs
 - Update Cron Jobs List: every 5 min
 - GitHub Repo Review: hourly
-- Idea dump: every 6 hours
 - Daily Review: 23:00 daily
 
-## Known Issues (to fix)
-- YouTube scan jobs failing (cron delivery target missing)
+## Capabilities (Feb 18 2026)
+- chrome-devtools-mcp for visual debugging
+- GitHub: johntaylormfc/arr-dashboard
+- Self-test API: http://localhost:4000/api/self-test
 
-## New Capabilities (Feb 18 2026)
-- **chrome-devtools-mcp**: Can debug dashboard visually via mcporter
-- **GitHub version control**: Dashboard code at johntaylormfc/arr-dashboard
-- **Self-test API**: http://localhost:4000/api/self-test for health checks
-- **dashboard-debug skill**: /home/john/openclaw/skills/dashboard-debug/SKILL.md
-
-Always use mcporter + chrome-devtools-mcp when debugging dashboard issues - check console errors before declaring fix complete.
-- Memory search needs API key configuration
+Use mcporter + chrome-devtools-mcp for dashboard debugging.
 
 ## Completed Recently
-- Fixed sidebar navigation in dashboard (rebuilt container)
-- Migrated kanban/notes from JSON to SQLite
-- Dashboard health monitoring added to heartbeat
+- Fixed sidebar navigation, migrated to SQLite, added health monitoring
 
-## Pattern: Weekend Inactivity (Feb 2026)
-- Weekends (Sat-Sun) consistently show no activity
-- Last active days: Fridays before going dormant
-- Daily Review cron runs even on weekends but finds minimal activity
-- Action: Added "Weekend Activity Pattern" idea - decide whether to accept rest periods or schedule maintenance tasks
-
-## Daily Review Insights
-- Review cron runs at 23:00 daily
-- Memory files tend to be sparse on weekends
-- System successfully identifies patterns and adds ideas to kanban
-
+## Known Issues
+- YouTube scan jobs failing
