@@ -35,3 +35,14 @@
 - Migrated kanban/notes from JSON to SQLite
 - Dashboard health monitoring added to heartbeat
 
+## Pattern: Weekend Inactivity (Feb 2026)
+- Weekends (Sat-Sun) consistently show no activity
+- Last active days: Fridays before going dormant
+- Daily Review cron runs even on weekends but finds minimal activity
+- Action: Added "Weekend Activity Pattern" idea - decide whether to accept rest periods or schedule maintenance tasks
+
+## Daily Review Insights
+- Review cron runs at 23:00 daily
+- Memory files tend to be sparse on weekends
+- System successfully identifies patterns and adds ideas to kanban
+
