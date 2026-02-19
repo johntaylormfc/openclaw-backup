@@ -2,10 +2,60 @@
   "mcpServers": {
     "chrome-devtools": {
       "command": "npx",
-      "args": [
-        "chrome-devtools-mcp"
-      ],
+      "args": ["chrome-devtools-mcp"],
       "description": "Chrome DevTools for debugging"
+    },
+    "bc-code-intelligence": {
+      "command": "npx",
+      "args": ["bc-code-intelligence-mcp"],
+      "description": "BC Code Intelligence - 14 domain specialists for Business Central development"
+    },
+    "al-dependency": {
+      "command": "npx",
+      "args": ["al-mcp-server"],
+      "description": "AL Dependency MCP - exposes AL symbols for code navigation"
+    },
+    "microsoft-learn": {
+      "url": "https://learn.microsoft.com/api/mcp",
+      "description": "Microsoft Learn documentation and tutorials"
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["context7-mcp-server"],
+      "description": "Context7 -上下文感知代码库分析"
+    },
+    "github": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-github"],
+      "description": "GitHub - Repo management, issues, PRs"
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-filesystem", "/home/john"],
+      "description": "Filesystem - File operations and search"
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-memory"],
+      "description": "Memory - Persistent memory across sessions"
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-brave-search"],
+      "env": {
+        "BRAVE_API_KEY": "BSAC9g98qhbaRQlELoLGXD4bnMIDYjl"
+      },
+      "description": "Brave Search - Web research"
+    },
+    "git": {
+      "command": "npx",
+      "args": ["mcp-git"],
+      "description": "Git - Version control operations (read, search, manipulate repos)"
+    },
+    "alpaca": {
+      "command": "npx",
+      "args": ["alpaca-mcp"],
+      "description": "Alpaca Trading - Stocks, options, crypto trading & market data (paper trading)"
     }
   },
   "imports": []
