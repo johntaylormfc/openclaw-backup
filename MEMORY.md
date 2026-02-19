@@ -33,3 +33,10 @@ Use mcporter + chrome-devtools-mcp for dashboard debugging.
 
 ## Known Issues
 - YouTube scan jobs failing
+
+## Daily Review (Feb 17)
+- Dashboard cleanup completed: removed CPU/memory/disk stats, updated quick actions to local IP
+- Sidebar navigation fixed
+- 6/7 cron jobs healthy
+- GitHub repo reviews generating many kanban ideas (26 total)
+- Pattern: hourly automated scans create steady idea flow
