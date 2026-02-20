@@ -3,7 +3,10 @@
 # Keep empty (or comments only) to skip heartbeats.
 
 ## Before Dashboard Changes
-**ALWAYS** backup first: `cp /home/john/ARR/dashboard/index.html /home/john/ARR/dashboard/index.html.backup-$(date +%Y%m%d-%H%M)`
+**ALWAYS** backup first:
+- Dashboard: `cp /home/john/ARR/dashboard/index.html /home/john/ARR/dashboard/index.html.backup-$(date +%Y%m%d-%H%M)`
+- Database: `cp /home/john/.openclaw/workspace/dashboard-data/dashboard.db /home/john/.openclaw/workspace/dashboard-data/dashboard.db.backup-$(date +%Y%m%d-%H%M)`
+- Sync to container: `docker cp /home/john/ARR/dashboard/index.html arr-dashboard:/app/index.html`
 
 ## Activity Logging
 Every heartbeat:
