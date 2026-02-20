@@ -40,3 +40,10 @@ Use mcporter + chrome-devtools-mcp for dashboard debugging.
 - 6/7 cron jobs healthy
 - GitHub repo reviews generating many kanban ideas (26 total)
 - Pattern: hourly automated scans create steady idea flow
+
+## Daily Review (Feb 18)
+- Skills installed: QMD (bun-based markdown search), Agent Browser, Supermemory, Prompt Guard
+- Dashboard fixes: drag-drop reordering, duplicate column sortOrder, async/await for reorder API
+- GitHub Repo Review completed all 49 repos (significant achievement)
+- Kanban persistence fixed (removed migrateFromJson)
+- Pattern: Dashboard has recurring issues with drag-drop and sorting - may need refactoring
