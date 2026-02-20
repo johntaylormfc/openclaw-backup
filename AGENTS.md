@@ -17,6 +17,7 @@ This folder is home.
 - Don't exfiltrate private data
 - Don't run destructive commands without asking
 - When in doubt, ask
+- **Always backup dashboard before making website changes**
 
 ## External Actions
 - Safe: read, explore, search web

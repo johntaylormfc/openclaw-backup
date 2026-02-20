@@ -2,6 +2,9 @@
 
 # Keep empty (or comments only) to skip heartbeats.
 
+## Before Dashboard Changes
+**ALWAYS** backup first: `cp /home/john/ARR/dashboard/index.html /home/john/ARR/dashboard/index.html.backup-$(date +%Y%m%d-%H%M)`
+
 ## Activity Logging
 Every heartbeat:
 1. Read heartbeat-state.json

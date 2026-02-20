@@ -1,11 +1,10 @@
 {
-  "lastActivityUpdate": "2026-02-20T08:28:00Z",
-  "activeProject": "Trading Bots",
-  "currentTask": "Stock + Crypto bots running. GitHub repo reviews ongoing.",
+  "lastActivityUpdate": "2026-02-20T15:33:00Z",
+  "activeProject": "Command Center 2.0 - Building autonomous agent system",
+  "currentTask": "Board meeting system: Database + API + UI + auto-trigger working. Next: complete meeting flow (plan/subtasks), migrate cron to agents.",
   "recentDecisions": [
-    "Upgraded stock bot with risk management improvements",
-    "Created crypto trading bot (Phase 1)",
-    "Added Trading Bot Weekly Review cron job"
+    "Implemented board meeting auto-trigger when backlog task picked up",
+    "All relevant agents invited based on task keywords"
   ],
   "blockers": []
 }

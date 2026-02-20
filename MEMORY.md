@@ -9,6 +9,7 @@
 - PRs for GitHub repo changes
 - WhatsApp for communication
 - No usage alerts
+- **ALWAYS backup dashboard before making any changes**
 
 ## Kanban Workflow
 - Backlog → pick up → work → complete
