@@ -36,7 +36,19 @@ Use mcporter + chrome-devtools-mcp for dashboard debugging.
 - Fixed sidebar navigation, migrated to SQLite, added health monitoring
 
 ## Known Issues
-- YouTube scan jobs failing
+- YouTube scan jobs failing (needs investigation)
+
+## Patterns & Learnings (Feb 20)
+- Kanban ideas column is working well as a capture mechanism for follow-up tasks
+- Trading bot improvements are incremental and well-documented
+- Command Center 2.0 is providing structured agent collaboration
+
+## Daily Review (Feb 20)
+- Trading bot significant upgrades: multi-timeframe confirmation, MACD, volume filtering, dynamic position sizing based on conviction score
+- Freelance Dev Work added to kanban (Business Central extensions)
+- All 14 cron jobs healthy - ARR Config Backup now working
+- Bot restarted successfully with new indicators at ~22:24
+- Command Center 2.0 board meeting system fully operational
 
 ## Daily Review (Feb 17)
 - Dashboard cleanup completed: removed CPU/memory/disk stats, updated quick actions to local IP
