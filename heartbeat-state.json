@@ -1,20 +1,18 @@
 {
-  "lastActivityUpdate": "2026-02-23T10:20:00Z",
-  "activeProject": "Dashboard enhancements & automation",
-  "currentTask": "Created system report, added to Google Drive",
+  "lastActivityUpdate": "2026-02-23T15:21:00Z",
+  "activeProject": "System stability",
+  "currentTask": "Dashboard restored, trading bots running",
   "recentDecisions": [
-    "Calendar to Todoist cron job added (every 30 min)",
-    "Crypto coin list updated - removed broken MATIC/UNI/APT/SUI/TON, added DASH/XLM/ALGO/HBAR/VET",
-    "Drive backup script created and tested",
-    "Recent transactions table added to crypto dashboard section",
-    "Fixed crypto positions display (avg_price field)",
-    "Generated comprehensive system report saved to Google Drive"
+    "Fixed trading trades API endpoint",
+    "Rebuilt dashboard container after db.js syntax error",
+    "Dashboard and bots running"
   ],
   "blockers": [],
   "health": {
     "dashboard": "ok",
-    "containers": 37,
-    "kanban": "23 tasks, 18 ideas",
-    "lastCheck": "2026-02-23T10:21:00Z"
+    "containers": "ok",
+    "cryptoBot": "running",
+    "stockBot": "running",
+    "watchdog": "running"
   }
 }
