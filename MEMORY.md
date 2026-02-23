@@ -43,6 +43,12 @@ Use mcporter + chrome-devtools-mcp for dashboard debugging.
 - Trading bot improvements are incremental and well-documented
 - Command Center 2.0 is providing structured agent collaboration
 
+## Daily Review (Feb 22 - Sunday)
+- Weekend day with minimal logged activity
+- Agent Task Execution System active: board meetings now execute tasks automatically
+- Research tasks create research documents automatically
+- UI updated to show current/recent tasks per agent
+
 ## Daily Review (Feb 20)
 - Trading bot significant upgrades: multi-timeframe confirmation, MACD, volume filtering, dynamic position sizing based on conviction score
 - Freelance Dev Work added to kanban (Business Central extensions)
