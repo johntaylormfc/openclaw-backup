@@ -35,6 +35,15 @@
     },
     "alpaca": {
       "command": "npx alpaca-mcp"
+    },
+    "puppeteer": {
+      "command": "npx @modelcontextprotocol/server-puppeteer"
+    },
+    "notion": {
+      "command": "npx @modelcontextprotocol/server-notion"
+    },
+    "postgresql": {
+      "command": "npx @modelcontextprotocol/server-postgres"
     }
   },
   "imports": []

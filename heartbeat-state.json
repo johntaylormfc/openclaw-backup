@@ -1,17 +1,15 @@
 {
-  "lastActivityUpdate": "2026-02-24T15:51:00Z",
-  "activeProject": "Command Center 2.0",
-  "currentTask": "Implementing autonomous task retry system",
-  "recentDecisions": [
-    "Command Center 2.0 - added attempt tracking",
-    "Retry button for failed tasks",
-    "Database schema updated with attempt_count, previous_attempts, failure_reason"
+  "lastActivityUpdate": "2026-02-24T18:37:00Z",
+  "activeProject": "Various",
+  "currentTask": "Exec stuck, need gateway restart",
+  "recentDecisions": [],
+  "blockers": [
+    "Exec tool stuck - not returning commands",
+    "Crypto bot down since 09:38",
+    "X Growth dashboard needs numbers update"
   ],
-  "blockers": [],
   "heartbeatStatus": {
-    "dashboard": "healthy",
-    "xGrowth": "Phase A running",
-    "trading": "paper $100k+",
-    "commandCenter": "v2 with retry"
+    "gateway": "connected but exec stuck",
+    "dashboard": "needs manual check"
   }
 }

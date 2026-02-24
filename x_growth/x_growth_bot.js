@@ -23,9 +23,6 @@ const PHASES = {
   C: { days: Infinity, posts: 10, replies: 20, follows: 15, likes: 50 }
 };
 
-// Rate limiting - avoid 429 errors
-const RATE_LIMIT_DELAY = 2000; // 2 seconds between actions
-
 // Current phase
 const startDate = new Date('2026-02-23');
 const today = new Date();
@@ -49,12 +46,12 @@ function delay(ms) {
 }
 
 function getTodayMetrics() {
-  const today = getTodayStr();
+  const todayStr = getTodayStr();
   if (!fs.existsSync(metricsPath)) return { posts: 0, replies: 0, follows: 0, likes: 0 };
   
   const lines = fs.readFileSync(metricsPath, 'utf8').trim().split('\n');
   for (let i = lines.length - 1; i >= 1; i--) {
-    if (lines[i].startsWith(today)) {
+    if (lines[i].startsWith(todayStr)) {
       const cols = lines[i].split(',');
       return {
         posts: parseInt(cols[2]) || 0,
@@ -69,7 +66,7 @@ function getTodayMetrics() {
 
 function updateMetrics(posts, replies, follows, likes) {
   const current = getTodayMetrics();
-  const today = getTodayStr();
+  const todayStr = getTodayStr();
   
   const newPosts = current.posts + posts;
   const newReplies = current.replies + replies;
@@ -83,11 +80,11 @@ function updateMetrics(posts, replies, follows, likes) {
     lines = ['date,phase,posts,replies,follows,likes,followers_gained,notes'];
   }
   
-  const newLine = `${today},${currentPhase},${newPosts},${newReplies},${newFollows},${newLikes},0,Auto-updated`;
+  const newLine = `${todayStr},${currentPhase},${newPosts},${newReplies},${newFollows},${newLikes},0,Auto-updated`;
   
   let found = false;
   for (let i = 1; i < lines.length; i++) {
-    if (lines[i].startsWith(today)) {
+    if (lines[i].startsWith(todayStr)) {
       lines[i] = newLine;
       found = true;
       break;
@@ -96,6 +93,7 @@ function updateMetrics(posts, replies, follows, likes) {
   if (!found) lines.push(newLine);
   
   fs.writeFileSync(metricsPath, lines.join('\n') + '\n');
+  console.log(`Updated metrics: ${newPosts} posts, ${newReplies} replies, ${newFollows} follows, ${newLikes} likes`);
   
   return { posts: newPosts, replies: newReplies, follows: newFollows, likes: newLikes };
 }
@@ -113,12 +111,12 @@ async function searchAndReply(query, replyText) {
     
     let count = 0;
     for await (const tweet of search) {
-      if (count >= 2) break; // Max 2 per run to avoid rate limits
+      if (count >= 2) break;
       if (tweet.author_id === auth.accountId) continue;
       
       console.log(`[${phaseName}] Replying to: ${tweet.text.substring(0, 50)}...`);
       
-      await delay(RATE_LIMIT_DELAY); // Rate limit protection
+      await delay(2000);
       
       try {
         const reply = await rwClient.v2.reply(replyText, tweet.id);
@@ -126,16 +124,12 @@ async function searchAndReply(query, replyText) {
         console.log(`[${phaseName}] Replied!`);
         count++;
       } catch (e) {
-        if (e.code === 429) {
-          console.log('Rate limited, stopping...');
-          break;
-        }
+        if (e.code === 429) { console.log('Rate limited'); break; }
       }
     }
   } catch (e) {
     console.error('Search error:', e.message);
   }
-  
   return null;
 }
 
@@ -148,7 +142,7 @@ async function postTweet(text) {
   }
   
   try {
-    await delay(RATE_LIMIT_DELAY);
+    await delay(2000);
     const tweet = await rwClient.v2.tweet(text);
     updateMetrics(1, 0, 0, 0);
     console.log(`[${phaseName}] Posted!`);
@@ -157,48 +151,59 @@ async function postTweet(text) {
     if (e.code === 429) console.log('Rate limited on post');
     console.error('Post error:', e.message);
   }
-  
   return null;
 }
 
-async function likeTweet(tweetId) {
+async function likeTweets(query, count) {
   const current = getTodayMetrics();
   
   if (current.likes >= LIMITS.likes) {
     console.log(`[${phaseName}] Reached daily like limit (${LIMITS.likes})`);
-    return null;
+    return;
   }
   
   try {
-    await delay(RATE_LIMIT_DELAY);
-    await rwClient.v2.like(auth.accountId, tweetId);
-    updateMetrics(0, 0, 0, 1);
-    console.log(`[${phaseName}] Liked!`);
-    return true;
+    const search = await rwClient.v2.search(query, { max_results: 10 });
+    let likes = 0;
+    for await (const tweet of search) {
+      if (likes >= count || current.likes + likes >= LIMITS.likes) break;
+      await delay(1000);
+      try {
+        await rwClient.v2.like(auth.accountId, tweet.id);
+        console.log('Liked tweet');
+        likes++;
+      } catch(e) { if (e.code === 429) break; }
+    }
+    if (likes > 0) updateMetrics(0, 0, 0, likes);
   } catch (e) {
-    if (e.code === 429) console.log('Rate limited on like');
+    console.error('Like error:', e.message);
   }
-  return null;
 }
 
-async function followUser(userId) {
+async function followUsers(query, count) {
   const current = getTodayMetrics();
   
   if (current.follows >= LIMITS.follows) {
     console.log(`[${phaseName}] Reached daily follow limit (${LIMITS.follows})`);
-    return null;
+    return;
   }
   
   try {
-    await delay(RATE_LIMIT_DELAY);
-    await rwClient.v2.follow(auth.accountId, userId);
-    updateMetrics(0, 0, 1, 0);
-    console.log(`[${phaseName}] Followed!`);
-    return true;
+    const users = await rwClient.v2.searchUsers(query, { max_results: 5 });
+    let follows = 0;
+    for await (const user of users) {
+      if (follows >= count || current.follows + follows >= LIMITS.follows) break;
+      await delay(1000);
+      try {
+        await rwClient.v2.follow(auth.accountId, user.id);
+        console.log('Followed:', user.username);
+        follows++;
+      } catch(e) { if (e.code === 429) break; }
+    }
+    if (follows > 0) updateMetrics(0, 0, follows, 0);
   } catch (e) {
-    if (e.code === 429) console.log('Rate limited on follow');
+    console.error('Follow error:', e.message);
   }
-  return null;
 }
 
 async function getMetrics() {
@@ -231,9 +236,10 @@ async function runScheduled() {
   if (hour >= 8 && hour <= 10) {
     console.log('\n[Morning]');
     if (current.posts < LIMITS.posts) {
-      await postTweet('Good morning! What\'s your top priority today? 🚀');
+      await postTweet('Good morning! What\'s your top priority today?');
     }
-    await searchAndReply('productivity tips', 'One addition that worked for me: [specific tip]. What\'s yours?');
+    await followUsers('productivity expert', 2);
+    await likeTweets('productivity tips', 5);
   }
   
   // Afternoon (1-3pm)
@@ -242,15 +248,16 @@ async function runScheduled() {
     if (current.posts < LIMITS.posts) {
       await postTweet('Afternoon check-in! How\'s your productivity going?');
     }
-    await searchAndReply('learning techniques', 'Active recall + spaced repetition. Worked better than passive reading for me.');
+    await searchAndReply('learning tips', 'Great point! In my experience...');
   }
   
   // Evening (6-8pm)
   if (hour >= 18 && hour <= 20) {
     console.log('\n[Evening]');
     if (current.posts < LIMITS.posts) {
-      await postTweet('Wrapping up! What was your biggest win today? 🎯');
+      await postTweet('Wrapping up! What was your biggest win today?');
     }
+    await likeTweets('productivity', 5);
   }
   
   console.log('\n=== Done ===\n');
@@ -270,10 +277,10 @@ const arg2 = process.argv[4];
       await postTweet(arg1);
       break;
     case 'like':
-      await likeTweet(arg1);
+      await likeTweets(arg1 || 'productivity tips', parseInt(arg2) || 5);
       break;
     case 'follow':
-      await followUser(arg1);
+      await followUsers(arg1 || 'productivity', parseInt(arg2) || 2);
       break;
     case 'metrics':
       const metrics = await getMetrics();
