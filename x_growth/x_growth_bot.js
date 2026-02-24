@@ -19,11 +19,14 @@ const rwClient = client.readWrite;
 // Phase limits - updated Feb 24, 2026
 const PHASES = {
   A: { days: 3, posts: 2, replies: 4, follows: 4, likes: 16 },
-  B: { days: 11, posts: 5, replies: 10, follows: 8, likes: 25 },  // Days 4-14
-  C: { days: Infinity, posts: 10, replies: 20, follows: 15, likes: 50 }  // Day 15+
+  B: { days: 11, posts: 5, replies: 10, follows: 8, likes: 25 },
+  C: { days: Infinity, posts: 10, replies: 20, follows: 15, likes: 50 }
 };
 
-// Current phase (based on days since Feb 23, 2026)
+// Rate limiting - avoid 429 errors
+const RATE_LIMIT_DELAY = 2000; // 2 seconds between actions
+
+// Current phase
 const startDate = new Date('2026-02-23');
 const today = new Date();
 const daysSinceStart = Math.floor((today - startDate) / (1000 * 60 * 60 * 24)) + 1;
@@ -35,11 +38,14 @@ else if (daysSinceStart > 3) currentPhase = 'B';
 const LIMITS = PHASES[currentPhase];
 const phaseName = `Phase ${currentPhase}`;
 
-// Tracking file
 const metricsPath = path.join(__dirname, 'x_metrics_log.csv');
 
 function getTodayStr() {
   return new Date().toISOString().split('T')[0];
+}
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function getTodayMetrics() {
@@ -47,7 +53,6 @@ function getTodayMetrics() {
   if (!fs.existsSync(metricsPath)) return { posts: 0, replies: 0, follows: 0, likes: 0 };
   
   const lines = fs.readFileSync(metricsPath, 'utf8').trim().split('\n');
-  // Find last line for today
   for (let i = lines.length - 1; i >= 1; i--) {
     if (lines[i].startsWith(today)) {
       const cols = lines[i].split(',');
@@ -71,7 +76,6 @@ function updateMetrics(posts, replies, follows, likes) {
   const newFollows = current.follows + follows;
   const newLikes = current.likes + likes;
   
-  // Read all lines, replace today's line or add new
   let lines = [];
   if (fs.existsSync(metricsPath)) {
     lines = fs.readFileSync(metricsPath, 'utf8').trim().split('\n');
@@ -81,7 +85,6 @@ function updateMetrics(posts, replies, follows, likes) {
   
   const newLine = `${today},${currentPhase},${newPosts},${newReplies},${newFollows},${newLikes},0,Auto-updated`;
   
-  // Find and replace today's line
   let found = false;
   for (let i = 1; i < lines.length; i++) {
     if (lines[i].startsWith(today)) {
@@ -97,7 +100,6 @@ function updateMetrics(posts, replies, follows, likes) {
   return { posts: newPosts, replies: newReplies, follows: newFollows, likes: newLikes };
 }
 
-// Search and reply to relevant tweets
 async function searchAndReply(query, replyText) {
   const current = getTodayMetrics();
   
@@ -107,40 +109,36 @@ async function searchAndReply(query, replyText) {
   }
   
   try {
-    const search = await rwClient.v2.search(query, {
-      max_results: 10,
-      tweet: { fields: ['author_id', 'text', 'created_at'] }
-    });
+    const search = await rwClient.v2.search(query, { max_results: 10 });
     
     let count = 0;
     for await (const tweet of search) {
-      if (count >= 3) break; // Try up to 3
-      
-      // Skip own tweets and replies
+      if (count >= 2) break; // Max 2 per run to avoid rate limits
       if (tweet.author_id === auth.accountId) continue;
       
       console.log(`[${phaseName}] Replying to: ${tweet.text.substring(0, 50)}...`);
       
+      await delay(RATE_LIMIT_DELAY); // Rate limit protection
+      
       try {
         const reply = await rwClient.v2.reply(replyText, tweet.id);
         updateMetrics(0, 1, 0, 0);
-        console.log(`[${phaseName}] Replied! ID: ${reply.data.id}`);
+        console.log(`[${phaseName}] Replied!`);
         count++;
-        
-        // Wait between replies to avoid spam detection
-        await new Promise(r => setTimeout(r, 60000)); // 1 min delay
       } catch (e) {
-        console.log('Reply failed, trying next...');
+        if (e.code === 429) {
+          console.log('Rate limited, stopping...');
+          break;
+        }
       }
     }
   } catch (e) {
-    console.error('Search/reply error:', e.message);
+    console.error('Search error:', e.message);
   }
   
   return null;
 }
 
-// Post a tweet
 async function postTweet(text) {
   const current = getTodayMetrics();
   
@@ -150,18 +148,19 @@ async function postTweet(text) {
   }
   
   try {
+    await delay(RATE_LIMIT_DELAY);
     const tweet = await rwClient.v2.tweet(text);
     updateMetrics(1, 0, 0, 0);
-    console.log(`[${phaseName}] Posted! ID: ${tweet.data.id}`);
+    console.log(`[${phaseName}] Posted!`);
     return tweet.data.id;
   } catch (e) {
+    if (e.code === 429) console.log('Rate limited on post');
     console.error('Post error:', e.message);
   }
   
   return null;
 }
 
-// Like a tweet
 async function likeTweet(tweetId) {
   const current = getTodayMetrics();
   
@@ -171,17 +170,17 @@ async function likeTweet(tweetId) {
   }
   
   try {
+    await delay(RATE_LIMIT_DELAY);
     await rwClient.v2.like(auth.accountId, tweetId);
     updateMetrics(0, 0, 0, 1);
-    console.log(`[${phaseName}] Liked tweet ${tweetId}`);
+    console.log(`[${phaseName}] Liked!`);
     return true;
   } catch (e) {
-    console.error('Like error:', e.message);
+    if (e.code === 429) console.log('Rate limited on like');
   }
   return null;
 }
 
-// Follow a user
 async function followUser(userId) {
   const current = getTodayMetrics();
   
@@ -191,17 +190,17 @@ async function followUser(userId) {
   }
   
   try {
+    await delay(RATE_LIMIT_DELAY);
     await rwClient.v2.follow(auth.accountId, userId);
     updateMetrics(0, 0, 1, 0);
-    console.log(`[${phaseName}] Followed user ${userId}`);
+    console.log(`[${phaseName}] Followed!`);
     return true;
   } catch (e) {
-    console.error('Follow error:', e.message);
+    if (e.code === 429) console.log('Rate limited on follow');
   }
   return null;
 }
 
-// Get current metrics
 async function getMetrics() {
   try {
     const me = await rwClient.v2.me({ 'user.fields': 'public_metrics' });
@@ -221,48 +220,43 @@ async function getMetrics() {
   }
 }
 
-// Run scheduled actions based on time of day
 async function runScheduled() {
   const hour = new Date().getHours();
   const current = getTodayMetrics();
   
   console.log(`\n=== ${phaseName} Scheduled Run (${hour}:00) ===`);
-  console.log(`Today: ${current.posts} posts, ${current.replies} replies, ${current.follows} follows, ${current.likes} likes`);
-  console.log(`Limits: ${LIMITS.posts} posts, ${LIMITS.replies} replies, ${LIMITS.follows} follows, ${LIMITS.likes} likes`);
+  console.log(`Today: ${current.posts}/${LIMITS.posts} posts, ${current.replies}/${LIMITS.replies} replies, ${current.follows}/${LIMITS.follows} follows, ${current.likes}/${LIMITS.likes} likes`);
   
-  // Morning (8-10am): Post + replies + follows
+  // Morning (8-10am)
   if (hour >= 8 && hour <= 10) {
-    console.log('\n[Morning Session]');
+    console.log('\n[Morning]');
     if (current.posts < LIMITS.posts) {
-      await postTweet('Good morning! Starting the day with productivity tips. What are you working on? 🚀');
+      await postTweet('Good morning! What\'s your top priority today? 🚀');
     }
-    await searchAndReply('productivity tips', 'Great insight! Here\'s a tip that might help...');
-    await searchAndReply('AI tools', 'Interesting point about AI! Here\'s another perspective...');
+    await searchAndReply('productivity tips', 'One addition that worked for me: [specific tip]. What\'s yours?');
   }
   
-  // Afternoon (1-3pm): Post + replies
+  // Afternoon (1-3pm)
   if (hour >= 13 && hour <= 15) {
-    console.log('\n[Afternoon Session]');
+    console.log('\n[Afternoon]');
     if (current.posts < LIMITS.posts) {
-      await postTweet('Afternoon check-in! How\'s your productivity going? Drop your questions below 👇');
+      await postTweet('Afternoon check-in! How\'s your productivity going?');
     }
-    await searchAndReply('learning tips', 'Solid advice! Adding to this...');
-    await searchAndReply('study techniques', 'Great point! Here\'s what works for me...');
+    await searchAndReply('learning techniques', 'Active recall + spaced repetition. Worked better than passive reading for me.');
   }
   
-  // Evening (6-8pm): Post + engagement
+  // Evening (6-8pm)
   if (hour >= 18 && hour <= 20) {
-    console.log('\n[Evening Session]');
+    console.log('\n[Evening]');
     if (current.posts < LIMITS.posts) {
-      await postTweet('Wrapping up the day! What was your biggest win today? 🎯');
+      await postTweet('Wrapping up! What was your biggest win today? 🎯');
     }
-    await searchAndReply('habits', 'Building good habits is key! Here\'s my approach...');
   }
   
-  console.log('\n=== Run Complete ===\n');
+  console.log('\n=== Done ===\n');
 }
 
-// CLI interface
+// CLI
 const command = process.argv[2];
 const arg1 = process.argv[3];
 const arg2 = process.argv[4];
@@ -295,13 +289,6 @@ const arg2 = process.argv[4];
       break;
     default:
       console.log('X Growth Bot - Phase', currentPhase);
-      console.log('Usage:');
-      console.log('  node x_growth_bot.js reply "query" "text"');
-      console.log('  node x_growth_bot.js post "text"');
-      console.log('  node x_growth_bot.js like <tweetId>');
-      console.log('  node x_growth_bot.js follow <userId>');
-      console.log('  node x_growth_bot.js metrics');
-      console.log('  node x_growth_bot.js status');
-      console.log('  node x_growth_bot.js run  (scheduled actions)');
+      console.log('Usage: reply/post/like/follow/metrics/status/run');
   }
 })();

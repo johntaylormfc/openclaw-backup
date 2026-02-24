@@ -30,6 +30,13 @@
 - GitHub: johntaylormfc/arr-dashboard
 - Self-test API: http://localhost:4000/api/self-test
 
+## IMPORTANT - Dashboard Issues
+**ALWAYS use Chrome DevTools MCP** when:
+- Testing/fixing dashboard UI issues
+- Clicking buttons to verify they work
+- Taking snapshots to debug
+- Checking page structure
+
 Use mcporter + chrome-devtools-mcp for dashboard debugging.
 
 ## Completed Recently

@@ -2,9 +2,15 @@
 
 Environment-specific config. Keep skills separate.
 
+## Chrome DevTools MCP
+- **Use for:** Dashboard testing, debugging UI issues, clicking buttons
+- **How:** 
+  1. Start: `browser action=start profile=chrome` (or use relay)
+  2. Take snapshot: `browser action=snapshot`
+  3. Click: `browser action=act request='{"kind":"click","ref":"e20"}'`
+- **Always use** when testing/fixing dashboard issues
+
 ## Ollama (Local LLM)
-- **Server**: gspro (192.168.1.228:11434)
-- **Models**: qwen2.5-coder:7b (coding), llama3.2:3b (general)
 
 ## TTS
 - Preferred voice: "Nova"

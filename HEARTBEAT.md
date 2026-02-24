@@ -45,3 +45,17 @@ Every Saturday & Sunday heartbeat:
 3. Log: current time, any cron job executions, any tasks worked on
 4. Force a minimal daily entry even if no major events
 5. This ensures continuity even during low-activity periods
+
+## X Growth Review
+Every heartbeat (evening preferred):
+1. Run: cd /home/john/.openclaw/workspace/x_growth && node x_growth_bot.js metrics
+2. Check: node x_growth_bot.js status
+3. Log engagement to x_engagement_tracking.md
+4. Update strategy if needed in x_strategy_v2.md
+5. WhatsApp summary to john if significant changes
+
+## Trading Bot Review
+Every heartbeat (check paper trading status):
+1. Check: curl -s http://localhost:4000/api/trading | jq '.portfolio, .pnl'
+2. Log to trading_bot_plan.md
+3. Alert john if unusual activity

@@ -1,23 +1,53 @@
-# Reply Bank
+# Reply Templates - IMPROVED
 
-## Tested & Approved Reply Templates
+## Key Rules
+1. **Read the actual tweet** - reply to specific points
+2. **Add new information** - don't just agree
+3. **Be specific** - use numbers, examples
+4. **Ask questions** - start conversations
+5. **Different wording every time** - never repeat same template
 
-### Productivity
-- "One more thing to add: [specific tip]. Works well when [context]."
-- "I tried this for 30 days. The biggest surprise was [unexpected insight]."
-- "This works, but don't skip [common mistake most people make]."
+## Productivity Niche Templates
 
-### Learning
-- "Another technique that pairs well: [method]. Used it for [subject] and saw results in [timeframe]."
-- "Study hack: [specific method]. Much faster for [type of learning]."
+### Adding a Tip
+- "Tried this + [specific addition]. Made a difference because [reason]."
+- "One factor people miss: [specific point]. Here's why it matters: [brief explanation]."
 
-### AI Tools
-- "Been using this for [use case]. One tip: [specific advice]."
-- "Similar tool for [different use case]: [alternative]. Better for [specific scenario]."
+### Sharing Experience
+- "Did this for 2 weeks. The biggest change was [specific outcome]."
+- "I experimented with this last month. Results: [numbers]."
 
-## Rules
-- Always be specific to the post
-- Add genuine value
-- Keep short
-- Never ask for follows
-- Sound human, not templated
+### Asking Questions
+- "Have you tried [alternative approach]? Curious if that changes the outcome."
+- "What about [specific scenario]? Would love to hear your take."
+
+### Adding Context
+- "This works especially well for [specific use case]. For [other case], I found [different approach] better."
+
+### Contrarian View (High Engagement)
+- "I've found the opposite - [unpopular opinion]. Here's what happened: [specific result]."
+- "Interesting perspective. In my experience with [specific context], [different outcome]."
+
+## Learning/Niche Templates
+
+### Study Techniques
+- "For [subject], I found [technique] more effective than [common approach]."
+- "This pairs well with [specific method]. Tried both together and saw [result]."
+
+### AI Tools Niche
+- "For [specific use case], I've had better results with [alternative tool]. Here's the comparison: [brief]"
+- "Been using this for [specific application]. One caveat: [important consideration]."
+
+## Response Quality Checklist
+- [ ] Does this reply the ACTUAL tweet, not a generic template?
+- [ ] Does it add NEW information or perspective?
+- [ ] Is it specific (numbers, examples, context)?
+- [ ] Does it sound HUMAN, not AI-generated?
+- [ ] Would I engage with this if I saw it?
+
+## What NOT to Do
+- ❌ "Great post!" (too generic)
+- ❌ "Thanks for sharing" (no value add)
+- ❌ Same template repeated
+- ❌ Generic "productivity tip" responses
+- ❌ Asking for follows
