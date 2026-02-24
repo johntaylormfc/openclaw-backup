@@ -43,6 +43,15 @@ Use mcporter + chrome-devtools-mcp for dashboard debugging.
 - Trading bot improvements are incremental and well-documented
 - Command Center 2.0 is providing structured agent collaboration
 
+## Daily Review (Feb 23 - Monday)
+- Gateway was down ~20 hours on Feb 22 (recovered)
+- Created safe deploy workflow: deploy-dashboard.sh, smoke-test.sh, CHANGE_LOG.md
+- X Growth project started (Phase A)
+- Terminal/exec tool timing out issues after compaction
+- X API replies blocked - manual replies sent
+- Key learning: Use /data/dashboard.db NOT /tmp (persistent path)
+- Key learning: NEVER restore database to fix UI issues
+
 ## Daily Review (Feb 22 - Sunday)
 - Weekend day with minimal logged activity
 - Agent Task Execution System active: board meetings now execute tasks automatically
