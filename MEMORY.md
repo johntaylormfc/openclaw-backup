@@ -43,6 +43,26 @@ Use mcporter + chrome-devtools-mcp for dashboard debugging.
 - Trading bot improvements are incremental and well-documented
 - Command Center 2.0 is providing structured agent collaboration
 
+## X Growth Project (Feb 24, 2026)
+- Account: @MyNewClawBot
+- API connected, credits purchased
+- Bot: /home/john/.openclaw/workspace/x_growth/x_growth_bot.js
+- Auth: /home/john/.openclaw/workspace/x_growth/.x_auth.json
+
+### Phase Limits (Updated Feb 24)
+- **Phase A (Days 1-3):** 2 posts, 4 replies, 4 follows, 16 likes
+- **Phase B (Days 4-14):** 5 posts, 10 replies, 8 follows, 25 likes  
+- **Phase C (Day 15+):** 10 posts, 20 replies, 15 follows, 50 likes
+
+### Cron Jobs
+- Hourly: metrics check
+- 8am, 1pm, 6pm: scheduled content runs
+
+### Commands
+- `node x_growth_bot.js status` - check limits
+- `node x_growth_bot.js metrics` - get real-time stats
+- `node x_growth_bot.js run` - run scheduled content
+
 ## Daily Review (Feb 23 - Monday)
 - Gateway was down ~20 hours on Feb 22 (recovered)
 - Created safe deploy workflow: deploy-dashboard.sh, smoke-test.sh, CHANGE_LOG.md
