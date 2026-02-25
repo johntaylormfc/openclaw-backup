@@ -180,6 +180,15 @@ async function likeTweets(query, count) {
   }
 }
 
+// Popular productivity accounts to pull followers from
+const POPULAR_ACCOUNTS = [
+  '783214',     // @garyvee
+  '14532427',   // @JamesClear
+  '222712959',  // @NatashaNel_
+  '216776631',  // @TimFerriss
+  '50161003',   // @TonyRobbins
+];
+
 async function followUsers(query, count) {
   const current = getTodayMetrics();
   
@@ -189,16 +198,22 @@ async function followUsers(query, count) {
   }
   
   try {
-    const users = await rwClient.v2.searchUsers(query, { max_results: 5 });
+    // Use followers of popular accounts (API search is not available on free tier)
+    const sourceAccount = POPULAR_ACCOUNTS[Math.floor(Math.random() * POPULAR_ACCOUNTS.length)];
+    const users = await rwClient.v2.followers(sourceAccount, { max_results: 10 });
+    
     let follows = 0;
-    for await (const user of users) {
+    for (const user of users.data || []) {
       if (follows >= count || current.follows + follows >= LIMITS.follows) break;
       await delay(1000);
       try {
         await rwClient.v2.follow(auth.accountId, user.id);
         console.log('Followed:', user.username);
         follows++;
-      } catch(e) { if (e.code === 429) break; }
+      } catch(e) { 
+        if (e.data?.errors?.[0]?.code === 429) break; // rate limit
+        console.log('Follow error:', e.message); 
+      }
     }
     if (follows > 0) updateMetrics(0, 0, follows, 0);
   } catch (e) {
