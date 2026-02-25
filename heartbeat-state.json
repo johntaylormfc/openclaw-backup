@@ -1,15 +1,17 @@
 {
-  "lastActivityUpdate": "2026-02-24T18:37:00Z",
-  "activeProject": "Various",
-  "currentTask": "Exec stuck, need gateway restart",
-  "recentDecisions": [],
+  "lastActivityUpdate": "2026-02-25T04:20:00Z",
+  "activeProject": "Monitoring",
+  "currentTask": "Heartbeat check",
+  "recentDecisions": [
+    "Deleted WhatsApp credentials to force re-pair"
+  ],
   "blockers": [
-    "Exec tool stuck - not returning commands",
-    "Crypto bot down since 09:38",
-    "X Growth dashboard needs numbers update"
+    "WhatsApp: credentials deleted, needs user to scan QR code to re-pair"
   ],
   "heartbeatStatus": {
-    "gateway": "connected but exec stuck",
-    "dashboard": "needs manual check"
+    "gateway": "running",
+    "dashboard": "up",
+    "cryptoBot": "up",
+    "whatsapp": "NEEDS USER ACTION - scan QR code"
   }
 }
