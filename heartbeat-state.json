@@ -1,9 +1,9 @@
 {
-  "last_heartbeat": "2026-02-25T10:11:00Z",
-  "status": "healthy",
-  "dashboard": "up",
-  "x_growth": "Phase A",
-  "containers": 31,
-  "kanban_backlog": 0,
-  "notes": "Agent task completion notes feature added. All dashboard sections working."
+  "lastHeartbeat": "2026-02-25T16:16:00Z",
+  "dashboard": "healthy",
+  "kanban": { "tasks": 26, "ideas": 16, "backlog": 0 },
+  "xGrowth": { "today": "2/2 posts, 4/4 replies, 2/3 follows, 16/16 likes", "cumulative": "7 posts, 10 replies, 5 follows, 28 likes", "phase": "A (Day 3)" },
+  "trading": { "portfolio": 100532.63, "positions": 0 },
+  "activeTask": null,
+  "blockers": []
 }
