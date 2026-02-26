@@ -42,3 +42,11 @@
 - All figures pulled directly from X API for account metrics
 - Activity tracked in x_metrics_log.csv (cumulative by day)
 - Never view daily in isolation - always check cumulative totals
+
+## Action Items (from continuous improvement)
+- [ ] **Increase replies** - currently 0/day, should be targeting 10/day in Phase B
+- [ ] **Log each post** - add topic/niche to post log for tracking
+- [ ] **Test productivity content** - higher engagement potential than promo
+- [ ] **Check tweet engagement** - see which posts got likes, replicate
+
+## Next Review: Feb 27

@@ -12,6 +12,11 @@ Environment-specific config. Keep skills separate.
 
 ## Ollama (Local LLM)
 
+## SearXNG (Local Search)
+- **URL:** http://127.0.0.1:8890
+- **API:** `/search?q=query&format=json`
+- **Use instead of Brave** for free, private searches
+
 ## TTS
 - Preferred voice: "Nova"
 

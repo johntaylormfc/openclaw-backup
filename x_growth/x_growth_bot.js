@@ -80,7 +80,7 @@ function updateMetrics(posts, replies, follows, likes) {
     lines = ['date,phase,posts,replies,follows,likes,followers_gained,notes'];
   }
   
-  const newLine = `${todayStr},${currentPhase},${newPosts},${newReplies},${newFollows},${newLikes},0,Auto-updated`;
+  const newLine = `${todayStr},${phaseName},${newPosts},${newReplies},${newFollows},${newLikes},0,0,N/A,N/A,Auto-updated`;
   
   let found = false;
   for (let i = 1; i < lines.length; i++) {

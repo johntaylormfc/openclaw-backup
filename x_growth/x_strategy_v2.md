@@ -3,17 +3,19 @@
 ## Core Loop
 1. **Post/Reply** → 2. **Track Engagement** → 3. **Analyze** → 4. **Improve** → 5. **Repeat**
 
-## Daily Checklist
-- [ ] Check engagement on yesterday's posts (likes, replies, follows)
-- [ ] Review what worked vs didn't
-- [ ] Update reply templates based on results
-- [ ] Post content aligned with what resonates
+## Daily Review Checklist (EVERY heartbeat)
+- [ ] Run `node x_growth_bot.js metrics` - log to x_metrics_log.csv
+- [ ] Check post log for any new engagement (likes, replies)
+- [ ] Note what content worked → add more like it to content bank
+- [ ] Note what didn't → adjust or drop
+- [ ] Update today's activity in x_engagement_tracking.md
 
-## Weekly Review
-- [ ] What niche got most engagement?
-- [ ] What type of post worked best?
-- [ ] What time of day performed best?
-- [ ] Adjust strategy for next week
+## Weekly Deep Dive (Sunday heartbeat)
+- [ ] Review x_metrics_log.csv trends
+- [ ] Identify top 3 performing post topics
+- [ ] Research competitors in winning niches
+- [ ] Adjust content bank priorities
+- [ ] Update strategy based on data
 
 ## Metrics to Track
 | Metric | Why It Matters |

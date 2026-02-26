@@ -37,8 +37,12 @@ async function getExistingTasks() {
   const response = await fetch(TODOIST_API, {
     headers: { 'Authorization': `Bearer ${todoistKey}` }
   });
+  if (!response.ok) {
+    console.error(`Todoist API error: ${response.status} ${response.statusText}`);
+    return [];
+  }
   const data = await response.json();
-  return data.results || [];
+  return Array.isArray(data) ? data : (data.results || []);
 }
 
 async function createTask(title, dueString, description) {
@@ -54,6 +58,11 @@ async function createTask(title, dueString, description) {
       description: description
     })
   });
+  if (!response.ok) {
+    const err = await response.text();
+    console.error(`Failed to create task: ${err}`);
+    return null;
+  }
   return response.json();
 }
 

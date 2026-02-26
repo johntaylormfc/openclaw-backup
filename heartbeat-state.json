@@ -1,15 +1,25 @@
 {
-  "lastHeartbeat": "2026-02-26T09:03:00Z",
-  "dashboardStatus": "healthy",
-  "kanbanIdeas": 22,
-  "dbStatus": "exists at /home/john/.openclaw/workspace/dashboard-data/dashboard.db",
-  "notes": "09:03 heartbeat - all systems operational, X Growth Phase B running",
-  "xGrowth": {
-    "phase": "B",
-    "today": "1/5 posts, 0/10 replies, 2/8 follows, 5/25 likes"
-  },
-  "tradingBot": {
-    "portfolio": 100532.63,
-    "status": "running"
+  "lastHeartbeat": "2026-02-26T15:59:00Z",
+  "activeProject": "X Growth Phase B, Crypto Bot",
+  "currentTask": "Heartbeat check",
+  "recentDecisions": [
+    "Fixed X Growth bot CSV metric tracking bug",
+    "Enabled SearXNG JSON API for local searches",
+    "Gap closed on X Growth Phase B targets"
+  ],
+  "blockers": [],
+  "status": {
+    "dashboard": "healthy",
+    "kanbanTasks": 26,
+    "tradingPortfolio": 100532.63,
+    "cryptoSync": "running (every 5 min)",
+    "xGrowth": {
+      "phase": "B",
+      "followers": 2,
+      "todayPosts": "6/5 ✅",
+      "todayReplies": "14/10 ✅",
+      "todayFollows": "6/8 ✅",
+      "todayLikes": "25/25 ✅"
+    }
   }
 }
