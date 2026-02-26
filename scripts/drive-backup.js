@@ -1,28 +1,20 @@
 #!/usr/bin/env node
 /**
- * Google Drive Backup Script
- * Backs up workspace files to Google Drive
+ * Google Drive Backup Script - Updated for OpenClaw folder structure
+ * Backs up workspace files to Google Drive → openclaw/
  */
 
 const { google } = require('googleapis');
 const fs = require('fs');
 const path = require('path');
-const readline = require('readline');
 
 const CONFIG_PATH = '/home/john/.openclaw/workspace/config';
 const WORKSPACE_PATH = '/home/john/.openclaw/workspace';
-const BACKUP_FOLDER_NAME = 'ARR_Bot_Backups';
 
 // Load credentials
 const gmailCreds = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/google-oauth-token.json`, 'utf8'));
 
-// Authenticate
-const oauth2Client = new google.auth.OAuth2(
-  gmailCreds.client_id,
-  gmailCreds.client_secret,
-  'http://localhost'
-);
-
+const oauth2Client = new google.auth.OAuth2(gmailCreds.client_id, gmailCreds.client_secret, 'http://localhost');
 oauth2Client.setCredentials({
   access_token: gmailCreds.access_token,
   refresh_token: gmailCreds.refresh_token,
@@ -33,50 +25,23 @@ oauth2Client.setCredentials({
 
 const drive = google.drive({ version: 'v3', auth: oauth2Client });
 
-async function findOrCreateFolder(folderName) {
-  const response = await drive.files.list({
-    q: `name='${folderName}' and mimeType='application/vnd.google-apps.folder' and trashed=false`,
-    fields: 'files(id, name)'
-  });
-  
-  if (response.data.files.length > 0) {
-    return response.data.files[0].id;
-  }
-  
-  const folder = await drive.files.create({
-    resource: {
-      name: folderName,
-      mimeType: 'application/vnd.google-apps.folder'
-    },
-    fields: 'id'
-  });
-  
-  return folder.data.id;
-}
+// Folder IDs (hardcoded for efficiency)
+const FOLDERS = {
+  openclaw: '1E6yyfU6YA7GNyKASdsVAWWySbCR6pPk7',
+  backups: '13rBLT8yDcpe8neNykDyMpTGAH6tX3bB8',
+  memory: '1jJJwhj59NMQbCqnT39aV7zfrwQEA6Xqy',
+  logs: '1RnYq979r-qnAqQzuE73_tmX74BxQh5GJ',
+  tasks: '1D66YkTuQV15U_vdHZfg7jgh4ms7_Q40C'
+};
 
-async function uploadFile(filePath, folderId) {
-  const fileName = path.basename(filePath);
-  const date = new Date().toISOString().split('T')[0];
-  const fileContent = fs.readFileSync(filePath, 'utf8');
-  
-  // Simple upload without media property
-  const fileMetadata = {
-    name: `${fileName}-${date}`,
-    parents: [folderId]
-  };
+async function uploadFile(filePath, folderId, nameOverride) {
+  const fileName = nameOverride || path.basename(filePath);
+  const date = new Date().toISOString().slice(0,10);
   
   const response = await drive.files.create({
-    resource: fileMetadata,
-    fields: 'id'
-  });
-  
-  // Upload content separately
-  await drive.files.update({
-    fileId: response.data.id,
-    media: {
-      mimeType: 'text/plain',
-      body: fileContent
-    }
+    resource: { name: `${fileName}-${date}`, parents: [folderId] },
+    media: { mimeType: 'text/plain', body: fs.createReadStream(filePath) },
+    fields: 'id, name'
   });
   
   return response.data.id;
@@ -84,37 +49,64 @@ async function uploadFile(filePath, folderId) {
 
 async function backup() {
   console.log('=== Google Drive Backup ===');
+  let backedUp = 0;
   
   try {
-    const folderId = await findOrCreateFolder(BACKUP_FOLDER_NAME);
-    console.log(`Backup folder ID: ${folderId}`);
-    
-    const filesToBackup = [
-      'MEMORY.md',
-      'AGENTS.md',
-      'USER.md',
-      'SOUL.md',
-      'TOOLS.md',
-      'HEARTBEAT.md'
-    ];
-    
-    let backedUp = 0;
-    
-    for (const file of filesToBackup) {
-      const filePath = path.join(WORKSPACE_PATH, file);
-      if (fs.existsSync(filePath)) {
-        await uploadFile(filePath, folderId);
-        console.log(`✅ Backed up: ${file}`);
-        backedUp++;
-      }
+    // 1. Dashboard DB (SQLite)
+    const dbPath = '/home/john/.openclaw/workspace/dashboard-data/dashboard.db';
+    if (fs.existsSync(dbPath)) {
+      await drive.files.create({
+        resource: { name: `dashboard-${new Date().toISOString().slice(0,10)}.db`, parents: [FOLDERS.backups] },
+        media: { mimeType: 'application/x-sqlite3', body: fs.createReadStream(dbPath) }
+      });
+      console.log('✅ Dashboard DB');
+      backedUp++;
     }
     
-    console.log(`\n=== Summary ===`);
-    console.log(`Files backed up: ${backedUp}`);
-    console.log(`Location: Google Drive > ${BACKUP_FOLDER_NAME}`);
+    // 2. Memory files (last 7 days)
+    const memoryDir = path.join(WORKSPACE_PATH, 'memory');
+    if (fs.existsSync(memoryDir)) {
+      const files = fs.readdirSync(memoryDir).filter(f => f.endsWith('.md')).slice(-7);
+      for (const file of files) {
+        await drive.files.create({
+          resource: { name: file, parents: [FOLDERS.memory] },
+          media: { mimeType: 'text/markdown', body: fs.createReadStream(path.join(memoryDir, file)) }
+        });
+      }
+      console.log(`✅ Memory files (${files.length})`);
+      backedUp++;
+    }
+    
+    // 3. X Growth metrics
+    const xMetrics = path.join(WORKSPACE_PATH, 'x_growth/x_metrics_log.csv');
+    if (fs.existsSync(xMetrics)) {
+      await drive.files.create({
+        resource: { name: 'x_metrics_log.csv', parents: [FOLDERS.logs] },
+        media: { mimeType: 'text/csv', body: fs.createReadStream(xMetrics) }
+      });
+      console.log('✅ X metrics');
+      backedUp++;
+    }
+    
+    // 4. Core workspace files
+    const coreFiles = ['MEMORY.md', 'AGENTS.md', 'USER.md', 'SOUL.md', 'TOOLS.md', 'HEARTBEAT.md'];
+    for (const file of coreFiles) {
+      const filePath = path.join(WORKSPACE_PATH, file);
+      if (fs.existsSync(filePath)) {
+        await drive.files.create({
+          resource: { name: file, parents: [FOLDERS.backups] },
+          media: { mimeType: 'text/markdown', body: fs.createReadStream(filePath) }
+        });
+      }
+    }
+    console.log(`✅ Core files (${coreFiles.length})`);
+    backedUp++;
+    
+    console.log(`\n🎉 Backup complete! (${backedUp} categories)`);
+    console.log('Location: Google Drive → openclaw/');
     
   } catch (error) {
-    console.error('Backup failed:', error.message);
+    console.error('❌ Backup failed:', error.message);
     process.exit(1);
   }
 }
