@@ -180,6 +180,12 @@ async function likeTweets(query, count) {
   }
 }
 
+// EarthMeta promotion posts (2 per day above normal limits)
+const EARTHMETA_POSTS = [
+  "🌍 EarthMeta ($EMT) is building a sustainable digital future! Decentralized & eco-friendly. #Crypto #Web3 #EMT",
+  "🚀 Early bird opportunity! EarthMeta presale is live - secure your $EMT tokens now before the next pump! 🐦 #Crypto #Presale"
+];
+
 // Popular productivity accounts to pull followers from
 const POPULAR_ACCOUNTS = [
   '783214',     // @garyvee
@@ -188,6 +194,34 @@ const POPULAR_ACCOUNTS = [
   '216776631',  // @TimFerriss
   '50161003',   // @TonyRobbins
 ];
+
+async function postEarthMeta() {
+  const earthmetaPath = path.join(__dirname, 'earthmeta_posts_today.json');
+  const todayStr = getTodayStr();
+  
+  let posted = 0;
+  if (fs.existsSync(earthmetaPath)) {
+    const data = JSON.parse(fs.readFileSync(earthmetaPath, 'utf8'));
+    if (data.date === todayStr) posted = data.posted || 0;
+  }
+  
+  if (posted >= 2) {
+    console.log('[EarthMeta] Already posted 2 today');
+    return;
+  }
+  
+  const postText = EARTHMETA_POSTS[posted];
+  try {
+    await delay(2000);
+    const tweet = await rwClient.v2.tweet(postText);
+    console.log('[EarthMeta] Posted!:', postText.substring(0, 40) + '...');
+    
+    // Track
+    fs.writeFileSync(earthmetaPath, JSON.stringify({ date: todayStr, posted: posted + 1 }));
+  } catch (e) {
+    console.error('[EarthMeta] Post error:', e.message);
+  }
+}
 
 async function followUsers(query, count) {
   const current = getTodayMetrics();
@@ -253,6 +287,7 @@ async function runScheduled() {
     if (current.posts < LIMITS.posts) {
       await postTweet('Good morning! What\'s your top priority today?');
     }
+    await postEarthMeta(); // EarthMeta promo
     await followUsers('productivity expert', 2);
     await likeTweets('productivity tips', 5);
   }
@@ -272,6 +307,7 @@ async function runScheduled() {
     if (current.posts < LIMITS.posts) {
       await postTweet('Wrapping up! What was your biggest win today?');
     }
+    await postEarthMeta(); // EarthMeta promo
     await likeTweets('productivity', 5);
   }
   
@@ -305,12 +341,21 @@ const arg2 = process.argv[4];
       const current = getTodayMetrics();
       console.log(`Phase: ${phaseName}`);
       console.log(`Today: ${current.posts}/${LIMITS.posts} posts, ${current.replies}/${LIMITS.replies} replies, ${current.follows}/${LIMITS.follows} follows, ${current.likes}/${LIMITS.likes} likes`);
+      // Check EarthMeta posts
+      const emPath = path.join(__dirname, 'earthmeta_posts_today.json');
+      if (fs.existsSync(emPath)) {
+        const emData = JSON.parse(fs.readFileSync(emPath, 'utf8'));
+        console.log(`EarthMeta: ${emData.posted}/2 promo posts today`);
+      }
+      break;
+    case 'earthmeta':
+      await postEarthMeta();
       break;
     case 'run':
       await runScheduled();
       break;
     default:
       console.log('X Growth Bot - Phase', currentPhase);
-      console.log('Usage: reply/post/like/follow/metrics/status/run');
+      console.log('Usage: reply/post/like/follow/metrics/status/run/earthmeta');
   }
 })();

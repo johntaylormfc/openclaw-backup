@@ -159,3 +159,26 @@ Use mcporter + chrome-devtools-mcp for dashboard debugging.
 - Add crypto bot health monitoring to heartbeat checks
 - Fix exec tool reliability (investigate timeout/compaction issues)
 - X Growth dashboard needs automated refresh mechanism
+
+## Daily Review (Feb 26 - Wednesday)
+### X Growth Project
+- Phase B started (Days 4-14)
+- **Key Learning:** Always use cumulative totals from X API, never view daily in isolation
+- Updated x_engagement_tracking.md to reflect:
+  - API-sourced account stats (followers, following, tweets)
+  - Cumulative activity from CSV log
+  - Phase B limits: 5 posts, 10 replies, 8 follows, 25 likes/day
+- Current cumulative: 8 posts, 10 replies, 9 follows, 33 likes, 1 follower
+
+### Crypto Bot Sync
+- Cron job running successfully, syncs crypto.json to dashboard container
+- Runtime ~14s per sync
+
+### Dashboard
+- Database path confirmed: `/data/dashboard.db` (persistent across restarts)
+- Container mount: `/data` for DB, `/tmp` for crypto logs
+
+### Patterns Reinforced
+- **Never restore database to fix UI issues** - always debug the actual issue
+- Use Chrome DevTools MCP for dashboard UI debugging
+- Exec tool can hang after system compaction - use process management
