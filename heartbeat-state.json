@@ -1,7 +1,18 @@
 {
-  "lastHeartbeat": "2026-02-26T21:03:00",
-  "dashboardStatus": "healthy",
-  "kanbanBacklog": 0,
-  "xGrowthStatus": "Phase B - posts 11/5, replies 15/10",
-  "notes": "EarthMeta stale content issue flagged by user - correcting"
+  "lastHeartbeat": "2026-02-27T03:31:00Z",
+  "activeProject": "ARR Bot - monitoring",
+  "currentTask": "Heartbeat check - early morning",
+  "recentDecisions": [
+    "Dashboard healthy - responding at 192.168.1.146:4000",
+    "Kanban: 28 ideas in backlog, no active tasks"
+  ],
+  "blockers": [],
+  "tradingBot": {
+    "portfolio": 100532.63,
+    "pnl": null
+  },
+  "cryptoBot": {
+    "status": "syncing every 5 min",
+    "lastSeen": "2026-02-27T03:27:00Z"
+  }
 }
