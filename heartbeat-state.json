@@ -1,18 +1,20 @@
 {
-  "lastHeartbeat": "2026-02-27T03:31:00Z",
+  "lastHeartbeat": "2026-02-27T09:03:00Z",
   "activeProject": "ARR Bot - monitoring",
-  "currentTask": "Heartbeat check - early morning",
+  "currentTask": "Heartbeat check - morning",
   "recentDecisions": [
     "Dashboard healthy - responding at 192.168.1.146:4000",
-    "Kanban: 28 ideas in backlog, no active tasks"
+    "Kanban: 28 ideas, 26 tasks total",
+    "Trading bot portfolio: $100,532.63",
+    "Crypto bot syncing every 5 min"
   ],
   "blockers": [],
   "tradingBot": {
     "portfolio": 100532.63,
-    "pnl": null
+    "cash": 100532.63
   },
   "cryptoBot": {
     "status": "syncing every 5 min",
-    "lastSeen": "2026-02-27T03:27:00Z"
+    "lastSeen": "2026-02-27T09:02:00Z"
   }
 }
