@@ -16,7 +16,8 @@ const client = new TwitterApi({
 
 const rwClient = client.readWrite;
 
-// Phase limits - updated Feb 24, 2026
+// Phase limits - updated Feb 27, 2026
+// Note: Reply is limited - can only reply to users who mention us or engage with our posts
 const PHASES = {
   A: { days: 3, posts: 2, replies: 4, follows: 4, likes: 16 },
   B: { days: 11, posts: 5, replies: 10, follows: 8, likes: 25 },
@@ -107,10 +108,14 @@ async function searchAndReply(query, replyText) {
   }
   
   try {
-    const search = await rwClient.v2.search(query, { max_results: 10 });
+    // Use recent search endpoint with correct params (max_results: 10-100)
+    const search = await rwClient.v2.get('tweets/search/recent', { 
+      query: query, 
+      max_results: 10 
+    });
     
     let count = 0;
-    for await (const tweet of search) {
+    for (const tweet of search.data || []) {
       if (count >= 2) break;
       if (tweet.author_id === auth.accountId) continue;
       
@@ -125,6 +130,7 @@ async function searchAndReply(query, replyText) {
         count++;
       } catch (e) {
         if (e.code === 429) { console.log('Rate limited'); break; }
+        console.log('Reply error:', e.message);
       }
     }
   } catch (e) {
@@ -163,9 +169,12 @@ async function likeTweets(query, count) {
   }
   
   try {
-    const search = await rwClient.v2.search(query, { max_results: 10 });
+    const search = await rwClient.v2.get('tweets/search/recent', { 
+      query: query, 
+      max_results: Math.min(count + 5, 100) 
+    });
     let likes = 0;
-    for await (const tweet of search) {
+    for (const tweet of search.data || []) {
       if (likes >= count || current.likes + likes >= LIMITS.likes) break;
       await delay(1000);
       try {
@@ -177,6 +186,94 @@ async function likeTweets(query, count) {
     if (likes > 0) updateMetrics(0, 0, 0, likes);
   } catch (e) {
     console.error('Like error:', e.message);
+  }
+}
+
+async function retweetFromSearch(query) {
+  try {
+    const search = await rwClient.v2.get('tweets/search/recent', { 
+      query: query, 
+      max_results: 10 
+    });
+    
+    for (const tweet of search.data || []) {
+      if (tweet.author_id === auth.accountId) continue;
+      await delay(2000);
+      try {
+        await rwClient.v2.retweet(auth.accountId, tweet.id);
+        console.log('Retweeted:', tweet.text.substring(0, 40) + '...');
+        return true;
+      } catch(e) { 
+        console.log('Retweet error:', e.message);
+        if (e.code === 429) break;
+      }
+    }
+  } catch (e) {
+    console.error('RT Search error:', e.message);
+  }
+  return false;
+}
+
+async function quoteTweet(text, tweetId) {
+  try {
+    await delay(2000);
+    const quote = await rwClient.v2.quoteTweet(text, tweetId);
+    console.log('Quote tweeted!');
+    updateMetrics(1, 0, 0, 0);
+    return quote.data.id;
+  } catch (e) {
+    console.error('Quote error:', e.message);
+  }
+  return null;
+}
+
+// Reply to mentions (X API only allows replying to mentions/engaged users)
+async function replyToMentions() {
+  try {
+    const mentions = await rwClient.v2.userMentionTimeline(auth.accountId, { max_results: 10 });
+    
+    // Access the actual tweets array
+    const tweets = mentions.data?.data || [];
+    if (tweets.length === 0) {
+      console.log('No mentions to reply to');
+      return;
+    }
+    
+    const current = getTodayMetrics();
+    let replied = 0;
+    
+    for (const tweet of tweets) {
+      if (replied >= 3) break; // Max 3 auto-replies per run
+      if (current.replies + replied >= LIMITS.replies) break;
+      
+      console.log('Replying to mention:', tweet.text.substring(0, 40) + '...');
+      
+      await delay(2000);
+      try {
+        // Simple acknowledgment reply
+        const replies = [
+          "Thanks for the mention! 🙌",
+          "Appreciate it! 👍",
+          "Thanks! 🚀",
+          "Appreciated! 😊"
+        ];
+        const replyText = replies[Math.floor(Math.random() * replies.length)];
+        
+        await rwClient.v2.reply(replyText, tweet.id);
+        console.log('Replied to mention!');
+        replied++;
+      } catch(e) {
+        if (e.data?.detail?.includes('not allowed')) {
+          console.log('Cannot reply (API restriction)');
+        } else {
+          console.log('Reply error:', e.message);
+        }
+      }
+    }
+    
+    if (replied > 0) updateMetrics(0, replied, 0, 0);
+  } catch (e) {
+    console.error('Mention error:', e.message);
   }
 }
 
@@ -266,7 +363,8 @@ async function getMetrics() {
       followers: m.followers_count,
       following: m.following_count,
       tweets: m.tweet_count,
-      listed: m.listed_count
+      listed: m.listed_count,
+      likes: m.like_count
     };
   } catch (e) {
     console.error('Metrics error:', e.message);
@@ -281,6 +379,9 @@ async function runScheduled() {
   console.log(`\n=== ${phaseName} Scheduled Run (${hour}:00) ===`);
   console.log(`Today: ${current.posts}/${LIMITS.posts} posts, ${current.replies}/${LIMITS.replies} replies, ${current.follows}/${LIMITS.follows} follows, ${current.likes}/${LIMITS.likes} likes`);
   
+  // Check for mentions first - X only allows replying to mentions
+  await replyToMentions();
+  
   // Morning (8-10am)
   if (hour >= 8 && hour <= 10) {
     console.log('\n[Morning]');
@@ -290,6 +391,7 @@ async function runScheduled() {
     await postEarthMeta(); // EarthMeta promo
     await followUsers('productivity expert', 2);
     await likeTweets('productivity tips', 5);
+    await retweetFromSearch('productivity OR productivity tips');
   }
   
   // Afternoon (1-3pm)
@@ -298,7 +400,7 @@ async function runScheduled() {
     if (current.posts < LIMITS.posts) {
       await postTweet('Afternoon check-in! How\'s your productivity going?');
     }
-    await searchAndReply('learning tips', 'Great point! In my experience...');
+    await replyToMentions();
   }
   
   // Evening (6-8pm)
@@ -309,6 +411,7 @@ async function runScheduled() {
     }
     await postEarthMeta(); // EarthMeta promo
     await likeTweets('productivity', 5);
+    await retweetFromSearch('productivity tips');
   }
   
   console.log('\n=== Done ===\n');
@@ -322,7 +425,10 @@ const arg2 = process.argv[4];
 (async () => {
   switch (command) {
     case 'reply':
-      await searchAndReply(arg1, arg2);
+      console.log('Note: Direct reply is restricted. Use "mentions" to reply to users who mention you.');
+      break;
+    case 'mentions':
+      await replyToMentions();
       break;
     case 'post':
       await postTweet(arg1);
@@ -332,6 +438,13 @@ const arg2 = process.argv[4];
       break;
     case 'follow':
       await followUsers(arg1 || 'productivity', parseInt(arg2) || 2);
+      break;
+    case 'rt':
+      await retweetFromSearch(arg1 || 'productivity tips');
+      break;
+    case 'quote':
+      // arg1 = tweetId, arg2 = quote text
+      await quoteTweet(arg2, arg1);
       break;
     case 'metrics':
       const metrics = await getMetrics();
@@ -356,6 +469,6 @@ const arg2 = process.argv[4];
       break;
     default:
       console.log('X Growth Bot - Phase', currentPhase);
-      console.log('Usage: reply/post/like/follow/metrics/status/run/earthmeta');
+      console.log('Usage: post/like/follow/rt/quote/mentions/metrics/status/run/earthmeta');
   }
 })();

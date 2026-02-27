@@ -1,20 +1,29 @@
 {
-  "lastHeartbeat": "2026-02-27T09:03:00Z",
-  "activeProject": "ARR Bot - monitoring",
-  "currentTask": "Heartbeat check - morning",
+  "lastHeartbeat": "2026-02-27T15:22:00Z",
+  "status": "healthy",
+  "activeProject": "X Growth (Phase B)",
   "recentDecisions": [
-    "Dashboard healthy - responding at 192.168.1.146:4000",
-    "Kanban: 28 ideas, 26 tasks total",
-    "Trading bot portfolio: $100,532.63",
-    "Crypto bot syncing every 5 min"
+    "Fixed X API search - was using wrong max_results (5 vs required 10-100)",
+    "Search now working correctly",
+    "Discovered reply function returns 403 - app needs write permission upgrade",
+    "Added rt and quote tweet commands to bot",
+    "Completed Phase B daily post limit (5/5)"
   ],
-  "blockers": [],
-  "tradingBot": {
-    "portfolio": 100532.63,
-    "cash": 100532.63
-  },
-  "cryptoBot": {
-    "status": "syncing every 5 min",
-    "lastSeen": "2026-02-27T09:02:00Z"
+  "dashboardHealth": "OK",
+  "tradingPortfolio": 100532.63,
+  "cryptoPortfolio": 500,
+  "kanbanTasks": 26,
+  "kanbanBacklog": 0,
+  "xGrowthStats": {
+    "phase": "B",
+    "followers": 3,
+    "following": 11,
+    "tweets": 21,
+    "likes": 51,
+    "todayPosts": 5,
+    "todayLikes": 25,
+    "todayReplies": 0,
+    "todayFollows": 0,
+    "issues": "Reply 403 - app needs Read+Write permission upgrade in X Developer Portal"
   }
 }
