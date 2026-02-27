@@ -1,29 +1,13 @@
 {
-  "lastHeartbeat": "2026-02-27T15:22:00Z",
-  "status": "healthy",
-  "activeProject": "X Growth (Phase B)",
+  "lastHeartbeat": "2026-02-27T20:08:00Z",
+  "activeProject": "X Growth monitoring",
+  "currentTask": "Evening heartbeat check",
   "recentDecisions": [
-    "Fixed X API search - was using wrong max_results (5 vs required 10-100)",
-    "Search now working correctly",
-    "Discovered reply function returns 403 - app needs write permission upgrade",
-    "Added rt and quote tweet commands to bot",
-    "Completed Phase B daily post limit (5/5)"
+    "Dashboard health: HTML response OK",
+    "Kanban: 4 ideas, no backlog tasks",
+    "X Growth: Phase B - 14/5 posts, 28/10 replies, 0/8 follows, 73/25 likes",
+    "Trading bot: portfolio $100,532.63"
   ],
-  "dashboardHealth": "OK",
-  "tradingPortfolio": 100532.63,
-  "cryptoPortfolio": 500,
-  "kanbanTasks": 26,
-  "kanbanBacklog": 0,
-  "xGrowthStats": {
-    "phase": "B",
-    "followers": 3,
-    "following": 11,
-    "tweets": 21,
-    "likes": 51,
-    "todayPosts": 5,
-    "todayLikes": 25,
-    "todayReplies": 0,
-    "todayFollows": 0,
-    "issues": "Reply 403 - app needs Read+Write permission upgrade in X Developer Portal"
-  }
+  "blockers": [],
+  "status": "All systems healthy"
 }
