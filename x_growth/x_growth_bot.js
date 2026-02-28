@@ -34,6 +34,13 @@ if (daysSinceStart > 14) currentPhase = 'C';
 else if (daysSinceStart > 3) currentPhase = 'B';
 
 const LIMITS = PHASES[currentPhase];
+const cumulativeMultiplier = daysSinceStart;
+const limits = {
+  posts: LIMITS.posts * cumulativeMultiplier,
+  replies: LIMITS.replies * cumulativeMultiplier,
+  follows: LIMITS.follows * cumulativeMultiplier,
+  likes: LIMITS.likes * cumulativeMultiplier
+};
 const phaseName = `Phase ${currentPhase}`;
 
 const metricsPath = path.join(__dirname, 'x_metrics_log.csv');
@@ -102,8 +109,8 @@ function updateMetrics(posts, replies, follows, likes) {
 async function searchAndReply(query, replyText) {
   const current = getTodayMetrics();
   
-  if (current.replies >= LIMITS.replies) {
-    console.log(`[${phaseName}] Reached daily reply limit (${LIMITS.replies})`);
+  if (current.replies >= limits.replies) {
+    console.log(`[${phaseName}] Reached daily reply limit (${limits.replies})`);
     return null;
   }
   
@@ -142,8 +149,8 @@ async function searchAndReply(query, replyText) {
 async function postTweet(text) {
   const current = getTodayMetrics();
   
-  if (current.posts >= LIMITS.posts) {
-    console.log(`[${phaseName}] Reached daily post limit (${LIMITS.posts})`);
+  if (current.posts >= limits.posts) {
+    console.log(`[${phaseName}] Reached daily post limit (${limits.posts})`);
     return null;
   }
   
@@ -163,8 +170,8 @@ async function postTweet(text) {
 async function likeTweets(query, count) {
   const current = getTodayMetrics();
   
-  if (current.likes >= LIMITS.likes) {
-    console.log(`[${phaseName}] Reached daily like limit (${LIMITS.likes})`);
+  if (current.likes >= limits.likes) {
+    console.log(`[${phaseName}] Reached daily like limit (${limits.likes})`);
     return;
   }
   
@@ -175,7 +182,7 @@ async function likeTweets(query, count) {
     });
     let likes = 0;
     for (const tweet of search.data || []) {
-      if (likes >= count || current.likes + likes >= LIMITS.likes) break;
+      if (likes >= count || current.likes + likes >= limits.likes) break;
       await delay(1000);
       try {
         await rwClient.v2.like(auth.accountId, tweet.id);
@@ -244,7 +251,7 @@ async function replyToMentions() {
     
     for (const tweet of tweets) {
       if (replied >= 3) break; // Max 3 auto-replies per run
-      if (current.replies + replied >= LIMITS.replies) break;
+      if (current.replies + replied >= limits.replies) break;
       
       console.log('Replying to mention:', tweet.text.substring(0, 40) + '...');
       
@@ -323,8 +330,8 @@ async function postEarthMeta() {
 async function followUsers(query, count) {
   const current = getTodayMetrics();
   
-  if (current.follows >= LIMITS.follows) {
-    console.log(`[${phaseName}] Reached daily follow limit (${LIMITS.follows})`);
+  if (current.follows >= limits.follows) {
+    console.log(`[${phaseName}] Reached daily follow limit (${limits.follows})`);
     return;
   }
   
@@ -335,7 +342,7 @@ async function followUsers(query, count) {
     
     let follows = 0;
     for (const user of users.data || []) {
-      if (follows >= count || current.follows + follows >= LIMITS.follows) break;
+      if (follows >= count || current.follows + follows >= limits.follows) break;
       await delay(1000);
       try {
         await rwClient.v2.follow(auth.accountId, user.id);
@@ -377,7 +384,7 @@ async function runScheduled() {
   const current = getTodayMetrics();
   
   console.log(`\n=== ${phaseName} Scheduled Run (${hour}:00) ===`);
-  console.log(`Today: ${current.posts}/${LIMITS.posts} posts, ${current.replies}/${LIMITS.replies} replies, ${current.follows}/${LIMITS.follows} follows, ${current.likes}/${LIMITS.likes} likes`);
+  console.log(`Today: ${current.posts}/${limits.posts} posts, ${current.replies}/${limits.replies} replies, ${current.follows}/${limits.follows} follows, ${current.likes}/${limits.likes} likes`);
   
   // Check for mentions first - X only allows replying to mentions
   await replyToMentions();
@@ -385,7 +392,7 @@ async function runScheduled() {
   // Morning (8-10am)
   if (hour >= 8 && hour <= 10) {
     console.log('\n[Morning]');
-    if (current.posts < LIMITS.posts) {
+    if (current.posts < limits.posts) {
       await postTweet('Good morning! What\'s your top priority today?');
     }
     await postEarthMeta(); // EarthMeta promo
@@ -397,7 +404,7 @@ async function runScheduled() {
   // Afternoon (1-3pm)
   if (hour >= 13 && hour <= 15) {
     console.log('\n[Afternoon]');
-    if (current.posts < LIMITS.posts) {
+    if (current.posts < limits.posts) {
       await postTweet('Afternoon check-in! How\'s your productivity going?');
     }
     await replyToMentions();
@@ -406,7 +413,7 @@ async function runScheduled() {
   // Evening (6-8pm)
   if (hour >= 18 && hour <= 20) {
     console.log('\n[Evening]');
-    if (current.posts < LIMITS.posts) {
+    if (current.posts < limits.posts) {
       await postTweet('Wrapping up! What was your biggest win today?');
     }
     await postEarthMeta(); // EarthMeta promo
@@ -453,7 +460,7 @@ const arg2 = process.argv[4];
     case 'status':
       const current = getTodayMetrics();
       console.log(`Phase: ${phaseName}`);
-      console.log(`Today: ${current.posts}/${LIMITS.posts} posts, ${current.replies}/${LIMITS.replies} replies, ${current.follows}/${LIMITS.follows} follows, ${current.likes}/${LIMITS.likes} likes`);
+      console.log(`Today: ${current.posts}/${limits.posts} posts, ${current.replies}/${limits.replies} replies, ${current.follows}/${limits.follows} follows, ${current.likes}/${limits.likes} likes`);
       // Check EarthMeta posts
       const emPath = path.join(__dirname, 'earthmeta_posts_today.json');
       if (fs.existsSync(emPath)) {

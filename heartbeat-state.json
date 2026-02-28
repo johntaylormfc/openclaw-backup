@@ -1,1 +1,8 @@
-{"lastRun": "2026-02-28T10:23:00Z", "xGrowth": {"replies": "5/10", "follows": "0/8"}}
+{
+  "lastHeartbeat": "2026-02-28T16:23:00Z",
+  "dashboard": { "status": "healthy", "dbExists": true, "dbPath": "/home/john/.openclaw/workspace/dashboard-data/dashboard.db" },
+  "kanban": { "ideasCount": 10, "backlogTasks": 0, "todoTasks": 0 },
+  "trading": { "portfolio": 100532.63, "pnl": null },
+  "xGrowth": { "phase": "B", "posts": "15/30", "replies": "33/60", "follows": "0/48", "likes": "72/150" },
+  "cryptoBot": { "status": "running", "syncEvery": "5min", "lastSync": "2026-02-28T16:21:00Z" }
+}
