@@ -1,8 +1,18 @@
 {
-  "lastHeartbeat": "2026-02-28T16:23:00Z",
-  "dashboard": { "status": "healthy", "dbExists": true, "dbPath": "/home/john/.openclaw/workspace/dashboard-data/dashboard.db" },
-  "kanban": { "ideasCount": 10, "backlogTasks": 0, "todoTasks": 0 },
-  "trading": { "portfolio": 100532.63, "pnl": null },
-  "xGrowth": { "phase": "B", "posts": "15/30", "replies": "33/60", "follows": "0/48", "likes": "72/150" },
-  "cryptoBot": { "status": "running", "syncEvery": "5min", "lastSync": "2026-02-28T16:21:00Z" }
+  "lastHeartbeat": "2026-02-28T22:23:00Z",
+  "activeProject": "Weekend maintenance",
+  "currentTask": "Heartbeat check",
+  "recentDecisions": [
+    "Crypto Bot Sync: Docker cp now succeeding, container may have recovered",
+    "Email to Todoist: Gmail OAuth still expired - needs re-auth",
+    "Dashboard healthy and accessible",
+    "X Growth Phase B: 15 posts, 37 replies, 77 likes today - strong engagement"
+  ],
+  "blockers": [
+    "Email to Todoist: Gmail OAuth token expired - needs re-authentication"
+  ],
+  "dashboardStatus": "healthy and accessible",
+  "kanbanIdeas": 16,
+  "xGrowthStatus": "Phase B - strong engagement today",
+  "tradingPortfolio": 100532.63
 }
