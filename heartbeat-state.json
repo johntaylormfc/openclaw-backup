@@ -1,14 +1,1 @@
-{
-  "last_heartbeat": "2026-02-28T03:44:00Z",
-  "status": "healthy",
-  "dashboard": "up",
-  "kanban_backlog": 10,
-  "kanban_in_progress": 0,
-  "trading_bot": {
-    "portfolio_value": 100532.63,
-    "cash": 100532.63,
-    "positions": 0,
-    "last_update": "2026-02-28T02:46:59Z"
-  },
-  "notes": "Late night (03:44) - all systems healthy, dashboard up, crypto syncing, trading bot at $100k"
-}
+{"lastRun": "2026-02-28T10:23:00Z", "xGrowth": {"replies": "5/10", "follows": "0/8"}}
