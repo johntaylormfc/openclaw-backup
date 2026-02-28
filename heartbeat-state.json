@@ -1,13 +1,14 @@
 {
-  "lastHeartbeat": "2026-02-27T20:08:00Z",
-  "activeProject": "X Growth monitoring",
-  "currentTask": "Evening heartbeat check",
-  "recentDecisions": [
-    "Dashboard health: HTML response OK",
-    "Kanban: 4 ideas, no backlog tasks",
-    "X Growth: Phase B - 14/5 posts, 28/10 replies, 0/8 follows, 73/25 likes",
-    "Trading bot: portfolio $100,532.63"
-  ],
-  "blockers": [],
-  "status": "All systems healthy"
+  "last_heartbeat": "2026-02-28T03:44:00Z",
+  "status": "healthy",
+  "dashboard": "up",
+  "kanban_backlog": 10,
+  "kanban_in_progress": 0,
+  "trading_bot": {
+    "portfolio_value": 100532.63,
+    "cash": 100532.63,
+    "positions": 0,
+    "last_update": "2026-02-28T02:46:59Z"
+  },
+  "notes": "Late night (03:44) - all systems healthy, dashboard up, crypto syncing, trading bot at $100k"
 }
