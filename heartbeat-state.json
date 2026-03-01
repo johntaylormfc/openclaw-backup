@@ -1,15 +1,19 @@
 {
-  "lastHeartbeat": "2026-03-01T16:22:00Z",
-  "status": "healthy",
-  "dashboard": "up",
-  "kanban": {
-    "ideas": 18,
-    "backlog": 0
+  "lastHeartbeat": "2026-03-01T22:24:00Z",
+  "activeProject": "X Growth - Phase B",
+  "currentTask": "Heartbeat check",
+  "recentDecisions": [
+    "X Growth Phase B progressing well: 15 posts, 46 replies, 86 likes today"
+  ],
+  "blockers": [
+    "arr-dashboard container unhealthy (2 days) but responding"
+  ],
+  "kanbanStatus": {
+    "ideas": 24,
+    "backlog": 0,
+    "todo": 0,
+    "inProgress": 0,
+    "complete": 0
   },
-  "cryptoBot": "syncing",
-  "tradingBot": {
-    "portfolio": 100532.63
-  },
-  "quietHours": false,
-  "notes": "Sunday afternoon - dashboard up, crypto syncing, trading bot $100,532"
+  "xGrowthStatus": "Phase B - 15/35 posts, 46/70 replies, 0/56 follows, 86/175 likes"
 }
