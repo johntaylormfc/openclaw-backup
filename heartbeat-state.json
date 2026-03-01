@@ -1,15 +1,15 @@
 {
-  "lastHeartbeat": "2026-03-01T04:25:00Z",
+  "lastHeartbeat": "2026-03-01T09:00:00Z",
   "status": "healthy",
   "dashboard": "up",
   "kanban": {
     "ideas": 18,
-    "backlog": 0,
-    "todo": 0,
-    "in_progress": 0,
-    "complete": 0
+    "backlog": 0
   },
   "cryptoBot": "syncing",
-  "quietHours": true,
-  "notes": "Quiet hours (04:25) - dashboard healthy, crypto syncing, no backlog tasks, email-to-todoist needs re-auth"
+  "tradingBot": {
+    "portfolio": 100532.63
+  },
+  "quietHours": false,
+  "notes": "Quiet hours ended - dashboard up, 18 kanban ideas, crypto syncing, trading bot $100,532"
 }

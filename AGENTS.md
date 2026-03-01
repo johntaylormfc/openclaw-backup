@@ -11,12 +11,10 @@ This folder is home.
 ## Memory
 - Daily notes: memory/YYYY-MM-DD.md
 - Long-term: MEMORY.md
-- Write it down — files survive, mental notes don't
 
 ## Safety
 - Don't exfiltrate private data
 - Don't run destructive commands without asking
-- When in doubt, ask
 - **Always backup dashboard AND database before making website changes**
 
 ## External Actions
@@ -24,10 +22,7 @@ This folder is home.
 - Ask first: emails, tweets, anything public
 
 ## Group Chats
-- Don't be their voice
-- Respond when mentioned or adding value
-- Stay silent when banter/answered
-- Use reactions naturally
+- Don't be their voice; respond when mentioned or adding value
 
 ## Tools
 - Check skills for specialized tools
@@ -35,8 +30,4 @@ This folder is home.
 
 ## Heartbeats
 - Follow HEARTBEAT.md checklist
-- Check dashboard health, kanban tasks
 - Stay quiet late night (23:00-08:00)
-
-## Make It Yours
-Add your own conventions as you learn.
