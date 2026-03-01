@@ -379,6 +379,31 @@ async function getMetrics() {
   }
 }
 
+const PRODUCTIVITY_POSTS = [
+  "3 productivity mistakes keeping you broke:\n- Multitasking (it's a myth)\n- Busy ≠ effective\n- No system for saying no\n\nReply with your worst one 👇",
+  "Your morning routine determines your entire day.\nMine:\n- No phone for first 30 min\n- Write 3 priorities\n- Exercise before anything else\n\nWhat's your non-negotiable?",
+  "Stop optimizing for busy. Optimize for impact.\nThe 80/20 rule: 20% of your actions create 80% of your results.\nFind that 20%. Double down.",
+  "The problem with most to-do lists:\nThey're brain dumps, not plans.\nTry: 3 priorities max. Everything else is a 'someday' list.",
+  "Productivity tip that changed my life:\nTime-block your deep work. Not 'work from 9-5' — 'write from 9-11, code from 1-4'\nProtection from context switching is everything.",
+  "Most people use AI wrong. They treat it like a search engine.\nTreat it like an intern: give context, constraints, and ask it to revise.\nThe prompt is the skill.",
+  "AI won't replace you. Someone using AI will.\nThe edge isn't AI itself — it's knowing how to prompt, review, and integrate it into your workflow.",
+  "The fastest way to learn anything:\nDon't consume. Build.\nRead 30 min. Then build something for 2 hours.\nThat's how skills actually stick.",
+  "Most 'learning' is procrastination in disguise.\nWatching tutorials ≠ getting better.\nYou learn by doing the uncomfortable thing badly first.",
+  "Hot take: Most people don't want productivity.\nThey want the results without the sacrifice.\nThat's not a strategy problem. It's a desire problem."
+];
+
+const ENGAGEMENT_POSTS = [
+  "Reply with one word: What's your biggest current challenge?\nI'll reply with thoughts.",
+  "What's a skill you wish you learned 5 years ago?",
+  "Morning people vs night people: change my mind that it doesn't matter, just consistency.",
+  "Drop your best productivity tip 👇"
+];
+
+function getRandomPost() {
+  const allPosts = [...PRODUCTIVITY_POSTS, ...ENGAGEMENT_POSTS];
+  return allPosts[Math.floor(Math.random() * allPosts.length)];
+}
+
 async function runScheduled() {
   const hour = new Date().getHours();
   const current = getTodayMetrics();
@@ -393,7 +418,7 @@ async function runScheduled() {
   if (hour >= 8 && hour <= 10) {
     console.log('\n[Morning]');
     if (current.posts < limits.posts) {
-      await postTweet('Good morning! What\'s your top priority today?');
+      await postTweet(getRandomPost());
     }
     await postEarthMeta(); // EarthMeta promo
     await followUsers('productivity expert', 2);
@@ -405,7 +430,7 @@ async function runScheduled() {
   if (hour >= 13 && hour <= 15) {
     console.log('\n[Afternoon]');
     if (current.posts < limits.posts) {
-      await postTweet('Afternoon check-in! How\'s your productivity going?');
+      await postTweet(getRandomPost());
     }
     await replyToMentions();
   }
@@ -414,7 +439,7 @@ async function runScheduled() {
   if (hour >= 18 && hour <= 20) {
     console.log('\n[Evening]');
     if (current.posts < limits.posts) {
-      await postTweet('Wrapping up! What was your biggest win today?');
+      await postTweet(getRandomPost());
     }
     await postEarthMeta(); // EarthMeta promo
     await likeTweets('productivity', 5);
