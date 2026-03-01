@@ -1,18 +1,15 @@
 {
-  "lastHeartbeat": "2026-02-28T22:23:00Z",
-  "activeProject": "Weekend maintenance",
-  "currentTask": "Heartbeat check",
-  "recentDecisions": [
-    "Crypto Bot Sync: Docker cp now succeeding, container may have recovered",
-    "Email to Todoist: Gmail OAuth still expired - needs re-auth",
-    "Dashboard healthy and accessible",
-    "X Growth Phase B: 15 posts, 37 replies, 77 likes today - strong engagement"
-  ],
-  "blockers": [
-    "Email to Todoist: Gmail OAuth token expired - needs re-authentication"
-  ],
-  "dashboardStatus": "healthy and accessible",
-  "kanbanIdeas": 16,
-  "xGrowthStatus": "Phase B - strong engagement today",
-  "tradingPortfolio": 100532.63
+  "lastHeartbeat": "2026-03-01T04:25:00Z",
+  "status": "healthy",
+  "dashboard": "up",
+  "kanban": {
+    "ideas": 18,
+    "backlog": 0,
+    "todo": 0,
+    "in_progress": 0,
+    "complete": 0
+  },
+  "cryptoBot": "syncing",
+  "quietHours": true,
+  "notes": "Quiet hours (04:25) - dashboard healthy, crypto syncing, no backlog tasks, email-to-todoist needs re-auth"
 }
