@@ -336,26 +336,82 @@ async function followUsers(query, count) {
   }
   
   try {
-    // Use followers of popular accounts (API search is not available on free tier)
-    const sourceAccount = POPULAR_ACCOUNTS[Math.floor(Math.random() * POPULAR_ACCOUNTS.length)];
-    const users = await rwClient.v2.followers(sourceAccount, { max_results: 10 });
+    // Strategy: Search for users posting about productivity/AI
+    const searchResults = await rwClient.v2.searchUsers(query || 'productivity tips', { max_results: 10 });
     
     let follows = 0;
-    for (const user of users.data || []) {
+    for (const user of searchResults.data || []) {
       if (follows >= count || current.follows + follows >= limits.follows) break;
-      await delay(1000);
+      if (user.id === auth.accountId) continue; // Don't follow ourselves
+      
+      await delay(2000); // Be more respectful
       try {
         await rwClient.v2.follow(auth.accountId, user.id);
-        console.log('Followed:', user.username);
+        console.log(`[${phaseName}] Followed: @${user.username}`);
         follows++;
+        
+        // Like their recent tweet to start engagement
+        try {
+          const tweets = await rwClient.v2.userTimeline(user.id, { max_results: 1 });
+          if (tweets.data?.[0]) {
+            await delay(1000);
+            await rwClient.v2.like(auth.accountId, tweets.data[0].id);
+            console.log(`[${phaseName}] Liked recent tweet from @${user.username}`);
+            updateMetrics(0, 0, 0, 1);
+          }
+        } catch (likeError) {
+          console.log('Like error (non-critical):', likeError.message);
+        }
+        
       } catch(e) { 
-        if (e.data?.errors?.[0]?.code === 429) break; // rate limit
+        if (e.code === 429) { 
+          console.log('Rate limited on follows'); 
+          break; 
+        }
         console.log('Follow error:', e.message); 
       }
     }
     if (follows > 0) updateMetrics(0, 0, follows, 0);
   } catch (e) {
-    console.error('Follow error:', e.message);
+    console.error('Follow search error:', e.message);
+    console.log('Trying fallback method...');
+    
+    // Fallback: Find users who replied to productivity influencers
+    try {
+      const productivityInfluencers = ['naval', 'dharmesh', 'paulg', 'sama'];
+      const randomInfluencer = productivityInfluencers[Math.floor(Math.random() * productivityInfluencers.length)];
+      
+      const tweets = await rwClient.v2.userByUsername(randomInfluencer);
+      const timeline = await rwClient.v2.userTimeline(tweets.data.id, { max_results: 5 });
+      
+      let follows = 0;
+      for (const tweet of timeline.data || []) {
+        if (follows >= count) break;
+        
+        try {
+          const mentions = await rwClient.v2.tweetReplies(tweet.id, { max_results: 5 });
+          for (const reply of mentions.data || []) {
+            if (follows >= count || current.follows + follows >= limits.follows) break;
+            if (reply.author_id === auth.accountId) continue;
+            
+            await delay(2000);
+            try {
+              await rwClient.v2.follow(auth.accountId, reply.author_id);
+              console.log(`[${phaseName}] Followed reply author`);
+              follows++;
+            } catch (err) {
+              if (err.code === 429) break;
+            }
+          }
+        } catch (replyError) {
+          // Skip this tweet's replies
+        }
+        if (follows >= count) break;
+      }
+      if (follows > 0) updateMetrics(0, 0, follows, 0);
+    } catch (fallbackError) {
+      console.error('Fallback follow method also failed:', fallbackError.message);
+    }
   }
 }
 
@@ -389,7 +445,25 @@ const PRODUCTIVITY_POSTS = [
   "AI won't replace you. Someone using AI will.\nThe edge isn't AI itself — it's knowing how to prompt, review, and integrate it into your workflow.",
   "The fastest way to learn anything:\nDon't consume. Build.\nRead 30 min. Then build something for 2 hours.\nThat's how skills actually stick.",
   "Most 'learning' is procrastination in disguise.\nWatching tutorials ≠ getting better.\nYou learn by doing the uncomfortable thing badly first.",
-  "Hot take: Most people don't want productivity.\nThey want the results without the sacrifice.\nThat's not a strategy problem. It's a desire problem."
+  "Hot take: Most people don't want productivity.\nThey want the results without the sacrifice.\nThat's not a strategy problem. It's a desire problem.",
+  // NEW CONTROVERSIAL/ENGAGEMENT POSTS
+  "Unpopular opinion: Working harder is NOT the answer. Working on the right things is.\n\n95% of people are optimizing the wrong variables.\n\nWhat variable are you optimizing for? 👇",
+  "The productivity advice that ruined my life: \"Follow your passion\"\n\nWhat actually works:\n1. Get good at something valuable\n2. Use that skill to gain autonomy\n3. THEN pursue what you love\n\nDo you agree?",
+  "Most productivity content is toxic positivity disguised as advice.\n\n'Just wake up at 5am!' 'Hustle harder!'\n\nReal talk: Fix your systems, not your motivation.\n\nWhat system changed your life?",
+  "I stopped following productivity gurus and my life improved 10x.\n\nWhy? Because their advice is designed to keep you consuming, not improving.\n\nThe real secret: Pick 3 habits. Master them. Ignore everything else.",
+  "Harsh truth: Your productivity problems aren't productivity problems.\n\nThey're decision problems.\n\nYou know what to do. You're just afraid to commit.\n\nWhat decision are you avoiding?",
+  "Everyone talks about time management.\n\nNobody talks about energy management.\n\nTime is finite. Energy is renewable.\n\nFocus on when you have peak energy, not peak hours.\n\nWhen is your peak energy?",
+  "The biggest lie in productivity: \"I don't have time\"\n\nThe truth: You don't have priorities.\n\nTime audit: Track your time for 3 days. You'll be shocked where it goes.\n\nReady to try it?",
+  "Remote work exposed something uncomfortable:\n\nMost meetings are just performance theater.\nMost emails could be a Slack message.\nMost 'urgent' tasks can wait.\n\nWhat work ritual needs to die?",
+  "AI tools won't save you if you can't think clearly.\n\nGarbage in = garbage out.\n\nThe skill that matters: Asking better questions.\n\nWhat's a question that changed your life?",
+  "Stop romanticizing the grind.\n\nWorking 80 hours/week isn't impressive.\nIt's inefficient.\n\nThe goal isn't to be busy.\nThe goal is to be effective.\n\nWhat's your definition of productive?",
+  // ENGAGEMENT POSTS
+  "Reply with one emoji: How's your Monday going?",
+  "If you could master one skill in 30 days, what would it be? 👇",
+  "Hot take: The best productivity tool is a piece of paper and a pen.\n\nChange my mind.",
+  "What's the worst productivity advice you've ever received?\n\nI'll go first: 'Sleep is for the weak' 🤦‍♂️",
+  "Your biggest productivity win this year?\n\nMine: Saying no to 90% of meetings.",
+  "Fill in the blank: I wish I started _______ 5 years ago."
 ];
 
 const ENGAGEMENT_POSTS = [
@@ -402,6 +476,76 @@ const ENGAGEMENT_POSTS = [
 function getRandomPost() {
   const allPosts = [...PRODUCTIVITY_POSTS, ...ENGAGEMENT_POSTS];
   return allPosts[Math.floor(Math.random() * allPosts.length)];
+}
+
+async function likeTweets(query, count = 5) {
+  const current = getTodayMetrics();
+  
+  if (current.likes >= limits.likes) {
+    console.log(`[${phaseName}] Reached daily like limit (${limits.likes})`);
+    return;
+  }
+  
+  try {
+    const search = await rwClient.v2.search(query, { 
+      max_results: Math.min(count * 2, 50),
+      'tweet.fields': 'author_id'
+    });
+    
+    let likes = 0;
+    for (const tweet of search.data || []) {
+      if (likes >= count || current.likes + likes >= limits.likes) break;
+      if (tweet.author_id === auth.accountId) continue; // Don't like our own tweets
+      
+      await delay(1500);
+      try {
+        await rwClient.v2.like(auth.accountId, tweet.id);
+        console.log(`[${phaseName}] Liked tweet: ${tweet.text.substring(0, 40)}...`);
+        likes++;
+      } catch (e) {
+        if (e.code === 429) { 
+          console.log('Rate limited on likes'); 
+          break; 
+        }
+        console.log('Like error:', e.message);
+      }
+    }
+    
+    if (likes > 0) {
+      updateMetrics(0, 0, 0, likes);
+      console.log(`[${phaseName}] Liked ${likes} tweets about '${query}'`);
+    }
+  } catch (e) {
+    console.error('Like search error:', e.message);
+  }
+}
+
+async function retweetFromSearch(query) {
+  const current = getTodayMetrics();
+  
+  try {
+    const search = await rwClient.v2.search(query, { 
+      max_results: 10,
+      'tweet.fields': 'author_id,public_metrics'
+    });
+    
+    // Find a good tweet to retweet (high engagement, not our own)
+    for (const tweet of search.data || []) {
+      if (tweet.author_id === auth.accountId) continue;
+      if (tweet.public_metrics?.retweet_count > 5) {
+        await delay(2000);
+        try {
+          await rwClient.v2.retweet(auth.accountId, tweet.id);
+          console.log(`[${phaseName}] Retweeted: ${tweet.text.substring(0, 40)}...`);
+          break; // Only retweet one
+        } catch (e) {
+          console.log('Retweet error:', e.message);
+        }
+      }
+    }
+  } catch (e) {
+    console.error('Retweet search error:', e.message);
+  }
 }
 
 async function runScheduled() {
