@@ -14,8 +14,50 @@ const STATE_FILE = '/tmp/email-cron-lastrun.json';
 // Domains to monitor
 const MONITORED_DOMAINS = ['galloway-macleod.co.uk', 'bcdev.co.uk', 'bcdevltd.com'];
 
-// Load credentials
-const gmailCreds = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/google-oauth-token.json`, 'utf8'));
+// Load credentials - create new token file if missing
+const tokenPath = `${CONFIG_PATH}/google-oauth-token.json`;
+if (!fs.existsSync(tokenPath)) {
+  console.log('❌ No OAuth token found. Starting OAuth flow...\n');
+  
+  const credsPath = `${CONFIG_PATH}/google-oauth.json`;
+  if (!fs.existsSync(credsPath)) {
+    console.error('❌ No OAuth credentials found at:', credsPath);
+    process.exit(1);
+  }
+  
+  const creds = JSON.parse(fs.readFileSync(credsPath, 'utf8'));
+  const { client_id, client_secret } = creds.web;
+  
+  const oauth2Client = new google.auth.OAuth2(client_id, client_secret, 'http://localhost');
+  
+  const authUrl = oauth2Client.generateAuthUrl({
+    access_type: 'offline',
+    scope: ['https://www.googleapis.com/auth/gmail.readonly']
+  });
+  
+  console.log('🔗 Open this URL in your browser to authenticate:\n');
+  console.log(authUrl + '\n');
+  console.log('⏳ After authenticating, you will be redirected to a blank page.');
+  console.log('   Copy the URL from your browser address bar and paste it here.\n');
+  
+  const readline = require('readline');
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  
+  rl.question('Paste the full redirect URL: ', async (code) => {
+    try {
+      const { tokens } = await oauth2Client.getToken(code);
+      fs.writeFileSync(tokenPath, JSON.stringify(tokens, null, 2));
+      console.log('\n✅ Token saved! Run the script again to process emails.');
+      process.exit(0);
+    } catch (err) {
+      console.error('❌ Error getting token:', err.message);
+      process.exit(1);
+    }
+  });
+  process.exit(0);
+}
+
+const gmailCreds = JSON.parse(fs.readFileSync(tokenPath, 'utf8'));
 const todoistKey = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/todoist.json`, 'utf8')).todoist.api_key;
 
 // Authenticate with auto-refresh

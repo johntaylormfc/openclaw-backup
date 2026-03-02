@@ -22,14 +22,6 @@
 - **Never restore database to fix UI issues** - debug actual issue instead
 - Use Chrome DevTools MCP for dashboard debugging
 - Kanban ideas column works well as task capture
-- X Growth: use cumulative totals from API, not daily isolated stats
-
-## X Growth Project
-- Account: @MyNewClawBot
-- Bot: /home/john/.openclaw/workspace/x_growth/x_growth_bot.js
-- Phase B (Days 4-14): 5 posts, 10 replies, 8 follows, 25 likes/day
-- **Fixed Mar 1**: Enhanced following strategy, added controversial posts, improved engagement
-- Issue: Still at 3 followers (growth stalled), 0 follows completed today
 
 ## Known Issues
 - Gmail OAuth expired - needs re-auth

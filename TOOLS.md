@@ -9,10 +9,6 @@
 - Use for dashboard testing/debugging
 - `browser action=start profile=chrome` → snapshot → act
 
-## X Growth Bot
-- Bot: /home/john/.openclaw/workspace/x_growth/x_growth_bot.js
-- Commands: `node x_growth_bot.js metrics`, `status`, `run`
-
 ## TTS
 - Voice: "Nova"
 

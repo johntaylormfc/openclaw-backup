@@ -1,0 +1,2160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARR Dashboard v3.0</title>
+  <style>
+    :root {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --text-primary: #ffffff;
+      --text-secondary: #9ca3af;
+      --accent-blue: #60a5fa;
+      --accent-purple: #a855f7;
+      --accent-green: #4ade80;
+      --accent-red: #f87171;
+      --accent-yellow: #fbbf24;
+      --border-color: rgba(255,255,255,0.1);
+    }
+    .light-theme {
+      --bg-primary: #f1f5f9;
+      --bg-secondary: #ffffff;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --accent-blue: #2563eb;
+      --accent-purple: #7c3aed;
+      --accent-green: #16a34a;
+      --accent-red: #dc2626;
+      --accent-yellow: #d97706;
+      --border-color: rgba(0,0,0,0.1);
+    }
+    body { background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%); min-height: 100vh; color: var(--text-primary); font-family: sans-serif; padding: 20px; transition: all 0.3s; }
+    .glass { background: rgba(128,128,128,0.1); backdrop-filter: blur(20px); border: 1px solid var(--border-color); border-radius: 1rem; padding: 1.5rem; margin-bottom: 1.5rem; transition: all 0.3s; }
+    h1 { text-align: center; font-size: 2.5rem; background: linear-gradient(to right, var(--accent-blue), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr; } }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid var(--border-color); cursor: pointer; }
+    th { color: var(--text-secondary); }
+    th:hover { color: var(--accent-blue); }
+    .btn { padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600; cursor: pointer; border: none; margin-right: 0.25rem; font-size: 0.75rem; }
+    .btn-restart { background: #d97706; color: white; }
+    .btn-stop { background: #dc2626; color: white; }
+    .btn-start { background: #16a34a; color: white; }
+    .btn-logs { background: #2563eb; color: white; }
+    .running { color: var(--accent-green); }
+    .stopped { color: var(--accent-red); }
+    .flex { display: flex; align-items: center; justify-content: space-between; }
+    .flex-wrap { flex-wrap: wrap; gap: 0.5rem; }
+    .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+    .font-mono { font-family: monospace; }
+    .text-green { color: var(--accent-green); }
+    .text-red { color: var(--accent-red); }
+    .text-yellow { color: var(--accent-yellow); }
+    .text-blue { color: var(--accent-blue); }
+    .text-purple { color: var(--accent-purple); }
+    .search-box { width: 100%; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--text-primary); font-size: 1rem; margin-bottom: 1rem; }
+    .controls { display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; }
+    .refresh-select { padding: 0.5rem; border-radius: 0.5rem; border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--text-primary); }
+    .stat-card { text-align: center; padding: 1rem; }
+    .stat-value { font-size: 1.5rem; font-weight: bold; }
+    .stat-label { color: var(--text-secondary); font-size: 0.875rem; }
+    .quick-link { display: inline-block; padding: 0.5rem 1rem; border-radius: 0.5rem; text-decoration: none; color: white; font-weight: 600; text-align: center; min-width: 80px; }
+  </style>
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <div style="display: flex; min-height: 100vh;">
+    <div class="sidebar" style="width: 200px; background: var(--bg-secondary); padding: 1rem; border-right: 1px solid var(--border-color); flex-shrink: 0; position: relative; z-index: 100;">
+      <h2 style="margin: 0 0 1rem 0; font-size: 1.25rem;">ARR Dashboard</h2>
+      <div style="margin-bottom: 0.5rem;">
+        <input type="text" id="globalSearch" placeholder="🔍 Search..." 
+          style="width: 100%; padding: 0.5rem; border-radius: 0.5rem; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-primary); font-size: 0.875rem;"
+          onkeyup="if(event.key==='Enter'||this.value.length>1){performSearch(this.value)}">
+        <div id="searchResults" style="display:none; position:absolute; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; max-height:250px; overflow-y:auto; width:180px; z-index:1000; left:1rem;"></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <div class="sidebar-menu-item" id="btn-tasks" onclick="showSection('tasks')" style="padding: 0.75rem; cursor: pointer; border-radius: 0.5rem; color: var(--text-secondary);">✅ My Tasks</div>
+        <div class="sidebar-menu-item" id="btn-kanban" onclick="showSection('kanban')" style="padding: 0.75rem; cursor: pointer; border-radius: 0.5rem; color: var(--text-secondary);">📋 Kanban</div>
+        <div class="sidebar-menu-item" id="btn-trading" onclick="showSection('trading')" style="padding: 0.75rem; cursor: pointer; border-radius: 0.5rem; color: var(--text-secondary);">📈 Trading</div>
+        <div class="sidebar-menu-item" id="btn-crypto" onclick="showSection('crypto')" style="padding: 0.75rem; cursor: pointer; border-radius: 0.5rem; color: var(--text-secondary);">🪙 Crypto</div>
+        <div class="sidebar-menu-item" id="btn-completed" onclick="showSection('completed')" style="padding: 0.75rem; cursor: pointer; border-radius: 0.5rem; color: var(--text-secondary);">✅ Completed</div>
+        <div class="sidebar-menu-item" id="btn-agents" onclick="showSection('agents')" style="padding: 0.75rem; cursor: pointer; border-radius: 0.5rem; color: var(--text-secondary);">🏢 Command Center</div>
+        <div class="sidebar-menu-item" id="btn-cron" onclick="showSection('cron')" style="padding: 0.75rem; cursor: pointer; border-radius: 0.5rem; color: var(--text-secondary);">⏰ Cron Jobs</div>
+        <div class="sidebar-menu-item" id="btn-secondbrain" onclick="showSection('secondbrain')" style="padding: 0.75rem; cursor: pointer; border-radius: 0.5rem; color: var(--text-secondary);">🧠 Second Brain</div>
+        <div class="sidebar-menu-item" id="btn-containers" onclick="showSection('containers')" style="padding: 0.75rem; cursor: pointer; border-radius: 0.5rem; color: var(--text-secondary);">🐳 Containers</div>
+        <div class="sidebar-menu-item" id="btn-mcp" onclick="showSection('mcp')" style="padding: 0.75rem; cursor: pointer; border-radius: 0.5rem; color: var(--text-secondary);">📦 MCP Servers</div>
+        <div class="sidebar-menu-item" id="btn-shortcuts" onclick="showSection('shortcuts')" style="padding: 0.75rem; cursor: pointer; border-radius: 0.5rem; color: var(--text-secondary);">🔗 Shortcuts</div>
+        <div class="sidebar-menu-item" id="btn-meetings" onclick="showSection('meetings')" style="padding: 0.75rem; cursor: pointer; border-radius: 0.5rem; color: var(--text-secondary);">🏢 Board Meetings</div>
+        <div class="sidebar-menu-item" id="btn-agent-tasks" onclick="showSection('agent-tasks')" style="padding: 0.75rem; cursor: pointer; border-radius: 0.5rem; color: var(--text-secondary);">📋 Agent Tasks</div>
+        <div class="sidebar-menu-item" id="btn-xgrowth" onclick="showSection('xgrowth')" style="padding: 0.75rem; cursor: pointer; border-radius: 0.5rem; color: var(--text-secondary);">🐦 X Growth</div>
+      </div>
+      <button class="btn" style="background: var(--accent-purple); margin-top: auto;" onclick="toggleTheme()">🌗 Theme</button>
+    </div>
+    
+    <!-- Main Content -->
+    <div style="flex: 1; padding: 1rem; overflow-y: auto;">
+    
+    <style>
+      .tab-section { display: none !important; }
+      .tab-section.active { display: block !important; }
+    </style>
+
+    <!-- Kanban Board -->
+    <div id="section-kanban" class="tab-section glass" style="display: none;">
+      <div id="debug-info" style="background: #1e1e1e; color: #0f0; padding: 0.5rem; font-family: monospace; font-size: 0.75rem; margin-bottom: 0.5rem; border-radius: 0.25rem;"></div>
+      <div class="flex" style="margin-bottom: 1rem;">
+        <h3>📋 Agent Kanban</h3>
+        <button class="btn" style="background: var(--accent-blue); margin-left: auto;" onclick="showAddTask()">+ Add Task</button>
+      </div>
+      <div id="kanbanBoard" style="display: flex; gap: 0.75rem; overflow-x: auto; padding-bottom: 0.5rem;">
+        <!-- Kanban columns rendered by JS -->
+      </div>
+    </div>
+
+    <div id="section-tasks" class="tab-section active glass" style="display: block;">
+    <div class="glass">
+      <h3>✅ My Tasks (Todoist)</h3>
+      <div id="todoistTasks" style="max-height: 300px; overflow-y: auto;">
+        <div style="color: var(--text-secondary);">Loading...</div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Second Brain -->
+    <div id="section-secondbrain" class="tab-section glass" style="display: none;">
+      <div class="flex" style="margin-bottom: 1rem;">
+        <h3>🧠 Second Brain</h3>
+        <button class="btn" style="background: var(--accent-green); margin-left: auto;" onclick="showAddNote()">+ Add Note</button>
+        <button class="btn" style="background: var(--accent-purple); margin-left: 0.5rem;" onclick="showClipUrl()">+ Clip URL</button>
+        <button class="btn" style="background: #f59e0b; margin-left: 0.5rem;" onclick="startVoiceNote()">🎤 Voice</button>
+      </div>
+      <div style="margin-bottom: 1rem;">
+        <input type="text" id="noteSearch" placeholder="Search notes..." style="width: 100%; padding: 0.5rem; border-radius: 0.5rem; background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary);" onkeyup="searchNotes()">
+      </div>
+      <div style="margin-bottom: 1rem;">
+        <select id="noteTagFilter" onchange="filterByTag()" style="padding: 0.5rem; border-radius: 0.5rem; background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary);">
+          <option value="">All Tags</option>
+          <option value="business-central">business-central</option>
+          <option value="openclaw">openclaw</option>
+          <option value="arr">arr</option>
+          <option value="voice">voice</option>
+          <option value="general">general</option>
+        </select>
+      </div>
+      <div id="notesList" style="max-height: 250px; overflow-y: auto;">
+        <div style="color: var(--text-secondary);">Loading...</div>
+      </div>
+    </div>
+
+    <!-- Cron Jobs -->
+    <div id="section-cron" class="tab-section glass" style="display: none;">
+      <div class="flex" style="justify-content: space-between; align-items: center;">
+        <h3>⏰ Cron Jobs</h3>
+        <div id="cron-timestamp" style="font-size: 0.75rem; color: var(--text-secondary);"></div>
+      </div>
+      <div id="cronjobs" style="color: var(--text-secondary);">Loading...</div>
+    </div>
+
+    <!-- Command Center -->
+    <div id="section-agents" class="tab-section glass" style="display: none;">
+      <div class="flex" style="margin-bottom: 1rem;">
+        <h3>🏢 Command Center</h3>
+        <button class="btn" style="background: var(--accent-blue); margin-left: auto;" onclick="loadCommandCenter()">🔄 Refresh</button>
+      </div>
+      <div id="agent-cards" class="grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));"></div>
+      <div style="margin-top: 2rem;">
+        <h4 style="margin-bottom: 1rem;">🤖 Board Meetings</h4>
+        <div id="meetings-list"></div>
+      </div>
+      
+    </div>
+
+    <!-- Tasks Overview -->
+    <div id="section-agent-tasks" class="tab-section glass" style="display: none;">
+      <div class="flex" style="margin-bottom: 1rem;">
+        <h3>📋 Agent Tasks</h3>
+        <button class="btn" style="background: var(--accent-blue); margin-left: auto;" onclick="loadTasksOverview()">🔄 Refresh</button>
+      </div>
+      <div id="tasks-overview" style="color: var(--text-secondary);">Loading...</div>
+    </div>
+
+    <!-- Completed Tasks -->
+    <div id="section-completed" class="tab-section glass" style="display: none;">
+      <h3>✅ Completed Tasks</h3>
+      <div id="completed-list" style="color: var(--text-secondary);">Loading...</div>
+    </div>
+
+    <!-- Containers Table -->
+    <div id="section-containers" class="tab-section glass" style="display: none;">
+      <h2>Containers (Live)</h2>
+      <div class="controls">
+        <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search containers..." onkeyup="filterContainers()">
+        <select class="refresh-select" id="refreshRate" onchange="setRefreshRate()">
+          <option value="5000">5 sec</option>
+          <option value="10000" selected>10 sec</option>
+          <option value="30000">30 sec</option>
+          <option value="60000">1 min</option>
+          <option value="0">Paused</option>
+        </select>
+        <span style="color: var(--text-secondary);" id="lastUpdate">Last update: --</span>
+      </div>
+      <table>
+        <thead>
+          <tr onclick="sortTable(event)">
+            <th data-sort="name">Name ↕</th>
+            <th data-sort="status">Status ↕</th>
+            <th data-sort="cpu">CPU% ↕</th>
+            <th data-sort="mem">Mem% ↕</th>
+            <th data-sort="ports">Ports ↕</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="containers"></tbody>
+      </table>
+    </div>
+
+    <!-- Trading Section -->
+    <div id="section-trading" class="tab-section glass" style="display: none;">
+      <div class="flex" style="margin-bottom: 1rem;">
+        <h3>📈 Stock Trading Bot</h3>
+        <button class="btn" style="background: var(--accent-blue); margin-left: auto;" onclick="loadTradingData()">🔄 Refresh</button>
+      </div>
+      <div class="grid" style="margin-bottom: 1rem;">
+        <div class="stat-card" style="background: var(--bg-secondary); border-radius: 0.5rem; padding: 1rem;">
+          <div class="stat-value" id="trading-portfolio">$0</div>
+          <div class="stat-label">Portfolio Value</div>
+        </div>
+        <div class="stat-card" style="background: var(--bg-secondary); border-radius: 0.5rem; padding: 1rem;">
+          <div class="stat-value" id="trading-cash">$0</div>
+          <div class="stat-label">Cash</div>
+        </div>
+        <div class="stat-card" style="background: var(--bg-secondary); border-radius: 0.5rem; padding: 1rem;">
+          <div class="stat-value" id="trading-pnl">$0</div>
+          <div class="stat-label">Total P&L</div>
+        </div>
+      </div>
+      <div id="trading-updated" style="color: var(--text-secondary); font-size: 0.75rem; margin-top: 0.5rem;"></div>
+      <h4>Current Positions</h4>
+      <table id="trading-positions">
+        <thead><tr><th>Symbol</th><th>Shares</th><th>Avg Cost</th><th>Current</th><th>P&L</th><th>P&L %</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <h4 style="margin-top: 1rem;">Recent Trades</h4>
+      <table id="trading-trades">
+        <thead><tr><th>Time</th><th>Symbol</th><th>Side</th><th>Shares</th><th>Price</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Crypto Section -->
+    <div id="section-crypto" class="tab-section glass" style="display: none;">
+      <div class="flex" style="margin-bottom: 1rem; justify-content: space-between;">
+        <h3>🪙 Crypto Trading Bot</h3>
+        <div style="text-align: right;">
+          <button class="btn" style="background: var(--accent-blue);" onclick="loadCryptoData()">🔄 Refresh</button>
+          <div id="crypto-timestamp" style="font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.25rem;"></div>
+        </div>
+      </div>
+      <div class="grid" style="margin-bottom: 1rem;">
+        <div class="stat-card" style="background: var(--bg-secondary); border-radius: 0.5rem; padding: 1rem;">
+          <div class="stat-value" id="crypto-portfolio">$0</div>
+          <div class="stat-label">Portfolio Value</div>
+        </div>
+        <div class="stat-card" style="background: var(--bg-secondary); border-radius: 0.5rem; padding: 1rem;">
+          <div class="stat-value" id="crypto-cash">$0</div>
+          <div class="stat-label">Cash</div>
+        </div>
+        <div class="stat-card" style="background: var(--bg-secondary); border-radius: 0.5rem; padding: 1rem;">
+          <div class="stat-value" id="crypto-exposure">0%</div>
+          <div class="stat-label">Exposure</div>
+        </div>
+      </div>
+      <div id="crypto-updated" style="color: var(--text-secondary); font-size: 0.75rem; margin-top: 0.5rem;"></div>
+      <h4>Current Positions</h4>
+      <table id="crypto-positions">
+        <thead><tr><th>Pair</th><th>Qty</th><th>Entry</th><th>Current</th><th>P&L</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <h4>Recent Transactions</h4>
+      <table id="crypto-transactions">
+        <thead><tr><th>Time</th><th>Pair</th><th>Action</th><th>Price</th><th>Qty</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Shortcuts Section -->
+    <div id="section-shortcuts" class="tab-section glass" style="display: none;">
+      <h3>🔗 Quick Links</h3>
+      <div id="quickLinks"></div>
+    </div>
+
+    <!-- Board Meetings Section -->
+    <div id="section-meetings" class="tab-section glass" style="display: none;">
+      <h3>🏢 Board Meetings</h3>
+      <div id="meetings-content" style="color: var(--text-secondary);">Loading...</div>
+    </div>
+
+    <!-- X Growth Section -->
+    <div id="section-xgrowth" class="tab-section glass" style="display: none;">
+      <div class="flex" style="justify-content: space-between; align-items: center;">
+        <h3>🐦 X Growth Dashboard</h3>
+        <div id="x-timestamp" style="font-size: 0.75rem; color: var(--text-secondary);"></div>
+      </div>
+      
+      <!-- Key Metrics -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+        <div class="stat-card glass">
+          <div class="stat-value" id="x-followers">-</div>
+          <div class="stat-label">Followers</div>
+        </div>
+        <div class="stat-card glass">
+          <div class="stat-value" id="x-following">-</div>
+          <div class="stat-label">Following</div>
+        </div>
+        <div class="stat-card glass">
+          <div class="stat-value" id="x-posts">-</div>
+          <div class="stat-label">Total Posts</div>
+        </div>
+        <div class="stat-card glass">
+          <div class="stat-value" id="x-replies">-</div>
+          <div class="stat-label">Total Replies</div>
+        </div>
+      </div>
+      
+      <!-- Daily Limits -->
+      <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+        <h4 style="margin: 0 0 0.5rem 0;">📊 Phase A Goals - Day <span id="x-day-count">3</span> (Cumulative: daily × days)</h4>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; font-size: 0.875rem;">
+          <div>Posts: <span id="x-limit-posts">6</span></div>
+          <div>Replies: <span id="x-limit-replies">12</span></div>
+          <div>Follows: <span id="x-limit-follows">9</span></div>
+          <div>Likes: <span id="x-limit-likes">48</span></div>
+        </div>
+        <div style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-secondary);">
+          Used: <span id="x-used-posts">0</span>/2 posts, <span id="x-used-replies">0</span>/4 replies
+        </div>
+      </div>
+      
+      <!-- Targets with Progress Bars -->
+      <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+        <h4 style="margin: 0 0 1rem 0;">🎯 Progress to Goals</h4>
+        
+        <!-- Followers Progress -->
+        <div style="margin-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.875rem; margin-bottom: 0.25rem;">
+            <span>Followers (1,000 goal)</span>
+            <span id="x-followers-progress">1</span>
+            <span id="x-target-1k">0%</span>
+          </div>
+          <div style="background: var(--bg-primary); height: 12px; border-radius: 6px; overflow: hidden;">
+            <div id="x-followers-bar" style="background: var(--accent-green); height: 100%; width: 0.1%; transition: width 0.5s;"></div>
+          </div>
+        </div>
+        
+        <!-- Posts Progress -->
+        <div style="margin-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.875rem; margin-bottom: 0.25rem;">
+            <span>Posts (Goal: <span id="x-posts-goal">2</span>)</span>
+            <span id="x-posts-progress">0</span>
+          </div>
+          <div style="background: var(--bg-primary); height: 12px; border-radius: 6px; overflow: hidden;">
+            <div id="x-posts-bar" style="background: var(--accent-blue); height: 100%; width: 0%; transition: width 0.5s;"></div>
+          </div>
+        </div>
+        
+        <!-- Replies Progress -->
+        <div style="margin-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.875rem; margin-bottom: 0.25rem;">
+            <span>Replies (Goal: <span id="x-replies-goal">12</span>)</span>
+            <span id="x-replies-progress">0</span>
+          </div>
+          <div style="background: var(--bg-primary); height: 12px; border-radius: 6px; overflow: hidden;">
+            <div id="x-replies-bar" style="background: var(--accent-purple); height: 100%; width: 0%; transition: width 0.5s;"></div>
+          </div>
+        </div>
+        
+        <!-- Likes Progress -->
+        <div style="margin-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.875rem; margin-bottom: 0.25rem;">
+            <span>Likes (Goal: <span id="x-likes-goal">16</span>)</span>
+            <span id="x-likes-progress">0</span>
+          </div>
+          <div style="background: var(--bg-primary); height: 12px; border-radius: 6px; overflow: hidden;">
+            <div id="x-likes-bar" style="background: var(--accent-red); height: 100%; width: 0%; transition: width 0.5s;"></div>
+          </div>
+        </div>
+        
+        <!-- Follows Progress -->
+        <div style="margin-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.875rem; margin-bottom: 0.25rem;">
+            <span>Follows (Goal: <span id="x-follows-goal">3</span>)</span>
+            <span id="x-follows-progress">0</span>
+          </div>
+          <div style="background: var(--bg-primary); height: 12px; border-radius: 6px; overflow: hidden;">
+            <div id="x-follows-bar" style="background: var(--accent-yellow); height: 100%; width: 0%; transition: width 0.5s;"></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Line Charts -->
+      <div id="x-charts" style="background: var(--bg-secondary); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+        <h4 style="margin: 0 0 1rem 0;">📈 Progress Over Time</h4>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+          <div>
+            <div style="font-size: 0.75rem; margin-bottom: 0.5rem; text-align: center;">Posts</div>
+            <canvas id="chart-posts" width="400" height="200" style="width: 100%; height: 100px;"></canvas>
+          </div>
+          <div>
+            <div style="font-size: 0.75rem; margin-bottom: 0.5rem; text-align: center;">Replies</div>
+            <canvas id="chart-replies" width="400" height="200" style="width: 100%; height: 100px;"></canvas>
+          </div>
+          <div>
+            <div style="font-size: 0.75rem; margin-bottom: 0.5rem; text-align: center;">Likes</div>
+            <canvas id="chart-likes" width="400" height="200" style="width: 100%; height: 100px;"></canvas>
+          </div>
+          <div>
+            <div style="font-size: 0.75rem; margin-bottom: 0.5rem; text-align: center;">Follows</div>
+            <canvas id="chart-follows" width="400" height="200" style="width: 100%; height: 100px;"></canvas>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 0.5rem; font-size: 0.7rem;">
+          <span style="color: var(--accent-blue);">── Actual (cumulative)</span>
+          <span style="color: var(--text-secondary);">── Target</span>
+        </div>
+      </div>
+      
+      <!-- Quick Actions -->
+      <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+        <button class="btn" style="background: var(--accent-blue);" onclick="loadXGrowth()">🔄 Refresh</button>
+      </div>
+      
+      <div id="xgrowth-content" style="color: var(--text-secondary);">
+        <p style="color: var(--text-secondary);">Click refresh to load data...</p>
+      </div>
+    </div>
+
+    <!-- MCP Servers Section -->
+    <div id="section-mcp" class="tab-section glass" style="display: none;">
+      <h3>📦 MCP Servers</h3>
+      <div id="mcp-content" style="color: var(--text-secondary);">Loading...</div>
+    </div>
+
+    <!-- Add Task Modal -->
+    <div id="addTaskModal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50" style="display: none;">
+      <div class="glass rounded-2xl p-6" style="width: 400px; max-width: 90vw;">
+        <h3 class="text-xl font-bold mb-4">Add New Task</h3>
+        <input type="text" id="newTaskTitle" placeholder="Task title" style="width: 100%; padding: 0.5rem; margin-bottom: 0.5rem; border-radius: 0.5rem; border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--text-primary);">
+        <textarea id="newTaskDesc" placeholder="Description (optional)" rows="3" style="width: 100%; padding: 0.5rem; margin-bottom: 0.5rem; border-radius: 0.5rem; border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--text-primary);"></textarea>
+        <select id="newTaskColumn" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; border-radius: 0.5rem; border: 1px solid var(--border-color); background: var(--bg-secondary); color: var(--text-primary);">
+          <option value="idea">💡 Idea</option>
+          <option value="backlog" selected>Backlog</option>
+        </select>
+        <div style="display: flex; gap: 0.5rem;">
+          <button class="btn" style="background: var(--accent-green); flex: 1;" onclick="addTask()">Add</button>
+          <button class="btn" style="background: var(--accent-red); flex: 1;" onclick="hideAddTask()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let containers = [];
+    let refreshInterval = 10000;
+    let intervalId = null;
+    let sortCol = 'name';
+    let sortAsc = true;
+    let theme = localStorage.getItem('theme') || 'dark';
+    
+    // Load X Growth data on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      loadXGrowth();
+    });
+
+    // Load shortcuts/quick links
+    function loadQuickLinks() {
+      const div = document.getElementById('quickLinks');
+      if (div) {
+        div.innerHTML = quickLinks.map(q => {
+          const url = q.path ? `http://192.168.1.146:${q.port}${q.path}` : `http://192.168.1.146:${q.port}`;
+          return '<a href="' + url + '" target="_blank" class="quick-link" style="display:inline-block;padding:0.5rem 1rem;background:'+q.color+';color:white;border-radius:0.5rem;text-decoration:none;margin:0.25rem;">' + q.name + '</a>';
+        }).join('');
+      }
+    }
+
+    // Quick action links
+    const quickLinks = [
+      { name: 'Sonarr', port: 8989, color: '#16a34a' },
+      { name: 'Radarr', port: 7878, color: '#2563eb' },
+      { name: 'Plex', port: 32400, path: '/web', color: '#db2777' },
+      { name: 'Grafana', port: 3000, color: '#9333ea' },
+      { name: 'Jellyfin', port: 8096, color: '#0ea5e9' },
+      { name: 'Overseerr', port: 5056, color: '#f59e0b' },
+      { name: 'SABnzbd', port: 8080, color: '#22c55e' },
+      { name: 'Portainer', port: 9000, color: '#3b82f6' },
+      { name: 'Homepage', port: 3004, color: '#6366f1' },
+      { name: 'Tautulli', port: 8181, color: '#ec4899' },
+      { name: 'Transmission', port: 30800, path: '/transmission/web/', color: '#eab308' },
+    ];
+
+    function initTheme() {
+      if (theme === 'light') document.body.classList.add('light-theme');
+    }
+
+    async function loadNotes() {
+      try {
+        const res = await fetch('/api/notes');
+        if (!res.ok) throw new Error('API error: ' + res.status);
+        const data = await res.json();
+        allNotes = data.notes || [];
+        renderNotes(allNotes);
+      } catch(e) {
+        console.error('Notes load error:', e);
+        const notesList = document.getElementById('notesList');
+        if (notesList) notesList.innerHTML = '<div style="color: var(--text-secondary);">Error loading notes - click to retry</div>';
+        if (notesList) notesList.onclick = loadNotes;
+      }
+    }
+
+
+
+    async function loadMcpServers() {
+      try {
+        const res = await fetch('/api/mcp');
+        const servers = await res.json();
+        let html = '<table><thead><tr><th>Server</th><th>Status</th><th>Tools</th><th>Description</th></tr></thead><tbody>';
+        servers.forEach(s => {
+          const status = s.status === 'ok' ? '<span style="color:#4ade80">✅</span>' : '<span style="color:#f87171">❌</span>';
+          html += '<tr><td>' + s.name + '</td><td>' + status + '</td><td>' + (s.tools || '-') + '</td><td>' + (s.description || '') + '</td></tr>';
+        });
+        html += '</tbody></table>';
+        document.getElementById('mcp-content').innerHTML = html;
+      } catch(e) {
+        document.getElementById('mcp-content').innerHTML = '<div style="color:var(--text-secondary)">Error loading MCP servers</div>';
+      }
+    }
+
+    // Command Center functions
+    let ccInterval = null;
+    let tradingInterval = null;
+    let cryptoInterval = null;
+    
+    async function loadCommandCenter() {
+      await Promise.all([loadAgentsCC(), loadMeetingsCC()]);
+    }
+    
+    async function loadMeetingsCC() {
+      try {
+        const res = await fetch('/api/command-center/meetings');
+        let meetings = await res.json();
+        
+        // Sort by date, newest first
+        meetings.sort((a, b) => new Date(b.startedAt) - new Date(a.startedAt));
+        
+        let html = '';
+        if (meetings && meetings.length > 0) {
+          meetings.slice(0, 5).forEach(m => {
+            const date = m.startedAt ? new Date(m.startedAt).toLocaleString() : '';
+            const participants = Array.isArray(m.participants) ? m.participants.join(', ') : '';
+            const subtasks = Array.isArray(m.subtasks) ? m.subtasks : [];
+            const statusColor = m.status === 'completed' ? '#4ade80' : '#fbbf24';
+            const isComplete = m.status === 'completed';
+            
+            let htmlContent = '<div style="padding:0.75rem;margin:0.5rem 0;background:var(--bg-primary);border-radius:0.5rem;">' +
+              '<div style="display:flex;justify-content:space-between;align-items:center">' +
+              '<span style="font-weight:bold">'+(m.taskTitle || 'Board Meeting')+'</span>' +
+              '<span style="font-size:0.7rem;background:'+statusColor+';padding:0.2rem 0.5rem;border-radius:1rem">'+m.status+'</span></div>' +
+              '<div style="font-size:0.75rem;color:var(--text-secondary);margin-top:0.25rem">📅 '+date+'</div>' +
+              '<div style="font-size:0.75rem;color:var(--text-secondary)">👥 '+participants+'</div>';
+            
+            if (isComplete && m.transcript) {
+              // Show first part of transcript (the discussion)
+              const transcript = m.transcript || '';
+              htmlContent += '<div style="margin-top:0.5rem;padding:0.5rem;background:var(--bg-secondary);border-radius:0.25rem;font-size:0.7rem;max-height:500px;overflow-y:auto;word-wrap:break-word"><strong>💬 Discussion:</strong><br/>'+transcript.replace(/\n/g, '<br/>')+'</div>';
+            }
+            if (isComplete && m.plan) {
+              // Show the outcome/plan prominently
+              htmlContent += '<div style="margin-top:0.5rem;padding:0.75rem;background:linear-gradient(135deg, #10b981, #059669);border-radius:0.5rem;font-size:0.8rem;color:white;font-weight:bold"><strong>🎯 OUTCOME:</strong><br/>'+m.plan.replace(/\n/g, '<br/>')+'</div>';
+            }
+            if (isComplete && subtasks && subtasks.length > 0) {
+              htmlContent += '<div style="margin-top:0.5rem;font-size:0.7rem"><strong>✅ Assigned Tasks:</strong>';
+              subtasks.forEach(s => {
+                htmlContent += '<div style="margin:0.25rem 0;padding:0.25rem;background:var(--bg-secondary);border-radius:0.25rem">• <strong>'+s.agentId+':</strong> '+s.task+'</div>';
+              });
+              htmlContent += '</div>';
+            } else if (isComplete) {
+              htmlContent += '<div style="margin-top:0.5rem;font-size:0.7rem;color:var(--text-secondary)">No subtasks recorded</div>';
+            } else if (!isComplete) {
+              htmlContent += '<button class="btn" style="background:var(--accent-blue);margin-top:0.5rem;font-size:0.7rem;padding:0.4rem" onclick="event.stopPropagation();completeMeeting(\''+m.id+'\')">✅ Complete Meeting</button>';
+            }
+            
+            // Delete button for all meetings
+            htmlContent += '<button class="btn" style="background:var(--accent-red);margin-top:0.5rem;font-size:0.7rem;padding:0.4rem;margin-left:0.25rem" onclick="event.stopPropagation();deleteMeeting(\''+m.id+'\')">🗑️ Delete</button>';
+            
+            htmlContent += '</div>';
+            html += htmlContent;
+          });
+        } else {
+          html = '<div style="color:var(--text-secondary);padding:0.5rem">No board meetings yet</div>';
+        }
+        document.getElementById('meetings-content').innerHTML = html;
+      } catch(e) {
+        document.getElementById('meetings-content').innerHTML = '<div style="color:var(--text-secondary)">Error loading meetings</div>';
+      }
+    }
+    
+    // Load Tasks Overview - shows agent tasks from board meetings
+    async function loadTasksOverview() {
+      try {
+        const res = await fetch('/api/command-center/tasks');
+        const tasks = await res.json();
+        
+        // Get agent info
+        const agentsRes = await fetch('/api/command-center/agents');
+        const agents = await agentsRes.json();
+        const agentMap = {};
+        agents.forEach(a => agentMap[a.id] = a.name);
+        
+        // Group by status
+        const inProgress = tasks.filter(t => t.status === 'in-progress');
+        const pending = tasks.filter(t => t.status === 'pending');
+        const completed = tasks.filter(t => t.status === 'completed').slice(0, 10); // Recent only
+        
+        let html = '';
+        
+        // In Progress
+        if (inProgress.length > 0) {
+          html += '<h4 style="color: #fbbf24; margin: 1rem 0 0.5rem 0;">📋 In Progress (' + inProgress.length + ')</h4>';
+          inProgress.forEach(task => {
+            const agentName = agentMap[task.agentId] || task.agentId;
+            html += '<div class="glass" style="padding: 1rem; margin-bottom: 0.5rem; border-left: 3px solid #fbbf24;">';
+            html += '<div style="font-weight: 600;">' + task.title + '</div>';
+            html += '<div style="font-size: 0.75rem; color: #60a5fa; margin-top: 0.25rem;">🤖 ' + agentName + '</div>';
+            if (task.description) {
+              html += '<div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.25rem;">' + task.description.substring(0, 80) + '</div>';
+            }
+            html += '</div>';
+          });
+        }
+        
+        // Pending
+        if (pending.length > 0) {
+          html += '<h4 style="color: #60a5fa; margin: 1rem 0 0.5rem 0;">📝 Waiting (' + pending.length + ')</h4>';
+          pending.forEach(task => {
+            const agentName = agentMap[task.agentId] || task.agentId;
+            html += '<div class="glass" style="padding: 1rem; margin-bottom: 0.5rem; border-left: 3px solid #60a5fa;">';
+            html += '<div style="font-weight: 600;">' + task.title + '</div>';
+            html += '<div style="font-size: 0.75rem; color: #60a5fa; margin-top: 0.25rem;">🤖 ' + agentName + '</div>';
+            html += '</div>';
+          });
+        }
+        
+        // Recent Completed
+        if (completed.length > 0) {
+          html += '<h4 style="color: #10b981; margin: 1rem 0 0.5rem 0;">✅ Recent Completed (' + completed.length + ')</h4>';
+          completed.forEach(task => {
+            const agentName = agentMap[task.agentId] || task.agentId;
+            const time = task.completedAt ? new Date(task.completedAt).toLocaleTimeString() : '';
+            html += '<div class="glass" style="padding: 0.75rem; margin-bottom: 0.25rem; border-left: 3px solid #10b981; opacity: 0.7;">';
+            html += '<div style="font-size: 0.85rem;">' + task.title.substring(0, 40) + '</div>';
+            html += '<div style="font-size: 0.7rem; color: var(--text-secondary);">🤖 ' + agentName + ' • ' + time + '</div>';
+            html += '</div>';
+          });
+        }
+        
+        if (!html) {
+          html = '<div style="color: var(--text-secondary); padding: 1rem;">No agent tasks yet. Pick a backlog task to trigger a board meeting!</div>';
+        }
+        
+        document.getElementById('tasks-overview').innerHTML = html;
+      } catch(e) {
+        document.getElementById('tasks-overview').innerHTML = '<div style="color: var(--text-secondary);">Error loading tasks: ' + e.message + '</div>';
+      }
+    }
+    
+    async function loadAgentsCC() {
+      try {
+        const res = await fetch('/api/command-center/agents');
+        const agents = await res.json();
+        
+        // Also fetch all tasks
+        let allTasks = [];
+        try {
+          const tasksRes = await fetch('/api/command-center/tasks');
+          allTasks = await tasksRes.json();
+        } catch(e) {}
+        
+        let html = '';
+        for (const agent of agents) {
+          const statusColor = agent.status === 'online' ? '#4ade80' : agent.status === 'busy' ? '#fbbf24' : '#6b7280';
+          const lastActive = agent.lastActive ? new Date(agent.lastActive).toLocaleString() : 'Never';
+          const caps = Array.isArray(agent.capabilities) ? agent.capabilities : [];
+          const currentTask = agent.currentTask || '';
+          
+          // Get tasks for this agent
+          const agentTasks = allTasks.filter(t => t.agentId === agent.id) || [];
+          const pastTasks = agentTasks.filter(t => t.status === 'completed').slice(0, 3);
+          const presentTasks = agentTasks.filter(t => t.status === 'in-progress');
+          const futureTasks = agentTasks.filter(t => t.status === 'pending').slice(0, 3);
+          
+          // Build task summary
+          let taskHtml = '';
+          
+          // Future tasks (pending)
+          if (futureTasks.length > 0) {
+            taskHtml += '<div style="margin-top:0.5rem"><span style="color:#60a5fa;font-size:0.7rem">🔜 UPCOMING:</span>';
+            futureTasks.forEach(t => {
+              taskHtml += '<div style="font-size:0.7rem;padding:0.25rem;background:#1e3a5f;border-radius:0.25rem;margin:0.25rem 0">'+t.title.substring(0,35)+'</div>';
+            });
+            taskHtml += '</div>';
+          }
+          
+          // Current tasks (in-progress)
+          if (presentTasks.length > 0) {
+            taskHtml += '<div style="margin-top:0.5rem"><span style="color:#fbbf24;font-size:0.7rem">📋 CURRENT:</span>';
+            presentTasks.forEach(t => {
+              taskHtml += '<div style="font-size:0.7rem;padding:0.25rem;background:var(--accent-purple);border-radius:0.25rem;margin:0.25rem 0">'+t.title.substring(0,35)+'</div>';
+            });
+            taskHtml += '</div>';
+          }
+          
+          // Recent completed
+          if (pastTasks.length > 0) {
+            taskHtml += '<div style="margin-top:0.5rem"><span style="color:#10b981;font-size:0.7rem">✅ RECENT:</span>';
+            pastTasks.forEach(t => {
+              const time = t.completedAt ? new Date(t.completedAt).toLocaleTimeString() : '';
+              taskHtml += '<div style="font-size:0.65rem;padding:0.25rem;margin:0.25rem 0;color:var(--text-secondary)">'+t.title.substring(0,30)+' - '+time+'</div>';
+            });
+            taskHtml += '</div>';
+          }
+          
+          // Fetch activity for this agent
+          let activityHtml = '';
+          try {
+            const actRes = await fetch('/api/command-center/agents/'+agent.id+'/activity?limit=5');
+            const actData = await actRes.json();
+            if (actData.activities && actData.activities.length > 0) {
+              activityHtml = '<div style="margin-top:0.5rem;padding-top:0.5rem;border-top:1px solid var(--border)">';
+              actData.activities.slice(0,3).forEach(a => {
+                const icon = a.action && a.action.toLowerCase().includes('complete') ? '✅' : '📋';
+                const time = a.timestamp ? new Date(a.timestamp).toLocaleTimeString() : '';
+                activityHtml += '<div style="font-size:0.65rem;color:var(--text-secondary);margin:0.2rem 0">'+icon+' '+a.action.substring(0,25)+' - '+time+'</div>';
+              });
+              activityHtml += '</div>';
+            }
+          } catch(e) {}
+          
+          html += '<div class="glass" style="cursor:pointer; padding:1rem;" onclick="showAgentDetailCC(\''+agent.id+'\')">' +
+            '<div class="flex"><h4 style="margin:0">'+agent.name+'</h4>' +
+            '<span style="display:inline-flex;align-items:center;gap:0.25rem">' +
+            '<span style="width:8px;height:8px;border-radius:50%;background:'+statusColor+';display:inline-block"></span>' +
+            '<span style="font-size:0.75rem;color:'+statusColor+'">'+agent.status+'</span></span></div>' +
+            (currentTask ? '<div style="background:var(--accent-purple);padding:0.4rem;border-radius:0.5rem;margin:0.5rem 0;font-size:0.8rem">📋 '+currentTask.substring(0,45)+(currentTask.length>45?'...':'')+'</div>' : '') +
+            taskHtml +
+            '<div style="color:var(--text-secondary);font-size:0.875rem;margin:0.5rem 0">'+(agent.role || 'No role')+'</div>' +
+            '<div style="font-size:0.75rem;color:var(--text-secondary)">' +
+            '<span style="color:var(--accent-blue)">'+(agent.model || 'minimax/minimax-m2.5')+'</span> • Last active: '+lastActive+'</div>' +
+            '<div style="margin-top:0.5rem;display:flex;flex-wrap:wrap;gap:0.25rem">' +
+            caps.slice(0,3).map(c => '<span style="background:var(--bg-primary);padding:0.125rem 0.5rem;border-radius:1rem;font-size:0.7rem">'+c+'</span>').join('') +
+            (caps.length > 3 ? '<span style="font-size:0.7rem;color:var(--text-secondary)">+'+(caps.length-3)+' more</span>' : '') + '</div>' +
+            activityHtml +
+            '</div>';
+        }
+        
+        document.getElementById('agent-cards').innerHTML = html || '<div style="color:var(--text-secondary)">No agents found</div>';
+      } catch(e) {
+        document.getElementById('agent-cards').innerHTML = '<div style="color:var(--text-secondary)">Error: '+e.message+'</div>';
+      }
+    }
+    
+    async function loadDecisionsCC() {
+      try {
+        const res = await fetch('/api/command-center/decisions');
+        const decisions = await res.json();
+        
+        let html = '<table style="width:100%"><thead><tr><th>Date</th><th>Question</th><th>Decision</th><th>Agents</th></tr></thead><tbody>';
+        decisions.forEach(d => {
+          const agents = Array.isArray(d.agentsConsulted) ? d.agentsConsulted.join(', ') : '';
+          html += '<tr><td>'+(d.date || '')+'</td><td>'+(d.question || '')+'</td><td>'+(d.decision || '')+'</td><td style="font-size:0.75rem;color:var(--text-secondary)">'+agents+'</td></tr>';
+        });
+        html += '</tbody></table>' + (decisions.length === 0 ? '<div style="color:var(--text-secondary)">No decisions yet</div>' : '');
+        
+        document.getElementById('decisions-list').innerHTML = html;
+      } catch(e) {
+        document.getElementById('decisions-list').innerHTML = '<div style="color:var(--text-secondary)">Error loading decisions</div>';
+      }
+    }
+    
+    async function showAgentDetailCC(agentId) {
+      try {
+        const [agentRes, activityRes, tasksRes] = await Promise.all([
+          fetch('/api/command-center/agents/' + agentId),
+          fetch('/api/command-center/agents/' + agentId + '/activity?limit=1'),
+          fetch('/api/command-center/agents/' + agentId + '/tasks')
+        ]);
+        const agent = await agentRes.json();
+        const activities = await activityRes.json();
+        const tasksData = await tasksRes.json();
+        
+        const statusColor = agent.status === 'online' ? '#4ade80' : agent.status === 'busy' ? '#fbbf24' : '#6b7280';
+        
+        // Build tasks section
+        let tasksHtml = '';
+        if (tasksData.present && tasksData.present.length > 0) {
+          tasksHtml += '<div style="margin-bottom:1rem"><strong style="color:#fbbf24">📋 Current Tasks:</strong></div>';
+          tasksData.present.forEach(t => {
+            tasksHtml += '<div style="padding:0.5rem;background:var(--accent-purple);border-radius:0.5rem;margin-bottom:0.5rem;font-size:0.8rem">'+t.title+'</div>';
+          });
+        }
+        if (tasksData.future && tasksData.future.length > 0) {
+          tasksHtml += '<div style="margin-bottom:0.5rem"><strong style="color:var(--text-secondary)">⏳ Pending Tasks:</strong></div>';
+          tasksData.future.forEach(t => {
+            tasksHtml += '<div style="padding:0.25rem;font-size:0.75rem;color:var(--text-secondary)">• '+t.title+'</div>';
+          });
+        }
+        if (tasksData.past && tasksData.past.length > 0) {
+          tasksHtml += '<div style="margin-bottom:0.5rem"><strong style="color:#10b981">✅ Recent Completed:</strong></div>';
+          tasksData.past.slice(0, 5).forEach(t => {
+            const time = t.completedAt ? new Date(t.completedAt).toLocaleDateString() : '';
+            tasksHtml += '<div style="padding:0.25rem;font-size:0.7rem;color:var(--text-secondary)">• '+t.title.substring(0,40)+' ('+time+')</div>';
+          });
+        }
+        if (!tasksHtml) tasksHtml = '<div style="color:var(--text-secondary)">No tasks</div>';
+        
+        let html = '<div class="glass" style="position:fixed;top:0;right:0;width:400px;height:100vh;overflow-y:auto;z-index:1000;margin:0;border-radius:0;padding:1.5rem;">' +
+          '<div class="flex" style="margin-bottom:1rem;"><h3 style="margin:0">'+agent.name+'</h3>' +
+          '<button class="btn" style="background:var(--accent-red)" onclick="closeAgentDetailCC()">✕</button></div>' +
+          '<div style="margin-bottom:1rem"><span style="display:inline-flex;align-items:center;gap:0.5rem"><span style="width:10px;height:10px;border-radius:50%;background:'+statusColor+'"></span><span style="color:'+statusColor+'">'+agent.status+'</span></span></div>' +
+          '<div style="color:var(--text-secondary);margin-bottom:1rem"><strong>Role:</strong> '+(agent.role || 'N/A')+'</div>' +
+          '<div style="margin-bottom:1rem"><strong>Model:</strong> <span style="color:var(--accent-blue)">'+agent.model+'</span></div>' +
+          '<div style="margin-bottom:1rem"><strong>Last Active:</strong> '+(agent.lastActive ? new Date(agent.lastActive).toLocaleString() : 'Never')+'</div>' +
+          '<div style="margin-bottom:1rem"><strong>Description:</strong></div>' +
+          '<div style="color:var(--text-secondary);margin-bottom:1rem;padding:0.5rem;background:var(--bg-primary);border-radius:0.5rem">'+(agent.description || 'No description')+'</div>' +
+          '<div style="margin-bottom:1rem"><strong>Tasks:</strong></div>' +
+          '<div style="margin-bottom:1rem">' + tasksHtml + '</div>' +
+          '<div style="margin-bottom:1rem"><strong>Recent Activity:</strong></div>' +
+          '<div style="max-height:150px;overflow-y:auto">' +
+          (activities.length > 0 ? activities.map(a => '<div style="padding:0.5rem;border-bottom:1px solid var(--border-color)"><div style="font-size:0.75rem;color:var(--accent-blue)">'+a.action+'</div><div style="font-size:0.875rem">'+(a.details || '')+'</div></div>').join('') : '<div style="color:var(--text-secondary)">No activity</div>') +
+          '</div>' +
+          '<button class="btn" style="background:var(--accent-green);width:100%;margin-top:1rem" onclick="showSendTaskCC(\''+agent.id+'\', \''+agent.name.replace(/'/g,"\\'")+'\')">📤 Send Task</button></div>';
+        
+        document.getElementById('agent-detail-panel').innerHTML = html;
+        document.getElementById('agent-detail-panel').style.display = 'block';
+      } catch(e) { alert('Error: ' + e.message); }
+    }
+    
+    function closeAgentDetailCC() {
+      document.getElementById('agent-detail-panel').style.display = 'none';
+      document.getElementById('agent-detail-panel').innerHTML = '';
+    }
+    
+    function showSendTaskCC(agentId, agentName) {
+      document.getElementById('task-modal-agent-id').value = agentId;
+      document.getElementById('task-modal-agent-name').textContent = agentName;
+      document.getElementById('task-modal').style.display = 'block';
+    }
+    
+    async function completeMeeting(meetingId) {
+      const plan = prompt('Enter the agreed plan:');
+      if (!plan) return;
+      
+      const transcript = prompt('Enter discussion summary:') || 'Discussed and agreed on plan.';
+      
+      const subtasksStr = prompt('Enter subtasks (format: agentId: task; agentId: task):');
+      const subtasks = [];
+      if (subtasksStr) {
+        subtasksStr.split(';').forEach(s => {
+          const [agentId, task] = s.split(':').map(x => x.trim());
+          if (agentId && task) subtasks.push({agentId, task});
+        });
+      }
+      
+      try {
+        const res = await fetch('/api/command-center/meetings/' + meetingId + '/complete', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({transcript, plan, subtasks})
+        });
+        const data = await res.json();
+        if (data.success) {
+          alert('Meeting completed! Decision recorded.');
+          loadMeetingsCC();
+          loadDecisionsCC();
+        }
+      } catch(e) {
+        alert('Error: ' + e.message);
+      }
+    }
+    
+    async function deleteMeeting(meetingId) {
+      if (!confirm('Are you sure you want to delete this meeting?')) return;
+      try {
+        const res = await fetch('/api/command-center/meetings/' + meetingId, { method: 'DELETE' });
+        const data = await res.json();
+        if (data.success) {
+          loadMeetingsCC();
+        } else {
+          alert('Error: ' + data.error);
+        }
+      } catch(e) {
+        alert('Error: ' + e.message);
+      }
+    }
+    
+    // Add modals
+    function addCCModals() {
+      if (document.getElementById('agent-detail-panel')) return;
+      const modals = '<div id="agent-detail-panel" style="display:none;position:fixed;top:0;right:0;width:100%;height:100%;z-index:999;background:rgba(0,0,0,0.5)" onclick="if(event.target===this)closeAgentDetailCC()"></div>';
+      document.body.insertAdjacentHTML('beforeend', modals);
+    }
+    addCCModals();
+    
+    async function loadTradingData() {
+      try {
+        const response = await fetch('/api/trading');
+        if (!response.ok) throw new Error("Trading API not available");
+        const data = await response.json();
+        
+        document.getElementById("trading-portfolio").textContent = "$" + (data.portfolio || 0).toLocaleString();
+        document.getElementById("trading-cash").textContent = "$" + (data.cash || 0).toLocaleString();
+        
+        if (data.lastUpdate) {
+          const date = new Date(data.lastUpdate);
+          document.getElementById("trading-updated").textContent = "Updated: " + date.toLocaleString();
+        }
+        
+        const pnlEl = document.getElementById("trading-pnl");
+        // Total P&L = Portfolio - Starting Capital ($100,000)
+        const totalPnl = (data.portfolio || 0) - 100000;
+        pnlEl.textContent = (totalPnl >= 0 ? "+" : "") + "$" + totalPnl.toLocaleString();
+        pnlEl.className = "stat-value " + (totalPnl >= 0 ? "text-green" : "text-red");
+        
+        const posBody = document.querySelector("#trading-positions tbody");
+        posBody.innerHTML = "";
+        if (data.positions && data.positions.length > 0) {
+          data.positions.forEach(p => {
+            const row = document.createElement("tr");
+            row.innerHTML = "<td>"+p.symbol+"</td><td>"+p.shares+"</td><td>$"+p.avg_cost.toFixed(2)+"</td><td>$"+p.current_price.toFixed(2)+"</td><td>$"+p.pnl.toFixed(2)+"</td><td>"+p.pnl_pct.toFixed(1)+"%</td>";
+            posBody.appendChild(row);
+          });
+        } else {
+          posBody.innerHTML = "<tr><td colspan='6' style='text-align:center;color:var(--text-secondary)'>No open positions</td></tr>";
+        }
+        
+        // Load recent trades
+        try {
+          const tradesRes = await fetch('/api/trading/trades');
+          const tradesData = await tradesRes.json();
+          const tradesBody = document.querySelector("#trading-trades tbody");
+          tradesBody.innerHTML = "";
+          if (tradesData.trades && tradesData.trades.length > 0) {
+            tradesData.trades.slice(0, 10).forEach(t => {
+              const row = document.createElement("tr");
+              const date = new Date(t.time).toLocaleString();
+              const side = t.action || 'N/A';
+              const sideClass = side.toLowerCase().includes('buy') ? 'text-green' : 'text-red';
+              row.innerHTML = "<td>"+date+"</td><td>"+t.symbol+"</td><td class='"+sideClass+"'>"+side.toUpperCase()+"</td><td>"+t.qty+"</td><td>$"+t.price.toFixed(2)+"</td>";
+              tradesBody.appendChild(row);
+            });
+          } else {
+            tradesBody.innerHTML = "<tr><td colspan='5' style='text-align:center;color:var(--text-secondary)'>No recent trades</td></tr>";
+          }
+        } catch(e) {
+          console.error("Trades load error:", e);
+        }
+      } catch(e) {
+        console.error("Trading load error:", e);
+      }
+    }
+
+    async function loadCryptoData() {
+      try {
+        const response = await fetch('/api/crypto');
+        if (!response.ok) throw new Error("Crypto API not available");
+        const data = await response.json();
+        
+        document.getElementById("crypto-portfolio").textContent = "$" + (data.portfolio || 0).toLocaleString();
+        document.getElementById("crypto-cash").textContent = "$" + (data.cash || 0).toLocaleString();
+        
+        // Calculate exposure
+        const exposure = data.portfolio > 0 ? ((data.portfolio - data.cash) / data.portfolio * 100).toFixed(1) : 0;
+        document.getElementById("crypto-exposure").textContent = exposure + "%";
+        
+        if (data.lastUpdated) {
+          const last = new Date(data.lastUpdated);
+          const next = data.nextUpdate ? new Date(data.nextUpdate) : new Date(Date.now() + 300000);
+          document.getElementById("crypto-updated").textContent = "Updated: " + last.toLocaleTimeString() + " | Next: " + next.toLocaleTimeString();
+        }
+        
+        const posBody = document.querySelector("#crypto-positions tbody");
+        posBody.innerHTML = "";
+        if (data.positions && data.positions.length > 0) {
+          data.positions.forEach(p => {
+            const row = document.createElement("tr");
+            const entryPrice = p.entry_price || p.avg_price || 0;
+            const currentPrice = p.current_price || entryPrice;
+            const pnl = (currentPrice - entryPrice) * p.qty;
+            const pnlClass = pnl >= 0 ? "text-green" : "text-red";
+            row.innerHTML = "<td>"+p.symbol+"</td><td>"+p.qty+"</td><td>$"+entryPrice.toFixed(2)+"</td><td>$"+currentPrice.toFixed(2)+"</td><td class='"+pnlClass+"'>$"+pnl.toFixed(2)+"</td>";
+            posBody.appendChild(row);
+          });
+        } else {
+          posBody.innerHTML = "<tr><td colspan='5' style='text-align:center;color:var(--text-secondary)'>No open positions</td></tr>";
+        }
+        
+        // Load transactions
+        try {
+          const txResponse = await fetch('/api/crypto-transactions');
+          if (txResponse.ok) {
+            const txData = await txResponse.json();
+            const txBody = document.querySelector("#crypto-transactions tbody");
+            txBody.innerHTML = "";
+            if (txData.transactions && txData.transactions.length > 0) {
+              txData.transactions.slice(0, 10).forEach(t => {
+                const row = document.createElement("tr");
+                const date = new Date(t.time);
+                const actionClass = t.action === 'buy' ? 'text-green' : 'text-red';
+                row.innerHTML = "<td>"+date.toLocaleString()+"</td><td>"+t.symbol+"</td><td class='"+actionClass+"'>"+t.action.toUpperCase()+"</td><td>$"+t.price.toFixed(2)+"</td><td>"+t.qty+"</td>";
+                txBody.appendChild(row);
+              });
+            } else {
+              txBody.innerHTML = "<tr><td colspan='5' style='text-align:center;color:var(--text-secondary)'>No transactions</td></tr>";
+            }
+          }
+        } catch(e) {
+          console.error("Transactions load error:", e);
+        }
+      } catch(e) {
+        console.error("Crypto load error:", e);
+      }
+    }
+
+    // Draw X Growth line chart
+    function drawXChart(canvasId, history, actualKey, goalKey, color) {
+      const canvas = document.getElementById(canvasId);
+      if (!canvas || !history || history.length === 0) return;
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width;
+      const h = canvas.height;
+      const padding = 20;
+      
+      // Find max value for scaling
+      let maxVal = 0;
+      history.forEach(d => {
+        maxVal = Math.max(maxVal, d[actualKey] || 0, d[goalKey] || 0);
+      });
+      maxVal = Math.max(maxVal, 10); // minimum scale
+      
+      const xStep = (w - 2 * padding) / Math.max(1, history.length - 1);
+      
+      // Clear
+      ctx.clearRect(0, 0, w, h);
+      
+      // Draw grid lines - brighter
+      ctx.strokeStyle = 'rgba(100,100,100,0.4)';
+      ctx.lineWidth = 1;
+      for (let i = 0; i <= 4; i++) {
+        const y = padding + (h - 2 * padding) * i / 4;
+        ctx.beginPath();
+        ctx.moveTo(padding, y);
+        ctx.lineTo(w - padding, y);
+        ctx.stroke();
+      }
+      
+      // Draw Y-axis labels - brighter, larger
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 11px sans-serif';
+      ctx.textAlign = 'right';
+      for (let i = 0; i <= 4; i++) {
+        const y = padding + (h - 2 * padding) * i / 4;
+        const val = Math.round(maxVal * (4 - i) / 4);
+        ctx.fillText(val.toString(), padding - 6, y + 4);
+      }
+      
+      // Draw X axis labels (Day 1, Day 2, etc) - brighter, larger
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 11px sans-serif';
+      ctx.textAlign = 'center';
+      history.forEach((d, i) => {
+        const x = padding + i * xStep;
+        ctx.fillText(d.day, x, h - 8);
+      });
+      
+      // Draw goal line (dashed, lighter gray for visibility)
+      ctx.strokeStyle = 'rgba(180,180,180,0.7)';
+      ctx.setLineDash([5, 5]);
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      history.forEach((d, i) => {
+        const x = padding + i * xStep;
+        const y = h - padding - ((d[goalKey] || 0) / maxVal) * (h - 2 * padding);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+      
+      // Draw actual line (solid, colored)
+      ctx.strokeStyle = color;
+      ctx.setLineDash([]);
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      history.forEach((d, i) => {
+        const x = padding + i * xStep;
+        const y = h - padding - ((d[actualKey] || 0) / maxVal) * (h - 2 * padding);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+      
+      // Draw points
+      history.forEach((d, i) => {
+        const x = padding + i * xStep;
+        const y = h - padding - ((d[actualKey] || 0) / maxVal) * (h - 2 * padding);
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(x, y, 4, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+    
+    async function loadXGrowth() {
+      try {
+        const response = await fetch('/api/xgrowth');
+        const data = await response.json();
+        
+        // Update timestamp if available
+        if (data.lastUpdated) {
+          const last = new Date(data.lastUpdated);
+          const next = data.nextUpdate ? new Date(data.nextUpdate) : new Date(Date.now() + 300000);
+          document.getElementById('x-timestamp').innerHTML = 
+            '⏱ Last updated: ' + last.toLocaleTimeString() + '<br>Next: ' + next.toLocaleTimeString();
+        }
+        
+        // Update key metrics - use cumulative totals
+        document.getElementById('x-followers').textContent = data.followers || 1;
+        document.getElementById('x-following').textContent = data.following || 1;
+        document.getElementById('x-posts').textContent = data.totalPosts || data.posts || 0;
+        document.getElementById('x-replies').textContent = data.totalReplies || data.replies || 0;
+        
+        // Cumulative goals (daily rate × days elapsed)
+        const dailyPosts = data.goalPosts / data.daysElapsed || 2;
+        const dailyReplies = data.goalReplies / data.daysElapsed || 4;
+        const dailyFollows = data.goalFollows / data.daysElapsed || 3;
+        const dailyLikes = data.goalLikes / data.daysElapsed || 16;
+        
+        // Update usage - show CUMULATIVE actuals vs CUMULATIVE goals
+        document.getElementById('x-used-posts').textContent = (data.totalPosts || 0) + '/' + data.goalPosts + ' (cumulative)';
+        document.getElementById('x-used-replies').textContent = (data.totalReplies || 0) + '/' + data.goalReplies + ' (cumulative)';
+        
+        // Update limits to show CUMULATIVE goals
+        document.getElementById('x-limit-posts').textContent = data.goalPosts;
+        document.getElementById('x-limit-replies').textContent = data.goalReplies;
+        document.getElementById('x-limit-follows').textContent = data.goalFollows;
+        document.getElementById('x-limit-likes').textContent = data.goalLikes;
+        
+        // Update day count
+        document.getElementById('x-day-count').textContent = data.daysElapsed;
+        
+        // Set goal labels
+        document.getElementById('x-posts-goal').textContent = data.goalPosts;
+        document.getElementById('x-replies-goal').textContent = data.goalReplies;
+        document.getElementById('x-follows-goal').textContent = data.goalFollows;
+        document.getElementById('x-likes-goal').textContent = data.goalLikes;
+        
+        // Update progress bars - CUMULATIVE actuals vs CUMULATIVE goals
+        const followerPct = Math.min(100, Math.round((data.followers || 1) / 1000 * 100));
+        document.getElementById('x-target-1k').textContent = followerPct + '%';
+        document.getElementById('x-followers-progress').textContent = data.followers || 1;
+        document.getElementById('x-followers-bar').style.width = followerPct + '%';
+        
+        // Posts: cumulative actual vs cumulative goal
+        const postsPct = Math.min(100, ((data.totalPosts || 0) / data.goalPosts) * 100);
+        document.getElementById('x-posts-progress').textContent = (data.totalPosts || 0) + ' / ' + data.goalPosts + ' (cum. actual/goal)';
+        document.getElementById('x-posts-bar').style.width = postsPct + '%';
+        
+        // Replies: cumulative actual vs cumulative goal
+        const repliesPct = Math.min(100, ((data.totalReplies || 0) / data.goalReplies) * 100);
+        document.getElementById('x-replies-progress').textContent = (data.totalReplies || 0) + ' / ' + data.goalReplies + ' (cum. actual/goal)';
+        document.getElementById('x-replies-bar').style.width = repliesPct + '%';
+        
+        // Likes: cumulative actual vs cumulative goal
+        const likesProgress = document.getElementById('x-likes-progress');
+        const likesBar = document.getElementById('x-likes-bar');
+        if (likesProgress && likesBar) {
+          const likesPct = Math.min(100, ((data.totalLikes || 0) / data.goalLikes) * 100);
+          likesProgress.textContent = (data.totalLikes || 0) + ' / ' + data.goalLikes + ' (cum. actual/goal)';
+          likesBar.style.width = likesPct + '%';
+        }
+        
+        // Follows: cumulative actual vs cumulative goal
+        const followsProgress = document.getElementById('x-follows-progress');
+        const followsBar = document.getElementById('x-follows-bar');
+        if (followsProgress && followsBar) {
+          const followsPct = Math.min(100, ((data.totalFollows || 0) / data.goalFollows) * 100);
+          followsProgress.textContent = (data.totalFollows || 0) + ' / ' + data.goalFollows + ' (cum. actual/goal)';
+          followsBar.style.width = followsPct + '%';
+        }
+        
+        // Draw line charts
+        drawXChart('chart-posts', data.history, 'cumPosts', 'goalPosts', '#3b82f6');
+        drawXChart('chart-replies', data.history, 'cumReplies', 'goalReplies', '#8b5cf6');
+        drawXChart('chart-likes', data.history, 'cumLikes', 'goalLikes', '#ef4444');
+        drawXChart('chart-follows', data.history, 'cumFollows', 'goalFollows', '#eab308');
+        
+        // Update content area with CUMULATIVE totals
+        const container = document.getElementById('xgrowth-content');
+        container.innerHTML = '<p style="color: var(--text-secondary);">Last updated: ' + (data.date || 'N/A') + '</p>';
+        container.innerHTML += '<p><strong>Cumulative Totals:</strong> ' + (data.totalPosts||0) + ' posts, ' + (data.totalReplies||0) + ' replies, ' + (data.totalFollows||0) + ' follows, ' + (data.totalLikes||0) + ' likes</p>';
+        if (data.notes) {
+          container.innerHTML += '<p>' + data.notes + '</p>';
+        }
+      } catch(e) {
+        console.error("X Growth load error:", e);
+      }
+    }
+
+    // Global Search
+    let searchTimeout = null;
+    function performSearch(query) {
+      if (!query || query.length < 1) {
+        document.getElementById('searchResults').style.display = 'none';
+        return;
+      }
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(async () => {
+        try {
+          const res = await fetch('/api/search?q=' + encodeURIComponent(query));
+          const data = await res.json();
+          const results = data.results || [];
+          const div = document.getElementById('searchResults');
+          if (results.length === 0) {
+            div.innerHTML = '<div style="padding:0.5rem;color:var(--text-secondary);font-size:0.75rem">No results</div>';
+          } else {
+            div.innerHTML = results.slice(0,8).map(r => '<div style="padding:0.4rem;cursor:pointer;font-size:0.75rem;border-bottom:1px solid var(--border-color)" onclick="goToResult(\''+r.type+'\')"><span style="color:var(--accent-blue)">['+r.type+']</span> '+r.title.substring(0,25)+'</div>').join('');
+          }
+          div.style.display = 'block';
+        } catch(e) {}
+      }, 200);
+    }
+    
+    function goToResult(type) {
+      document.getElementById('searchResults').style.display = 'none';
+      document.getElementById('globalSearch').value = '';
+      if (type === 'task' || type === 'idea') showSection('kanban');
+      else if (type === 'note') showSection('secondbrain');
+      else if (type === 'cron') showSection('cron');
+    }
+
+    function showSection(section) {
+      // Hide all sections
+      document.querySelectorAll('.tab-section').forEach(sec => {
+        sec.style.display = 'none';
+        sec.classList.remove('active');
+      });
+      // Show selected section
+      const selectedSection = document.getElementById('section-' + section);
+      if (selectedSection) {
+        selectedSection.style.display = 'block';
+        selectedSection.classList.add('active');
+      }
+      // Update sidebar button styles - highlight active
+      document.querySelectorAll('.sidebar-menu-item').forEach(btn => {
+        btn.style.background = 'transparent';
+        btn.style.color = 'var(--text-secondary)';
+      });
+      const activeBtn = document.getElementById('btn-' + section);
+      if (activeBtn) {
+        activeBtn.style.background = 'var(--accent-blue)';
+        activeBtn.style.color = 'white';
+      }
+      // Load notes when switching to secondbrain
+      if (section === 'secondbrain') {
+        loadNotes();
+      }
+      // Load trading data when switching to trading
+      if (section === 'trading') {
+        loadTradingData();
+        if (tradingInterval) clearInterval(tradingInterval);
+        tradingInterval = setInterval(loadTradingData, 300000); // 5 min
+      } else {
+        if (tradingInterval) { clearInterval(tradingInterval); tradingInterval = null; }
+      }
+      // Load crypto data on page load (so it auto-refreshes even if not viewed)
+      loadCryptoData();
+      if (cryptoInterval) clearInterval(cryptoInterval);
+      cryptoInterval = setInterval(loadCryptoData, 300000); // 5 min
+      // Load crypto data when switching to crypto
+      if (section === 'crypto') {
+        loadCryptoData();
+        if (cryptoInterval) clearInterval(cryptoInterval);
+        cryptoInterval = setInterval(loadCryptoData, 300000); // 5 min
+      } else {
+        if (cryptoInterval) { clearInterval(cryptoInterval); cryptoInterval = null; }
+      }
+      // Load tasks when switching to tasks
+      if (section === 'tasks') {
+        loadData();
+      }
+      // Load completed tasks when switching to completed
+      if (section === 'completed') {
+        loadCompletedTasks();
+      }
+      // Load shortcuts when switching to shortcuts
+      if (section === 'shortcuts') {
+        loadQuickLinks();
+      }
+      // Load board meetings when switching to meetings
+      if (section === 'meetings') {
+        loadMeetingsCC();
+      }
+      // Load Agent Tasks when switching to agent-tasks
+      if (section === 'agent-tasks') {
+        loadTasksOverview();
+      }
+      // Load X Growth when switching to xgrowth
+      if (section === 'xgrowth') {
+        loadXGrowth();
+      }
+      // Load MCP servers when switching to mcp
+      if (section === 'mcp') {
+        loadMcpServers();
+      }
+      // Load cron jobs when switching to cron
+      if (section === 'cron') {
+        loadCronJobs();
+      }
+      // Load Command Center when switching to agents
+      if (section === 'agents') {
+        loadCommandCenter();
+        if (ccInterval) clearInterval(ccInterval);
+        ccInterval = setInterval(loadCommandCenter, 30000);
+      } else {
+        if (ccInterval) { clearInterval(ccInterval); ccInterval = null; }
+      }
+    }
+
+    function toggleTheme() {
+      theme = theme === 'dark' ? 'light' : 'dark';
+      document.body.classList.toggle('light-theme');
+      localStorage.setItem('theme', theme);
+    }
+    
+    // Simple doughnut chart
+    function drawDoughnut(canvasId, used, free, color) {
+      const canvas = document.getElementById(canvasId);
+      const ctx = canvas.getContext('2d');
+      const size = 150;
+      canvas.width = size;
+      canvas.height = size;
+      const center = size / 2;
+      const radius = 55;
+      const usedAngle = (used / 100) * 2 * Math.PI || 0;
+      
+      // Background
+      ctx.beginPath();
+      ctx.arc(center, center, radius, 0, 2 * Math.PI);
+      ctx.strokeStyle = 'rgba(128,128,128,0.2)';
+      ctx.lineWidth = 15;
+      ctx.stroke();
+      
+      // Used
+      ctx.beginPath();
+      ctx.arc(center, center, radius, -Math.PI/2, -Math.PI/2 + usedAngle);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 15;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+      
+      // Text
+      ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--text-primary');
+      ctx.font = 'bold 24px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText((used || 0) + '%', center, center + 8);
+    }
+
+    function loadData() {
+      // Save drag state before reload
+      const savedItem = document.body.getAttribute('data-drag-item');
+      const savedCol = document.body.getAttribute('data-drag-col');
+      
+      // Create fetch with timeout
+      const fetchWithTimeout = (url, timeout = 5000) => {
+        return Promise.race([
+          fetch(url),
+          new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), timeout))
+        ]).then(r => r.json()).catch(() => ({ error: 'timeout' }));
+      };
+      
+      Promise.all([
+        fetchWithTimeout('/api/all-containers').catch(() => []),
+        fetchWithTimeout('/api/nas').catch(() => ({})),
+        fetchWithTimeout('/api/vpn').catch(() => ({})),
+        fetchWithTimeout('/api/system').catch(() => ({})),
+        fetchWithTimeout('/api/tasks').catch(() => ({ tasks: [] })),
+        fetchWithTimeout('/api/kanban').catch(() => ({ tasks: [], ideas: [] })),
+        fetchWithTimeout('/api/minimax-usage').catch(() => ({}))
+      ]).then(([containersData, nasData, vpnData, systemData, todoistData, kanbanData, codingPlanData]) => {
+        try {
+        containers = containersData;
+        
+        // Update Coding Plan (with null checks)
+        const mpRemaining = document.getElementById('mpRemaining');
+        const mpUsed = document.getElementById('mpUsed');
+        const mpPercent = document.getElementById('mpPercent');
+        if (codingPlanData && !codingPlanData.error) {
+          if (mpRemaining) mpRemaining.textContent = codingPlanData.remaining || '--';
+          if (mpUsed) mpUsed.textContent = (codingPlanData.used || '--') + ' / ' + (codingPlanData.total || '--');
+          if (mpPercent) mpPercent.textContent = (codingPlanData.percentUsed || '--') + '%';
+        }
+        
+        // Render Kanban
+        console.log('Kanban data:', kanbanData);
+        renderKanban(kanbanData);
+        
+        // Update system stats (with null checks)
+        const cpuTemp = document.getElementById('cpuTemp');
+        const cpuLoad = document.getElementById('cpuLoad');
+        const memUsage = document.getElementById('memUsage');
+        const diskUsage = document.getElementById('diskUsage');
+        const netUsage = document.getElementById('netUsage');
+        const sysUptime = document.getElementById('sysUptime');
+        if (cpuTemp) cpuTemp.textContent = systemData.cpuTemp || '--';
+        if (cpuLoad) cpuLoad.textContent = systemData.load || '--';
+        if (memUsage) memUsage.textContent = systemData.mem?.percent ? systemData.mem.percent + '%' : '--';
+        if (diskUsage) diskUsage.textContent = systemData.disk?.percent ? systemData.disk.percent + '%' : '--';
+        if (netUsage) netUsage.textContent = (systemData.network?.rx || '0') + ' / ' + (systemData.network?.tx || '0');
+        if (sysUptime) sysUptime.textContent = systemData.uptime || '--';
+
+        // Charts (with null checks)
+        const cpuChart = document.getElementById('cpuChart');
+        const memChart = document.getElementById('memChart');
+        if (cpuChart && memChart) {
+          const running = containers.filter(c => c.State === 'running');
+          const avgCpu = running.length ? (running.reduce((a,b) => a + parseFloat(b.cpu||0), 0) / running.length).toFixed(1) : 0;
+          const avgMem = running.length ? (running.reduce((a,b) => a + parseFloat(b.mem||0), 0) / running.length).toFixed(1) : 0;
+          drawDoughnut('cpuChart', avgCpu, 100-avgCpu, '#ef4444');
+          drawDoughnut('memChart', avgMem, 100-avgMem, '#a855f7');
+        }
+
+        // Render containers
+        renderContainers();
+        
+        // NAS (with null check)
+        const nasDiv = document.getElementById('nas');
+        if (nasDiv) {
+          nasDiv.innerHTML = Object.entries(nasData).map(([k,v]) => 
+            '<div class="flex py-2"><span>' + k + '</span><span class="font-mono text-green">' + v + '</span></div>'
+          ).join('') || 'Loading...';
+        }
+
+        // VPN (with null check)
+        const vpnDiv = document.getElementById('vpn');
+        if (vpnDiv) {
+          vpnDiv.innerHTML = 
+            '<div class="flex py-2"><span>Country</span><span class="text-green">' + (vpnData.country || 'CH') + '</span></div>' +
+            '<div class="flex py-2"><span>Ping</span><span class="text-blue">' + (vpnData.ping || '45ms') + '</span></div>' +
+            '<div class="flex py-2"><span>Forward</span><span class="text-purple">' + (vpnData.portForward || 'On') + '</span></div>';
+        }
+
+        // Todoist Tasks
+        const todoistDiv = document.getElementById('todoistTasks');
+        if (todoistData && todoistData.tasks && todoistData.tasks.length > 0) {
+          todoistDiv.innerHTML = todoistData.tasks.slice(0, 15).map(t => {
+            const priorityColors = { 4: '#ef4444', 3: '#f97316', 2: '#eab308', 1: '#6b7280' };
+            const priorityColor = priorityColors[t.priority] || '#6b7280';
+            return '<div class="flex" style="padding: 0.5rem; border-bottom: 1px solid var(--border-color); align-items: center;">' +
+              '<input type="checkbox" onchange="completeTask(\'' + t.id + '\')" style="margin-right: 0.75rem;">' +
+              '<span style="flex: 1;">' + t.content + '</span>' +
+              '<span style="font-size: 0.75rem; color: ' + priorityColor + '; margin-right: 0.5rem;">' + (t.project || '') + '</span>' +
+              (t.due ? '<span style="font-size: 0.75rem; color: var(--text-secondary);">' + t.due + '</span>' : '') +
+            '</div>';
+          }).join('');
+        } else {
+          todoistDiv.innerHTML = '<div style="color: var(--text-secondary);">No tasks or Todoist unavailable</div>';
+        }
+
+        const lastUpdate = document.getElementById('lastUpdate');
+        if (lastUpdate) lastUpdate.textContent = 'Last update: ' + new Date().toLocaleTimeString();
+        
+        // Restore drag state after reload
+        if (savedItem) {
+          document.body.setAttribute('data-drag-item', savedItem);
+          document.body.setAttribute('data-drag-col', savedCol);
+        }
+        } catch(e) {
+          console.error('loadData error:', e);
+        }
+      });
+    }
+
+    function renderContainers() {
+      const search = document.getElementById('searchBox').value.toLowerCase();
+      let filtered = containers.filter(c => 
+        c.name.toLowerCase().includes(search) || 
+        (c.Image && c.Image.toLowerCase().includes(search))
+      );
+
+      // Sort
+      filtered.sort((a, b) => {
+        let valA, valB;
+        switch(sortCol) {
+          case 'name': valA = a.name; valB = b.name; break;
+          case 'status': valA = a.State; valB = b.State; break;
+          case 'cpu': valA = parseFloat(a.cpu||0); valB = parseFloat(b.cpu||0); break;
+          case 'mem': valA = parseFloat(a.mem||0); valB = parseFloat(b.mem||0); break;
+          case 'ports': valA = (a.Ports?.length||0); valB = (b.Ports?.length||0); break;
+          default: valA = a.name; valB = b.name;
+        }
+        if (valA < valB) return sortAsc ? -1 : 1;
+        if (valA > valB) return sortAsc ? 1 : -1;
+        return 0;
+      });
+
+      const tbody = document.getElementById('containers');
+      if (tbody) {
+        tbody.innerHTML = filtered.map(c => {
+        const ports = c.Ports ? c.Ports.map(p => p.PublicPort || p.PrivatePort).filter(p => p).join(', ') : '-';
+        const isRunning = c.State === 'running';
+        return '<tr>' +
+          '<td>' + c.name + '</td>' +
+          '<td class="' + (isRunning ? 'running' : 'stopped') + '">' + (c.State || 'N/A') + '</td>' +
+          '<td>' + (c.cpu || '0') + '%</td>' +
+          '<td>' + (c.mem || '0') + '%</td>' +
+          '<td style="color:var(--text-secondary)">' + ports + '</td>' +
+          '<td>' +
+            (isRunning ? 
+              '<button class="btn btn-stop" onclick="stopContainer(\'' + c.name + '\')">Stop</button>' :
+              '<button class="btn btn-start" onclick="startContainer(\'' + c.name + '\')">Start</button>'
+            ) +
+            '<button class="btn btn-restart" onclick="restart(\'' + c.name + '\')">Restart</button>' +
+            '<button class="btn btn-logs" onclick="logs(\'' + c.name + '\')">Logs</button>' +
+          '</td></tr>';
+      }).join('');
+      }
+    }
+
+    function filterContainers() {
+      renderContainers();
+    }
+
+    function sortTable(e) {
+      const col = e.target.dataset.sort;
+      if (sortCol === col) sortAsc = !sortAsc;
+      else { sortCol = col; sortAsc = true; }
+      renderContainers();
+    }
+
+    function setRefreshRate() {
+      const rate = parseInt(document.getElementById('refreshRate').value);
+      refreshInterval = rate;
+      if (intervalId) clearInterval(intervalId);
+      if (rate > 0) intervalId = setInterval(loadData, rate);
+    }
+
+    function restart(name) {
+      if(confirm('Restart ' + name + '?')) {
+        fetch('/api/restart/' + name, { method: 'POST' }).then(() => setTimeout(loadData, 2000));
+      }
+    }
+
+    function stopContainer(name) {
+      if(confirm('Stop ' + name + '?')) {
+        fetch('/api/stop/' + name, { method: 'POST' }).then(() => setTimeout(loadData, 2000));
+      }
+    }
+
+    function startContainer(name) {
+      fetch('/api/start/' + name, { method: 'POST' }).then(() => setTimeout(loadData, 2000));
+    }
+
+    function logs(name) {
+      fetch('/api/logs/' + name).then(r => r.json()).then(data => {
+        alert(data.logs ? data.logs.substr(0, 3000) : 'No logs');
+      });
+    }
+
+    function completeTask(taskId) {
+      if(confirm('Complete this task in Todoist?')) {
+        fetch('/api/tasks/' + taskId + '/close', { method: 'POST' }).then(() => {
+          setTimeout(loadData, 500);
+        });
+      }
+    }
+
+    // ============ KANBAN FUNCTIONS ============
+    const kanbanColumns = [
+      { id: 'idea', name: '💡 Ideas', color: '#a855f7' },
+      { id: 'backlog', name: '📋 Backlog', color: '#3b82f6' },
+      { id: 'in-progress', name: '🔄 In Progress', color: '#f59e0b' },
+      { id: 'blocked', name: '⛔ Blocked', color: '#ef4444' }
+    ];
+
+    function renderKanban(kanbanData) {
+      console.log('Rendering kanban with:', kanbanData);
+      try {
+      const board = document.getElementById('kanbanBoard');
+      board.innerHTML = kanbanColumns.map(col => {
+        // Get tasks for this column - only 'new' tasks go to backlog, ideas stay in ideas column
+        const tasks = (kanbanData.tasks || []).filter(t => t.column === col.id || t.column === 'new').sort((a,b) => (a.sortOrder || 0) - (b.sortOrder || 0));
+        // Ideas only go in Ideas column
+        const ideas = (kanbanData.ideas || []).filter(t => t.column === col.id).sort((a,b) => (a.sortOrder || 0) - (b.sortOrder || 0));
+        const allItems = [...ideas, ...tasks];
+        
+        return '<div data-col-id="' + col.id + '" style="min-width: 200px; flex: 1;" ondragover="allowDrop(event, \'' + col.id + '\')" ondrop="handleDrop(event, \'' + col.id + '\')">' +
+          '<div style="padding: 0.5rem; border-radius: 0.5rem; background: ' + col.color + '; color: white; font-weight: bold; margin-bottom: 0.5rem;">' +
+            col.name + ' (' + allItems.length + ')' +
+          '</div>' +
+          '<div style="display: flex; flex-direction: column; gap: 0.5rem;">' +
+            allItems.map(item => renderKanbanCard(item, col)).join('') +
+          '</div>' +
+        '</div>';
+      }).join('');
+      } catch(e) {
+        console.error('Kanban render error:', e);
+        const kbBoard = document.getElementById('kanbanBoard');
+        if (kbBoard) kbBoard.innerHTML = '<div class="text-red">Error: ' + e.message + '</div>';
+      }
+    }
+
+    function renderKanbanCard(item, col) {
+      const isIdea = item.type === 'idea';
+      const inIdeasColumn = col.id === 'idea' || col.id === 'ideas';
+      
+      // Show attempt count if > 1
+      let attemptHtml = '';
+      if (item.attempt_count && item.attempt_count > 1) {
+        const attemptColor = item.attempt_count >= 3 ? '#ef4444' : '#f59e0b';
+        attemptHtml = '<div style="font-size: 0.7rem; color: ' + attemptColor + '; margin-bottom: 0.25rem;">🔄 Attempt ' + item.attempt_count + '</div>';
+      }
+      
+      let blockerHtml = '';
+      if (item.column === 'blocked' && item.blockerReason) {
+        blockerHtml = '<div style="font-size: 0.75rem; color: #ef4444; padding: 0.25rem; background: rgba(239,68,68,0.2); border-radius: 0.25rem; margin-top: 0.25rem;">⛔ ' + item.blockerReason + '</div>';
+      }
+      
+      let failureHtml = '';
+      if (item.failure_reason) {
+        failureHtml = '<div style="font-size: 0.7rem; color: #f97316; padding: 0.25rem; background: rgba(249,115,22,0.2); border-radius: 0.25rem; margin-top: 0.25rem;">❌ ' + item.failure_reason + '</div>';
+      }
+      
+      let agentNotesHtml = '';
+      if (item.agentNotes) {
+        agentNotesHtml = '<div style="font-size: 0.75rem; color: #60a5fa; padding: 0.25rem; background: rgba(96,165,250,0.2); border-radius: 0.25rem; margin-top: 0.25rem;">📝 ' + item.agentNotes + '</div>';
+      }
+
+      let buttonsHtml = '';
+      if (inIdeasColumn) {
+        // Ideas column: show Accept/Reject/Delete buttons
+        buttonsHtml = '<div style="display: flex; gap: 0.25rem; margin-top: 0.5rem;">' +
+          '<button class="btn" style="padding: 0.25rem 0.5rem; font-size: 0.7rem; background: #22c55e;" onclick="acceptIdea(\'' + item.id + '\')">✓ Accept</button>' +
+          '<button class="btn" style="padding: 0.25rem 0.5rem; font-size: 0.7rem; background: #ef4444;" onclick="rejectIdea(\'' + item.id + '\')">✗ Reject</button>' +
+          '<button class="btn" style="padding: 0.25rem 0.5rem; font-size: 0.7rem; background: #6b7280;" onclick="deleteItem(\'' + item.id + '\', \'' + item.type + '\')">🗑️</button>' +
+        '</div>';
+      } else {
+        // Other columns: show move buttons + delete + retry if failed
+        const nextCols = kanbanColumns.filter(c => c.id !== col.id && c.id !== 'idea');
+        
+        // Add retry button for failed/blocked tasks
+        let retryButton = '';
+        if (item.column === 'blocked' || item.failure_reason) {
+          retryButton = '<button class="btn" style="padding: 0.25rem 0.5rem; font-size: 0.7rem; background: #f59e0b;" onclick="retryTask(\'' + item.id + '\')">🔄 Retry</button>';
+        }
+        
+        // Add block button for tasks that need human help
+        let blockButton = '';
+        if (item.column !== 'blocked') {
+          blockButton = '<button class="btn" style="padding: 0.25rem 0.5rem; font-size: 0.7rem; background: #ef4444;" onclick="blockTask(\'' + item.id + '\')">⛔ Block</button>';
+        }
+        
+        buttonsHtml = '<div style="display: flex; gap: 0.25rem; margin-top: 0.5rem; flex-wrap: wrap;">' +
+          nextCols.slice(0, 3).map(nextCol => 
+            '<button class="btn" style="padding: 0.25rem 0.5rem; font-size: 0.7rem; background: var(--accent-blue);" onclick="moveTask(\'' + item.id + '\', \'' + nextCol.id + '\')">' + nextCol.name + '</button>'
+          ).join('') +
+          retryButton + blockButton +
+          '<button class="btn" style="padding: 0.25rem 0.5rem; font-size: 0.7rem; background: #6b7280;" onclick="deleteItem(\'' + item.id + '\', \'' + item.type + '\')">🗑️</button>' +
+        '</div>';
+      }
+
+      return '<div draggable="true" data-item-id="' + item.id + '" ondragstart="dragStart(event, \'' + item.id + '\', \'' + col.id + '\')" style="background: var(--bg-secondary); padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border-color); cursor: move;">' +
+        attemptHtml +
+        '<div style="font-weight: 600; font-size: 0.875rem;">' + (isIdea ? '💡 ' : '') + item.title + '</div>' +
+        (item.description ? '<div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem;">' + item.description + '</div>' : '') +
+        blockerHtml + failureHtml + agentNotesHtml +
+        buttonsHtml +
+      '</div>';
+    }
+
+    document.body.removeAttribute("data-drag-item"); document.body.removeAttribute("data-drag-col");
+
+    function dragStart(e, itemId, colId) {
+      document.body.setAttribute('data-drag-item', itemId);
+      document.body.setAttribute('data-drag-col', colId);
+      e.dataTransfer.effectAllowed = 'move';
+      const debug = document.getElementById('debug-info');
+      debug.innerHTML = 'DragStart: item=' + itemId + ' col=' + colId;
+    }
+
+    function allowDrop(e, colId) {
+      e.preventDefault(); // Just allow the drop - don't process here
+    }
+    
+    function handleDrop(e, colId) {
+      e.preventDefault();
+      const itemId = document.body.getAttribute('data-drag-item');
+      const fromCol = document.body.getAttribute('data-drag-col');
+      const debug = document.getElementById('debug-info');
+      debug.innerHTML = 'Drop: item=' + itemId + ' from=' + fromCol + ' to=' + colId;
+      if (!itemId) return;
+      
+      if (fromCol !== colId) {
+        fetch('/api/kanban/' + itemId + '/move', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({column: colId})
+        }).then(() => {
+          updateColumnOrder(colId).then(() => loadData());
+        });
+      } else {
+        updateColumnOrder(colId).then(() => loadData());
+      }
+      document.body.removeAttribute('data-drag-item');
+      document.body.removeAttribute('data-drag-col');
+    }
+
+    async function updateColumnOrder(colId) {
+      const debug = document.getElementById('debug-info');
+      const colEl = document.querySelector('[ondragover*="' + colId + '"]');
+      debug.innerHTML += ' | colEl=' + (colEl ? 'found' : 'NOT FOUND');
+      if (!colEl) return Promise.resolve();
+      
+      const cards = colEl.querySelectorAll('[draggable="true"]');
+      const itemIds = Array.from(cards).map(c => c.dataset.itemId).filter(Boolean);
+      debug.innerHTML += ' | items=' + itemIds.join(',');
+      
+      if (itemIds.length > 1) {
+        return fetch('/api/kanban/reorder', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({itemIds})
+        });
+      }
+      return Promise.resolve();
+    }
+
+    function showAddTask() {
+      document.getElementById('addTaskModal').style.display = 'flex';
+    }
+
+    function hideAddTask() {
+      document.getElementById('addTaskModal').style.display = 'none';
+    }
+
+    function addTask() {
+      const title = document.getElementById('newTaskTitle').value;
+      const desc = document.getElementById('newTaskDesc').value;
+      const column = document.getElementById('newTaskColumn').value;
+      
+      if (!title) { alert('Please enter a title'); return; }
+      
+      fetch('/api/kanban', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: title,
+          description: desc,
+          column: column,
+          type: column === 'idea' ? 'idea' : 'task'
+        })
+      }).then(() => {
+        hideAddTask();
+        document.getElementById('newTaskTitle').value = '';
+        document.getElementById('newTaskDesc').value = '';
+        loadData();
+      });
+    }
+
+    function moveTask(taskId, newColumn) {
+      if (newColumn === 'blocked') {
+        const reason = prompt('Enter blocker reason:');
+        if (!reason) return;
+        fetch('/api/kanban/' + taskId + '/move', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ column: newColumn, blockerReason: reason })
+        }).then(() => loadData());
+      } else if (newColumn === 'complete' || newColumn === 'completed') {
+        // Auto-record completion with timestamp
+        fetch('/api/kanban/' + taskId + '/move', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ column: 'complete', completionNotes: 'Completed via kanban' })
+        }).then(() => loadData());
+      } else {
+        fetch('/api/kanban/' + taskId + '/move', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ column: newColumn })
+        }).then(() => loadData());
+      }
+    }
+
+    function acceptIdea(taskId) {
+      // Move idea to backlog
+      fetch('/api/kanban/' + taskId + '/move', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ column: 'backlog' })
+      }).then(() => loadData());
+    }
+
+    function rejectIdea(taskId) {
+      if (confirm('Delete this idea?')) {
+        fetch('/api/kanban/' + taskId, { method: 'DELETE' }).then(() => loadData());
+      }
+    }
+
+    function retryTask(taskId) {
+      // Retry a failed/blocked task - moves back to backlog with incremented attempt
+      if (confirm('Retry this task? It will be moved to backlog for another attempt.')) {
+        fetch('/api/kanban/' + taskId + '/retry', { method: 'POST' })
+          .then(() => loadData())
+          .catch(err => {
+            // If retry endpoint doesn't exist, just move to backlog
+            fetch('/api/kanban/' + taskId + '/move', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ column: 'backlog' })
+            }).then(() => loadData());
+          });
+      }
+    }
+
+    function blockTask(taskId) {
+      // Block a task - requires human intervention
+      const reason = prompt('Why does this task need human intervention?');
+      if (reason) {
+        fetch('/api/kanban/' + taskId + '/block', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ blockerReason: reason })
+        })
+        .then(() => loadData())
+        .catch(err => {
+          alert('Could not block task. It may need to be moved to blocked column manually.');
+        });
+      }
+    }
+
+    function deleteItem(itemId, itemType) {
+      const typeLabel = itemType === 'idea' ? 'idea' : 'task';
+      if (confirm('Delete this ' + typeLabel + '?')) {
+        fetch('/api/kanban/' + itemId, { method: 'DELETE' }).then(() => loadData());
+      }
+    }
+
+    // Initialize
+    initTheme();
+
+    // Quick actions
+    const qaDiv = document.getElementById('quickActions');
+    qaDiv.innerHTML = quickLinks.map(q => {
+      const url = q.path ? `http://192.168.1.146:${q.port}${q.path}` : `http://192.168.1.146:${q.port}`;
+      return '<a href="' + url + '" target="_blank" class="quick-link" style="background:' + q.color + ';">' + q.name + '</a>';
+    }).join('');
+
+    // Start loading data and notes
+    setTimeout(function() {
+      console.log('Loading data and notes...');
+      loadData();
+      loadNotes();
+      setRefreshRate();
+      // Initialize sidebar - show My Tasks by default
+      showSection('tasks');
+    }, 100);
+    
+    // Also reload notes periodically
+    setInterval(loadNotes, 60000);
+  </script>
+
+  <!-- Note Modal -->
+  <div id="noteModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000;">
+    <div style="background: var(--bg-secondary); padding: 2rem; border-radius: 1rem; max-width: 500px; margin: 10% auto;">
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Add Note</h3>
+      <input type="text" id="noteTitle" placeholder="Title (optional)" style="width: 100%; padding: 0.5rem; margin-bottom: 0.5rem; border-radius: 0.5rem; background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary);">
+      <textarea id="noteText" placeholder="Note content..." rows="5" style="width: 100%; padding: 0.5rem; margin-bottom: 0.5rem; border-radius: 0.5rem; background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary);"></textarea>
+      <input type="text" id="noteTags" placeholder="Tags (comma separated): business-central, openclaw" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; border-radius: 0.5rem; background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary);">
+      <div style="display: flex; gap: 0.5rem;">
+        <button onclick="saveNote()" class="btn" style="background: var(--accent-green);">Save</button>
+        <button onclick="closeNoteModal()" class="btn" style="background: var(--bg-primary);">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let allNotes = [];
+    
+    function renderNotes(notes) {
+      const container = document.getElementById('notesList');
+      if (!notes || notes.length === 0) {
+        container.innerHTML = '<div style="color: var(--text-secondary);">No notes yet. Click "+ Add Note" to create one.</div>';
+        return;
+      }
+      
+      container.innerHTML = notes.map(note => 
+        '<div style="padding: 0.75rem; margin-bottom: 0.5rem; background: var(--bg-primary); border-radius: 0.5rem; border-left solid var(--accent-purple);">' +
+          '<div style="font-weight: bold; color: var(--text-primary);">' + (note.title || 'Untitled') + '</div>' +
+          '<div style="color: var(--text-secondary); font-size: 0.875rem; margin-top: 0.25rem;">' + (note.text || '').substring(0, 100) + '</div>' +
+          '<div style="margin-top: 0.5rem;">' + 
+            (typeof note.tags === 'string' ? JSON.parse(note.tags || '[]') : (note.tags || [])).map(t => '<span style="background: var(--accent-blue); padding: 0.125rem 0.5rem; border-radius: 1rem; font-size: 0.75rem; margin-right: 0.25rem;">' + t + '</span>').join('') +
+          '</div>' +
+          '<div style="color: var(--text-secondary); font-size: 0.75rem; margin-top: 0.5rem;">' + new Date(note.createdAt).toLocaleString() + '</div>' +
+        '</div>'
+      ).join('');
+    }
+    
+    function searchNotes() {
+      const query = document.getElementById('noteSearch').value.toLowerCase();
+      if (!query) {
+        renderNotes(allNotes);
+        return;
+      }
+      const filtered = allNotes.filter(n => 
+        (n.title && n.title.toLowerCase().includes(query)) ||
+        (n.text && n.text.toLowerCase().includes(query)) ||
+        (n.tags && n.tags.some(t => t.toLowerCase().includes(query)))
+      );
+      renderNotes(filtered);
+    }
+    
+    function showAddNote() {
+      document.getElementById('noteModal').style.display = 'block';
+    }
+    
+    function closeNoteModal() {
+      document.getElementById('noteModal').style.display = 'none';
+      document.getElementById('noteTitle').value = '';
+      document.getElementById('noteText').value = '';
+      document.getElementById('noteTags').value = '';
+    }
+    
+    async function saveNote() {
+      const title = document.getElementById('noteTitle').value;
+      const text = document.getElementById('noteText').value;
+      const tagsInput = document.getElementById('noteTags').value;
+      const tags = tagsInput ? tagsInput.split(',').map(t => t.trim()).filter(t => t) : ['general'];
+      
+      if (!text) {
+        alert('Please enter note content');
+        return;
+      }
+      
+      try {
+        await fetch('/api/notes', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ title, text, tags, source: 'dashboard' })
+        });
+        closeNoteModal();
+        loadNotes();
+      } catch(e) {
+        alert('Error saving note: ' + e.message);
+      }
+    }
+    
+    // Voice Note
+    let mediaRecorder = null;
+    let audioChunks = [];
+    
+    function startVoiceNote() {
+      if (!navigator.mediaDevices) {
+        alert('Voice recording not supported in this browser');
+        return;
+      }
+      
+      if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.stop();
+        return;
+      }
+      
+      navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(stream => {
+          mediaRecorder = new MediaRecorder(stream);
+          audioChunks = [];
+          
+          mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+          mediaRecorder.onstop = async () => {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+            const reader = new FileReader();
+            reader.onload = async () => {
+              const base64 = reader.result.split(',')[1];
+              // For now, just save as text note - full audio storage would need more setup
+              await fetch('/api/notes/voice', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ text: '[Voice Note - ' + new Date().toLocaleTimeString() + ']', tags: ['voice'] })
+              });
+              loadNotes();
+              alert('Voice note saved!');
+            };
+            reader.readAsDataURL(audioBlob);
+            stream.getTracks().forEach(track => track.stop());
+          };
+          
+          mediaRecorder.start();
+          alert('Recording... Click 🎤 again to stop');
+        })
+        .catch(e => alert('Mic access denied: ' + e.message));
+    }
+    
+    // Filter by tag
+    function filterByTag() {
+      const tag = document.getElementById('noteTagFilter').value;
+      if (!tag) {
+        renderNotes(allNotes);
+        return;
+      }
+      const filtered = allNotes.filter(n => n.tags && n.tags.includes(tag));
+      renderNotes(filtered);
+    }
+    
+    // Clip URL Modal
+    function showClipUrl() {
+      document.getElementById('clipUrlModal').style.display = 'block';
+    }
+    
+    function closeClipUrlModal() {
+      document.getElementById('clipUrlModal').style.display = 'none';
+      document.getElementById('clipUrl').value = '';
+      document.getElementById('clipTags').value = '';
+    }
+    
+    async function clipUrl() {
+      const url = document.getElementById('clipUrl').value;
+      const tagsInput = document.getElementById('clipTags').value;
+      const tags = tagsInput ? tagsInput.split(',').map(t => t.trim()).filter(t => t) : ['web'];
+      
+      if (!url) {
+        alert('Please enter a URL');
+        return;
+      }
+      
+      try {
+        await fetch('/api/notes/clip', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ url, tags })
+        });
+        closeClipUrlModal();
+        loadNotes();
+      } catch(e) {
+        alert('Error clipping URL: ' + e.message);
+      }
+    }
+  </script>
+
+  <!-- Clip URL Modal -->
+  <div id="clipUrlModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000;">
+    <div style="background: var(--bg-secondary); padding: 2rem; border-radius: 1rem; max-width: 500px; margin: 10% auto;">
+      <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Clip URL</h3>
+      <input type="text" id="clipUrl" placeholder="https://example.com" style="width: 100%; padding: 0.5rem; margin-bottom: 0.5rem; border-radius: 0.5rem; background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary);">
+      <input type="text" id="clipTags" placeholder="Tags (comma separated)" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; border-radius: 0.5rem; background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary);">
+      <div style="display: flex; gap: 0.5rem;">
+        <button onclick="clipUrl()" class="btn" style="background: var(--accent-purple);">Clip</button>
+        <button onclick="closeClipUrlModal()" class="btn" style="background: var(--bg-primary);">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    // Fetch and display cron jobs
+    async function loadCronJobs() {
+      try {
+        const res = await fetch('/api/cronjobs');
+        const data = await res.json();
+        const container = document.getElementById('cronjobs');
+        const jobs = Array.isArray(data) ? data : (data.jobs || []);
+        
+        // Update timestamp
+        document.getElementById('cron-timestamp').textContent = 'Loaded: ' + new Date().toLocaleTimeString();
+        
+        if (jobs.length > 0) {
+          container.innerHTML = jobs.map(job => {
+            const schedule = job.schedule?.expr || job.schedule || 'N/A';
+            const nextRun = job.state?.nextRunAtMs ? new Date(job.state.nextRunAtMs).toLocaleString() : 'N/A';
+            return '<div class="flex justify-between items-center py-2 border-b border-gray-700">' +
+              '<span class="font-medium">' + job.name + '</span>' +
+              '<span class="text-sm">' + schedule + ' | Next: ' + nextRun + '</span>' +
+            '</div>';
+          }).join('');
+        } else {
+          container.innerHTML = '<div class="text-gray-500">No cron jobs configured</div>';
+        }
+      } catch(e) {
+        const cronjobsDiv = document.getElementById('cronjobs');
+        if (cronjobsDiv) cronjobsDiv.innerHTML = '<div class="text-red-400">Error loading cron jobs</div>';
+      }
+    }
+    loadCronJobs();
+
+    // Fetch and display sub-agents
+    async function loadAgents() {
+      try {
+        const res = await fetch('/api/agents');
+        const agents = await res.json();
+        const container = document.getElementById('agents');
+        
+        if (agents && agents.length > 0) {
+          container.innerHTML = '<table style="width:100%;"><tr><th>Agent</th><th>Type</th><th>Description</th></tr>' + 
+            agents.map(agent => {
+              const typeClass = agent.type === 'main' ? 'text-blue' : 'text-purple';
+              return '<tr><td class="font-medium">' + agent.name + '</td><td class="' + typeClass + '">' + agent.type + '</td><td>' + (agent.description || '') + '</td></tr>';
+            }).join('') + '</table>';
+        } else {
+          container.innerHTML = '<div class="text-gray-500">No agents configured</div>';
+        }
+      } catch(e) {
+        const agentsDiv = document.getElementById('agents');
+        if (agentsDiv) agentsDiv.innerHTML = '<div class="text-red-400">Error loading agents: ' + e.message + '</div>';
+      }
+    }
+    loadAgents();
+
+    // Load completed tasks
+    async function loadCompletedTasks() {
+      try {
+        const res = await fetch('/api/kanban');
+        const data = await res.json();
+        const container = document.getElementById('completed-list');
+        const completedTasks = (data.tasks || []).filter(t => t.column === 'complete' || t.column === 'completed');
+        const completedIdeas = (data.ideas || []).filter(t => t.column === 'complete' || t.column === 'completed');
+        const completed = [...completedTasks, ...completedIdeas].sort((a, b) => {
+          // Sort by completedAt date, newest first
+          const dateA = a.completedAt ? new Date(a.completedAt).getTime() : 0;
+          const dateB = b.completedAt ? new Date(b.completedAt).getTime() : 0;
+          return dateB - dateA;
+        });
+        if (completed.length > 0) {
+          container.innerHTML = completed.map(t => {
+            const completedDate = t.completedAt ? new Date(t.completedAt).toLocaleString() : '';
+            return '<div style="padding: 0.75rem; margin-bottom: 0.5rem; background: var(--bg-secondary); border-radius: 0.5rem; border: 1px solid var(--border-color);">' +
+              '<div style="font-weight: 600;">' + (t.type === 'idea' ? '💡 ' : '') + t.title + '</div>' +
+              (t.description ? '<div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem;">' + t.description + '</div>' : '') +
+              (completedDate ? '<div style="font-size: 0.7rem; color: #10b981; margin-top: 0.5rem;">✅ Completed: ' + completedDate + '</div>' : '') +
+              (t.completionNotes ? '<div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem; padding: 0.5rem; background: rgba(16,185,129,0.1); border-radius: 0.25rem;">📝 ' + t.completionNotes + '</div>' : '') +
+            '</div>';
+          }).join('');
+        } else {
+          container.innerHTML = '<div class="text-center text-gray-500">No completed tasks yet</div>';
+        }
+      } catch(e) {
+        const container = document.getElementById('completed-list');
+        if (container) container.innerHTML = '<div class="text-center text-red-400">Error loading tasks</div>';
+      }
+    }
+  </script>
+  </div>
+</body>
+</html>
