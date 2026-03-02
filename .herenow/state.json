@@ -1,0 +1,10 @@
+{
+  "publishes": {
+    "spruce-fable-hhsq": {
+      "siteUrl": "https://spruce-fable-hhsq.here.now/",
+      "claimToken": "c8671bc3073dac9174fd13b973c29bc52d605e6d746132bc7e18dcff7a7bd2be",
+      "claimUrl": "https://here.now/claim?slug=spruce-fable-hhsq&token=c8671bc3073dac9174fd13b973c29bc52d605e6d746132bc7e18dcff7a7bd2be",
+      "expiresAt": "2026-03-03T16:56:57.152Z"
+    }
+  }
+}

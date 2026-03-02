@@ -2,21 +2,32 @@
 /**
  * Google Drive Sync Utility
  * Uploads research documents to Google Drive
+ * Uses OAuth (not Service Account) for full Drive access
  */
 
 const { google } = require('googleapis');
 const fs = require('fs');
 const path = require('path');
 
-const AUTH_KEY_PATH = process.env.GOOGLE_APPLICATION_CREDENTIALS || '/home/john/.openclaw/credentials/google-drive/service-account.json';
+const TOKEN_PATH = '/home/john/.openclaw/workspace/config/google-oauth-token.json';
+const CREDS_PATH = '/home/john/.openclaw/workspace/config/google-oauth.json';
 const RESEARCH_DIR = '/home/john/.openclaw/workspace/memory';
 const RESEARCH_FOLDER_NAME = 'ARR Research Docs';
 
-// Initialize Google Drive
-const auth = new google.auth.GoogleAuth({
-  keyFile: AUTH_KEY_PATH,
-  scopes: ['https://www.googleapis.com/auth/drive.file']
-});
+// Load OAuth credentials
+const token = JSON.parse(fs.readFileSync(TOKEN_PATH, 'utf8'));
+const creds = JSON.parse(fs.readFileSync(CREDS_PATH, 'utf8')).web;
+
+// Initialize Google Drive with OAuth
+const oauth2Client = new google.auth.OAuth2(
+  creds.client_id,
+  creds.client_secret,
+  'http://localhost'
+);
+
+oauth2Client.setCredentials(token);
+
+const drive = google.drive({ version: 'v3', auth: oauth2Client });
 
 async function getOrCreateFolder(drive, parentId = null) {
   const query = `name='${RESEARCH_FOLDER_NAME}' and mimeType='application/vnd.google-apps.folder' and trashed=false`;
@@ -74,8 +85,6 @@ async function uploadFile(drive, folderId, filePath) {
 }
 
 async function syncResearchDocs() {
-  const drive = await google.drive({ version: 'v3', auth: await auth.getClient() });
-  
   // Get or create folder
   const folderId = await getOrCreateFolder(drive);
   console.log(`Research folder ID: ${folderId}`);

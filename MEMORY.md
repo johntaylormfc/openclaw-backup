@@ -2,7 +2,8 @@
 
 ## CRITICAL: The Site (Dashboard)
 - **URL**: http://192.168.1.146:5000 (THIS IS "THE SITE" - not port 4000!)
-- Port 4000 = old dashboard (static, no API)
+- **IMPORTANT**: When john says "site", "website", or "dashboard" he ALWAYS means port 5000
+- Port 4000 = old dashboard (static, no API) - IGNORE THIS ONE
 - Port 5000 = NEW BC Dev Limited Dashboard with API proxy
 - **NEVER edit files in /home/john/ARR/dashboard/ - that's the old site
 - Always edit files in /home/john/ARR/dashboard-v2/
@@ -45,6 +46,7 @@
 - Update Cron Jobs List: every 5 min
 - GitHub Repo Review: hourly
 - Daily Review: 23:00 daily
+- **Email to Todoist**: Failing - needs Gmail OAuth refresh token (remind john to fix)
 
 ## Key Patterns & Learnings
 - **Never restore database to fix UI issues** - debug actual issue instead
@@ -53,6 +55,14 @@
 
 ## Known Issues
 - Exec tool can hang after system compaction
+
+## John's Critical Directives (from 2026-03-02)
+1. **Memory**: Always read MEMORY.md and today's log (memory/YYYY-MM-DD.md) before taking action. Save new facts/preferences immediately to MEMORY.md.
+2. **Anti-Looping**: If a command fails twice with same error, STOP - log error and ask for human intervention.
+3. **Temporal Awareness**: Check current time/date when scheduling. Drop outdated info from memory.
+4. **here.now**: Use for instant web hosting - skill installed at ~/.agents/skills/here-now/
+5. **Tavily**: Web search MCP - 5 tools (tavily_search, tavily_extract, etc.)
+6. **Firecrawl**: Web scraping MCP - 12 tools (firecrawl_scrape, crawl, search)
 
 ## Today's Events (2026-03-02)
 - X Growth Bot fully removed (directory, cron jobs, dashboard section)

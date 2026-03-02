@@ -1,10 +1,8 @@
 {
   "active_project": "ARR Stack Management",
   "current_task": "Monitoring",
-  "last_heartbeat": "2026-03-02T16:22:00Z",
+  "last_heartbeat": "2026-03-02T22:21:00Z",
   "dashboard_status": "up",
-  "trading_portfolio": 100532.63,
-  "trading_trades": 0,
   "kanban_ideas": 7,
   "blockers": []
 }

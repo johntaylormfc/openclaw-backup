@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "skills": {
+    "gog": {
+      "version": "1.0.0",
+      "installedAt": 1772473390735
+    },
+    "self-improving-agent": {
+      "version": "1.0.11",
+      "installedAt": 1772473399199
+    },
+    "summarize": {
+      "version": "1.0.0",
+      "installedAt": 1772473406541
+    },
+    "skill-vetter": {
+      "version": "1.0.0",
+      "installedAt": 1772473413849
+    }
+  }
+}

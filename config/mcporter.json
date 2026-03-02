@@ -47,6 +47,41 @@
     },
     "gdrive": {
       "command": "stdio"
+    },
+    "tavily": {
+      "baseUrl": "https://mcp.tavily.com/mcp?tavilyApiKey=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"
+    },
+    "firecrawl": {
+      "command": [
+        "npx",
+        "-y",
+        "firecrawl-mcp"
+      ],
+      "env": {
+        "FIRECRAWL_API_KEY": "fc-ee8d616f02c644faaa2144ce7f860f2a"
+      }
+    },
+    "Filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/home/john"
+      ]
+    },
+    "SequentialThinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@gotza02/seq-thinking"
+      ]
+    },
+    "Playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp"
+      ]
     }
   },
   "imports": []
