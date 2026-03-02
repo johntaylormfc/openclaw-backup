@@ -13,7 +13,6 @@ Backup first:
 - [ ] Check dashboard: `curl -s http://192.168.1.146:4000 | head -c 100` → restart if fail
 - [ ] Check kanban: `curl -s http://localhost:4000/api/kanban | jq '.ideas | length'`
 - [ ] Pick backlog task → work → complete
-- [ ] X Growth (evening): `node x_growth_bot.js metrics` + `status`
 - [ ] Trading: `curl -s http://localhost:4000/api/trading | jq '.portfolio, .pnl'`
 
 ## Memory Maintenance (once/day)
