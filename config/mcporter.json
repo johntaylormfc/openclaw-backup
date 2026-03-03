@@ -82,6 +82,9 @@
         "-y",
         "@playwright/mcp"
       ]
+    },
+    "bc-api": {
+      "command": "npx -y @knowall-ai/mcp-business-central"
     }
   },
   "imports": []
