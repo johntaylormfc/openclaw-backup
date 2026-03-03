@@ -10,11 +10,12 @@ const TOKEN_PATH = '/home/john/.openclaw/workspace/config/google-oauth-token.jso
 
 const creds = JSON.parse(fs.readFileSync(CREDS_PATH, 'utf8')).web;
 
-// Full Drive scopes
+// Full Drive, Gmail, and Calendar scopes
 const SCOPES = [
   'https://www.googleapis.com/auth/drive.file',
   'https://www.googleapis.com/auth/gmail.readonly',
-  'https://www.googleapis.com/auth/gmail.send'
+  'https://www.googleapis.com/auth/gmail.send',
+  'https://www.googleapis.com/auth/calendar.events.readonly'
 ];
 
 const oauth2Client = new google.auth.OAuth2(

@@ -71,3 +71,23 @@
 - Trading bot RSI thresholds widened: 35/65 → 25/75 (more trades)
 - Google OAuth re-authenticated - Gmail API working
 - Tested WhatsApp messaging - working
+
+## BC Dev Contract Management Extensions
+
+### OpenClaw Contract Management (Public SaaS)
+- **GitHub**: https://github.com/johntaylormfc/openclaw-contract-management
+- **Docs**: SPEC.md, USER_MANUAL.md (markdown, in repo root)
+- **Local clone**: /tmp/coenclaw_tmp/
+- **When updating**: Edit local clone, commit, push to master branch
+
+### BCDev-ContractBilling (Private - On Premise)
+- **GitHub**: https://github.com/johntaylormfc/BCDev-ContractBilling
+- **Docs**: Spec/Specification.md, Doc/UserManual.html
+- **Local**: ~/.openclaw/workspace/BCDev-ContractBilling/
+
+### Documentation Update Protocol
+When contract management features change:
+1. Update SPEC.md with new/changed functionality
+2. Update USER_MANUAL.md with updated instructions
+3. Commit and push: `cd /tmp/coenclaw_tmp && git add -A && git commit -m "Update docs" && git push origin master`
+4. Log update in today's memory file
