@@ -36,3 +36,271 @@ The app expects a JSON configuration with:
 - ✅ Backup created at /home/john/ARR/nzb360-backup/
 - ✅ servers.json with all API keys configured
 - Ready for import into nzb360 Android app
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED
+
+
+---
+**Google Drive:** https://drive.google.com/drive/folders/1YP7ARNsBk-6YOKZcZGkxk4CPXHaWCOED

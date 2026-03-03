@@ -52,6 +52,8 @@
 - **Never restore database to fix UI issues** - debug actual issue instead
 - Use Chrome DevTools MCP for dashboard debugging
 - Kanban ideas column works well as task capture
+- **gdrive-sync recurring failures**: Service Account quota limits causing 5/6 file upload failures - may need to space out uploads or use different auth method
+- **Gmail OAuth tokens expire frequently**: Need periodic re-authentication or refresh token mechanism
 
 ## Known Issues
 - Exec tool can hang after system compaction

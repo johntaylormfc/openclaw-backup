@@ -98,10 +98,17 @@ async function syncResearchDocs() {
   const files = fs.readdirSync(RESEARCH_DIR).filter(f => f.startsWith('research-') && f.endsWith('.md'));
   console.log(`Found ${files.length} research files`);
   
+  const FOLDER_URL = 'https://drive.google.com/drive/folders/' + folderId;
+  
   for (const file of files) {
     try {
       const filePath = path.join(RESEARCH_DIR, file);
       await uploadFile(drive, folderId, filePath);
+      
+      // Append Drive link to local file
+      const driveLink = `\n\n---\n**Google Drive:** ${FOLDER_URL}\n`;
+      fs.appendFileSync(filePath, driveLink);
+      console.log(`Added Drive link to ${file}`);
     } catch (e) {
       console.error(`Error uploading ${file}: ${e.message}`);
     }
