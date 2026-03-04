@@ -16,6 +16,10 @@
     "skill-vetter": {
       "version": "1.0.0",
       "installedAt": 1772473413849
+    },
+    "vector-memory": {
+      "version": "1.0.0",
+      "installedAt": 1772662853925
     }
   }
 }

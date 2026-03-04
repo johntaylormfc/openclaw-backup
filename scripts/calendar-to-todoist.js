@@ -25,7 +25,7 @@ const oauth2Client = new google.auth.OAuth2(
 oauth2Client.setCredentials({
   access_token: gmailCreds.access_token,
   refresh_token: gmailCreds.refresh_token,
-  scope: gmailCreds.scopes,
+  scope: gmailCreds.scope,  // Note: singular "scope" not "scopes"
   token_type: 'Bearer',
   expiry_date: gmailCreds.expiry_date
 });
