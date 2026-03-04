@@ -54,6 +54,8 @@
 - Kanban ideas column works well as task capture
 - **gdrive-sync recurring failures**: Service Account quota limits causing 5/6 file upload failures - may need to space out uploads or use different auth method
 - **Gmail OAuth tokens expire frequently**: Need periodic re-authentication or refresh token mechanism
+- **Container file persistence**: Critical host files (like /tmp/trading.json) may not exist in containers - always verify file presence when debugging API issues
+- **Session linking works**: Linking dmScope to "main" successfully shared context between WhatsApp and webchat
 
 ## Known Issues
 - Exec tool can hang after system compaction
