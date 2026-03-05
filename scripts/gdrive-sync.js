@@ -14,6 +14,7 @@ const CREDS_PATH = '/home/john/.openclaw/workspace/config/google-oauth.json';
 const SERVICE_ACCOUNT_PATH = '/home/john/.openclaw/workspace/config/google-service-account.json';
 const RESEARCH_DIR = '/home/john/.openclaw/workspace/memory';
 const RESEARCH_FOLDER_NAME = 'ARR Research Docs';
+const SHARED_DRIVE_ID = '0AEZyF8Z-1E湿kPU9PVA'; // Shared Drive ID (湿kPU9PVA = your shared drive)
 
 // Use Service Account for cron-friendly auth
 const serviceAccount = require(SERVICE_ACCOUNT_PATH);
