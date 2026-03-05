@@ -49,6 +49,13 @@
 - **Email to Todoist**: Failing - needs calendar.readonly scope + re-auth (2026-03-03)
 - **Calendar to Todoist**: Failing - needs calendar.readonly scope + re-auth (2026-03-03)
 
+## Docker Doctor Agent
+- **Created**: March 4, 2026
+- **Location**: ~/.openclaw/skills/docker-doctor/
+- **Role**: Diagnostic specialist for Docker environments — inspects and diagnoses ONLY, never makes changes
+- **Files**: SKILL.md (usage guide), AGENT.md (agent prompt), scripts/diagnose.sh
+- **Usage**: "Run docker doctor diagnostics" or "Diagnose container X"
+
 ## Key Patterns & Learnings
 - **Never restore database to fix UI issues** - debug actual issue instead
 - Use Chrome DevTools MCP for dashboard debugging

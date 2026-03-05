@@ -81,13 +81,15 @@ oauth2Client.request = async (...args) => {
   try {
     return await originalRequest(...args);
   } catch (e) {
-    if (e.code === 401) {
-      console.log('Token expired, refreshing...');
+    if (e.code === 401 || (e.response && e.response.status === 401)) {
+      console.log('🔄 Token expired, refreshing...');
       const { credentials } = await oauth2Client.refreshAccessToken();
       oauth2Client.setCredentials(credentials);
       gmailCreds.access_token = credentials.access_token;
+      gmailCreds.refresh_token = credentials.refresh_token || gmailCreds.refresh_token;
       gmailCreds.expiry_date = credentials.expiry_date;
       fs.writeFileSync(`${CONFIG_PATH}/google-oauth-token.json`, JSON.stringify(gmailCreds, null, 2));
+      console.log('✅ Token refreshed and saved');
       return await originalRequest(...args);
     }
     throw e;

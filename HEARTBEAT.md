@@ -25,3 +25,7 @@ Backup first:
 - Read/create today's memory file
 - Log significant events
 - Update MEMORY.md
+
+## Vector Memory Flush (every heartbeat)
+Run: python3 ~/.openclaw/workspace/skills/vector-memory/scripts/memory_flush.py
+If total_stored = 0, that is fine — means nothing new to embed.
