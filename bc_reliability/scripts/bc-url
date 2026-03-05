@@ -1,0 +1,42 @@
+#!/bin/bash
+# BC Container URL - Direct IP access
+# Usage: bc-url <container_key>
+
+SCRIPT_DIR="$HOME/.openclaw/workspace/bc_reliability"
+PORTS_MAP="$SCRIPT_DIR/playbooks/ports_map.json"
+
+CONTAINER_KEY="$1"
+
+[ -z "$CONTAINER_KEY" ] && echo "Usage: bc-url <container_key>" && exit 1
+
+# Get ports
+if [ -f "$PORTS_MAP" ]; then
+    WEB_PORT=$(python3 - "$PORTS_MAP" "$CONTAINER_KEY" 2>/dev/null << 'PYEOF'
+import json, sys
+d = json.load(open(sys.argv[1]))
+print(d.get(sys.argv[2], {}).get('web', ''))
+PYEOF
+    )
+    DEV_PORT=$(python3 - "$PORTS_MAP" "$CONTAINER_KEY" 2>/dev/null << 'PYEOF'
+import json, sys
+d = json.load(open(sys.argv[1]))
+print(d.get(sys.argv[2], {}).get('dev', ''))
+PYEOF
+    )
+    HOST_IP=$(python3 - "$PORTS_MAP" "$CONTAINER_KEY" 2>/dev/null << 'PYEOF'
+import json, sys
+d = json.load(open(sys.argv[1]))
+print(d.get(sys.argv[2], {}).get('host_ip', '192.168.1.146'))
+PYEOF
+    )
+fi
+
+if [ -z "$WEB_PORT" ]; then
+    echo "Container not found: $CONTAINER_KEY"
+    exit 1
+fi
+
+echo "=== Direct URLs (No DNS Required) ==="
+echo ""
+echo "Web:  http://$HOST_IP:$WEB_PORT"
+echo "Dev:  $HOST_IP:$DEV_PORT (TCP)"

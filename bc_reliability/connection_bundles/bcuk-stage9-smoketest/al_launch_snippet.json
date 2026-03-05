@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Remote - bcuk-stage9-smoketest",
+      "type": "al",
+      "request": "launch",
+      "server": "http://192.168.1.146",
+      "port": 19000,
+      "authentication": "UserPassword",
+      "credentialId": "",
+      "breakpointMethod": "SPA",
+      "launchBrowser": true,
+      "enableSqlInformationBrowser": true,
+      "enableDebugging": true
+    }
+  ]
+}

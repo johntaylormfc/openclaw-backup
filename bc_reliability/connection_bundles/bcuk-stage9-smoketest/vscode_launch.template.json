@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Remote - bcuk-stage9-smoketest",
+      "type": "al",
+      "request": "launch",
+      "server": "http://bcuk-stage9-smoketest.lan",
+      "port": 80,
+      "serverInstance": "BC",
+      "authentication": "UserPassword",
+      "breakpointMethod": "SPA",
+      "launchBrowser": true,
+      "enableSqlInformationBrowser": true,
+      "enableDebugging": true,
+      "schemaUpdateMode": "Synchronize"
+    },
+    {
+      "name": "Direct - bcuk-stage9-smoketest",
+      "type": "al",
+      "request": "launch",
+      "server": "http://192.168.1.146",
+      "port": 19000,
+      "serverInstance": "BC",
+      "authentication": "UserPassword"
+    }
+  ]
+}

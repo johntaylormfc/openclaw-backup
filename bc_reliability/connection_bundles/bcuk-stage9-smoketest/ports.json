@@ -1,0 +1,9 @@
+{
+  "container": "bcuk-stage9-smoketest",
+  "country": "UK",
+  "version": "latest",
+  "web_port": 18000,
+  "dev_port": 19000,
+  "host_ip": "192.168.1.146",
+  "created": "2026-03-05"
+}

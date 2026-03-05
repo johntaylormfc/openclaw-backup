@@ -11,23 +11,19 @@ const path = require('path');
 
 const TOKEN_PATH = '/home/john/.openclaw/workspace/config/google-oauth-token.json';
 const CREDS_PATH = '/home/john/.openclaw/workspace/config/google-oauth.json';
+const SERVICE_ACCOUNT_PATH = '/home/john/.openclaw/workspace/config/google-service-account.json';
 const RESEARCH_DIR = '/home/john/.openclaw/workspace/memory';
 const RESEARCH_FOLDER_NAME = 'ARR Research Docs';
 
-// Load OAuth credentials
-const token = JSON.parse(fs.readFileSync(TOKEN_PATH, 'utf8'));
-const creds = JSON.parse(fs.readFileSync(CREDS_PATH, 'utf8')).web;
+// Use Service Account for cron-friendly auth
+const serviceAccount = require(SERVICE_ACCOUNT_PATH);
 
-// Initialize Google Drive with OAuth
-const oauth2Client = new google.auth.OAuth2(
-  creds.client_id,
-  creds.client_secret,
-  'http://localhost'
-);
+const auth = new google.auth.GoogleAuth({
+  keyFile: SERVICE_ACCOUNT_PATH,
+  scopes: ['https://www.googleapis.com/auth/drive.file']
+});
 
-oauth2Client.setCredentials(token);
-
-const drive = google.drive({ version: 'v3', auth: oauth2Client });
+const drive = google.drive({ version: 'v3', auth });
 
 async function getOrCreateFolder(drive, parentId = null) {
   const query = `name='${RESEARCH_FOLDER_NAME}' and mimeType='application/vnd.google-apps.folder' and trashed=false`;

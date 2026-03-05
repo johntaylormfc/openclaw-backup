@@ -1,0 +1,9 @@
+#!/bin/bash
+# BC Container Stop
+
+CONTAINER_KEY="$1"
+
+[ -z "$CONTAINER_KEY" ] && echo "Usage: bc-stop <container_key>" && exit 1
+
+echo "Stopping container: $CONTAINER_KEY"
+docker stop "$CONTAINER_KEY" && echo "Stopped" || echo "Not found or already stopped"

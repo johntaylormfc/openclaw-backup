@@ -1,0 +1,57 @@
+#!/bin/bash
+# BC Container Info
+# Shows details for a specific container
+
+SCRIPT_DIR="$HOME/.openclaw/workspace/bc_reliability"
+PORTS_MAP="$SCRIPT_DIR/playbooks/ports_map.json"
+BUNDLES_DIR="$SCRIPT_DIR/connection_bundles"
+
+CONTAINER_KEY="$1"
+
+[ -z "$CONTAINER_KEY" ] && echo "Usage: bc-info <container_key>" && exit 1
+
+echo "=== BC Container Info: $CONTAINER_KEY ==="
+echo ""
+
+# Container status
+STATUS=$(docker ps -a --filter "name=$CONTAINER_KEY" --format '{{.Status}}')
+if [ -z "$STATUS" ]; then
+    echo "Container not found"
+    exit 1
+fi
+
+echo "Status: $STATUS"
+echo ""
+
+# Ports
+if [ -f "$PORTS_MAP" ]; then
+    WEB=$(python3 - "$PORTS_MAP" "$CONTAINER_KEY" << 'PYEOF'
+import json,sys
+d=json.load(open(sys.argv[1]))
+print(d.get(sys.argv[2],{}).get('web',''))
+PYEOF
+    )
+    DEV=$(python3 - "$PORTS_MAP" "$CONTAINER_KEY" << 'PYEOF'
+import json,sys
+d=json.load(open(sys.argv[1]))
+print(d.get(sys.argv[2],{}).get('dev',''))
+PYEOF
+    )
+    
+    [ -n "$WEB" ] && echo "Web Port: $WEB"
+    [ -n "$DEV" ] && echo "Dev Port: $DEV"
+    echo ""
+fi
+
+# Connection bundle
+if [ -d "$BUNDLES_DIR/$CONTAINER_KEY" ]; then
+    echo "Connection Bundle: $BUNDLES_DIR/$CONTAINER_KEY/"
+    echo ""
+fi
+
+# Logs
+LOG_COUNT=$(ls -1 "$SCRIPT_DIR/logs/"*${CONTAINER_KEY}* 2>/dev/null | wc -l)
+if [ "$LOG_COUNT" -gt 0 ]; then
+    echo "Log files: $LOG_COUNT"
+    ls -1 "$SCRIPT_DIR/logs/"*${CONTAINER_KEY}* 2>/dev/null | head -3
+fi

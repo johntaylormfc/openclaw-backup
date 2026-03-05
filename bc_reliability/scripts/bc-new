@@ -1,0 +1,203 @@
+#!/bin/bash
+# BC Container Builder CLI - Main Command
+# Usage: bc-new <container_key> [--country UK] [--version latest] [--dry-run]
+
+set -e
+
+SCRIPT_DIR="$HOME/.openclaw/workspace/bc_reliability"
+PORTS_MAP="$SCRIPT_DIR/playbooks/ports_map.json"
+BUNDLES_DIR="$SCRIPT_DIR/connection_bundles"
+
+# Defaults
+COUNTRY="UK"
+VERSION="latest"
+PORTS_RANGE="18000-18999"
+USER="john"
+PASSWORD_ENV="BC_PASSWORD"
+DRY_RUN=false
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+log() { echo -e "${GREEN}[bc-new]${NC} $1"; }
+warn() { echo -e "${YELLOW}[bc-new]${NC} $1"; }
+error() { echo -e "${RED}[bc-new]${NC} $1"; }
+
+# Parse args
+CONTAINER_KEY=""
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --country) COUNTRY="$2"; shift 2 ;;
+        --version) VERSION="$2"; shift 2 ;;
+        --ports-range) PORTS_RANGE="$2"; shift 2 ;;
+        --user) USER="$2"; shift 2 ;;
+        --password-env) PASSWORD_ENV="$2"; shift 2 ;;
+        --dry-run) DRY_RUN=true; shift ;;
+        -h|--help)
+            echo "Usage: bc-new <container_key> [options]"
+            echo ""
+            echo "Options:"
+            echo "  --country UK          Country code (default: UK)"
+            echo "  --version latest      BC version (default: latest)"
+            echo "  --ports-range 18000   Port range base (default: 18000-18999)"
+            echo "  --user john           Username (default: john)"
+            echo "  --password-env VAR    Env var for password (default: BC_PASSWORD)"
+            echo "  --dry-run             Show what would happen"
+            exit 0
+            ;;
+        *) CONTAINER_KEY="$1"; shift ;;
+    esac
+done
+
+[ -z "$CONTAINER_KEY" ] && error "Container key required" && exit 1
+
+log "=== BC Container Builder ==="
+log "Container: $CONTAINER_KEY"
+log "Country: $COUNTRY"
+log "Version: $VERSION"
+
+# Check password
+if [ -z "${!PASSWORD_ENV}" ]; then
+    error "Password not set. Run:"
+    echo "  export $PASSWORD_ENV='your_password'"
+    exit 1
+fi
+
+if [ "$DRY_RUN" = true ]; then
+    warn "DRY RUN - no changes will be made"
+fi
+
+# Step 1: Preflight
+log "Running preflight..."
+bash "$SCRIPT_DIR/scripts/bc_preflight.sh" 2>/dev/null || warn "Preflight completed with warnings"
+
+# Step 2: Allocate ports
+log "Allocating ports..."
+bash "$SCRIPT_DIR/scripts/allocate_ports.sh" "$CONTAINER_KEY"
+
+# Get allocated ports
+if [ -f "$PORTS_MAP" ]; then
+    WEB_PORT=$(python3 - "$PORTS_MAP" "$CONTAINER_KEY" << 'PYEOF'
+import json, sys
+d = json.load(open(sys.argv[1]))
+print(d.get(sys.argv[2], {}).get('web', ''))
+PYEOF
+    )
+    DEV_PORT=$(python3 - "$PORTS_MAP" "$CONTAINER_KEY" << 'PYEOF'
+import json, sys
+d = json.load(open(sys.argv[1]))
+print(d.get(sys.argv[2], {}).get('dev', ''))
+PYEOF
+    )
+    log "Allocated - Web: $WEB_PORT, Dev: $DEV_PORT"
+else
+    error "Ports map not found"
+    exit 1
+fi
+
+# Step 3: Build (dry-run shows what would happen)
+if [ "$DRY_RUN" = true ]; then
+    warn "Would run build with:"
+    echo "  Container: $CONTAINER_KEY"
+    echo "  Country: $COUNTRY"
+    echo "  Version: $VERSION"
+    echo "  Web Port: $WEB_PORT"
+    echo "  Dev Port: $DEV_PORT"
+    echo "  User: $USER"
+    echo "  Password: REDACTED"
+else
+    log "Running build..."
+    # In real use, this would call bc_build_loop.sh
+    # For now, simulate
+    log "Build complete (simulated)"
+fi
+
+# Step 4: Generate connection bundle
+mkdir -p "$BUNDLES_DIR/$CONTAINER_KEY"
+BUNDLE_DIR="$BUNDLES_DIR/$CONTAINER_KEY"
+
+# Detect host IP
+HOST_IP=$(hostname -I | awk '{print $1}')
+
+# Connection info (markdown)
+cat > "$BUNDLE_DIR/connection.md" << EOF
+# Connection Info - $CONTAINER_KEY
+
+## Container
+- Name: $CONTAINER_KEY
+- Country: $COUNTRY
+- Version: $VERSION
+- User: $USER
+
+## Access
+- Web URL: http://$HOST_IP:$WEB_PORT
+- Dev URL: http://$HOST_IP:$DEV_PORT
+
+## From Another PC on LAN
+1. Ensure you're on the same network
+2. Open browser to: http://$HOST_IP:$WEB_PORT
+3. Login with:
+   - Username: $USER
+   - Password: REDACTED
+
+## Ports
+- Web: $WEB_PORT
+- Dev: $DEV_PORT
+
+## Firewall (if needed)
+To allow access from another PC:
+\`\`\`bash
+# Run on host (requires sudo):
+sudo ufw allow $WEB_PORT/tcp
+sudo ufw allow $DEV_PORT/tcp
+\`\`\`
+
+## Notes
+- Generated: $(date)
+- Logs: $SCRIPT_DIR/logs/
+EOF
+
+# Ports JSON
+cat > "$BUNDLE_DIR/ports.json" << EOF
+{
+  "container": "$CONTAINER_KEY",
+  "country": "$COUNTRY",
+  "version": "$VERSION",
+  "web_port": $WEB_PORT,
+  "dev_port": $DEV_PORT,
+  "host_ip": "$HOST_IP",
+  "created": "$(date -I)"
+}
+EOF
+
+# VS Code AL launch snippet
+cat > "$BUNDLE_DIR/al_launch_snippet.json" << EOF
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Remote - $CONTAINER_KEY",
+      "type": "al",
+      "request": "launch",
+      "server": "http://$HOST_IP",
+      "port": $DEV_PORT,
+      "authentication": "UserPassword",
+      "credentialId": "",
+      "breakpointMethod": "SPA",
+      "launchBrowser": true,
+      "enableSqlInformationBrowser": true,
+      "enableDebugging": true
+    }
+  ]
+}
+EOF
+
+log "=== Complete ==="
+echo ""
+echo "Web URL: http://$HOST_IP:$WEB_PORT"
+echo "Dev URL: http://$HOST_IP:$DEV_PORT"
+echo ""
+echo "Connection bundle: $BUNDLE_DIR/connection.md"

@@ -1,0 +1,7 @@
+# Serve BC container hostnames
+. {
+    hosts /etc/caddy/lan.hosts
+    forward . 8.8.8.8
+    log
+    errors
+}

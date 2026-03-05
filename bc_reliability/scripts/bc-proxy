@@ -1,0 +1,114 @@
+#!/bin/bash
+# BC Reverse Proxy Manager
+# Usage: bc-proxy [sync|status|stop]
+
+SCRIPT_DIR="$HOME/.openclaw/workspace/bc_reliability"
+PROXY_DIR="$SCRIPT_DIR/proxy"
+PORTS_MAP="$SCRIPT_DIR/playbooks/ports_map.json"
+PROXY_PORT=80
+CONTAINER_NAME="bc-caddy-proxy"
+
+log() { echo "[bc-proxy] $1"; }
+
+case "$1" in
+    sync)
+        log "Syncing proxy routes..."
+        
+        # Read ports map
+        if [ ! -f "$PORTS_MAP" ]; then
+            log "No ports map found"
+            exit 1
+        fi
+        
+        # Generate Caddyfile
+        cat > "$PROXY_DIR/Caddyfile" << 'HDR'
+{
+    admin off
+    auto_https off
+}
+HDR
+        
+        # Add routes for each container
+        python3 - "$PORTS_MAP" << 'PYEOF' >> "$PROXY_DIR/Caddyfile"
+import json, sys
+d = json.load(open(sys.argv[1]))
+for container, info in d.items():
+    web_port = info.get('web', '')
+    if web_port:
+        print(container + ".lan {")
+        print("    reverse_proxy localhost:" + str(web_port))
+        print("}")
+        print("")
+PYEOF
+        
+        # Write docker-compose.yml
+        cat > "$PROXY_DIR/docker-compose.yml" << EOF
+version: '3.8'
+services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: $CONTAINER_NAME
+    ports:
+      - "$PROXY_PORT:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    restart: unless-stopped
+    network_mode: host
+EOF
+        
+        log "Generated Caddyfile with routes:"
+        cat "$PROXY_DIR/Caddyfile"
+        
+        # Stop existing if running
+        docker rm -f $CONTAINER_NAME 2>/dev/null || true
+        
+        # Start proxy
+        cd "$PROXY_DIR"
+        docker compose up -d
+        
+        log "Proxy sync complete"
+        ;;
+        
+    status)
+        log "=== Proxy Status ==="
+        
+        # Check if running
+        if docker ps --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"; then
+            echo "Proxy: RUNNING"
+            docker ps --filter "name=$CONTAINER_NAME" --format "{{.Ports}}"
+        else
+            echo "Proxy: NOT RUNNING"
+        fi
+        
+        echo ""
+        echo "=== Routes ==="
+        if [ -f "$PORTS_MAP" ]; then
+            python3 - "$PORTS_MAP" << 'PYEOF'
+import json, sys
+d = json.load(open(sys.argv[1]))
+for container, info in d.items():
+    web = info.get('web', '')
+    if web:
+        print(f"{container}.lan -> localhost:{web}")
+PYEOF
+        fi
+        
+        echo ""
+        echo "Proxy port: $PROXY_PORT"
+        ;;
+        
+    stop)
+        log "Stopping proxy..."
+        docker rm -f $CONTAINER_NAME 2>/dev/null && echo "Stopped" || echo "Not running"
+        ;;
+        
+    *)
+        echo "Usage: bc-proxy [sync|status|stop]"
+        echo ""
+        echo "Commands:"
+        echo "  sync   - Generate routes and start proxy"
+        echo "  status - Show proxy status and routes"
+        echo "  stop   - Stop proxy"
+        exit 1
+        ;;
+esac

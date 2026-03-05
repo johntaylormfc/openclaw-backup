@@ -1,0 +1,8 @@
+{
+    admin off
+    auto_https off
+}
+bcuk-stage9-smoketest.lan {
+    reverse_proxy localhost:18000
+}
+

@@ -1,0 +1,31 @@
+#!/bin/bash
+# BC Container Remove
+
+CONTAINER_KEY="$1"
+FORCE=false
+REMOVE_VOLUMES=false
+
+# Parse args
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --force) FORCE=true; shift ;;
+        --volumes) REMOVE_VOLUMES=true; shift ;;
+        *) CONTAINER_KEY="$1"; shift ;;
+    esac
+done
+
+[ -z "$CONTAINER_KEY" ] && echo "Usage: bc-rm <container_key> [--force] [--volumes]" && exit 1
+
+if [ "$FORCE" = false ]; then
+    echo "This will remove container: $CONTAINER_KEY"
+    echo "Use --force to confirm"
+    exit 0
+fi
+
+echo "Removing container: $CONTAINER_KEY"
+
+if [ "$REMOVE_VOLUMES" = true ]; then
+    docker rm -v "$CONTAINER_KEY" && echo "Removed with volumes" || echo "Not found"
+else
+    docker rm "$CONTAINER_KEY" && echo "Removed" || echo "Not found"
+fi
