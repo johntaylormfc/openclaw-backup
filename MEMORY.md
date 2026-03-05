@@ -46,7 +46,8 @@
 - Update Cron Jobs List: every 5 min
 - GitHub Repo Review: hourly
 - Daily Review: 23:00 daily
-- **Email to Todoist**: Failing - needs Gmail OAuth refresh token (remind john to fix)
+- **Email to Todoist**: Failing - needs calendar.readonly scope + re-auth (2026-03-03)
+- **Calendar to Todoist**: Failing - needs calendar.readonly scope + re-auth (2026-03-03)
 
 ## Key Patterns & Learnings
 - **Never restore database to fix UI issues** - debug actual issue instead
@@ -56,6 +57,7 @@
 - **Gmail OAuth tokens expire frequently**: Need periodic re-authentication or refresh token mechanism
 - **Container file persistence**: Critical host files (like /tmp/trading.json) may not exist in containers - always verify file presence when debugging API issues
 - **Session linking works**: Linking dmScope to "main" successfully shared context between WhatsApp and webchat
+- **OAuth scope drift**: Calendar API requires calendar.readonly scope in addition to Gmail scope - scripts that worked previously may need updated scopes on re-auth
 
 ## Known Issues
 - Exec tool can hang after system compaction
@@ -102,3 +104,25 @@ When contract management features change:
 - Smart loading: only projects.md + MEMORY.md at startup. Daily notes + vector search = on-demand only. Saves ~80% token cost vs loading everything.
 
 Last updated: 2026-03-04
+
+## Research Policy
+- If question involves facts, product specs, pricing, versions, "latest", policies: do NOT answer from memory
+- First: use web/search tools
+- Output must include:
+  - (a) short answer
+  - (b) bullets with supporting evidence
+  - (c) 2-5 source links
+- If browser/search tools unavailable: say "No browser tools available" and ask before proceeding
+- If uncertain: state uncertainty and offer next verification steps
+
+## OpenClaw Operational Prompt
+- Objective: accurate, safe, repeatable instructions; minimize hallucinations
+- No Guessing: state confidence rating [HIGH/MEDIUM/LOW], verification steps if needed
+- Evidence-Based: prefer file paths, docker inspect, command output, configs
+- Two-Pass Reasoning: Draft → Critic Review → Final Solution
+- Clarification Rules: max 3 questions; use defaults (Debian/Ubuntu, bash, docker stable)
+- Diagnostics-First: docker ps -a, docker logs, docker inspect, ss -lntp, ip a, df -h, free -m
+- Docker Port Management: avoid 80/443/8080; use 18000-18999 (web), 19000-19999 (API), 16000-16999 (dev)
+- Safe Change Policy: show current state, explain change, provide rollback steps
+- Token Efficient: bullet points, avoid repetition, summarize if >200 lines
+- Multi-Role: Planner → Executor → Reviewer → Operator structure
