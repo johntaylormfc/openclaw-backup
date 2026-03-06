@@ -65,6 +65,8 @@
 - **Container file persistence**: Critical host files (like /tmp/trading.json) may not exist in containers - always verify file presence when debugging API issues
 - **Session linking works**: Linking dmScope to "main" successfully shared context between WhatsApp and webchat
 - **OAuth scope drift**: Calendar API requires calendar.readonly scope in addition to Gmail scope - scripts that worked previously may need updated scopes on re-auth
+- **BCContainerHelper required**: Raw BC Docker images need BCContainerHelper module for proper initialization - containers exit with "ServiceSettings.ps1" error without it
+- **GSPRO Docker setup**: Use alternative ports (18080, 17046-17049) to avoid conflicts; HNS networking issues on Windows containers can be fixed with Docker factory reset
 
 ## Known Issues
 - Exec tool can hang after system compaction
@@ -110,7 +112,7 @@ When contract management features change:
 - Vector DB: PostgreSQL + pgvector, semantic search via AI embeddings
 - Smart loading: only projects.md + MEMORY.md at startup. Daily notes + vector search = on-demand only. Saves ~80% token cost vs loading everything.
 
-Last updated: 2026-03-04
+Last updated: 2026-03-05
 
 ## Research Policy
 - If question involves facts, product specs, pricing, versions, "latest", policies: do NOT answer from memory

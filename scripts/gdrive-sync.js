@@ -14,7 +14,7 @@ const CREDS_PATH = '/home/john/.openclaw/workspace/config/google-oauth.json';
 const SERVICE_ACCOUNT_PATH = '/home/john/.openclaw/workspace/config/google-service-account.json';
 const RESEARCH_DIR = '/home/john/.openclaw/workspace/memory';
 const RESEARCH_FOLDER_NAME = 'ARR Research Docs';
-const SHARED_DRIVE_ID = '0AEZyF8Z-1E湿kPU9PVA'; // Shared Drive ID (湿kPU9PVA = your shared drive)
+// Note: SHARED_DRIVE_ID removed - folder exists in regular My Drive
 
 // Use Service Account for cron-friendly auth
 const serviceAccount = require(SERVICE_ACCOUNT_PATH);
@@ -27,23 +27,32 @@ const auth = new google.auth.GoogleAuth({
 const drive = google.drive({ version: 'v3', auth });
 
 async function getOrCreateFolder(drive, parentId = null) {
+  // Query across all drives (including Shared Drives)
   const query = `name='${RESEARCH_FOLDER_NAME}' and mimeType='application/vnd.google-apps.folder' and trashed=false`;
   if (parentId) query += ` and '${parentId}' in parents`;
   
-  const response = await drive.files.list({ q: query, fields: 'files(id, name)' });
+  const response = await drive.files.list({ 
+    q: query, 
+    fields: 'files(id, name)',
+    supportsAllDrives: true,
+    includeItemsFromAllDrives: true
+  });
   
   if (response.data.files.length > 0) {
     return response.data.files[0].id;
   }
   
-  // Create folder
+  // Create folder 
   const folderMetadata = {
     name: RESEARCH_FOLDER_NAME,
     mimeType: 'application/vnd.google-apps.folder'
   };
-  if (parentId) folderMetadata.parents = [parentId];
   
-  const folder = await drive.files.create({ resource: folderMetadata, fields: 'id' });
+  const folder = await drive.files.create({ 
+    resource: folderMetadata, 
+    fields: 'id',
+    supportsAllDrives: true
+  });
   return folder.data.id;
 }
 

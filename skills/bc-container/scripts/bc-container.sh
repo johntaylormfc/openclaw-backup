@@ -2,7 +2,7 @@
 # BC Container Management Skill
 
 # SSH to GSPRO
-SSH_CMD="ssh -o StrictHostKeyChecking=no bot@192.168.1.228"
+SSH_CMD="sshpass -p 'BotBotBot!' ssh -o StrictHostKeyChecking=no bot@192.168.1.228"
 
 # Parse command
 ACTION="$1"
