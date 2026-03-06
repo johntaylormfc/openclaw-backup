@@ -16,15 +16,19 @@ const RESEARCH_DIR = '/home/john/.openclaw/workspace/memory';
 const RESEARCH_FOLDER_NAME = 'ARR Research Docs';
 // Note: SHARED_DRIVE_ID removed - folder exists in regular My Drive
 
-// Use Service Account for cron-friendly auth
-const serviceAccount = require(SERVICE_ACCOUNT_PATH);
+// Load OAuth credentials
+const creds = require(CREDS_PATH);
+const oAuth2Client = new google.auth.OAuth2(
+  creds.web.client_id,
+  creds.web.client_secret,
+  creds.web.redirect_uris?.[0] || 'http://localhost'
+);
 
-const auth = new google.auth.GoogleAuth({
-  keyFile: SERVICE_ACCOUNT_PATH,
-  scopes: ['https://www.googleapis.com/auth/drive.file']
-});
+// Load token
+const token = require(TOKEN_PATH);
+oAuth2Client.setCredentials(token);
 
-const drive = google.drive({ version: 'v3', auth });
+const drive = google.drive({ version: 'v3', auth: oAuth2Client });
 
 async function getOrCreateFolder(drive, parentId = null) {
   // Query across all drives (including Shared Drives)
