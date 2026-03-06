@@ -62,6 +62,11 @@ bc url <key>
 ```
 Example: `bc url bcuk-stage9-smoketest`
 
+**Output includes:**
+- Recommended Web URL: http://<IP>:<web_port>/BC/?tenant=default
+- Sign-In Shortcut: http://<IP>:<web_port>/BC/SignIn?tenant=default
+- Legacy Web URL (may fail): http://<IP>:<web_port>/BC/
+
 ### 10. Full Project Setup
 ```
 bc project <key> --project /path/to/project [--country UK] [--version latest] [--dry-run]

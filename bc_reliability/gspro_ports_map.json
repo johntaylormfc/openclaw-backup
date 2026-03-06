@@ -1,14 +1,9 @@
 {
-  "bcuk-smoketest": {
-    "web_port": 18636,
-    "dev_port": 19636,
+  "openclaw-contracts": {
+    "web_port": 18200,
+    "dev_port": 19200,
     "host": "192.168.1.228",
-    "created": "2026-03-05T17:28:58.954716"
-  },
-  "jt": {
-    "web_port": 18126,
-    "dev_port": 19126,
-    "host": "192.168.1.228",
-    "created": "2026-03-05T17:30:20.522546"
+    "tenant": "default",
+    "created": "2026-03-06T15:36:00"
   }
 }

@@ -54,8 +54,10 @@ export GH_TOKEN='your_github_token'  # Optional: for automated GitHub push
 ## Output Format
 
 Always returns:
-- Direct Web URL: http://<IP>:<web_port>
-- Dev Port: <IP>:<dev_port>
+- **Recommended Web URL (with tenant):** http://<IP>:<web_port>/BC/?tenant=default
+- **Sign-In Shortcut:** http://<IP>:<web_port>/BC/SignIn?tenant=default
+- Legacy Web URL (may fail): http://<IP>:<web_port>/BC/
+- **Dev Port:** <IP>:<dev_port> (TCP)
 - GitHub repo status (if pushed)
 
 ## Notes

@@ -36,7 +36,12 @@ if [ -z "$WEB_PORT" ]; then
     exit 1
 fi
 
-echo "=== Direct URLs (No DNS Required) ==="
+echo "=== BC Container URLs ==="
 echo ""
-echo "Web:  http://$HOST_IP:$WEB_PORT"
-echo "Dev:  $HOST_IP:$DEV_PORT (TCP)"
+echo "Recommended (with tenant):"
+echo "  Web:  http://$HOST_IP:$WEB_PORT/BC/?tenant=default"
+echo "  Sign-In:  http://$HOST_IP:$WEB_PORT/BC/SignIn?tenant=default"
+echo ""
+echo "Legacy (may fail):"
+echo "  Web:  http://$HOST_IP:$WEB_PORT/BC/"
+echo "  Dev:  $HOST_IP:$DEV_PORT (TCP)"

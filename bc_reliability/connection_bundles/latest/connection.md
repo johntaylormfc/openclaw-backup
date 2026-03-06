@@ -1,34 +1,38 @@
-# Connection Info - latest
+# Connection Info - {{container_name}}
 
 ## Container
-- Name: latest
-- Country: UK
-- Version: latest
-- User: john
+- Name: {{container_name}}
+- Country: {{country}}
+- Version: {{version}}
+- User: {{user}}
+- Tenant: default
 
 ## Access
-- Web URL: http://192.168.1.146:18002
-- Dev URL: http://192.168.1.146:19001
+- **Recommended Web URL:** http://{{host_ip}}:{{web_port}}/BC/?tenant=default
+- **Sign-In Shortcut:** http://{{host_ip}}:{{web_port}}/BC/SignIn?tenant=default
+- Legacy Web URL (may fail): http://{{host_ip}}:{{web_port}}/BC/
+- Dev URL: http://{{host_ip}}:{{dev_port}}
 
 ## From Another PC on LAN
 1. Ensure you're on the same network
-2. Open browser to: http://192.168.1.146:18002
+2. Open browser to: http://{{host_ip}}:{{web_port}}/BC/?tenant=default
 3. Login with:
-   - Username: john
+   - Username: {{user}}
    - Password: REDACTED
 
 ## Ports
-- Web: 18002
-- Dev: 19001
+- Web: {{web_port}}
+- Dev: {{dev_port}}
+- Tenant: default
 
 ## Firewall (if needed)
 To allow access from another PC:
 ```bash
 # Run on host (requires sudo):
-sudo ufw allow 18002/tcp
-sudo ufw allow 19001/tcp
+sudo ufw allow {{web_port}}/tcp
+sudo ufw allow {{dev_port}}/tcp
 ```
 
 ## Notes
-- Generated: Thu  5 Mar 15:53:08 GMT 2026
+- Generated: {{timestamp}}
 - Logs: /home/john/.openclaw/workspace/bc_reliability/logs/

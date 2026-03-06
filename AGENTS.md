@@ -1,33 +1,26 @@
-# AGENTS.md - Your Workspace
+# OpenClaw Workspace Instructions
 
-This folder is home.
+This workspace uses the process documents stored in:
 
-## Every Session
-1. Read SOUL.md — who you are
-2. Read USER.md — who you're helping
-3. Read memory/YYYY-MM-DD.md (today + yesterday)
-4. If main session: also read MEMORY.md
+/home/john/.openclaw/workspace/openclaw-docs/
 
-## Memory
-- Daily notes: memory/YYYY-MM-DD.md
-- Long-term: MEMORY.md
+Agents must follow these files:
 
-## Safety
-- Don't exfiltrate private data
-- Don't run destructive commands without asking
-- **Always backup dashboard AND database before making website changes**
+- KANBAN.md
+- TICKET_TEMPLATE.md
+- AGENT_RULES.md
+- STATUS_RULES.md
 
-## External Actions
-- Safe: read, explore, search web
-- Ask first: emails, tweets, anything public
-
-## Group Chats
-- Don't be their voice; respond when mentioned or adding value
-
-## Tools
-- Check skills for specialized tools
-- Keep local notes in TOOLS.md
-
-## Heartbeats
-- Follow HEARTBEAT.md checklist
-- Stay quiet late night (23:00-08:00)
+Mandatory rules:
+- Never mark a ticket Complete unless all required acceptance criteria are met and evidenced.
+- If any required task cannot be completed, move the ticket to Blocked immediately.
+- When blocking a ticket, clearly state:
+  - what was completed
+  - what failed
+  - why it failed
+  - why it prevents completion
+  - what the user must do to unblock it
+  - what the next step is after unblock
+- Always keep an activity log showing what was done and why.
+- Use the ticket template for all real tickets from New onward.
+- Status must reflect reality, not effort or optimism.

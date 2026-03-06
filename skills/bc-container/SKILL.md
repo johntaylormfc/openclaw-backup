@@ -26,3 +26,11 @@ Create and manage Business Central containers on GSPRO Windows PC.
 
 - "Create BC container named myapp"
 - "Create BC container named testapp with country uk"
+
+## Output
+
+After creating a container, returns:
+- **Web URL (recommended):** http://<IP>:<PORT>/BC/?tenant=default
+- **Sign-In URL:** http://<IP>:<PORT>/BC/SignIn?tenant=default
+- **Legacy URL (may fail):** http://<IP>:<PORT>/BC/
+- **Dev URL:** http://<IP>:<DEV_PORT>
