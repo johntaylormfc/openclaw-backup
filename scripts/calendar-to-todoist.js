@@ -16,6 +16,12 @@ const gmailCreds = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/google-oauth-token
 const todoistKey = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/todoist.json`, 'utf8')).todoist.api_key;
 
 // Authenticate
+// Required scopes for this script
+const SCOPES = [
+  'https://www.googleapis.com/auth/gmail.readonly',
+  'https://www.googleapis.com/auth/calendar.readonly'
+];
+
 const oauth2Client = new google.auth.OAuth2(
   gmailCreds.client_id,
   gmailCreds.client_secret,
@@ -30,13 +36,24 @@ oauth2Client.setCredentials({
   expiry_date: gmailCreds.expiry_date
 });
 
-// Auto-refresh on 401 errors
+// Auto-refresh on 401 errors and handle scope issues
 const originalRequest = oauth2Client.request.bind(oauth2Client);
 oauth2Client.request = async (...args) => {
   try {
     return await originalRequest(...args);
   } catch (e) {
-    if (e.code === 401 || (e.response && e.response.status === 401)) {
+    const status = e.response?.status;
+    const errorMsg = e.response?.data?.error_description || e.message;
+    
+    // Handle insufficient scope error
+    if (status === 403 && errorMsg.includes('insufficient authentication scopes')) {
+      console.log('❌ Token scopes are insufficient for Calendar access.');
+      console.log('⚠️  Please re-authorize the application with calendar scope.');
+      console.log('   Run: node /home/john/.openclaw/workspace/scripts/calendar-to-todoist.js --reauth');
+      process.exit(1);
+    }
+    
+    if (e.code === 401 || status === 401) {
       console.log('🔄 Token expired, refreshing...');
       const { credentials } = await oauth2Client.refreshAccessToken();
       oauth2Client.setCredentials(credentials);
@@ -54,6 +71,48 @@ oauth2Client.request = async (...args) => {
 
 const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
 const TODOIST_API = 'https://api.todoist.com/api/v1/tasks';
+
+// Check for --reauth flag
+if (process.argv.includes('--reauth')) {
+  console.log('=== Re-authorization Required ===');
+  console.log('Generating new authorization URL...\n');
+  const authUrl = oauth2Client.generateAuthUrl({
+    access_type: 'offline',
+    scope: SCOPES,
+    prompt: 'consent'
+  });
+  console.log('Please visit this URL to authorize:');
+  console.log(authUrl);
+  console.log('\nThen enter the authorization code:');
+  
+  const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+  
+  readline.question('Code: ', async (code) => {
+    try {
+      const { tokens } = await oauth2Client.getToken(code);
+      oauth2Client.setCredentials(tokens);
+      
+      // Save new tokens
+      const newCreds = {
+        ...gmailCreds,
+        access_token: tokens.access_token,
+        refresh_token: tokens.refresh_token,
+        scopes: tokens.scope || SCOPES.join(' '),
+        expiry_date: tokens.expiry_date
+      };
+      fs.writeFileSync(`${CONFIG_PATH}/google-oauth-token.json`, JSON.stringify(newCreds, null, 2));
+      console.log('✅ New tokens saved successfully!');
+      console.log('You can now run the sync again.');
+    } catch (err) {
+      console.error('Error getting tokens:', err.message);
+    }
+    readline.close();
+  });
+  process.exit(0);
+}
 
 async function getExistingTasks() {
   const response = await fetch(TODOIST_API, {
