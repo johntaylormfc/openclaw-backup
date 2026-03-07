@@ -67,6 +67,11 @@
 - **OAuth scope drift**: Calendar API requires calendar.readonly scope in addition to Gmail scope - scripts that worked previously may need updated scopes on re-auth
 - **BCContainerHelper required**: Raw BC Docker images need BCContainerHelper module for proper initialization - containers exit with "ServiceSettings.ps1" error without it
 - **GSPRO Docker setup**: Use alternative ports (18080, 17046-17049) to avoid conflicts; HNS networking issues on Windows containers can be fixed with Docker factory reset
+- **MiniMax-only provider**: March 5th - Successfully enforced MiniMax-M2.5 as sole LLM provider (purged Anthropic)
+- **Root file auto-fix**: Root-owned workspace files can get auto-fixed by system cleanup (observed between Stage 2 and 3 remediation)
+- **Gemini embeddings disabled**: Gemini API returning 403 errors - disabled vector memory flush to avoid costs
+- **Weekly health monitoring**: Created automated scans for root files and cron health (runs Wed/Sun 5am)
+- **Sensitive data in memory**: Password exposed in March 5th memory - need scrubber for future
 
 ## Known Issues
 - Exec tool can hang after system compaction
