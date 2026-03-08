@@ -72,6 +72,7 @@
 - **Gemini embeddings disabled**: Gemini API returning 403 errors - disabled vector memory flush to avoid costs
 - **Weekly health monitoring**: Created automated scans for root files and cron health (runs Wed/Sun 5am)
 - **Sensitive data in memory**: Password exposed in March 5th memory - need scrubber for future
+- **BC Container tenant parameter**: March 6th - BC containers require `?tenant=default` in URL after Docker restart
 
 ## Known Issues
 - Exec tool can hang after system compaction
