@@ -48,6 +48,8 @@
 - Daily Review: 23:00 daily
 - **Email to Todoist**: Failing - needs calendar.readonly scope + re-auth (2026-03-03)
 - **Calendar to Todoist**: Failing - needs calendar.readonly scope + re-auth (2026-03-03)
+- Weekly MEMORY.md Auto-Curation: Sunday 5am (MiniMax only, no embeddings)
+- Weekly Ownership & Health Check: Wednesday/Sunday 5am
 
 ## Docker Doctor Agent
 - **Created**: March 4, 2026
@@ -111,14 +113,25 @@ When contract management features change:
 3. Commit and push: `cd /tmp/coenclaw_tmp && git add -A && git commit -m "Update docs" && git push origin master`
 4. Log update in today's memory file
 
+## BC Container (GSPRO)
+
+| Container | Web Port | URL |
+|-----------|----------|-----|
+| JT | 18200 | http://192.168.1.228:18200/BC/?tenant=default |
+
+**Credentials:** john / John1234
+
+**Note:** BC containers require `?tenant=default` in URL after Docker restart (added March 6, 2026)
+
 ## Memory System
 - Daily notes: memory/YYYY-MM-DD.md — raw session logs, written automatically, load on-demand
 - MEMORY.md: curated long-term brain — load every heartbeat (~3K tokens)
 - projects.md: compact project registry — load every heartbeat (~1K tokens)
 - Vector DB: PostgreSQL + pgvector, semantic search via AI embeddings
 - Smart loading: only projects.md + MEMORY.md at startup. Daily notes + vector search = on-demand only. Saves ~80% token cost vs loading everything.
+- **Vector memory flush**: DISABLED (March 5, 2026) - Gemini API returning 403 errors
 
-Last updated: 2026-03-05
+Last updated: 2026-03-08
 
 ## Research Policy
 - If question involves facts, product specs, pricing, versions, "latest", policies: do NOT answer from memory
