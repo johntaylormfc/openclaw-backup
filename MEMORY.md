@@ -78,6 +78,8 @@
 
 ## Known Issues
 - Exec tool can hang after system compaction
+- **Google Drive sync failing**: Service Account has no storage quota - needs investigation (persist since Mar 6)
+- **Vector memory flush failing**: 403 Forbidden from embedding service - disabled since Mar 5
 
 ## John's Critical Directives (from 2026-03-02)
 1. **Memory**: Always read MEMORY.md and today's log (memory/YYYY-MM-DD.md) before taking action. Save new facts/preferences immediately to MEMORY.md.
