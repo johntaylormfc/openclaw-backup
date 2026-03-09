@@ -1,17 +1,17 @@
 # Idea
-**ID:** IDEA-0007
-**Title:** Test rejected idea flow
+**ID:** IDEA-0022
+**Title:** Torrent client VPN automation
 **Status:** Rejected
-**Suggested Priority:** Low
-**Source:** User
-**Created:** 2026-03-09 09:22
-**Last Updated:** 2026-03-09 09:22
+**Suggested Priority:** High
+**Source:** Cron
+**Created:** 2026-03-09 17:37
+**Last Updated:** 2026-03-09 17:51
 
 ## Summary
-Create a temporary idea purely to verify that rejected ideas are moved correctly and annotated with a rejection reason.
+Integrate VPN kill-switch automation with qBittorrent/Transmission. Automatically pause torrenting if VPN disconnects, and resume when reconnected. Include VPN status in dashboard.
 
 ## Why It Might Matter
-We need to confirm reject_idea.py works before wiring it into OpenClaw skills and the dashboard.
+Torrent automation without VPN protection is risky. Automated kill-switch prevents IP leaks during VPN failures.
 
 ## Suggested Outcome
 If accepted, this idea should be converted into a live ticket with clear acceptance criteria and put into kanban/new.
@@ -23,16 +23,16 @@ If accepted, this idea should be converted into a live ticket with clear accepta
 
 ## Context
 - Environment: /home/john/.openclaw/workspace
-- Source: User
+- Source: Cron
 
 ## Suggested Next Step
 Review the idea and either accept it into a live ticket or reject it with a reason.
 
 ## Approval Decision
-Rejected on 2026-03-09 09:22.
+Rejected on 2026-03-09 17:51.
 
 ## Rejection Reason
-Duplicate test item
+not required
 
 ## Notes
-Idea rejected on 2026-03-09 09:22. Reason: Duplicate test item
+Idea rejected on 2026-03-09 17:51. Reason: not required

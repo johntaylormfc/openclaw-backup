@@ -1,17 +1,17 @@
 # Idea
-**ID:** IDEA-0011
-**Title:** Test accepted folder move
-**Status:** Idea
+**ID:** IDEA-0019
+**Title:** OpenClaw session history search
+**Status:** Accepted
 **Suggested Priority:** Low
-**Source:** User
-**Created:** 2026-03-09 12:21
-**Last Updated:** 2026-03-09 12:21
+**Source:** Cron
+**Created:** 2026-03-09 17:27
+**Last Updated:** 2026-03-09 17:50
 
 ## Summary
-Create a temporary idea to verify that accepted ideas are moved into kanban/accepted instead of staying in kanban/idea.
+Add full-text search to session transcripts via the dashboard. Allow searching past conversations by keyword, date, or session to easily retrieve prior context.
 
 ## Why It Might Matter
-We want the active idea folder to contain pending ideas only.
+Finding specific past conversations is difficult. Searchable history would make it easier to reference prior decisions or configurations.
 
 ## Suggested Outcome
 If accepted, this idea should be converted into a live ticket with clear acceptance criteria and put into kanban/new.
@@ -23,16 +23,16 @@ If accepted, this idea should be converted into a live ticket with clear accepta
 
 ## Context
 - Environment: /home/john/.openclaw/workspace
-- Source: User
+- Source: Cron
 
 ## Suggested Next Step
 Review the idea and either accept it into a live ticket or reject it with a reason.
 
 ## Approval Decision
-Pending
+Accepted on 2026-03-09 17:50 and converted to ticket OC-0009.
 
 ## Rejection Reason
 Leave blank unless rejected.
 
 ## Notes
-Idea created automatically from a plain-English request.
+Idea accepted and converted into live ticket OC-0009.

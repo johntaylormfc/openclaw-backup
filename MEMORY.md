@@ -119,9 +119,30 @@ When contract management features change:
 
 | Container | Web Port | URL |
 |-----------|----------|-----|
-| JT | 18200 | http://192.168.1.228:18200/BC/?tenant=default |
+| glapproval | 18206 | http://192.168.1.228:18206/BC/?tenant=default |
+| bcdev | 18205 | http://192.168.1.228:18205/BC/?tenant=default |
+| openclaw-contracts | 18200 | http://192.168.1.228:18200/BC/?tenant=default |
 
-**Credentials:** john / John1234
+**Credentials:** john / John1234 (lowercase username!)
+
+**SSH Access (for container creation):**
+- Host: 192.168.1.228
+- User: bot
+- Password: BotBotBot!
+- Use: `sshpass -p 'BotBotBot!' ssh bot@192.168.1.228 "command"`
+
+**Creating new containers:**
+- Use script: `pwsh -File C:/Users/bot/New-BCContainerRemote.ps1 -ContainerName <name> -WebPort <port> -DevPort <devport> -Username john -Password John1234`
+- ALWAYS use lowercase username 'john' (uppercase JOHN fails!)
+- Create separate container for each extension to avoid conflicts
+- Increment WebPort (18207, 18208...) for each new container
+
+**Extension development workflow:**
+1. Create AL extension files in /home/john/<ExtensionName>/
+2. Create VS Code config (.vscode/launch.json, .vscode/settings.json) pointing to container
+3. Copy to GSPRO: `sshpass -p 'BotBotBot!' scp -r /home/john/<ExtensionName> bot@192.168.1.228:C:/`
+4. Push to GitHub
+5. Publish from VS Code → AL:Go
 
 **Note:** BC containers require `?tenant=default` in URL after Docker restart (added March 6, 2026)
 

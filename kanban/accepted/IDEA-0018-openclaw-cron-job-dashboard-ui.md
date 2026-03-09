@@ -1,17 +1,17 @@
 # Idea
-**ID:** IDEA-0002
-**Title:** Show OpenClaw filesystem kanban on dashboard
-**Status:** Idea
+**ID:** IDEA-0018
+**Title:** OpenClaw cron job dashboard UI
+**Status:** Accepted
 **Suggested Priority:** Medium
-**Source:** User
-**Created:** 2026-03-09 09:11
-**Last Updated:** 2026-03-09 09:11
+**Source:** Cron
+**Created:** 2026-03-09 17:27
+**Last Updated:** 2026-03-09 17:50
 
 ## Summary
-Display the OpenClaw filesystem kanban board (kanban/new, kanban/idea, kanban/in-progress, etc.) on the existing dashboard website at port 5000
+Add a cron jobs management section to the dashboard showing all scheduled jobs, their next run times, and enable/disable toggle. Visual feedback for job status would improve UX.
 
 ## Why It Might Matter
-To provide visibility into the kanban board directly from the dashboard without needing separate access to the OpenClaw workspace
+Currently cron jobs are invisible. A dashboard view would provide visibility into scheduled automation and health checks.
 
 ## Suggested Outcome
 If accepted, this idea should be converted into a live ticket with clear acceptance criteria and put into kanban/new.
@@ -23,16 +23,16 @@ If accepted, this idea should be converted into a live ticket with clear accepta
 
 ## Context
 - Environment: /home/john/.openclaw/workspace
-- Source: User
+- Source: Cron
 
 ## Suggested Next Step
 Review the idea and either accept it into a live ticket or reject it with a reason.
 
 ## Approval Decision
-Pending
+Accepted on 2026-03-09 17:50 and converted to ticket OC-0008.
 
 ## Rejection Reason
 Leave blank unless rejected.
 
 ## Notes
-Idea created automatically from a plain-English request.
+Idea accepted and converted into live ticket OC-0008.

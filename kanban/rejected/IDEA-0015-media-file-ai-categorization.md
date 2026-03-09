@@ -1,17 +1,17 @@
 # Idea
-**ID:** IDEA-0010
-**Title:** Test dashboard reject button
+**ID:** IDEA-0015
+**Title:** Media file AI categorization
 **Status:** Rejected
 **Suggested Priority:** Low
-**Source:** User
-**Created:** 2026-03-09 11:19
-**Last Updated:** 2026-03-09 11:19
+**Source:** Cron
+**Created:** 2026-03-09 17:22
+**Last Updated:** 2026-03-09 17:50
 
 ## Summary
-Create a temporary idea purely to verify that the dashboard Reject button moves ideas into kanban/rejected.
+Add AI-powered media categorization to the dashboard. When new media is imported, use a local LLM or API to analyze filenames/metadata and suggest genres, tags, or collections automatically.
 
 ## Why It Might Matter
-We need to confirm the full dashboard rejection flow works end to end.
+Manually tagging media is tedious. AI could parse release names, parse metadata, and auto-categorize content for better organization in Sonarr/Radarr.
 
 ## Suggested Outcome
 If accepted, this idea should be converted into a live ticket with clear acceptance criteria and put into kanban/new.
@@ -23,16 +23,16 @@ If accepted, this idea should be converted into a live ticket with clear accepta
 
 ## Context
 - Environment: /home/john/.openclaw/workspace
-- Source: User
+- Source: Cron
 
 ## Suggested Next Step
 Review the idea and either accept it into a live ticket or reject it with a reason.
 
 ## Approval Decision
-Rejected on 2026-03-09 11:19.
+Rejected on 2026-03-09 17:50.
 
 ## Rejection Reason
-Not approved at this time
+Not required
 
 ## Notes
-Idea rejected on 2026-03-09 11:19. Reason: Not approved at this time
+Idea rejected on 2026-03-09 17:50. Reason: Not required

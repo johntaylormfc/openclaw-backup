@@ -1,36 +1,35 @@
 # BC Container Skill
 
-Create and manage Business Central containers on GSPRO Windows PC.
+Create and manage Business Central containers on GSPRO Windows PC via SSH.
 
-## Usage
+## Important Notes
+- ALWAYS use lowercase username 'john' - uppercase 'JOHN' fails with InvalidPasswordException
+- Create a NEW container for each extension to avoid conflicts
+- Use incremental ports (18207, 18208, etc.)
 
-- `Create BC container named <name>` - Create a new BC container
-- `Delete BC container <name>` - Remove a container
-- `List BC containers` - Show running containers
+## SSH Access
+- Host: 192.168.1.228
+- User: bot
+- Password: BotBotBot!
+- Command: `sshpass -p 'BotBotBot!' ssh bot@192.168.1.228 "powershell -File C:/Users/bot/New-BCContainerRemote.ps1 -ContainerName <name> -WebPort <port> -DevPort <devport> -Username john -Password John1234"`
 
 ## Parameters
 
-- **containerName**: Required - Name for the container
-- **country**: Optional - Country version (default: w1)
-- **memoryLimit**: Optional - Memory limit (default: 6GB)
-
-## Defaults
-
-- **memoryLimit**: 6GB
-- **isolation**: hyperv
-- **includeAL**: yes
-- **auth**: NavUserPassword
-- **credential**: john/john
+- **containerName**: Required - Name for the container (e.g., glapproval)
+- **webPort**: Required - Web port (e.g., 18207 for new extension)
+- **devPort**: Required - Dev port (e.g., 19207)
+- **username**: Optional - Use 'john' (lowercase!)
+- **password**: Optional - default: John1234
 
 ## Examples
 
-- "Create BC container named myapp"
-- "Create BC container named testapp with country uk"
+- "Create BC container named myapp on port 18207"
+- "Create BC container named testapp on ports 18208/19208"
 
 ## Output
 
 After creating a container, returns:
-- **Web URL (recommended):** http://<IP>:<PORT>/BC/?tenant=default
-- **Sign-In URL:** http://<IP>:<PORT>/BC/SignIn?tenant=default
-- **Legacy URL (may fail):** http://<IP>:<PORT>/BC/
-- **Dev URL:** http://<IP>:<DEV_PORT>
+- **Web URL (recommended):** http://192.168.1.228:<PORT>/BC/?tenant=default
+- **Sign-In URL:** http://192.168.1.228:<PORT>/BC/SignIn?tenant=default
+- **Dev URL:** http://192.168.1.228:<DEV_PORT>
+- **Credentials:** john / John1234

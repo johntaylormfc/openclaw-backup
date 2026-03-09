@@ -17,11 +17,13 @@ export BC_PASSWORD='your_password'
 
 ## Commands
 
-### 1. Create New Container
+### 1. Create New Container (ALWAYS use lowercase john!)
 ```
 bc new <key> [country] [version] [--dry-run]
 ```
-Example: `bc new bcuk-prod UK latest`
+Example: `bc new glapproval 18206 19206`
+
+**Important:** Use lowercase username 'john' - uppercase fails!
 
 ### 2. Container Info
 ```

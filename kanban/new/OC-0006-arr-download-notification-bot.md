@@ -1,18 +1,18 @@
 # Ticket
-**ID:** OC-0009
-**Title:** Test unique idea numbering
+**ID:** OC-0006
+**Title:** ARR download notification bot
 **Status:** New
 **Outcome State:** Partial
 **Priority:** Medium
 **Owner:** Unassigned
-**Created:** 2026-03-09 11:18
-**Last Updated:** 2026-03-09 11:18
+**Created:** 2026-03-09 17:50
+**Last Updated:** 2026-03-09 17:50
 
 ## Goal
-Create a temporary idea to verify that idea IDs are no longer reused after ideas are accepted or rejected.
+Create a WhatsApp/Telegram bot that sends real-time notifications when Sonarr/Radarr/Lidarr complete downloads, import media, or encounter errors. Use webhook integration from ARR apps.
 
 ## Why
-We need stable unique idea IDs before wiring ideas into the dashboard and cron flows.
+Currently john checks the dashboard manually for download status. Push notifications would provide immediate awareness of completed downloads or issues.
 
 ## Acceptance Criteria
 - [ ] Scope is confirmed
@@ -22,7 +22,7 @@ We need stable unique idea IDs before wiring ideas into the dashboard and cron f
 - [ ] Ticket is only completed when all required work is genuinely finished
 
 ## Context
-- Source Idea: IDEA-0006
+- Source Idea: IDEA-0016
 - Environment: /home/john/.openclaw/workspace
 
 ## Task Checklist
@@ -34,10 +34,10 @@ We need stable unique idea IDs before wiring ideas into the dashboard and cron f
 
 ## Activity Log
 ### Entries
-- **Timestamp:** 2026-03-09 11:18  
+- **Timestamp:** 2026-03-09 17:50  
   **Action:** Ticket created from accepted idea  
   **Result:** Ticket added to kanban/new  
-  **Why:** User accepted idea IDEA-0006  
+  **Why:** User accepted idea IDEA-0016  
   **Evidence:** Created via accept_idea.py  
   **Next Step:** Agent can pick up the ticket when requested
 

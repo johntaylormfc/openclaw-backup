@@ -1,18 +1,18 @@
 # Ticket
-**ID:** OC-0010
-**Title:** Test accepted folder move
+**ID:** OC-0005
+**Title:** ARR stack Docker health auto-restart
 **Status:** New
 **Outcome State:** Partial
 **Priority:** Medium
 **Owner:** Unassigned
-**Created:** 2026-03-09 12:23
-**Last Updated:** 2026-03-09 12:23
+**Created:** 2026-03-09 17:49
+**Last Updated:** 2026-03-09 17:49
 
 ## Goal
-Create a temporary idea to verify that accepted ideas are moved into kanban/accepted instead of staying in kanban/idea.
+Implement automatic container health monitoring that restarts unhealthy Sonarr/Radarr/Lidarr containers. Use docker health checks + a lightweight watcher script to detect unhealthy state and restart before manual intervention.
 
 ## Why
-We want the active idea folder to contain pending ideas only.
+ARR containers can become unhealthy (stuck downloads, API timeouts) but don't auto-recover. This would reduce manual intervention and downtime.
 
 ## Acceptance Criteria
 - [ ] Scope is confirmed
@@ -22,7 +22,7 @@ We want the active idea folder to contain pending ideas only.
 - [ ] Ticket is only completed when all required work is genuinely finished
 
 ## Context
-- Source Idea: IDEA-0012
+- Source Idea: IDEA-0014
 - Environment: /home/john/.openclaw/workspace
 
 ## Task Checklist
@@ -34,10 +34,10 @@ We want the active idea folder to contain pending ideas only.
 
 ## Activity Log
 ### Entries
-- **Timestamp:** 2026-03-09 12:23  
+- **Timestamp:** 2026-03-09 17:49  
   **Action:** Ticket created from accepted idea  
   **Result:** Ticket added to kanban/new  
-  **Why:** User accepted idea IDEA-0012  
+  **Why:** User accepted idea IDEA-0014  
   **Evidence:** Created via accept_idea.py  
   **Next Step:** Agent can pick up the ticket when requested
 
