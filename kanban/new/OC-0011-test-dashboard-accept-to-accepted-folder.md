@@ -1,18 +1,18 @@
 # Ticket
-**ID:** OC-0006
-**Title:** Test last updated fix
+**ID:** OC-0011
+**Title:** Test dashboard accept to accepted folder
 **Status:** New
 **Outcome State:** Partial
 **Priority:** Medium
 **Owner:** Unassigned
-**Created:** 2026-03-09 09:20
-**Last Updated:** 2026-03-09 09:20
+**Created:** 2026-03-09 12:28
+**Last Updated:** 2026-03-09 12:28
 
 ## Goal
-Create a temporary idea to verify the Last Updated field is updated cleanly after accepting an idea.
+Create a temporary idea to verify that accepting an idea from the dashboard moves it into kanban/accepted and creates a live ticket.
 
 ## Why
-We need to confirm the regex fix fully resolved the field corruption issue.
+We need to confirm the dashboard accept flow still works after changing accepted idea archiving.
 
 ## Acceptance Criteria
 - [ ] Scope is confirmed
@@ -22,7 +22,7 @@ We need to confirm the regex fix fully resolved the field corruption issue.
 - [ ] Ticket is only completed when all required work is genuinely finished
 
 ## Context
-- Source Idea: IDEA-0004
+- Source Idea: IDEA-0013
 - Environment: /home/john/.openclaw/workspace
 
 ## Task Checklist
@@ -34,10 +34,10 @@ We need to confirm the regex fix fully resolved the field corruption issue.
 
 ## Activity Log
 ### Entries
-- **Timestamp:** 2026-03-09 09:20  
+- **Timestamp:** 2026-03-09 12:28  
   **Action:** Ticket created from accepted idea  
   **Result:** Ticket added to kanban/new  
-  **Why:** User accepted idea IDEA-0004  
+  **Why:** User accepted idea IDEA-0013  
   **Evidence:** Created via accept_idea.py  
   **Next Step:** Agent can pick up the ticket when requested
 

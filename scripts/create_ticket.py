@@ -5,7 +5,7 @@ import re
 from datetime import datetime
 from pathlib import Path
 
-WORKSPACE = Path("/home/john/.openclaw/workspace")
+WORKSPACE = Path(__file__).resolve().parent.parent
 KANBAN_NEW = WORKSPACE / "kanban" / "new"
 TEMPLATE = WORKSPACE / "openclaw-docs" / "TICKET_TEMPLATE.md"
 

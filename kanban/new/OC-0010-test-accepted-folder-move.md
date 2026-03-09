@@ -1,18 +1,18 @@
 # Ticket
-**ID:** OC-0007
-**Title:** Show kanban tickets on dashboard
+**ID:** OC-0010
+**Title:** Test accepted folder move
 **Status:** New
 **Outcome State:** Partial
 **Priority:** Medium
 **Owner:** Unassigned
-**Created:** 2026-03-09 09:26
-**Last Updated:** 2026-03-09 09:26
+**Created:** 2026-03-09 12:23
+**Last Updated:** 2026-03-09 12:23
 
 ## Goal
-Use the existing dashboard website to display the OpenClaw filesystem-backed kanban board instead of the old problematic ticket data.
+Create a temporary idea to verify that accepted ideas are moved into kanban/accepted instead of staying in kanban/idea.
 
 ## Why
-The user wants one visible board showing ideas, live tickets, blocked work, and completed work.
+We want the active idea folder to contain pending ideas only.
 
 ## Acceptance Criteria
 - [ ] Scope is confirmed
@@ -22,7 +22,7 @@ The user wants one visible board showing ideas, live tickets, blocked work, and 
 - [ ] Ticket is only completed when all required work is genuinely finished
 
 ## Context
-- Source Idea: IDEA-0001
+- Source Idea: IDEA-0012
 - Environment: /home/john/.openclaw/workspace
 
 ## Task Checklist
@@ -34,10 +34,10 @@ The user wants one visible board showing ideas, live tickets, blocked work, and 
 
 ## Activity Log
 ### Entries
-- **Timestamp:** 2026-03-09 09:26  
+- **Timestamp:** 2026-03-09 12:23  
   **Action:** Ticket created from accepted idea  
   **Result:** Ticket added to kanban/new  
-  **Why:** User accepted idea IDEA-0001  
+  **Why:** User accepted idea IDEA-0012  
   **Evidence:** Created via accept_idea.py  
   **Next Step:** Agent can pick up the ticket when requested
 

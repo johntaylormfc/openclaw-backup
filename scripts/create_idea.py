@@ -6,7 +6,7 @@ import re
 from datetime import datetime
 from pathlib import Path
 
-WORKSPACE = Path("/home/john/.openclaw/workspace")
+WORKSPACE = Path(__file__).resolve().parent.parent
 IDEA_DIR = WORKSPACE / "kanban" / "idea"
 
 def slugify(text: str) -> str:

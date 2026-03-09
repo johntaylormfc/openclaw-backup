@@ -8,7 +8,6 @@ from pathlib import Path
 
 WORKSPACE = Path(__file__).resolve().parent.parent
 NEW_DIR = WORKSPACE / "kanban" / "new"
-ACCEPTED_DIR = WORKSPACE / "kanban" / "accepted"
 
 def next_ticket_id() -> str:
     existing = []
@@ -157,13 +156,7 @@ def main() -> None:
     text = replace_field(text, "Last Updated", now)
     text = replace_section(text, "Approval Decision", f"Accepted on {now} and converted to ticket {ticket_id}.")
     text = replace_section(text, "Notes", f"Idea accepted and converted into live ticket {ticket_id}.")
-
-    ACCEPTED_DIR.mkdir(parents=True, exist_ok=True)
-    accepted_path = ACCEPTED_DIR / idea_path.name
-    accepted_path.write_text(text, encoding="utf-8")
-
-    if idea_path.exists():
-        idea_path.unlink()
+    idea_path.write_text(text, encoding="utf-8")
 
     print(ticket_path)
 

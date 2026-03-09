@@ -6,7 +6,7 @@ import re
 from datetime import datetime
 from pathlib import Path
 
-WORKSPACE = Path("/home/john/.openclaw/workspace")
+WORKSPACE = Path(__file__).resolve().parent.parent
 REJECTED_DIR = WORKSPACE / "kanban" / "rejected"
 
 def replace_field(text: str, label: str, value: str) -> str:

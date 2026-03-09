@@ -1,18 +1,18 @@
 # Ticket
-**ID:** OC-0004
-**Title:** Show OpenClaw filesystem kanban on dashboard
+**ID:** OC-0009
+**Title:** Test unique idea numbering
 **Status:** New
 **Outcome State:** Partial
 **Priority:** Medium
 **Owner:** Unassigned
-**Created:** 2026-03-09 09:15
-**Last Updated:** 2026-03-09 09:15
+**Created:** 2026-03-09 11:18
+**Last Updated:** 2026-03-09 11:18
 
 ## Goal
-Display the OpenClaw filesystem kanban board (kanban/new, kanban/idea, kanban/in-progress, etc.) on the existing dashboard website at port 5000
+Create a temporary idea to verify that idea IDs are no longer reused after ideas are accepted or rejected.
 
 ## Why
-To provide visibility into the kanban board directly from the dashboard without needing separate access to the OpenClaw workspace
+We need stable unique idea IDs before wiring ideas into the dashboard and cron flows.
 
 ## Acceptance Criteria
 - [ ] Scope is confirmed
@@ -22,7 +22,7 @@ To provide visibility into the kanban board directly from the dashboard without 
 - [ ] Ticket is only completed when all required work is genuinely finished
 
 ## Context
-- Source Idea: IDEA-0002
+- Source Idea: IDEA-0006
 - Environment: /home/john/.openclaw/workspace
 
 ## Task Checklist
@@ -34,10 +34,10 @@ To provide visibility into the kanban board directly from the dashboard without 
 
 ## Activity Log
 ### Entries
-- **Timestamp:** 2026-03-09 09:15  
+- **Timestamp:** 2026-03-09 11:18  
   **Action:** Ticket created from accepted idea  
   **Result:** Ticket added to kanban/new  
-  **Why:** User accepted idea IDEA-0002  
+  **Why:** User accepted idea IDEA-0006  
   **Evidence:** Created via accept_idea.py  
   **Next Step:** Agent can pick up the ticket when requested
 
