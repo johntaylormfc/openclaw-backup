@@ -235,6 +235,11 @@ async function processEmails() {
     // Save state
     saveLastRun();
     
+    // Only notify if new tasks were created
+    if (newTasks > 0) {
+      console.log('\n✅ NEW TASKS CREATED - notifying user');
+    }
+    
   } catch (e) {
     console.error('Error:', e.message);
     if (e.message.includes('invalid_grant')) {
