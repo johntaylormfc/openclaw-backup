@@ -12,13 +12,14 @@ const CONFIG_PATH = '/home/john/.openclaw/workspace/config';
 const WORKSPACE_PATH = '/home/john/.openclaw/workspace';
 
 // Load credentials
+const creds = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/google-oauth.json`, 'utf8'));
 const gmailCreds = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/google-oauth-token.json`, 'utf8'));
 
-const oauth2Client = new google.auth.OAuth2(gmailCreds.client_id, gmailCreds.client_secret, 'http://localhost');
+const oauth2Client = new google.auth.OAuth2(creds.web.client_id, creds.web.client_secret, 'http://localhost');
 oauth2Client.setCredentials({
   access_token: gmailCreds.access_token,
   refresh_token: gmailCreds.refresh_token,
-  scope: gmailCreds.scopes,
+  scope: gmailCreds.scope,
   token_type: 'Bearer',
   expiry_date: gmailCreds.expiry_date
 });

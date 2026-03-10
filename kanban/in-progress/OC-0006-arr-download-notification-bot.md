@@ -1,7 +1,7 @@
 # Ticket
 **ID:** OC-0006
 **Title:** ARR download notification bot
-**Status:** Blocked
+**Status:** In Progress
 **Outcome State:** Partial
 **Priority:** Medium
 **Owner:** Unassigned
@@ -53,51 +53,19 @@ Analyzed the ARR stack. Sonarr, Radarr, and Readarr all support webhook notifica
 
 ## Blocker
 
-### Blocker Summary
-**BLOCKED - Awaiting input on notification method**
+*Resolved - John confirmed WhatsApp via WhatsApp on 2026-03-10*
 
-### What Was Completed
-- Reviewed docker-compose.yml - identified Sonarr (8989), Radarr (7878), Readarr (8787) containers
-- Confirmed ARR apps support webhook notifications
-- Analyzed two implementation options
+### Resolution
+- **Notification Method:** WhatsApp (via OpenClaw)
+- **Events:** All (download complete, import, grab, errors)
+- **Integration:** Existing arr-dashboard service
 
-### What Failed
-- Cannot proceed without knowing preferred notification channel
+### Next Step
+Implement the webhook receiver and WhatsApp notification flow
 
-### Why It Failed
-- Multiple valid implementation approaches exist; need user preference to proceed
-
-### Evidence
-- Sonarr supports Custom Script and Webhook notifications
-- Radarr supports Webhook notifications  
-- Readarr supports Webhook notifications
-- Two viable options identified (see below)
-
-### Why This Blocks Completion
-- Cannot design/build solution without knowing which notification channel to use
-
-### What You Need To Do
-**Please confirm:**
-
-1. **Notification Method** - Which do you prefer?
-   - **Option A: Telegram Bot** (Simpler - just need a bot token from @BotFather)
-   - **Option B: WhatsApp** (Uses your existing OpenClaw WhatsApp integration - more complex setup)
-
-2. **Events to notify on** - Which triggers?
-   - Download complete
-   - Media imported
-   - Grab events
-   - Errors/failures
-   - All of the above
-
-3. **Webhook endpoint** - Do you want a dedicated service, or should it integrate with existing arr-dashboard?
-
-### Next Step After Unblock
-Once you confirm the notification method, I can:
-1. Set up the webhook receiver service
-2. Configure Telegram bot OR WhatsApp integration
-3. Update ARR app webhook settings
-4. Test end-to-end
-
-## Completion Summary
-Not complete.
+- **Timestamp:** 2026-03-10 03:47  
+  **Action:** Unblocked - John confirmed WhatsApp  
+  **Result:** Ticket moved to In Progress  
+  **Why:** John replied "Via whatsapp please" confirming notification method  
+  **Evidence:** WhatsApp message from +447967688452  
+  **Next Step:** Implement webhook receiver for ARR apps → send notifications via OpenClaw WhatsApp

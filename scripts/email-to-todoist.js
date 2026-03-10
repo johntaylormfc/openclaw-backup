@@ -32,7 +32,11 @@ if (!fs.existsSync(tokenPath)) {
   
   const authUrl = oauth2Client.generateAuthUrl({
     access_type: 'offline',
-    scope: ['https://www.googleapis.com/auth/gmail.readonly']
+    scope: [
+      'https://www.googleapis.com/auth/gmail.readonly',
+      'https://www.googleapis.com/auth/calendar.readonly',
+      'https://www.googleapis.com/auth/drive.readonly'
+    ]
   });
   
   console.log('🔗 Open this URL in your browser to authenticate:\n');
