@@ -29,10 +29,19 @@
 - Rebuild after any changes: `npm run build`
 - API proxy config: /home/john/ARR/dashboard-v2/nginx/default.conf
 
-## Setup
-- Dashboard (old): http://192.168.1.146:4000
-- DB: /data/dashboard.db (NOT /tmp - persistent across restarts)
-- Container: arr-dashboard
+## ARR Stack Services
+
+### Sonarr
+- URL: http://192.168.1.146:8989
+- API Key: e990b7b615554edeaca78919ade1e975 (updated March 9, 2026)
+- Container: 3f1a866150fc_sonarr
+
+### Radarr
+- URL: http://192.168.1.146:7878
+
+## Dashboard (old)
+- URL: http://192.168.1.146:4000
+- DB: /data/dashboard.db
 
 ## John's Preferences
 - Ideas → kanban queue
@@ -75,6 +84,7 @@
 - **Weekly health monitoring**: Created automated scans for root files and cron health (runs Wed/Sun 5am)
 - **Sensitive data in memory**: Password exposed in March 5th memory - need scrubber for future
 - **BC Container tenant parameter**: March 6th - BC containers require `?tenant=default` in URL after Docker restart
+- **Weekly review effectiveness**: March 8th - Daily Review cron successfully identifies patterns and blockers; helps maintain system health awareness
 
 ## Known Issues
 - Exec tool can hang after system compaction
@@ -154,7 +164,7 @@ When contract management features change:
 - Smart loading: only projects.md + MEMORY.md at startup. Daily notes + vector search = on-demand only. Saves ~80% token cost vs loading everything.
 - **Vector memory flush**: DISABLED (March 5, 2026) - Gemini API returning 403 errors
 
-Last updated: 2026-03-08
+Last updated: 2026-03-09
 
 ## Research Policy
 - If question involves facts, product specs, pricing, versions, "latest", policies: do NOT answer from memory
