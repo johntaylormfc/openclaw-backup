@@ -142,17 +142,18 @@ When contract management features change:
 - Use: `sshpass -p 'BotBotBot!' ssh bot@192.168.1.228 "command"`
 
 **Creating new containers:**
-- Use script: `pwsh -File C:/Users/bot/New-BCContainerRemote.ps1 -ContainerName <name> -WebPort <port> -DevPort <devport> -Username john -Password John1234`
+- Use script: `pwsh -File C:/Users/bot/New-BCContainerRemote.ps1 -ContainerName <name> -WebPort <port> -DevPort <devport> -ODataPort <odataport> -Username john -Password John1234`
 - ALWAYS use lowercase username 'john' (uppercase JOHN fails!)
 - Create separate container for each extension to avoid conflicts
-- Increment WebPort (18207, 18208...) for each new container
+- Increment WebPort (18207, 18208...) and DevPort (19207, 19208...) for each new container
 
 **Extension development workflow:**
 1. Create AL extension files in /home/john/<ExtensionName>/
 2. Create VS Code config (.vscode/launch.json, .vscode/settings.json) pointing to container
-3. Copy to GSPRO: `sshpass -p 'BotBotBot!' scp -r /home/john/<ExtensionName> bot@192.168.1.228:C:/`
-4. Push to GitHub
-5. Publish from VS Code → AL:Go
+3. **IMPORTANT:** In launch.json, use DEV SERVICES port (e.g., 19206), NOT web port
+4. Copy to GSPRO: `sshpass -p 'BotBotBot!' scp -r /home/john/<ExtensionName> bot@192.168.1.228:C:/`
+5. Push to GitHub
+6. Publish from VS Code → AL:Go
 
 **Note:** BC containers require `?tenant=default` in URL after Docker restart (added March 6, 2026)
 

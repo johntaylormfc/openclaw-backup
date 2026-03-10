@@ -28,6 +28,8 @@ Then apply these rules strictly:
 - move it to in-progress when work starts
 - keep the activity log updated
 - move it to blocked if a required dependency prevents completion
+- move it to blocked if the next step depends on John’s decision, approval, confirmation, scope choice, or other user input
+- when blocked for user input, make the blocker and current position explicitly say what John needs to decide
 - move it to complete only if all acceptance criteria are genuinely satisfied
 
 6. Never process more than one ticket in a single run.

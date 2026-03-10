@@ -29,10 +29,11 @@ when work starts.
 - Activity Log
 - Current Position
 
-5. If any required dependency, permission, missing input, technical issue, or failed step prevents completion:
+5. If any required dependency, permission, missing input, technical issue, failed step, or need for John's decision/approval/scope choice prevents completion:
 - move the ticket to /home/john/.openclaw/workspace/kanban/blocked/
 - fully complete the Blocker section
 - clearly state exactly what the user must do to unblock it
+- if blocked on John's decision, approval, confirmation, or scope choice, explicitly say what John needs to decide
 
 6. Only move a ticket to:
 /home/john/.openclaw/workspace/kanban/complete/

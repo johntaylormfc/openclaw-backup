@@ -1,12 +1,12 @@
 # Ticket
 **ID:** OC-0007
 **Title:** OpenClaw plugin auto-reload on failure
-**Status:** In Progress
-**Outcome State:** Partial
+**Status:** Blocked
+**Outcome State:** Waiting on Input
 **Priority:** Medium
 **Owner:** OpenClaw Agent
 **Created:** 2026-03-09 17:50
-**Last Updated:** 2026-03-10 03:21
+**Last Updated:** 2026-03-10 14:47
 
 ## Goal
 Implement automatic plugin reload/recovery when a plugin fails to load (like the WhatsApp createPluginRuntimeStore error). The gateway should attempt recovery after transient failures rather than staying in error state.
@@ -20,7 +20,7 @@ Plugins can fail to load (as seen with WhatsApp error). Auto-recovery would impr
 - [ ] Retry logic added to plugin loader
 - [ ] Configuration options for retry behavior added
 - [ ] Activity log is maintained
-- [ ] Ticket is blocked if a required dependency prevents completion
+- [x] Ticket is blocked if a required dependency prevents completion
 - [ ] Ticket is only completed when all required work is genuinely finished
 
 ## Context
@@ -47,50 +47,54 @@ Plugins can fail to load (as seen with WhatsApp error). Auto-recovery would impr
   **Result:** Ticket added to kanban/new  
   **Why:** User accepted idea IDEA-0017  
   **Evidence:** Created via accept_idea.py  
-  **Next Step:** Agent can pick up the ticket when requested
 
 - **Timestamp:** 2026-03-10 03:21  
   **Action:** Ticket moved to In Progress  
   **Result:** Started scope analysis  
   **Why:** Cron job picked up oldest ticket from kanban/new  
   **Evidence:** Analyzed src/plugins/loader.ts (~600 lines)  
-  **Next Step:** Confirm scope and propose implementation approach
 
 - **Timestamp:** 2026-03-10 03:25  
   **Action:** Scope analysis completed  
   **Result:** Confirmed plugin loading architecture  
   **Why:** Need to understand current error handling before proposing changes  
   **Evidence:** Found recordPluginError() function handles failures; no retry mechanism exists  
-  **Next Step:** Propose implementation approach for user approval
+
+- **Timestamp:** 2026-03-10 14:47  
+  **Action:** Ticket moved to Blocked  
+  **Result:** Status updated to Blocked  
+  **Why:** Waiting on user approval of implementation approach  
+  **Evidence:** Proposed 3 approaches, need John to choose  
 
 ## Current Position
-Scope confirmed. Analyzed plugin loading system in /home/john/openclaw/src/plugins/loader.ts. Found:
-- Plugins load once at gateway startup via loadOpenClawPlugins()
-- Failed plugins are marked with status "error" and recorded in diagnostics
-- No automatic retry/reload mechanism exists
-
-The feature requires design decisions before implementation.
+Scope analysis complete. Three implementation approaches proposed. Ticket is waiting for John to review and approve an approach before implementation can proceed.
 
 ## Blocker
 
 ### Blocker Summary
+**BLOCKED - Waiting on user input for implementation approach**
 
 ### What Was Completed
-- Analyzed plugin loading architecture
-- Identified key files and functions
-- Confirmed no retry mechanism exists
+- Analyzed plugin loading architecture in src/plugins/loader.ts
+- Identified key functions: loadOpenClawPlugins(), recordPluginError()
+- Confirmed no retry mechanism currently exists
+- Proposed 3 implementation approaches
 
 ### What Failed
+Cannot proceed with implementation without user approval of approach
 
 ### Why It Failed
+Multiple valid implementation options exist - need user preference to proceed
 
 ### Evidence
+- Plugin loading code reviewed
+- Proposed approaches documented in ticket
 
 ### Why This Blocks Completion
-The ticket needs user input on implementation approach before work can continue.
+The implementation cannot begin until John reviews and approves one of the proposed approaches
 
 ### What You Need To Do
-Review the proposed implementation approach below and confirm if we should proceed:
+Review the proposed approaches below and confirm which to implement:
 
 **Proposed Approach:**
 1. Add optional retry config to plugins (maxRetries, retryDelayMs)
