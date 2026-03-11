@@ -2,11 +2,11 @@
 
 **ID:** IDEA-0026
 **Title:** OpenClaw One-Click VPS Deployment Automation
-**Status:** Idea
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Cron
 **Created:** 2026-03-09
-**Last Updated:** 2026-03-09
+**Last Updated:** 2026-03-11 21:29
 
 ## Summary
 Create an automated script to deploy OpenClaw on a VPS with one command, including security hardening, SSL/TLS setup, and Telegram/WhatsApp channel configuration.
@@ -42,10 +42,10 @@ From search results (March 2026):
 Create a bash script in ~/openclaw/scripts/ or similar that handles the full deployment workflow.
 
 ## Approval Decision
-Pending
+Rejected on 2026-03-11 21:29.
 
 ## Rejection Reason
-
+Not approved at this time
 
 ## Notes
-This would be similar to the official install.sh but focused on VPS deployment with security hardening baked in.
+Idea rejected on 2026-03-11 21:29. Reason: Not approved at this time

@@ -2,11 +2,11 @@
 
 **ID:** IDEA-0029
 **Title:** ARR Stack Configuration Backup Automation
-**Status:** Idea
+**Status:** Accepted
 **Suggested Priority:** High
 **Source:** Cron
 **Created:** 2026-03-09
-**Last Updated:** 2026-03-09
+**Last Updated:** 2026-03-11 21:30
 
 ## Summary
 Implement automated backups of all ARR application configurations (Sonarr, Radarr, Prowlarr, qBittorrent, etc.) to a separate backup location with rotation.
@@ -32,9 +32,9 @@ Related: Existing ARR stack at /home/john/ARR/
 Map out all config directories and create initial backup script.
 
 ## Approval Decision
-Pending
+Accepted on 2026-03-11 21:30 and converted to ticket OC-0013.
 
 ## Rejection Reason
 
 ## Notes
-Could use existing restore points system (IDEA-0025) as foundation. Backup should exclude logs and cache.
+Idea accepted and converted into live ticket OC-0013.

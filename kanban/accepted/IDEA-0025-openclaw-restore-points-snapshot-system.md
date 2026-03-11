@@ -2,11 +2,11 @@
 
 **ID:** IDEA-0025
 **Title:** OpenClaw Restore Points / Snapshot System
-**Status:** Idea
+**Status:** Accepted
 **Suggested Priority:** Medium
 **Source:** Cron
 **Created:** 2026-03-09
-**Last Updated:** 2026-03-09
+**Last Updated:** 2026-03-11 21:29
 
 ## Summary
 Implement a restore point/snapshot system for OpenClaw that allows users to easily backup and restore their configuration, memory, skills, and channel settings.
@@ -34,10 +34,10 @@ From YouTube search results:
 Create a CLI tool or shell script that bundles the key OpenClaw directories into restore points and provides restore functionality.
 
 ## Approval Decision
-Pending
+Accepted on 2026-03-11 21:29 and converted to ticket OC-0011.
 
 ## Rejection Reason
 
 
 ## Notes
-Would complement the existing plugin auto-reload idea (IDEA-0017) by providing recovery options when configurations break.
+Idea accepted and converted into live ticket OC-0011.

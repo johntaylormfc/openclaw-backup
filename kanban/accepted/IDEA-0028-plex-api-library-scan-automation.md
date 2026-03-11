@@ -2,11 +2,11 @@
 
 **ID:** IDEA-0028
 **Title:** Plex API Library Scan Automation After Downloads
-**Status:** Idea
+**Status:** Accepted
 **Suggested Priority:** Medium
 **Source:** Cron
 **Created:** 2026-03-09
-**Last Updated:** 2026-03-09
+**Last Updated:** 2026-03-11 21:30
 
 ## Summary
 Use the Plex API to automatically trigger library scans after Radarr imports new media, ensuring newly downloaded content appears in Plex without manual refresh.
@@ -32,9 +32,9 @@ Related: Existing Radarr and Plex setup in /home/john/ARR/
 Research Plex API authentication and library scan endpoint, then prototype automation.
 
 ## Approval Decision
-Pending
+Accepted on 2026-03-11 21:30 and converted to ticket OC-0012.
 
 ## Rejection Reason
 
 ## Notes
-May need Plex API key/token. Consider using webhooks if available in Radarr.
+Idea accepted and converted into live ticket OC-0012.
