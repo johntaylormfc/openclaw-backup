@@ -1,7 +1,7 @@
 # Ticket
 **ID:** OC-0008
 **Title:** OpenClaw cron job dashboard UI
-**Status:** Blocked
+**Status:** In Progress
 **Outcome State:** Waiting on Input
 **Priority:** Medium
 **Owner:** ARR_Bot
@@ -28,7 +28,7 @@ Currently cron jobs are invisible. A dashboard view would provide visibility int
 ## Task Checklist
 - [x] Analyse request
 - [x] Prepare approach
-- [ ] Implement changes
+- [x] Implement changes
 - [ ] Validate result
 - [ ] Write summary
 
@@ -68,8 +68,24 @@ Backend API (PUT /api/cronjobs/:id/toggle) is implemented and tested. Ticket is 
 
 ## Blocker
 
-### Blocker Summary
-**BLOCKED - Waiting on user decision about implementation scope**
+*N/A - Unblocked by user decision on implementation scope*
+
+## Activity Log
+### Entries
+- **Timestamp:** 2026-03-11 02:28  
+  **Action:** Implemented toggle switch in Cron.jsx  
+  **Result:** Added toggle button UI + API method  
+  **Why:** User approved Option 1 (Full scope)  
+  **Evidence:** Rebuilt dashboard successfully  
+
+- **Timestamp:** 2026-03-11 02:25  
+  **Action:** Ticket unblocked by user  
+  **Result:** Moved to In Progress  
+  **Why:** User approved Option 1 (Full: toggle switch + connect to existing API)  
+  **Evidence:** Via WhatsApp message  
+
+- **Timestamp:** 2026-03-09 17:50  
+  **Action:** Ticket created from accepted idea
 
 ### What Was Completed
 - Analyzed Cron.jsx and backend API

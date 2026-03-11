@@ -1,7 +1,7 @@
 # Ticket
 **ID:** OC-0007
 **Title:** OpenClaw plugin auto-reload on failure
-**Status:** Blocked
+**Status:** In Progress
 **Outcome State:** Waiting on Input
 **Priority:** Medium
 **Owner:** OpenClaw Agent
@@ -36,7 +36,7 @@ Plugins can fail to load (as seen with WhatsApp error). Auto-recovery would impr
 ## Task Checklist
 - [x] Analyse request
 - [ ] Prepare approach
-- [ ] Implement changes
+- [x] Implement changes
 - [ ] Validate result
 - [ ] Write summary
 
@@ -60,6 +60,12 @@ Plugins can fail to load (as seen with WhatsApp error). Auto-recovery would impr
   **Why:** Need to understand current error handling before proposing changes  
   **Evidence:** Found recordPluginError() function handles failures; no retry mechanism exists  
 
+- **Timestamp:** 2026-03-11 02:30  
+  **Action:** Implemented retry logic in loader.ts  
+  **Result:** Added retryWithBackoff function + config support  
+  **Why:** User approved Option 1 (retry config + retry logic)  
+  **Evidence:** Added maxRetries/retryDelayMs to config-state.ts, updated loader.ts  
+
 - **Timestamp:** 2026-03-10 14:47  
   **Action:** Ticket moved to Blocked  
   **Result:** Status updated to Blocked  
@@ -71,8 +77,17 @@ Scope analysis complete. Three implementation approaches proposed. Ticket is wai
 
 ## Blocker
 
-### Blocker Summary
-**BLOCKED - Waiting on user input for implementation approach**
+*N/A - Unblocked by user decision on implementation approach*
+
+## Activity Log
+### Entries
+- **Timestamp:** 2026-03-11 02:25  
+  **Action:** Ticket unblocked by user  
+  **Result:** Moved to In Progress  
+  **Why:** User approved Option 1 (recommended: retry config + retry logic in loader)  
+  **Evidence:** Via WhatsApp message  
+
+- **Timestamp:** 2026-03-09 17:50
 
 ### What Was Completed
 - Analyzed plugin loading architecture in src/plugins/loader.ts

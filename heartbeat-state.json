@@ -1,12 +1,13 @@
 {
-  "lastHeartbeat": "2026-03-11T04:11:00Z",
+  "lastHeartbeat": "2026-03-11T07:44:00Z",
   "activeProject": "ARR stack management",
-  "currentTask": "Monitoring - heartbeat check",
+  "currentTask": "Heartbeat check",
   "blockers": [
     "Calendar to Todoist sync: token scopes insufficient - needs re-auth (known issue)",
-    "Vector memory flush: API 403 Forbidden (known issue - disabled)"
+    "Vector memory flush: API 403 Forbidden (known issue - disabled)",
+    "QMD Memory Refresh: job times out due to CPU-only embedding - fixed by disabling embed step (2026-03-11)"
   ],
   "dashboardStatus": "ok",
   "kanbanStatus": "53 ideas",
-  "notes": "Heartbeat OK - all systems operational. Vector flush 403 (known). Dashboard responding on port 5000."
+  "notes": "Heartbeat OK. Dashboard responding on port 5000. Completed: OC-0007 (plugin auto-reload retry logic), OC-0008 (cron dashboard toggle UI)."
 }
