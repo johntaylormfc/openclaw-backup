@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-0047
 **Title:** Implement Per-Task LLM Routing (Switch Between Different Models)
-**Status:** Idea
+**Status:** Accepted
 **Suggested Priority:** Medium
 **Source:** Cron
 **Created:** 2026-03-11
-**Last Updated:** 2026-03-11
+**Last Updated:** 2026-03-11 22:51
 
 ## Summary
 Enable OpenClaw to route different types of tasks to different LLM providers (e.g., use Claude Max for complex reasoning, cheaper APIs for simple tasks). YouTube tutorials highlight this as a key feature - using different LLMs per task and switching between Claude Max vs API.
@@ -33,9 +33,9 @@ A configuration system that defines which LLM to use based on:
 Research current LLM configuration options and document what's possible with existing setup.
 
 ## Approval Decision
-Pending
+Accepted on 2026-03-11 22:51 and converted to ticket OC-0016.
 
 ## Rejection Reason
 
 ## Notes
-This idea came from the YouTube Ideas cron job scanning for OpenClaw tutorials.
+Idea accepted and converted into live ticket OC-0016.

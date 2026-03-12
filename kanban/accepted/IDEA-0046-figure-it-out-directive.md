@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-0046
 **Title:** Implement "Figure It Out" Autonomous Directive for Agents
-**Status:** Idea
+**Status:** Accepted
 **Suggested Priority:** Medium
 **Source:** Cron
 **Created:** 2026-03-11
-**Last Updated:** 2026-03-11
+**Last Updated:** 2026-03-11 22:51
 
 ## Summary
 Add a "Figure It Out" directive/configuration option that enables OpenClaw agents to make autonomous decisions when encountering unknown tasks, rather than asking the user for clarification. This appears to be a key feature highlighted in popular YouTube tutorials (Duncan Rogoff's "OpenClaw Use Cases" video has 101k views).
@@ -30,9 +30,9 @@ Agents should have a configurable autonomy level that determines when they attem
 Research how other OpenClaw users implement this directive and document best practices for john's ARR stack.
 
 ## Approval Decision
-Pending
+Accepted on 2026-03-11 22:51 and converted to ticket OC-0017.
 
 ## Rejection Reason
 
 ## Notes
-This idea came from the YouTube Ideas cron job scanning for OpenClaw tutorials.
+Idea accepted and converted into live ticket OC-0017.

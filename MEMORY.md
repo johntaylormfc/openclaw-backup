@@ -85,6 +85,7 @@
 - **Sensitive data in memory**: Password exposed in March 5th memory - need scrubber for future
 - **BC Container tenant parameter**: March 6th - BC containers require `?tenant=default` in URL after Docker restart
 - **Weekly review effectiveness**: March 8th - Daily Review cron successfully identifies patterns and blockers; helps maintain system health awareness
+- **Memory logging insight**: March 11th - Sparse daily logs (heartbeat only) reduce value of Daily Review; need more detailed session capture
 
 ## Known Issues
 - Exec tool can hang after system compaction
