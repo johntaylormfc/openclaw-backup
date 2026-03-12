@@ -189,3 +189,13 @@ Last updated: 2026-03-09
 - Safe Change Policy: show current state, explain change, provide rollback steps
 - Token Efficient: bullet points, avoid repetition, summarize if >200 lines
 - Multi-Role: Planner → Executor → Reviewer → Operator structure
+
+<!-- managed-memory-status:start -->
+## Current Memory Mode
+- QMD Memory Refresh: **disabled intentionally**
+- Semantic Memory Index: **disabled intentionally**
+- Weekly MEMORY.md Auto-Curation (MiniMax): **enabled**
+- Current memory mode: **SQLite/text search + MEMORY.md curation**
+- `main.sqlite` still contains vector-related tables, but `chunks_vec` is not usable on this machine because the `vec0` module is unavailable
+- Recommendation: keep vector memory off unless you later choose to fix local vector support deliberately
+<!-- managed-memory-status:end -->

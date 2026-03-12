@@ -3,10 +3,9 @@
   "activeProject": "ARR stack management",
   "currentTask": "Heartbeat check",
   "blockers": [
-    "Calendar to Todoist sync: token scopes insufficient - needs re-auth (known issue)",
-    "Vector memory flush: API 403 Forbidden (known issue - disabled)"
+    "Calendar to Todoist sync: token scopes insufficient - needs re-auth (known issue)"
   ],
   "dashboardStatus": "ok",
   "kanbanStatus": "53 ideas",
-  "notes": "Heartbeat OK. Dashboard responding on port 5000. Completed: OC-0007 (plugin auto-reload retry logic), OC-0008 (cron dashboard toggle UI). QMD Memory Refresh fixed."
+  "notes": "Heartbeat OK. Dashboard responding on port 5000. Completed: OC-0007 (plugin auto-reload retry logic), OC-0008 (cron dashboard toggle UI). Memory mode simplified: QMD Memory Refresh and Semantic Memory Index are intentionally disabled; Weekly MEMORY.md Auto-Curation (MiniMax) remains enabled."
 }

@@ -29,3 +29,12 @@ Backup first:
 ## Vector Memory Flush (every heartbeat)
 Run: python3 ~/.openclaw/workspace/skills/vector-memory/scripts/memory_flush.py
 If total_stored = 0, that is fine — means nothing new to embed.
+
+<!-- managed-memory-status:start -->
+## Memory Status
+- QMD Memory Refresh: **disabled intentionally**
+- Semantic Memory Index: **disabled intentionally**
+- Weekly MEMORY.md Auto-Curation (MiniMax): **enabled**
+- Current approach: **text/FTS memory + curated MEMORY.md**
+- Vector indexing is **not currently in use**
+<!-- managed-memory-status:end -->
