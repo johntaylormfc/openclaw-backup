@@ -86,6 +86,9 @@
 - **BC Container tenant parameter**: March 6th - BC containers require `?tenant=default` in URL after Docker restart
 - **Weekly review effectiveness**: March 8th - Daily Review cron successfully identifies patterns and blockers; helps maintain system health awareness
 - **Memory logging insight**: March 11th - Sparse daily logs (heartbeat only) reduce value of Daily Review; need more detailed session capture
+- **WhatsApp API on port 9001**: March 12th - Webhook notifier runs on port 9001, not dashboard ports - use curl http://localhost:9001/api/whatsapp/send
+- **Git branch variability**: March 12th - openclaw-backup repo uses 'master' branch, not 'main' - check before pushing
+- **gdrive-sync timeout**: Research sync needs >120s timeout - consider 180s for large file sets
 
 ## Known Issues
 - Exec tool can hang after system compaction
