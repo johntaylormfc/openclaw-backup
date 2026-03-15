@@ -1,5 +1,5 @@
 {
-  "lastHeartbeat": "2026-03-11T15:24:00Z",
+  "lastHeartbeat": "2026-03-15T02:10:00Z",
   "activeProject": "ARR stack management",
   "currentTask": "Heartbeat check",
   "blockers": [
@@ -7,5 +7,5 @@
   ],
   "dashboardStatus": "ok",
   "kanbanStatus": "53 ideas",
-  "notes": "Heartbeat OK. Dashboard responding on port 5000. Completed: OC-0007 (plugin auto-reload retry logic), OC-0008 (cron dashboard toggle UI). Memory mode simplified: QMD Memory Refresh and Semantic Memory Index are intentionally disabled; Weekly MEMORY.md Auto-Curation (MiniMax) remains enabled."
+  "notes": "Heartbeat OK. Dashboard responding on port 5000. Kanban API responding."
 }
