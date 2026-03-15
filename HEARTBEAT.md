@@ -1,19 +1,9 @@
 # HEARTBEAT.md
 
 ## SMART MEMORY LOADING (do this first, every heartbeat)
-Before anything else, load context efficiently:
-1. Read memory/projects.md — compact project registry (~1K tokens)
-2. Read MEMORY.md — curated long-term memory (~3K tokens)
+1. Read memory/projects.md — compact project registry
+2. Read MEMORY.md — curated long-term memory
 3. Only load daily notes (memory/YYYY-MM-DD.md) when asked about specific past work
-4. Only run vector search when a specific question about past work comes up
-
-This gives full context at ~10% of the token cost. Daily notes are archives, not runtime docs.
-
-## Before Dashboard Changes
-Backup first:
-- Dashboard: `cp /home/john/ARR/dashboard/index.html index.html.backup-$(date +%Y%m%d-%H%M)`
-- Database: `cp /home/john/.openclaw/workspace/dashboard-data/dashboard.db dashboard.db.backup-$(date +%Y%m%d-%H%M)`
-- Sync: `docker cp index.html arr-dashboard:/app/index.html`
 
 ## Checklist (every heartbeat)
 - [ ] Update heartbeat-state.json: active project, current task, blockers
@@ -21,20 +11,20 @@ Backup first:
 - [ ] Check kanban: `curl -s http://localhost:4000/api/kanban | jq '.ideas | length'`
 - [ ] Pick backlog task → work → complete
 
+## Before Dashboard Changes
+Backup first:
+- Dashboard: `cp /home/john/ARR/dashboard/index.html index.html.backup-$(date +%Y%m%d-%H%M)`
+- Database: `cp /home/john/.openclaw/workspace/dashboard-data/dashboard.db dashboard.db.backup-$(date +%Y%m%d-%H%M)`
+- Sync: `docker cp index.html arr-dashboard:/app/index.html`
+
 ## Memory Maintenance (once/day)
 - Read/create today's memory file
 - Log significant events
 - Update MEMORY.md
 
-## Vector Memory Flush (every heartbeat)
-Run: python3 ~/.openclaw/workspace/skills/vector-memory/scripts/memory_flush.py
-If total_stored = 0, that is fine — means nothing new to embed.
-
 <!-- managed-memory-status:start -->
 ## Memory Status
-- QMD Memory Refresh: **disabled intentionally**
-- Semantic Memory Index: **disabled intentionally**
-- Weekly MEMORY.md Auto-Curation (MiniMax): **enabled**
-- Current approach: **text/FTS memory + curated MEMORY.md**
-- Vector indexing is **not currently in use**
+- QMD Memory Refresh: **disabled**
+- Semantic Memory Index: **disabled**
+- Weekly MEMORY.md Auto-Curation: **enabled**
 <!-- managed-memory-status:end -->

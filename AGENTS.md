@@ -1,88 +1,35 @@
 # OpenClaw Workspace Instructions
 
-This workspace uses the process documents stored in:
+This workspace uses process documents in /home/john/.openclaw/workspace/openclaw-docs/:
+- KANBAN.md, TICKET_TEMPLATE.md, AGENT_RULES.md, STATUS_RULES.md
 
-/home/john/.openclaw/workspace/openclaw-docs/
+## Mandatory Rules
+- Never mark Complete unless all acceptance criteria met and evidenced
+- If task cannot be completed, move to Blocked immediately with:
+  - what was completed, what failed, why, what user must do to unblock, next step
+- Always keep an activity log showing what was done and why
+- Status must reflect reality, not effort or optimism
 
-Agents must follow these files:
+## Ticket Creation
+If user asks to create/add/log/open/raise a ticket/task/card:
+- Use `create_ticket` skill
+- Create in /home/john/.openclaw/workspace/kanban/new/
+- Reply with the file created
 
-- KANBAN.md
-- TICKET_TEMPLATE.md
-- AGENT_RULES.md
-- STATUS_RULES.md
+## Idea Creation
+If user asks to create/add/log/suggest an idea:
+- Use `create_idea` skill
+- Create in /home/john/.openclaw/workspace/kanban/idea/
+- Keep as idea until explicitly accepted
+- Reply with the file created
 
-Mandatory rules:
-- Never mark a ticket Complete unless all required acceptance criteria are met and evidenced.
-- If any required task cannot be completed, move the ticket to Blocked immediately.
-- When blocking a ticket, clearly state:
-  - what was completed
-  - what failed
-  - why it failed
-  - why it prevents completion
-  - what the user must do to unblock it
-  - what the next step is after unblock
-- Always keep an activity log showing what was done and why.
-- Use the ticket template for all real tickets from New onward.
-- Status must reflect reality, not effort or optimism.
+## Ticket vs Idea
+- **Idea**: suggestion, user wants to consider later, cron proposing work, approval needed
+- **Ticket**: user clearly wants active work now, ready to pick up from kanban/new
 
-## Ticket Creation Rule
+## Idea Approval/Rejection
+- **Approve**: use `accept_idea` → convert to ticket in kanban/new/
+- **Reject**: use `reject_idea` → move to kanban/rejected/ with reason
 
-If the user asks in plain English to create, add, log, open, or raise a ticket, task, or card, use the `create_ticket` skill.
-
-Always:
-- create the ticket in /home/john/.openclaw/workspace/kanban/new/
-- base it on the Kanban template/process
-- reply with the file created
-
-Do not start work on the ticket unless the user explicitly asks to process it.
-
-## Idea Creation Rule
-
-If the user asks in plain English to create, add, log, or suggest an idea for future consideration, use the `create_idea` skill.
-
-Always:
-- create the idea in /home/john/.openclaw/workspace/kanban/idea/
-- keep it as an idea until explicitly accepted
-- reply with the file created
-
-Do not convert an idea into a live ticket unless the user explicitly asks to accept it.
-
-## Ticket vs Idea Rule
-
-Use an idea when:
-- the work is a suggestion
-- the user wants to consider it later
-- a cron job or another OpenClaw process is proposing work
-- approval is still needed
-
-Use a ticket when:
-- the user clearly wants active work created now
-- the task is ready to be picked up from kanban/new
-
-## Idea Approval Rule
-
-If the user asks to accept or approve an idea, use the `accept_idea` skill.
-
-Always:
-- convert the idea into a live ticket in /home/john/.openclaw/workspace/kanban/new/
-- update the original idea to show it was accepted
-- reply with the new ticket file created
-
-Do not start processing the new ticket unless the user explicitly asks.
-
-## Idea Rejection Rule
-
-If the user asks to reject or decline an idea, use the `reject_idea` skill.
-
-Always:
-- move the idea into /home/john/.openclaw/workspace/kanban/rejected/
-- record a rejection reason
-- reply with the rejected file path and the reason used
-
-## Idea Governance Rule
-
-Ideas in /home/john/.openclaw/workspace/kanban/idea/ are suggestions only.
-
-They must not be treated as live work until explicitly accepted.
-
-Cron jobs, automation, and other OpenClaw processes should create ideas for review, not live tickets, unless the user has explicitly asked for a live ticket.
+## Governance
+Ideas in kanban/idea/ are suggestions only - not live work until explicitly accepted.
