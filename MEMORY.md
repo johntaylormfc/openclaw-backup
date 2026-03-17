@@ -1,58 +1,71 @@
-# MEMORY.md - Curated Long-Term Memory
+# ARR_Bot Memory
 
-> **Last updated:** 2026-03-17 17:13 UTC
+## CRITICAL: The Site (Dashboard)
+- **URL**: http://192.168.1.146:5000 (port 4000 = old, ignore)
+- Port 5000 = NEW BC Dev Limited Dashboard with API
+- Edit in /home/john/ARR/dashboard-v2/, NOT /home/john/ARR/dashboard/
 
----
+## Dashboard Architecture
+- Frontend: /home/john/ARR/dashboard-v2/ (React + Vite)
+- Build: `npm run build`
+- Containers: arr-dashboard (4000), arr-dashboard-v2 (5000, nginx)
 
-## 📖 README: Where Things Go
+## When Dashboard Breaks
+1. Check containers running: `docker ps`
+2. Rebuild: `cd /home/john/ARR/dashboard-v2 && npm run build`
+3. Restart: `docker restart arr-dashboard arr-dashboard-v2`
 
-This file is your **curated long-term memory** — distilled facts, decisions, preferences, and lessons that should persist across sessions.
+## ARR Stack
+| Service | URL | API Key |
+|---------|-----|---------|
+| Sonarr | http://192.168.1.146:8989 | e990b7b615554edeaca78919ade1e975 |
+| Radarr | http://192.168.1.146:7878 | - |
 
-| File | Purpose | How to Use |
-|------|---------|------------|
-| **MEMORY.md** | Durable facts, decisions, preferences | Update when something important learned/decided |
-| **memory/YYYY-MM-DD.md** | Daily log, progress, notes | Append-only, one file per day |
-| **memory/projects.md** | Evergreen project context | Bullet lists, headings, current state |
-| **memory/runbooks.md** | Operational procedures | Step-by-step guides you reference |
-| **memory/pinned.md** | Must-not-forget constraints + focus | Short, critical info only |
+## John's Preferences
+- Ideas → kanban queue
+- PRs for GitHub changes
+- WhatsApp for communication
+- ALWAYS backup before dashboard changes
 
----
+## Key Patterns
+- Never restore database to fix UI issues
+- Use Chrome DevTools MCP for dashboard debugging
+- Gmail OAuth tokens expire mid-month - re-auth needed
+- BC containers require `?tenant=default` after restart
 
-## 🧠 Key Facts
+## Known Issues
+- Exec tool can hang after system compaction
+- Google Drive sync: Service Account quota limits
+- Vector memory flush: disabled (Gemini 403 errors)
 
-### System
-- **Machine:** Beelink (Linux Debian)
-- **OpenClaw Version:** 2026.3.13
-- **Gateway Port:** 18789
-- **Dashboard:** http://127.0.0.1:18789/
+## BC Container (GSPRO)
+| Container | Web Port | URL |
+|-----------|----------|-----|
+| bcdev | 18205 | http://192.168.1.228:18205/BC/?tenant=default |
+| glapproval | 18206 | http://192.168.1.228:18206/BC/?tenant=default |
 
-### Providers
-- **Primary Model:** minimax/MiniMax-M2.5
-- **Memory Search:** Disabled (no embedding provider — Minimax-only posture)
+Credentials: john / John1234 (lowercase!)
 
-### Services
-- **Gateway:** systemd user service, enabled + running
-- **WhatsApp:** Linked to +447967688452
+## Memory System
+- Daily notes: memory/YYYY-MM-DD.md (load on-demand)
+- MEMORY.md: curated long-term brain
+- projects.md: compact project registry
+- Vector memory: DISABLED (March 5, 2026)
 
----
+Last updated: 2026-03-17
 
-## 📋 Decisions
+## Daily Review Insights (March 17, 2026)
+- Arnold (OpenClaw restore & hardening) completed successfully
+- Memory audit fully restored - 23 files, runbooks created in harbor/
+- QMD implementation provides fallback when vector memory disabled
+- All 41 cron jobs healthy with 0 consecutive errors
+- OAuth tokens consistently expire mid-month - needs proactive refresh (recurring)
+- Weekend memory capture shows gaps (March 16 missing) - verify Saturday cron
 
-- Minimax-only posture (no Anthropic dependency)
-- Harbor workspace: `~/.openclaw/workspaces/bcdevltd/harbor/`
-- Memory directory: `~/.openclaw/workspace/memory/`
-
----
-
-## 🔧 Preferences
-
-- Gateway auth mode: token
-- Browser allowHostControl: enabled
-- Cron: enabled with 41 jobs
-
----
-
-## 📝 Lessons Learned
-
-_(Add lessons here as they're learned)_
-
+## Daily Review Insights (March 14, 2026)
+- Weekend memory capture working reliably at 10:00
+- Persistent issues from prior weeks still blocking:
+  - Calendar/Todoist OAuth scope problems
+  - Vector memory disabled (Gemini 403)
+  - gdrive-sync cron timeout
+- Pattern: OAuth tokens expire mid-month - needs proactive refresh schedule

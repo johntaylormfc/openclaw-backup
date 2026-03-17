@@ -1,11 +1,10 @@
 # USER.md - About Your Human
 
-- **Name:** John
-- **What to call them:** John
-- **Pronouns:** 
+- **Name:** john
+- **What to call them:** john
+- **Pronouns:** he/him
 - **Timezone:** Europe/London
-- **Notes:** Owner of bcdevltd, Beelink machine
+- **Notes:** Manages a Docker Compose stack for *ARR apps (Sonarr, Radarr, etc.) in /home/john/ARR.
 
 ## Context
-
-Running OpenClaw on Beelink (Linux Debian). Wants Minimax-only posture with restored cron jobs and harbor workspace.
+john wants ARR_Bot to be the expert on his /home/john/ARR/docker-compose.yml file and stack. I'll read it, understand it, and manage changes/updates periodically via docker commands.

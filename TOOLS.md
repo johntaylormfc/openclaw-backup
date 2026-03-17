@@ -1,40 +1,19 @@
 # TOOLS.md - Local Notes
 
-Skills define _how_ tools work. This file is for _your_ specifics — the stuff that's unique to your setup.
+## THE SITE (Dashboard) - CRITICAL
+- **URL**: http://192.168.1.146:5000 (NOT 4000!)
+- Port 4000 = old static site (don't use)
+- Port 5000 = NEW BC Dev Limited Dashboard with API
+- Source: /home/john/ARR/dashboard-v2/
+- Build: `cd /home/john/ARR/dashboard-v2 && npm run build`
+- Containers: arr-dashboard (port 4000), arr-dashboard-v2 (port 5000, nginx proxy)
 
-## What Goes Here
+## Quick Links (External Access)
+- Dashboard uses johntaylormfc.ddns.net
+- Update in: /home/john/ARR/dashboard-v2/src/utils/index.js
 
-Things like:
+## Chrome DevTools MCP
+- Use for dashboard testing/debugging
 
-- Camera names and locations
-- SSH hosts and aliases
-- Preferred voices for TTS
-- Speaker/room names
-- Device nicknames
-- Anything environment-specific
-
-## Examples
-
-```markdown
-### Cameras
-
-- living-room → Main area, 180° wide angle
-- front-door → Entrance, motion-triggered
-
-### SSH
-
-- home-server → 192.168.1.100, user: admin
-
-### TTS
-
-- Preferred voice: "Nova" (warm, slightly British)
-- Default speaker: Kitchen HomePod
-```
-
-## Why Separate?
-
-Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
-
----
-
-Add whatever helps you do your job. This is your cheat sheet.
+## SearXNG (local search)
+- http://127.0.0.1:8890

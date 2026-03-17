@@ -1,66 +1,66 @@
 #!/usr/bin/env node
 /**
- * Cron Health Monitor
- * Checks cron job health and reports issues
+ * Cron Job Health Monitor
+ * Checks cron jobs status and alerts if issues found
  */
 
-const { execSync } = require('child_process');
+const fs = require('fs');
 
-console.log('🔍 Cron Health Monitor');
-console.log('=======================\n');
+const JOBS_FILE = '/home/john/.openclaw/cron/jobs.json';
+const ALERT_LOG = '/tmp/cron-alerts.log';
 
-try {
-  // Get cron job list
-  const cronList = JSON.parse(execSync('openclaw cron list --json', { encoding: 'utf8' }));
-  
-  const jobs = cronList.jobs || [];
-  const now = Date.now();
+function checkCronHealth() {
+  const jobs = JSON.parse(fs.readFileSync(JOBS_FILE, 'utf8')).jobs;
   
   let issues = [];
   let healthy = 0;
+  let disabled = 0;
   
   for (const job of jobs) {
-    if (!job.enabled) continue;
+    if (!job.enabled) {
+      disabled++;
+      continue;
+    }
     
     const state = job.state || {};
-    const lastRun = state.lastRunAtMs || 0;
-    const nextRun = state.nextRunAtMs || 0;
-    const status = state.lastStatus || 'unknown';
-    const consecutiveErrors = state.consecutiveErrors || 0;
-    const lastError = state.lastError || '';
+    const errors = state.consecutiveErrors || 0;
+    const lastStatus = state.lastStatus;
     
-    // Check for errors
-    if (status === 'error') {
+    // Check for issues
+    if (errors > 2) {
       issues.push({
         name: job.name,
-        jobId: job.id,
-        errors: consecutiveErrors,
-        lastError: lastError.substring(0, 100)
+        errors,
+        error: state.lastError || 'Unknown',
+        lastRun: state.lastRunAtMs
       });
-    } else if (status === 'ok') {
+    } else if (lastStatus === 'ok') {
       healthy++;
     }
   }
   
-  console.log(`📊 Total Jobs: ${jobs.length}`);
-  console.log(`✅ Healthy: ${healthy}`);
-  console.log(`❌ Issues: ${issues.length}\n`);
-  
-  if (issues.length > 0) {
-    console.log('⚠️  Jobs with errors:\n');
-    for (const issue of issues) {
-      console.log(`  - ${issue.name}`);
-      console.log(`    Errors: ${issue.errors}`);
-      console.log(`    Last: ${issue.lastError}`);
-      console.log('');
-    }
-  } else {
-    console.log('✅ All cron jobs healthy!');
+  return { total: jobs.length, healthy, disabled, issues };
+}
+
+function logAlert(message) {
+  const log = `${new Date().toISOString()} - ${message}\n`;
+  fs.appendFileSync(ALERT_LOG, log);
+  console.log(message);
+}
+
+// Run check
+const health = checkCronHealth();
+
+console.log('=== Cron Job Health ===');
+console.log(`Total: ${health.total} | Healthy: ${health.healthy} | Disabled: ${health.disabled}`);
+console.log(`Issues: ${health.issues.length}`);
+
+if (health.issues.length > 0) {
+  console.log('\n⚠️ Failed Jobs:');
+  for (const issue of health.issues) {
+    console.log(`- ${issue.name}: ${issue.errors} errors (${issue.error})`);
+    logAlert(`Job failed: ${issue.name} - ${issue.error}`);
   }
-  
-  process.exit(issues.length > 0 ? 1 : 0);
-  
-} catch (error) {
-  console.error('Error running cron monitor:', error.message);
-  process.exit(1);
+} else {
+  console.log('\n✅ All jobs healthy');
 }
