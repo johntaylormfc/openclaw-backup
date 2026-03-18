@@ -1,0 +1,41 @@
+#!/bin/bash
+# BC Container List
+# Shows running BC containers with port info
+
+SCRIPT_DIR="$HOME/.openclaw/workspace/bc_reliability"
+PORTS_MAP="$SCRIPT_DIR/playbooks/ports_map.json"
+
+echo "=== BC Containers ==="
+echo ""
+
+# Get all BC containers
+docker ps -a --format '{{.Names}}\t{{.Status}}\t{{.Ports}}' | while read name status ports; do
+    if [[ "$name" == bc* ]]; then
+        # Look up ports
+        web_port=""
+        dev_port=""
+        if [ -f "$PORTS_MAP" ]; then
+            web_port=$(python3 - "$PORTS_MAP" "$name" << 'PYEOF'
+import json,sys
+d=json.load(open(sys.argv[1]))
+print(d.get(sys.argv[2],{}).get('web',''))
+PYEOF
+            )
+            dev_port=$(python3 - "$PORTS_MAP" "$name" << 'PYEOF'
+import json,sys
+d=json.load(open(sys.argv[1]))
+print(d.get(sys.argv[2],{}).get('dev',''))
+PYEOF
+            )
+        fi
+        
+        echo "Container: $name"
+        echo "Status: $status"
+        [ -n "$web_port" ] && echo "Web Port: $web_port"
+        [ -n "$dev_port" ] && echo "Dev Port: $dev_port"
+        echo ""
+    fi
+done
+
+echo "=== Total ==="
+docker ps -a --format '{{.Names}}' | grep -c "^bc" || echo "0"

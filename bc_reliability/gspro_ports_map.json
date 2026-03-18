@@ -1,0 +1,9 @@
+{
+  "openclaw-contracts": {
+    "web_port": 18200,
+    "dev_port": 19200,
+    "host": "192.168.1.228",
+    "tenant": "default",
+    "created": "2026-03-06T15:36:00"
+  }
+}

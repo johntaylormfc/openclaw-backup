@@ -1,0 +1,77 @@
+#!/bin/bash
+# BC DNS Records Generator
+# Usage: bc-dns
+
+SCRIPT_DIR="$HOME/.openclaw/workspace/bc_reliability"
+PORTS_MAP="$SCRIPT_DIR/playbooks/ports_map.json"
+DNS_DIR="$SCRIPT_DIR/dns"
+HOST_IP=$(hostname -I | awk '{print $1}')
+
+mkdir -p "$DNS_DIR"
+
+echo "=== BC DNS Records Generator ==="
+echo "Host IP: $HOST_IP"
+echo ""
+
+# Generate CSV
+echo "hostname,ip" > "$DNS_DIR/A-records.csv"
+
+# Generate hosts snippet
+cat > "$DNS_DIR/hosts_file_snippet.txt << 'EOF'
+# BC Containers - Add to Windows hosts file
+# Run Notepad as Administrator and add these lines:
+EOF
+
+# Generate UniFi notes
+cat > "$DNS_DIR/unifi_dns_notes.md << 'EOF'
+# UniFi Local DNS Setup
+
+## Steps
+1. Log into UniFi Controller
+2. Go to Settings > Networks > LAN
+3. Under "DHCP Name Server", add static entries:
+EOF
+
+# Process ports map
+if [ -f "$PORTS_MAP" ]; then
+    python3 - "$PORTS_MAP" "$HOST_IP" << 'PYEOF' > /dev/null
+import json, sys
+d = json.load(open(sys.argv[1]))
+host_ip = sys.argv[2]
+
+csv_file = "/home/john/.openclaw/workspace/bc_reliability/dns/A-records.csv"
+hosts_file = "/home/john/.openclaw/workspace/bc_reliability/dns/hosts_file_snippet.txt"
+unifi_file = "/home/john/.openclaw/workspace/bc_reliability/dns/unifi_dns_notes.md"
+
+for container, info in d.items():
+    hostname = container + ".lan"
+    web_port = info.get('web', '')
+    
+    # CSV
+    with open(csv_file, "a") as f:
+        f.write(f"{hostname},{host_ip}\n")
+    
+    # Hosts
+    with open(hosts_file, "a") as f:
+        f.write(f"{host_ip}  {hostname}\n")
+    
+    # UniFi
+    with open(unifi_file, "a") as f:
+        f.write(f"- {hostname} -> {host_ip}\n")
+
+print("Generated DNS records")
+PYEOF
+fi
+
+echo "Generated files:"
+echo "  $DNS_DIR/A-records.csv"
+echo "  $DNS_DIR/hosts_file_snippet.txt"
+echo "  $DNS_DIR/unifi_dns_notes.md"
+echo ""
+echo "=== Contents ==="
+echo ""
+echo "--- A-records.csv ---"
+cat "$DNS_DIR/A-records.csv"
+echo ""
+echo "--- hosts_file_snippet.txt ---"
+cat "$DNS_DIR/hosts_file_snippet.txt"

@@ -1,0 +1,16 @@
+{
+  "targets": {
+    "beelink": {
+      "type": "local",
+      "description": "Local Beelink Docker"
+    },
+    "gspro": {
+      "type": "remote",
+      "host": "192.168.1.228",
+      "user": "bot",
+      "description": "GSPro Windows PC - BC containers via bc-container skill",
+      "ssh_port": 22
+    }
+  },
+  "default_target": "beelink"
+}

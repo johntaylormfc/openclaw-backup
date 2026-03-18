@@ -1,0 +1,12 @@
+services:
+  coredns:
+    image: coredns/coredns:1.11.1
+    container_name: bc-coredns
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    volumes:
+      - ./Corefile:/etc/caddy/Caddyfile:ro
+      - ./lan.hosts:/etc/caddy/lan.hosts:ro
+    restart: unless-stopped
+    network_mode: host

@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: bc-caddy-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    restart: unless-stopped
+    network_mode: host

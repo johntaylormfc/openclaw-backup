@@ -1,0 +1,180 @@
+# BC Docker Error Taxonomy
+
+## Error Categories and Signatures
+
+### 1. Port Already in Use
+
+**Signature:**
+```
+Error: bind: address already in use
+Error: port is already allocated
+```
+
+**Regex:** `bind.*address.*already.*in.*use|port.*already.*allocated`
+
+**Evidence to Collect:**
+- `docker ps -a`
+- `netstat -tlnp | grep <port>`
+- Current ports_map.json
+
+**Likely Causes:**
+- Previous container not stopped
+- Another service using port
+- Stale port allocation
+
+**Fix:** Stop conflicting container or use different port
+
+---
+
+### 2. Docker Network/DNS Failures
+
+**Signature:**
+```
+Error: network not found
+Error: DNS resolution failed
+Error: network <name> has no IPv4 address
+```
+
+**Regex:** `network.*not.*found|DNS.*resolution.*failed`
+
+**Evidence:**
+- `docker network ls`
+- `docker network inspect <network>`
+- Container /etc/resolv.conf
+
+**Fix:** Recreate network, reconnect containers
+
+---
+
+### 3. Image Pull/Auth Failures
+
+**Signature:**
+```
+Error: image pull failed
+unauthorized: authentication required
+Error: manifest unknown
+```
+
+**Regex:** `unauthorized|authentication.*required|manifest.*unknown`
+
+**Evidence:**
+- `docker images`
+- Registry login status
+
+**Fix:** Login to registry, check credentials
+
+---
+
+### 4. Container Healthcheck Failures
+
+**Signature:**
+```
+HealthCheck: (starting|unhealthy)
+Error: healthcheck failed
+```
+
+**Regex:** `healthcheck.*failed|HealthCheck:.*unhealthy`
+
+**Evidence:**
+- `docker inspect <container> --format='{{.State.Health}}'`
+- `docker logs <container>`
+
+**Fix:** Increase timeout, check service logs
+
+---
+
+### 5. BC Service Tier Failures
+
+**Signature:**
+```
+Error: Business Central service did not start
+HTTP 50[0-9]
+Error: Cannot open Database
+```
+
+**Regex:** `service.*did.*not.*start|Cannot.*open.*Database`
+
+**Evidence:**
+- Container logs
+- SQL connectivity
+- License status
+
+**Fix:** Check SQL, license, dependencies
+
+---
+
+### 6. Credential Errors
+
+**Signature:**
+```
+Error: authentication failed
+invalid credentials
+Login failed for user
+```
+
+**Regex:** `authentication.*failed|invalid.*credentials|Login.*failed`
+
+**Fix:** Verify credentials, check format
+
+---
+
+### 7. Resource Exhaustion
+
+**Signature:**
+```
+Error: no space left on device
+OOM: cannot allocate memory
+```
+
+**Regex:** `no.*space.*left|cannot.*allocate.*memory|OOM`
+
+**Evidence:**
+- `df -h`
+- `docker system df`
+
+**Fix:** Clean containers/volumes, add monitoring
+
+---
+
+### 8. TLS/Certificate Errors
+
+**Signature:**
+```
+Error: certificate invalid
+SSLHandshakeException
+```
+
+**Regex:** `certificate.*invalid|SSLHandshake`
+
+**Fix:** Check cert files, hostname match
+
+---
+
+### 9. Permission Issues
+
+**Signature:**
+```
+Error: permission denied
+access denied
+```
+
+**Regex:** `permission.*denied|access.*denied`
+
+**Evidence:**
+- `ls -la <path>`
+- Container user
+
+**Fix:** chown to john:john, check docker group
+
+---
+
+### 10. Container Name Conflicts
+
+**Signature:**
+```
+Error: Conflict. The container name <name> is already in use
+```
+
+**Regex:** `container name.*already.*in.*use`
+
+**Fix:** Remove existing container or use different name

@@ -1,0 +1,9 @@
+{
+  "container": "latest",
+  "country": "UK",
+  "version": "latest",
+  "web_port": 18002,
+  "dev_port": 19001,
+  "host_ip": "192.168.1.146",
+  "created": "2026-03-05"
+}

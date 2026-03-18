@@ -1,0 +1,32 @@
+#!/bin/bash
+# BC DNS Sync Script
+# Syncs DNS records when containers change
+
+SCRIPT_DIR="$HOME/.openclaw/workspace/bc_reliability"
+DNS_SERVER_DIR="$SCRIPT_DIR/dns_server"
+LOG_FILE="$DNS_SERVER_DIR/sync.log"
+
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
+}
+
+log "=== DNS Sync Started ==="
+
+# Generate DNS records
+log "Running bc-dns..."
+bash "$SCRIPT_DIR/scripts/bc-dns" 2>/dev/null
+
+# Regenerate hosts file
+log "Regenerating lan.hosts..."
+HOST_IP=$(hostname -I | awk '{print $1}')
+echo "# Auto-generated hosts file" > "$DNS_SERVER_DIR/lan.hosts"
+tail -n +2 "$SCRIPT_DIR/dns/A-records.csv" | while IFS=, read -r hostname ip; do
+    short_name=$(echo "$hostname" | sed 's/.lan$//')
+    echo "$HOST_IP $short_name" >> "$DNS_SERVER_DIR/lan.hosts"
+done
+
+# Restart CoreDNS
+log "Restarting CoreDNS..."
+docker restart bc-coredns 2>/dev/null && log "CoreDNS restarted" || log "Warning: CoreDNS restart failed"
+
+log "=== DNS Sync Complete ==="

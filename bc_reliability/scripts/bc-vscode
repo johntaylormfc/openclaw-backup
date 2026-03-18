@@ -1,0 +1,158 @@
+#!/bin/bash
+# BC VS Code AL Configuration Generator (Hostname-first)
+# Usage: bc-vscode <container_key> [--project <path>] [--out bundle|project]
+
+SCRIPT_DIR="$HOME/.openclaw/workspace/bc_reliability"
+BUNDLES_DIR="$SCRIPT_DIR/connection_bundles"
+PORTS_MAP="$SCRIPT_DIR/playbooks/ports_map.json"
+
+CONTAINER_KEY=""
+OUTPUT="bundle"
+PROJECT_PATH=""
+
+# Parse args
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --project) PROJECT_PATH="$2"; shift 2 ;;
+        --out) OUTPUT="$2"; shift 2 ;;
+        *) CONTAINER_KEY="$1"; shift ;;
+    esac
+done
+
+[ -z "$CONTAINER_KEY" ] && echo "Usage: bc-vscode <container_key> [--project <path>] [--out bundle|project]" && exit 1
+
+echo "=== BC VS Code Generator ==="
+echo "Container: $CONTAINER_KEY"
+
+# Get ports
+if [ -f "$PORTS_MAP" ]; then
+    WEB_PORT=$(python3 - "$PORTS_MAP" "$CONTAINER_KEY" << 'PYEOF'
+import json,sys
+d=json.load(open(sys.argv[1]))
+print(d.get(sys.argv[2],{}).get('web',''))
+PYEOF
+    )
+    DEV_PORT=$(python3 - "$PORTS_MAP" "$CONTAINER_KEY" << 'PYEOF'
+import json,sys
+d=json.load(open(sys.argv[1]))
+print(d.get(sys.argv[2],{}).get('dev',''))
+PYEOF
+    )
+    HOST_IP=$(python3 - "$PORTS_MAP" "$CONTAINER_KEY" << 'PYEOF'
+import json,sys
+d=json.load(open(sys.argv[1]))
+print(d.get(sys.argv[2],{}).get('host_ip','192.168.1.146'))
+PYEOF
+    )
+fi
+
+[ -z "$WEB_PORT" ] && echo "Container not found in ports map" && exit 1
+
+HOSTNAME="${CONTAINER_KEY}.lan"
+PROXY_PORT=80
+
+echo "Host: $HOST_IP, Web: $WEB_PORT, Dev: $DEV_PORT"
+echo "Hostname: $HOSTNAME"
+
+# Create bundle
+mkdir -p "$BUNDLES_DIR/$CONTAINER_KEY"
+BUNDLE="$BUNDLES_DIR/$CONTAINER_KEY"
+
+# VS Code AL Launch (hostname-first)
+cat > "$BUNDLE/vscode_launch.template.json" << EOF
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Remote - $CONTAINER_KEY",
+      "type": "al",
+      "request": "launch",
+      "server": "http://$HOSTNAME",
+      "port": $PROXY_PORT,
+      "serverInstance": "BC",
+      "authentication": "UserPassword",
+      "breakpointMethod": "SPA",
+      "launchBrowser": true,
+      "enableSqlInformationBrowser": true,
+      "enableDebugging": true,
+      "schemaUpdateMode": "Synchronize"
+    },
+    {
+      "name": "Direct - $CONTAINER_KEY",
+      "type": "al",
+      "request": "launch",
+      "server": "http://$HOST_IP",
+      "port": $DEV_PORT,
+      "serverInstance": "BC",
+      "authentication": "UserPassword"
+    }
+  ]
+}
+EOF
+
+# VS Code Settings
+cat > "$BUNDLE/vscode_settings.template.json" << EOF
+{
+  "al.enableExternalDevEndpoint": true,
+  "al.devServerUrl": "http://$HOST_IP:$DEV_PORT",
+  "al.usePowerShell": true
+}
+EOF
+
+# AL Publish Readme
+cat > "$BUNDLE/al_publish_readme.md" << EOF
+# AL Publish Guide - $CONTAINER_KEY
+
+## Quick Start
+
+### 1. Set Password (Don't store in files!)
+PowerShell:
+\$env:BC_PASSWORD = "your_password"
+
+### 2. Configure VS Code
+Copy contents to .vscode/:
+- vscode_launch.template.json -> launch.json
+- vscode_settings.template.json -> settings.json
+
+### 3. Publish
+Press F5 in VS Code
+
+## Connection Options
+
+### Option A: Friendly URL (Recommended)
+- URL: http://$HOSTNAME/
+- Requires DNS/hosts entry
+- See: bc-dns
+
+### Option B: Direct Access
+- Web: http://$HOST_IP:$WEB_PORT
+- Dev: http://$HOST_IP:$DEV_PORT
+
+## Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| DNS not found | Run win_connectivity_check.ps1 |
+| Auth failed | Set BC_PASSWORD env var |
+| Port blocked | Check firewall |
+EOF
+
+# Copy PowerShell script
+cp "$SCRIPT_DIR/templates/win_connectivity_check.ps1" "$BUNDLE/"
+
+echo "Generated in: $BUNDLE/"
+
+# If project path provided
+if [ -n "$PROJECT_PATH" ] && [ -d "$PROJECT_PATH" ]; then
+    echo "Updating VS Code files in: $PROJECT_PATH"
+    mkdir -p "$PROJECT_PATH/.vscode"
+    
+    if [ -f "$PROJECT_PATH/.vscode/launch.json" ]; then
+        cp "$PROJECT_PATH/.vscode/launch.json" "$PROJECT_PATH/.vscode/launch.json.bak.$(date +%Y%m%d)"
+    fi
+    cp "$BUNDLE/vscode_launch.template.json" "$PROJECT_PATH/.vscode/launch.json"
+    
+    echo "VS Code files updated (backups created)"
+fi
+
+echo "=== Done ==="
