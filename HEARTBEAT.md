@@ -8,14 +8,14 @@
 ## Checklist (every heartbeat)
 - [ ] Update heartbeat-state.json: active project, current task, blockers
 - [ ] Check dashboard (port 5000): `curl -s http://192.168.1.146:5000 | head -c 100` → restart if fail
-- [ ] Check kanban: `curl -s http://localhost:4000/api/kanban | jq '.ideas | length'`
+- [ ] Check kanban: `ls ~/.openclaw/workspace/kanban/idea/*.md 2>/dev/null | wc -l` (ideas) + `ls ~/.openclaw/workspace/kanban/new/*.md 2>/dev/null | wc -l` (new)
 - [ ] Pick backlog task → work → complete
 
 ## Before Dashboard Changes
 Backup first:
-- Dashboard: `cp /home/john/ARR/dashboard/index.html index.html.backup-$(date +%Y%m%d-%H%M)`
+- Dashboard: `cp /home/john/ARR/dashboard-v2/index.html index.html.backup-$(date +%Y%m%d-%H%M)`
 - Database: `cp /home/john/.openclaw/workspace/dashboard-data/dashboard.db dashboard.db.backup-$(date +%Y%m%d-%H%M)`
-- Sync: `docker cp index.html arr-dashboard:/app/index.html`
+- Sync: `docker cp index.html arr-dashboard-v2:/app/`
 
 ## Memory Maintenance (once/day)
 - Read/create today's memory file
