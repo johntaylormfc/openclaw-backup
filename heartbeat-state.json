@@ -1,17 +1,10 @@
 {
-  "lastHeartbeat": "2026-03-18T16:52:00Z",
-  "activeProject": "OpenClaw Maintenance",
-  "currentTask": "System Health Monitoring",
+  "lastHeartbeat": "2026-03-18T19:52:00Z",
+  "activeProject": "System Health Monitoring",
+  "currentTask": "Heartbeat monitoring active",
   "blockers": [],
-  "dashboardStatus": "OK",
-  "kanbanIdeas": 39,
-  "kanbanNew": 4,
-  "notes": [
-    "16:51 cron-triage: all 38 jobs healthy, 0 errors",
-    "WhatsApp briefly disconnected 15:41:51 (status 499) - auto-reconnected within 4s",
-    "Fixed calendar-to-todoist.js and email-to-todoist.js OAuth bugs",
-    "Set up Deepgram for voice note transcription",
-    "MiniMax M22.7 configured - awaiting API availability",
-    "Google OAuth refresh token obtained"
-  ]
+  "dashboardStatus": "OK (port 5000)",
+  "kanbanStatus": "responding",
+  "whatsappStatus": "2 brief disconnects today (recovered)",
+  "notes": "499/428 codes suggest client-side network drops, not gateway issue"
 }

@@ -34,6 +34,13 @@ Full library scans in Plex are slow and resource-intensive. plex_autoscan can re
 
 ## Activity Log
 ### Entries
+- **Timestamp:** 2026-03-18 08:03
+  **Action:** Status review — file was in in-progress/ but status field was "New"
+  **Result:** Moved to kanban/new/ — ticket was never actually picked up
+  **Why:** Folder/status mismatch found during stale review
+  **Evidence:** File had no in-progress activity, status field was "New"
+  **Next Step:** Agent can pick up when requested
+
 - **Timestamp:** 2026-03-11 22:50  
   **Action:** Ticket created from accepted idea  
   **Result:** Ticket added to kanban/new  

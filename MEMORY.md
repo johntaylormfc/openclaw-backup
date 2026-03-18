@@ -69,3 +69,14 @@ Last updated: 2026-03-17
   - Vector memory disabled (Gemini 403)
   - gdrive-sync cron timeout
 - Pattern: OAuth tokens expire mid-month - needs proactive refresh schedule
+
+## Daily Review Insights (March 18, 2026)
+- M2.7 now primary model - awaiting API availability
+- Fixed calendar-to-todoist and email-to-todoist OAuth bugs (wrong creds file)
+- Set up Deepgram voice transcription (API key configured)
+- Cleaned 6 stopped containers
+- Added 14-day ARR backup retention - freed 2.3GB
+- Fixed Transmission RPC auth (was unauthenticated - security risk)
+- Git remote added: https://github.com/johntaylormfc/openclaw-backup
+- Deleted ARR_Trader workspace (john requested)
+- Git filter-branch run to remove secrets from history
