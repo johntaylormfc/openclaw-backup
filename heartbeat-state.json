@@ -1,13 +1,17 @@
 {
-  "lastHeartbeat": "2026-03-18T10:52:00Z",
-  "activeProject": "Memory System Complete - Local Embeddings Working",
-  "currentTask": "Monitoring",
-  "blockers": ["Kanban API unreachable - port 4000 not exposed or service down"],
-  "dashboard": "OK (port 5000)",
-  "gateway": "connected",
-  "containers": {
-    "arr-dashboard": "Up 36 hours (healthy)",
-    "arr-dashboard-v2": "Up 36 hours (healthy)"
-  },
-  "notes": "Kanban API at localhost:4000 not accessible - may need investigation"
+  "lastHeartbeat": "2026-03-18T16:52:00Z",
+  "activeProject": "OpenClaw Maintenance",
+  "currentTask": "System Health Monitoring",
+  "blockers": [],
+  "dashboardStatus": "OK",
+  "kanbanIdeas": 39,
+  "kanbanNew": 4,
+  "notes": [
+    "16:51 cron-triage: all 38 jobs healthy, 0 errors",
+    "WhatsApp briefly disconnected 15:41:51 (status 499) - auto-reconnected within 4s",
+    "Fixed calendar-to-todoist.js and email-to-todoist.js OAuth bugs",
+    "Set up Deepgram for voice note transcription",
+    "MiniMax M22.7 configured - awaiting API availability",
+    "Google OAuth refresh token obtained"
+  ]
 }

@@ -62,19 +62,20 @@ if (!fs.existsSync(tokenPath)) {
 }
 
 const gmailCreds = JSON.parse(fs.readFileSync(tokenPath, 'utf8'));
+const credsData = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/google-oauth.json`, 'utf8'));
 const todoistKey = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/todoist.json`, 'utf8')).todoist.api_key;
 
 // Authenticate with auto-refresh
 const oauth2Client = new google.auth.OAuth2(
-  gmailCreds.client_id,
-  gmailCreds.client_secret,
+  credsData.web.client_id,
+  credsData.web.client_secret,
   'http://localhost'
 );
 
 oauth2Client.setCredentials({
   access_token: gmailCreds.access_token,
   refresh_token: gmailCreds.refresh_token,
-  scope: gmailCreds.scopes,
+  scope: gmailCreds.scope,
   token_type: 'Bearer',
   expiry_date: gmailCreds.expiry_date
 });

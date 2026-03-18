@@ -11,8 +11,9 @@ const path = require('path');
 const CONFIG_PATH = '/home/john/.openclaw/workspace/config';
 const STATE_FILE = '/tmp/calendar-cron-lastrun.json';
 
-// Load credentials
-const gmailCreds = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/google-oauth-token.json`, 'utf8'));
+// Load credentials - token from token file, client from credentials file
+const tokenData = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/google-oauth-token.json`, 'utf8'));
+const credsData = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/google-oauth.json`, 'utf8'));
 const todoistKey = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/todoist.json`, 'utf8')).todoist.api_key;
 
 // Authenticate
@@ -24,17 +25,17 @@ const SCOPES = [
 ];
 
 const oauth2Client = new google.auth.OAuth2(
-  gmailCreds.client_id,
-  gmailCreds.client_secret,
+  credsData.web.client_id,
+  credsData.web.client_secret,
   'http://localhost'
 );
 
 oauth2Client.setCredentials({
-  access_token: gmailCreds.access_token,
-  refresh_token: gmailCreds.refresh_token,
-  scope: gmailCreds.scope,  // Note: singular "scope" not "scopes"
+  access_token: tokenData.access_token,
+  refresh_token: tokenData.refresh_token,
+  scope: tokenData.scope,  // Note: singular "scope" not "scopes"
   token_type: 'Bearer',
-  expiry_date: gmailCreds.expiry_date
+  expiry_date: tokenData.expiry_date
 });
 
 // Auto-refresh on 401 errors and handle scope issues

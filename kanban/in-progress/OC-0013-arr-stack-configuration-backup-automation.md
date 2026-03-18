@@ -1,7 +1,7 @@
 # Ticket
 **ID:** OC-0013
 **Title:** ARR Stack Configuration Backup Automation
-**Status:** In Progress
+**Status:** Blocked
 **Outcome State:** Partial
 **Priority:** Medium
 **Owner:** Unassigned
@@ -41,11 +41,18 @@ This work was accepted from idea IDEA-0029.
   **Evidence:** Created via accept_idea.py  
   **Next Step:** Agent can pick up the ticket when requested
 
-- **Timestamp:** 2026-03-18 08:03
+- **Timestamp:** 2026-03-18 08:04
   **Action:** Stale review — ticket flagged for user attention
   **Result:** Ticket remains Blocked, scope questions unanswered
   **Why:** Last activity 3 days ago, needs user confirmation on backup scope
   **Evidence:** Status unchanged — still waiting on user input
+  **Next Step:** User confirms backup scope per questions in ticket blocker section
+
+- **Timestamp:** 2026-03-18 12:04
+  **Action:** Stale review — status corrected to Blocked
+  **Result:** Status field was "In Progress" but activity log clearly showed Blocker state — corrected
+  **Why:** Inconsistent ticket state found during review
+  **Evidence:** Status now Blocked, matches activity log blocker entry
   **Next Step:** User confirms backup scope per questions in ticket blocker section
 
 - **Timestamp:** 2026-03-15 20:30  

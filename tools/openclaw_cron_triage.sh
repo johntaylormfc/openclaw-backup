@@ -13,7 +13,7 @@ echo ""
 
 # Check for failed cron jobs
 echo "--- Recent Cron Runs ---"
-cron action=list 2>&1 | head -30
+openclaw cron list 2>&1 | head -30
 echo ""
 
 # Check gateway logs for errors
@@ -23,7 +23,7 @@ echo ""
 
 # Check cron scheduler status
 echo "--- Cron Scheduler ---"
-cron action=status 2>&1
+openclaw cron status 2>&1
 echo ""
 
 # Summary
