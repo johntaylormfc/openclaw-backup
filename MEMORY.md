@@ -80,3 +80,13 @@ Last updated: 2026-03-17
 - Git remote added: https://github.com/johntaylormfc/openclaw-backup
 - Deleted ARR_Trader workspace (john requested)
 - Git filter-branch run to remove secrets from history
+
+## Daily Review Insights (March 17, 2026) - Arnold Restore
+- OpenClaw restore & hardening completed successfully (v2026.3.13)
+- Memory fully audited: 23 memory files restored to ~/.openclaw/workspace/memory/
+- Harbor workspace created: bcdevltd/harbor/ with 40-runbooks and 10-tickets structure
+- QMD implemented as fallback for disabled vector memory
+- All 41 cron jobs healthy with 0 consecutive errors
+- Memory search disabled (expected for Minimax-only deployments without embedding provider)
+- OpenClaw memory_search tool has "scope denied" issue in session context
+- Lesson: QMD backend works but memory_search tool itself needs fix for semantic search
