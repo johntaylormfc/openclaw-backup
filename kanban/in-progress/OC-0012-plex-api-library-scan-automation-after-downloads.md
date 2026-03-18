@@ -37,6 +37,13 @@ This work was accepted from idea IDEA-0028.
 
 ### Entries
 
+- **Timestamp:** 2026-03-18 08:03
+  **Action:** Stale review — ticket flagged for user attention
+  **Result:** Ticket remains Blocked, user action still required
+  **Why:** Last activity was 5 days ago, implementation complete but Radarr UI config outstanding
+  **Evidence:** Status unchanged — still waiting on Radarr connect setup
+  **Next Step:** User configures Radarr per instructions in ticket
+
 - **Timestamp:** 2026-03-13 05:34  
   **Action:** Implementation completed - script created and tested  
   **Result:** Created /home/john/ARR/scripts/plex-scan-trigger.sh - a shell script that triggers Plex library scans via API  

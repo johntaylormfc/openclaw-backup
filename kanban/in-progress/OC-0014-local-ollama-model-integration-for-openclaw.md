@@ -51,6 +51,13 @@ Add native support for running OpenClaw with local Ollama models instead of rely
   **Evidence:** File moved to in-progress folder  
   **Next Step:** Assess implementation scope
 
+- **Timestamp:** 2026-03-18 08:03
+  **Action:** Stale review — ticket flagged for user attention
+  **Result:** Ticket remains Blocked, scope questions unanswered
+  **Why:** Last activity 3 days ago, needs user clarification on Ollama model and integration scope
+  **Evidence:** Status unchanged — still waiting on user input
+  **Next Step:** User clarifies which Ollama model and whether to install or just configure
+
 - **Timestamp:** 2026-03-15 21:05  
   **Action:** Checked current OpenClaw configuration and Ollama status  
   **Result:** OpenClaw uses MiniMax API. Ollama is running locally (port 11434) but has no models installed  

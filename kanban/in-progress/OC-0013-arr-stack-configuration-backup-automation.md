@@ -41,6 +41,13 @@ This work was accepted from idea IDEA-0029.
   **Evidence:** Created via accept_idea.py  
   **Next Step:** Agent can pick up the ticket when requested
 
+- **Timestamp:** 2026-03-18 08:03
+  **Action:** Stale review — ticket flagged for user attention
+  **Result:** Ticket remains Blocked, scope questions unanswered
+  **Why:** Last activity 3 days ago, needs user confirmation on backup scope
+  **Evidence:** Status unchanged — still waiting on user input
+  **Next Step:** User confirms backup scope per questions in ticket blocker section
+
 - **Timestamp:** 2026-03-15 20:30  
   **Action:** Ticket picked up by cron job  
   **Result:** Ticket moved to kanban/in-progress  

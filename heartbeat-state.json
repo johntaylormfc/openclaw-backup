@@ -1,8 +1,13 @@
 {
-  "lastHeartbeat": "2026-03-18T05:10:00Z",
+  "lastHeartbeat": "2026-03-18T10:52:00Z",
   "activeProject": "Memory System Complete - Local Embeddings Working",
   "currentTask": "Monitoring",
-  "blockers": [],
-  "dashboard": "OK",
-  "gateway": "connected"
+  "blockers": ["Kanban API unreachable - port 4000 not exposed or service down"],
+  "dashboard": "OK (port 5000)",
+  "gateway": "connected",
+  "containers": {
+    "arr-dashboard": "Up 36 hours (healthy)",
+    "arr-dashboard-v2": "Up 36 hours (healthy)"
+  },
+  "notes": "Kanban API at localhost:4000 not accessible - may need investigation"
 }

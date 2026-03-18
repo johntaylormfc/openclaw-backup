@@ -1,18 +1,18 @@
 # Ticket
-**ID:** OC-0016
-**Title:** Implement Per-Task LLM Routing (Switch Between Different Models)
+**ID:** OC-0015
+**Title:** Implement Plex Autoscan for Smart Library Updates
 **Status:** New
 **Outcome State:** Partial
 **Priority:** Medium
 **Owner:** Unassigned
-**Created:** 2026-03-11 22:51
-**Last Updated:** 2026-03-11 22:51
+**Created:** 2026-03-11 22:50
+**Last Updated:** 2026-03-11 22:50
 
 ## Goal
-Enable OpenClaw to route different types of tasks to different LLM providers (e.g., use Claude Max for complex reasoning, cheaper APIs for simple tasks). YouTube tutorials highlight this as a key feature - using different LLMs per task and switching between Claude Max vs API.
+Add plex_autoscan to the ARR stack to replace full library scans with targeted folder scans. When Sonarr/Radarr imports a file, plex_autoscan will only scan that specific folder instead of triggering a full Plex library refresh.
 
 ## Why
-This work was accepted from idea IDEA-0047.
+Full library scans in Plex are slow and resource-intensive. plex_autoscan can reduce import times from minutes/hours to seconds by only scanning the imported folder. This is especially valuable for large media libraries.
 
 ## Acceptance Criteria
 - [ ] Scope is confirmed
@@ -22,7 +22,7 @@ This work was accepted from idea IDEA-0047.
 - [ ] Ticket is only completed when all required work is genuinely finished
 
 ## Context
-- Source Idea: IDEA-0047
+- Source Idea: IDEA-0049
 - Environment: /home/john/.openclaw/workspace
 
 ## Task Checklist
@@ -34,10 +34,17 @@ This work was accepted from idea IDEA-0047.
 
 ## Activity Log
 ### Entries
-- **Timestamp:** 2026-03-11 22:51  
+- **Timestamp:** 2026-03-18 08:03
+  **Action:** Status review — file was in in-progress/ but status field was "New"
+  **Result:** Moved to kanban/new/ — ticket was never actually picked up
+  **Why:** Folder/status mismatch found during stale review
+  **Evidence:** File had no in-progress activity, status field was "New"
+  **Next Step:** Agent can pick up when requested
+
+- **Timestamp:** 2026-03-11 22:50  
   **Action:** Ticket created from accepted idea  
   **Result:** Ticket added to kanban/new  
-  **Why:** User accepted idea IDEA-0047  
+  **Why:** User accepted idea IDEA-0049  
   **Evidence:** Created via accept_idea.py  
   **Next Step:** Agent can pick up the ticket when requested
 

@@ -34,6 +34,13 @@ This work was accepted from idea IDEA-0025.
 
 ## Activity Log
 ### Entries
+- **Timestamp:** 2026-03-18 08:03
+  **Action:** Status review — file was in in-progress/ but status field was "New"
+  **Result:** Moved to kanban/new/ — ticket was never actually picked up
+  **Why:** Folder/status mismatch found during stale review
+  **Evidence:** File had no in-progress activity, status field was "New"
+  **Next Step:** Agent can pick up when requested
+
 - **Timestamp:** 2026-03-11 21:29  
   **Action:** Ticket created from accepted idea  
   **Result:** Ticket added to kanban/new  
