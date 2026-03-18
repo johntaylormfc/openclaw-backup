@@ -1,0 +1,13 @@
+*.jsonl
+node_modules/
+*.log
+.DS_Store
+/tmp/
+
+
+# Secrets - never backup
+config/google-*.json
+config/mcporter.json
+config/email-cron.json
+config/todoist.json
+config/credentials.json
