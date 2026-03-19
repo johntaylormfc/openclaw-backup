@@ -1,5 +1,5 @@
 {
-  "lastHeartbeat": "2026-03-19T03:22:00Z",
+  "lastHeartbeat": "2026-03-19T07:53:00Z",
   "activeProject": "Dashboard Improvements",
   "currentTask": "Monitoring",
   "blockers": [
@@ -8,7 +8,7 @@
   "dashboardStatus": "OK (port 5000)",
   "containers": {
     "arr-dashboard-v2": "Healthy (port 5000)",
-    "transmission": "Unhealthy (watch dir missing - 9 hours)"
+    "transmission": "Unhealthy (watch dir missing - 13 hours)"
   },
-  "kanbanStatus": "4 ideas, 12 new tickets"
+  "kanbanStatus": "9 ideas, 12 new tickets"
 }
