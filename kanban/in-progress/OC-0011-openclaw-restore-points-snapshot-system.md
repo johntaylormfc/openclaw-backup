@@ -1,12 +1,12 @@
 # Ticket
 **ID:** OC-0011
 **Title:** OpenClaw Restore Points / Snapshot System
-**Status:** in-progress (blocked)
+**Status:** in-progress
 **Outcome State:** Partial
 **Priority:** Medium
-**Owner:** Unassigned
+**Owner:** Arnold 🦞
 **Created:** 2026-03-11 21:29
-**Last Updated:** 2026-03-18 17:00
+**Last Updated:** 2026-03-19 19:53
 
 ## Goal
 Implement a restore point/snapshot system for OpenClaw that allows users to easily backup and restore their configuration, memory, skills, and channel settings.
@@ -14,12 +14,22 @@ Implement a restore point/snapshot system for OpenClaw that allows users to easi
 ## Why
 This work was accepted from idea IDEA-0025.
 
+## Scope (CONFIRMED - 2026-03-19)
+- **What:** Everything — all workspace files, skills, OpenClaw config, Docker Compose, dashboard config
+- **When:** Nightly via cron
+- **Where:** Google Drive
+- **Retention:** Keep snapshots for 7 days, prune older
+- **Restore:** Overwrite live files from snapshot
+- **Format:** tar.gz (agent's choice — versioned+timestamped)
+
 ## Acceptance Criteria
-- [ ] Scope is confirmed
-- [ ] Work is started by moving ticket to In Progress
+- [x] Scope is confirmed
+- [x] Work is started by moving ticket to In Progress
 - [ ] Activity log is maintained
-- [ ] Ticket is blocked if a required dependency prevents completion
-- [ ] Ticket is only completed when all required work is genuinely finished
+- [ ] Snapshot script implemented and tested
+- [ ] Restore script implemented and tested
+- [ ] Cron job configured for nightly run
+- [ ] Ticket moved to review/done when complete
 
 ## Context
 - Source Idea: IDEA-0025
@@ -27,13 +37,24 @@ This work was accepted from idea IDEA-0025.
 
 ## Task Checklist
 - [ ] Analyse request
-- [ ] Prepare approach
-- [ ] Implement changes
+- [x] Prepare approach — scope confirmed by John
+- [ ] Implement snapshot script
+- [ ] Implement restore script
+- [ ] Configure Google Drive upload
+- [ ] Set up 7-day retention pruning
+- [ ] Configure cron job (nightly)
 - [ ] Validate result
 - [ ] Write summary
 
 ## Activity Log
 ### Entries
+- **Timestamp:** 2026-03-19 19:53
+  **Action:** Scope confirmed by John via WhatsApp
+  **Result:** Ticket unblocked, moved to in-progress
+  **Why:** John answered all 6 scope questions
+  **Evidence:** WhatsApp reply — "1. Everything, 2 nightly by cron, 3 google drive, 4 keep for a week, 5 overwrite, 6 what you think is best"
+  **Next Step:** Implement snapshot script
+
 - **Timestamp:** 2026-03-18 17:00
   **Action:** Picked up from kanban/new — no in-progress tickets found
   **Result:** Ticket moved to kanban/in-progress/
@@ -56,44 +77,7 @@ This work was accepted from idea IDEA-0025.
   **Next Step:** Agent can pick up the ticket when requested
 
 ## Current Position
-Ticket is in-progress but blocked waiting for scope confirmation from John.
-
-## Blocker
-
-### Blocker Summary
-Scope not confirmed — need John to define what this feature should actually cover and how it should work before any implementation.
-
-### What Was Completed
-- Ticket moved to kanban/in-progress/
-
-### What Failed
-- Cannot proceed without scope confirmation
-
-### Why It Failed
-- The goal ("backup and restore config, memory, skills, and channel settings") is broad with many possible interpretations. Key decisions needed before any implementation.
-
-### Evidence
-- Ticket acceptance criteria starts with "Scope is confirmed" as a prerequisite
-- No technical design or scope decision has been made
-
-### Why This Blocks Completion
-- Multiple fundamental design decisions are unresolved. Without them, any implementation would be guesswork that may not match John's intent.
-
-### What You Need To Decide
-1. **What to backup:** All of the following, or a subset?
-   - `/home/john/.openclaw/` workspace files (AGENTS.md, SOUL.md, IDENTITY.md, USER.md, TOOLS.md, MEMORY.md)
-   - Skill definitions (files under `~/.npm-global/lib/node_modules/openclaw/skills/`)
-   - OpenClaw config (gateway settings, node config, channel configs)
-   - Docker Compose state and env files
-   - Dashboard config (dashboard-v2 repo)
-2. **When it triggers:** Manual only, cron-scheduled, or both?
-3. **Where snapshots are stored:** Local filesystem (specify path), or something else?
-4. **Retention:** Keep all snapshots, or prune old ones (e.g. keep last N)?
-5. **Restore mechanism:** Overwrite current files, restore to a named point, or both?
-6. **Format:** Plain tar/zip archive, or versioned + timestamped directories?
-
-### Next Step After Unblock
-Once scope is confirmed, implement the snapshot and restore scripts/logic per the agreed design.
+In-progress — scope confirmed, implementation pending.
 
 ## Completion Summary
 Not complete.

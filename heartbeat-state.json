@@ -1,14 +1,24 @@
 {
-  "lastHeartbeat": "2026-03-19T07:53:00Z",
-  "activeProject": "Dashboard Improvements",
-  "currentTask": "Monitoring",
+  "updated": "2026-03-19T13:05:00Z",
+  "activeProject": "Kanban cleanup & dashboard review",
+  "currentTask": "Idea review session - cleared 42 stale ideas, accepted 11 tickets",
   "blockers": [
-    "WhatsApp gateway - no container found in docker ps (may be running outside docker)"
+    "GOG OAuth - needs Cloudflare tunnel or manual browser auth on laptop",
+    "BCContainerHelper on GSPRO - needs john to run initial setup on Windows PC"
   ],
-  "dashboardStatus": "OK (port 5000)",
-  "containers": {
-    "arr-dashboard-v2": "Healthy (port 5000)",
-    "transmission": "Unhealthy (watch dir missing - 13 hours)"
-  },
-  "kanbanStatus": "9 ideas, 12 new tickets"
+  "completed": [
+    "Dashboard deduplication - removed duplicate Kanban panels from Dashboard",
+    "Skills section now live - reads from /openclaw-workspace/skills/",
+    "MCP section confirmed live",
+    "Kanban-fs API endpoint added to backend",
+    "Cron jobs API fixed - now reads from /data/arr-cronjobs.json (33 jobs)",
+    "Rejected 42 stale/duplicate ideas from kanban",
+    "Accepted 11 tickets: Health Agent, Prowlarr (done), BCContainerHelper, Memory cleanup, Memory audit, BC tenant docs, gdrive-sync, gdrive timeout, GitHub branch, GOG migration, Memory gap",
+    "Enabled 11 Prowlarr indexers - all free ones were disabled",
+    "Deleted OC-0017 Figure It Out directive ticket",
+    "3 sub-agents configured: ARR_Health_Ops, ARR_Researcher, ARR_BC_Dev"
+  ],
+  "ideas": 11,
+  "newTickets": 11,
+  "dashboardStatus": "up"
 }
