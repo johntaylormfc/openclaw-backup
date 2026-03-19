@@ -1,13 +1,14 @@
 {
-  "lastHeartbeat": "2026-03-18T23:17:00Z",
+  "lastHeartbeat": "2026-03-19T03:22:00Z",
   "activeProject": "Dashboard Improvements",
-  "currentTask": "Gateway Status, Memory Browser, Live Feed APIs added",
-  "blockers": [],
+  "currentTask": "Monitoring",
+  "blockers": [
+    "WhatsApp gateway - no container found in docker ps (may be running outside docker)"
+  ],
   "dashboardStatus": "OK (port 5000)",
-  "kanbanStatus": "2 ideas, 14 new tickets",
-  "recentActions": [
-    "Fixed memory-files API path issue",
-    "Added Gateway Status, Memory Browser, Live Feed APIs",
-    "Pushed arr-dashboard server.js to git"
-  ]
+  "containers": {
+    "arr-dashboard-v2": "Healthy (port 5000)",
+    "transmission": "Unhealthy (watch dir missing - 9 hours)"
+  },
+  "kanbanStatus": "4 ideas, 12 new tickets"
 }
