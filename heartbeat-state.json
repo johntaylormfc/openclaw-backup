@@ -1,24 +1,14 @@
 {
-  "updated": "2026-03-19T13:05:00Z",
-  "activeProject": "Kanban cleanup & dashboard review",
-  "currentTask": "Idea review session - cleared 42 stale ideas, accepted 11 tickets",
-  "blockers": [
-    "GOG OAuth - needs Cloudflare tunnel or manual browser auth on laptop",
-    "BCContainerHelper on GSPRO - needs john to run initial setup on Windows PC"
-  ],
+  "updated": "2026-03-19T20:23:00Z",
+  "activeProject": "Kanban cleanup",
+  "currentTask": "Review stale OC-0017 tickets in kanban/idea/",
+  "blockers": [],
   "completed": [
-    "Dashboard deduplication - removed duplicate Kanban panels from Dashboard",
-    "Skills section now live - reads from /openclaw-workspace/skills/",
-    "MCP section confirmed live",
-    "Kanban-fs API endpoint added to backend",
-    "Cron jobs API fixed - now reads from /data/arr-cronjobs.json (33 jobs)",
-    "Rejected 42 stale/duplicate ideas from kanban",
-    "Accepted 11 tickets: Health Agent, Prowlarr (done), BCContainerHelper, Memory cleanup, Memory audit, BC tenant docs, gdrive-sync, gdrive timeout, GitHub branch, GOG migration, Memory gap",
-    "Enabled 11 Prowlarr indexers - all free ones were disabled",
-    "Deleted OC-0017 Figure It Out directive ticket",
-    "3 sub-agents configured: ARR_Health_Ops, ARR_Researcher, ARR_BC_Dev"
+    "Dashboard up (port 5000)",
+    "Memory backup: script at /home/john/.openclaw/scripts/memory-backup.sh, cron daily 03:00, backups in /home/john/ARR/backup/memory/"
   ],
-  "ideas": 11,
-  "newTickets": 11,
-  "dashboardStatus": "up"
+  "ideas": 16,
+  "newTickets": 0,
+  "dashboardStatus": "up",
+  "notes": "Memory backup now automated. OC-0017 stale tickets need review. Backlog: embedding provider, research cleanup."
 }
