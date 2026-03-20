@@ -82,6 +82,24 @@ Last updated: 2026-03-17
 - Deleted ARR_Trader workspace (john requested)
 - Git filter-branch run to remove secrets from history
 
+## Daily Review Insights (March 19, 2026)
+- Cloudflare tunnel setup in progress: tunnel created "openclaw", running on Beelink (PID 176958)
+- DNS CNAME for openclaw.bcdev.co.uk pending verification (John checking)
+- Multiple stale tickets addressed (OC-0012 through OC-0019)
+- Pattern: Duplicate/inconsistent tickets keep appearing (OC-0016 has 3+ versions)
+- 30 ideas in kanban/idea/ folder - backlog growing, needs prioritization
+
+## Daily Review Insights (March 18, 2026)
+- M2.7 now primary model - awaiting API availability
+- Fixed calendar-to-todoist and email-to-todoist OAuth bugs (wrong creds file)
+- Set up Deepgram voice transcription (API key configured)
+- Cleaned 6 stopped containers
+- Added 14-day ARR backup retention - freed 2.3GB
+- Fixed Transmission RPC auth (was unauthenticated - security risk)
+- Git remote added: https://github.com/johntaylormfc/openclaw-backup
+- Deleted ARR_Trader workspace (john requested)
+- Git filter-branch run to remove secrets from history
+
 ## Daily Review Insights (March 17, 2026) - Arnold Restore
 - OpenClaw restore & hardening completed successfully (v2026.3.13)
 - Memory fully audited: 23 memory files restored to ~/.openclaw/workspace/memory/
