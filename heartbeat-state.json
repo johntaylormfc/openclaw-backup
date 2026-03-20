@@ -1,11 +1,17 @@
 {
-  "updated": "2026-03-20T04:23:00Z",
-  "active_project": "OpenClaw Restore",
-  "active_project_status": "complete",
-  "current_task": "heartbeat monitoring",
-  "blockers": [],
-  "dashboard": "up",
-  "ideas": 28,
-  "new_tickets": 0,
-  "notes": "WhatsApp WebSocket timeout reported (web.whatsapp.com EAI_AGAIN) - likely transient network/DNS issue. Dashboard healthy."
+  "updated": "2026-03-20T07:36:00Z",
+  "activeProject": "OC-0014",
+  "currentTask": "Downloading qwen2.5-coder:7b (ollama) - 18% done",
+  "blockers": [
+    "OC-0014: waiting on model download to complete",
+    "OC-0016: waiting on John's LLM routing scope decisions",
+    "OC-0019: waiting on John's Synology hardlink decision"
+  ],
+  "dashboardStatus": "up",
+  "kanbanSnapshot": {
+    "ideas": 28,
+    "new": 0,
+    "blocked": 3,
+    "inProgress": 3
+  }
 }

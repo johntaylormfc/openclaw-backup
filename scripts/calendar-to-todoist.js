@@ -219,8 +219,19 @@ async function syncCalendar() {
     console.log(`\n=== Summary ===`);
     console.log(`New tasks created: ${newTasksCreated}`);
     
+    if (newTasksCreated > 0) {
+      const { execSync } = require('child_process');
+      try {
+        execSync(`openclaw message send --to +447967688452 --message "📅 Calendar sync: ${newTasksCreated} new task(s) added to Todoist"`, { stdio: 'ignore' });
+      } catch (e) {}
+    }
+    
   } catch (error) {
     console.error('Error syncing calendar:', error.message);
+    try {
+      const { execSync } = require('child_process');
+      execSync(`openclaw message send --to +447967688452 --message "❌ Calendar→Todoist error: ${error.message}"`, { stdio: 'ignore' });
+    } catch (e) {}
     process.exit(1);
   }
 }

@@ -236,9 +236,12 @@ async function processEmails() {
     // Save state
     saveLastRun();
     
-    // Only notify if new tasks were created
+    // Only notify if new tasks were created or error
     if (newTasks > 0) {
-      console.log('\n✅ NEW TASKS CREATED - notifying user');
+      const { execSync } = require('child_process');
+      try {
+        execSync(`openclaw message send --to +447967688452 --message "📧 Email sync: ${newTasks} new task(s) added to Todoist"`, { stdio: 'ignore' });
+      } catch (e) {}
     }
     
   } catch (e) {
@@ -246,6 +249,11 @@ async function processEmails() {
     if (e.message.includes('invalid_grant')) {
       console.log('⚠️ Gmail OAuth token expired - needs re-authentication');
     }
+    try {
+      const { execSync } = require('child_process');
+      execSync(`openclaw message send --to +447967688452 --message "❌ Email→Todoist error: ${e.message}"`, { stdio: 'ignore' });
+    } catch (e2) {}
+    process.exit(1);
   }
 }
 
