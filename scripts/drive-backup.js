@@ -50,14 +50,7 @@ async function backup() {
       backedUp++;
     }
     
-    // 3. X Growth metrics
-    const xMetrics = path.join(WORKSPACE_PATH, 'x_growth/x_metrics_log.csv');
-    if (fs.existsSync(xMetrics)) {
-      const dst = openclawDir + '/logs/x_metrics_log.csv';
-      run(RCLONE + ' copyto "' + xMetrics + '" "' + dst + '"');
-      console.log('✅ X metrics');
-      backedUp++;
-    }
+
     
     // 4. Core workspace files
     const coreFiles = ['MEMORY.md', 'AGENTS.md', 'USER.md', 'SOUL.md', 'TOOLS.md', 'HEARTBEAT.md'];

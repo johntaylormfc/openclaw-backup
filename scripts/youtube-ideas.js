@@ -1,20 +1,96 @@
 #!/usr/bin/env node
 /**
- * YouTube Ideas Scanner
- * Searches YouTube via web search, analyzes results, adds ideas to kanban
+ * YouTube Ideas Scanner — ARR & OpenClaw
+ * Searches YouTube via web search, analyzes results, adds actionable ideas to kanban
+ * Strict filtering: only specific, actionable ideas get created
  */
 
+const fs = require('fs');
+const path = require('path');
+const { execSync } = require('child_process');
+
 const KANBAN_API = 'http://localhost:4000/api/kanban';
+const IDEA_DIR = path.join(__dirname, '..', 'kanban', 'idea');
+
+// ─── Deduplication ──────────────────────────────────────────────────────────
+
+function existingIdeaCount(ticketId) {
+  try {
+    const files = fs.readdirSync(IDEA_DIR);
+    const normalized = ticketId.toLowerCase();
+    return files.filter(f => {
+      try {
+        const content = fs.readFileSync(path.join(IDEA_DIR, f), 'utf8').toLowerCase();
+        return content.includes(normalized);
+      } catch { return false; }
+    }).length;
+  } catch { return 0; }
+}
+
+function hasSimilarTitle(newTitle) {
+  try {
+    const files = fs.readdirSync(IDEA_DIR);
+    const normalized = newTitle.toLowerCase();
+    const newWords = normalized.split(/\s+/).filter(w => w.length > 4);
+    return files.some(f => {
+      try {
+        const existing = fs.readFileSync(path.join(IDEA_DIR, f), 'utf8').toLowerCase();
+        // Check for word overlap
+        const overlap = newWords.filter(w => existing.includes(w)).length;
+        return overlap >= 3; // 3+ shared words = similar
+      } catch { return false; }
+    });
+  } catch { return false; }
+}
+
+function shouldNotifyJohn(count, reason) {
+  console.log(`   ⚠️  Should notify John: ${count} ideas for "${reason}", count=${count}`);
+}
+
+// ─── Idea Quality Filter ─────────────────────────────────────────────────────
+
+const VAGUE_PATTERNS = [
+  /^arr\s+(setup|install|feature|improvement|automation)\s+idea$/i,
+  /^docker\s+(improvement|setup|install)\s+idea$/i,
+  /^media\s+server\s+tips?\s+idea$/i,
+  /^new\s+deployment\s+guide\s+idea$/i,
+  /^telegram\s+bot\s+improvement\s+idea$/i,
+  /^automation\s+workflow\s+idea$/i,
+  /^mcp\s+integration\s+idea$/i,
+  /^skill\s+idea\s+from\s+video:/i,
+];
+
+function isVague(title) {
+  return VAGUE_PATTERNS.some(p => p.test(title.trim()));
+}
+
+function extractTicketId(title) {
+  const match = title.match(/OC[-\s]?(\d+)/i);
+  return match ? `OC-${match[1]}` : null;
+}
+
+// ─── Parse web search results ────────────────────────────────────────────────
+
+function parseWebSearchOutput(output) {
+  try {
+    // Output is JSON from openclaw web search
+    const parsed = JSON.parse(output);
+    return parsed.results || [];
+  } catch {
+    return [];
+  }
+}
 
 function extractYouTubeVideos(results) {
   const videos = [];
   for (const r of results) {
-    if (r.url && r.url.includes('youtube.com/watch')) {
-      const match = r.url.match(/v=([^&]+)/);
+    if (!r.url) continue;
+    if (r.url.includes('youtube.com/watch') || r.url.includes('youtu.be/')) {
+      const match = r.url.match(/v=([^&]+)/) || r.url.match(/youtu\.be\/([^?]+)/);
       videos.push({
         videoId: match ? match[1] : null,
-        title: r.title.replace(/<<<.*?>>>/g, '').trim(),
-        description: r.description.replace(/<<<.*?>>>/g, '').trim(),
+        title: (r.title || '').replace(/<<<.*?>>>/g, '').trim(),
+        description: (r.description || r.snippet || '').replace(/<<<.*?>>>/g, '').trim(),
         url: r.url
       });
     }
@@ -22,151 +98,197 @@ function extractYouTubeVideos(results) {
   return videos;
 }
 
-function extractIdeasFromContent(title, description) {
+// ─── Extract specific, actionable ideas ──────────────────────────────────────
+
+function extractIdeasFromContent(video) {
+  const { title, description, url } = video;
   const ideas = [];
   const content = `${title} ${description}`.toLowerCase();
-  
-  console.log(`\n📺 Analyzing: ${title.substring(0, 60)}...`);
-  
-  // OpenClaw-specific ideas
-  if (content.includes('openclaw') || content.includes('clawdbot') || content.includes('moltbot')) {
-    
-    if (content.includes('tutorial') || content.includes('beginner') || content.includes('crash course')) {
+
+  // Only look for very specific patterns
+  const specificPatterns = [
+    {
+      // e.g. "how to use Sonarr hardlinks to save disk space"
+      regex: /hardlink/i,
+      title: `Hardlink optimization for NAS storage`,
+      why: `Videos covering hardlinks with Sonarr/Radarr describe a specific disk-space saving technique relevant to OC-0019`
+    },
+    {
+      regex: /trash.?guide|enhanced?.?media.?manager/i,
+      title: `Apply Plex Trash Guide settings`,
+      why: `Trash Guide settings are a well-known Plex reliability improvement`
+    },
+    {
+      regex: /plex.*docker.*optimize|docker.*plex.*tweak/i,
+      title: `Docker Plex container optimization`,
+      why: `Specific Docker-for-Plex optimizations can improve transcoding performance`
+    },
+    {
+      regex: /sonarr.*profile|radarr.*profile|quality.*profile.*arr/i,
+      title: `ARR quality profile optimization`,
+      why: `Better quality profiles reduce unnecessary re-downloads and storage waste`
+    },
+    {
+      regex: /overseerr.*setup|jellyseerr.*setup/i,
+      title: `Overseerr/Jellyseerr setup automation`,
+      why: `Request management automation can improve media discovery workflow`
+    },
+    {
+      regex: /arr.*backup|radarr.*backup.*script|sonarr.*backup.*automation/i,
+      title: `Automated ARR config backup`,
+      why: `Reliable automated backups prevent config loss`
+    },
+    {
+      regex: /openclaw.*skill|clawd?hub.*install/i,
+      title: `OpenClaw skill installation workflow`,
+      why: `Better skill discovery/installation would improve agent capabilities`
+    },
+    {
+      regex: /openclaw.*health.*check|openclaw.*monitor/i,
+      title: `OpenClaw health monitoring improvements`,
+      why: `Improved health monitoring reduces downtime`
+    },
+    {
+      regex: /arr.*notification.*whatsapp|sonarr.*whatsapp|radarr.*whatsapp/i,
+      title: `ARR WhatsApp notifications for new media`,
+      why: `WhatsApp notifications for new downloads improves media arrival awareness`
+    },
+  ];
+
+  for (const pattern of specificPatterns) {
+    if (pattern.regex.test(content)) {
+      // Check dedup
+      if (hasSimilarTitle(pattern.title)) {
+        console.log(`   ⏭️  Skipping (similar idea exists): ${pattern.title}`);
+        continue;
+      }
+      if (isVague(pattern.title)) {
+        console.log(`   ⏭️  Skipping (too vague): ${pattern.title}`);
+        continue;
+      }
       ideas.push({
-        title: `Skill idea from video: ${title.substring(0, 40)}`,
-        description: `From YouTube tutorial "${title}". ${description.substring(0, 250)}`
-      });
-    }
-    
-    if (content.includes('deploy') || content.includes('install') || content.includes('setup')) {
-      ideas.push({
-        title: 'New deployment guide idea',
-        description: `Video "${title}" covers setup: ${description.substring(0, 250)}`
-      });
-    }
-    
-    if (content.includes('telegram')) {
-      ideas.push({
-        title: 'Telegram bot improvement idea',
-        description: `From "${title}": ${description.substring(0, 250)}`
-      });
-    }
-    
-    if (content.includes('mcp')) {
-      ideas.push({
-        title: 'MCP integration idea',
-        description: `Video "${title}": ${description.substring(0, 250)}`
-      });
-    }
-    
-    if (content.includes('autonomous') || content.includes('automation')) {
-      ideas.push({
-        title: 'Automation workflow idea',
-        description: `From "${title}": ${description.substring(0, 250)}`
-      });
-    }
-  }
-  
-  // ARR/Media server ideas
-  if (content.includes('sonarr') || content.includes('radarr') || content.includes('plex') || content.includes('arr') || content.includes('media server')) {
-    
-    if (content.includes('setup') || content.includes('install')) {
-      ideas.push({
-        title: 'ARR setup feature idea',
-        description: `Video "${title}": ${description.substring(0, 250)}`
-      });
-    }
-    
-    if (content.includes('automation') || content.includes('workflow')) {
-      ideas.push({
-        title: 'ARR automation idea',
-        description: `From "${title}": ${description.substring(0, 250)}`
-      });
-    }
-    
-    if (content.includes('tips') || content.includes('trick')) {
-      ideas.push({
-        title: 'Media server tips idea',
-        description: `Tips video "${title}": ${description.substring(0, 250)}`
-      });
-    }
-    
-    if (content.includes('docker') || content.includes('container')) {
-      ideas.push({
-        title: 'Docker improvement idea',
-        description: `From "${title}": ${description.substring(0, 250)}`
+        title: pattern.title,
+        description: `From YouTube video "${title}" (${url}). ${description.substring(0, 200)}`,
+        why: pattern.why
       });
     }
   }
-  
+
   return ideas;
 }
 
-async function addIdeaToKanban(idea) {
-  try {
-    const response = await fetch(KANBAN_API, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        title: idea.title,
-        description: idea.description,
-        type: 'idea',
-        column: 'ideas'
-      })
-    });
-    return response.ok;
-  } catch (e) {
-    console.error('Failed to add idea:', e.message);
-    return false;
-  }
+// ─── Add idea via filesystem ──────────────────────────────────────────────────
+
+function slugify(text) {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-{2,}/g, '-').substring(0, 60) || 'new-idea';
 }
 
-async function run() {
-  const searchTerm = process.argv[2] || 'OpenClaw automation AI agent';
-  console.log(`=== YouTube Ideas Scanner ===`);
-  console.log(`Searching for: ${searchTerm}\n`);
-  
-  // Run web_search via exec
-  const { execSync } = require('child_process');
+function nextIdeaId() {
+  const files = fs.readdirSync(IDEA_DIR).filter(f => f.startsWith('IDEA-'));
+  const nums = files.map(f => {
+    const m = f.match(/IDEA-(\d+)/);
+    return m ? parseInt(m[1]) : 0;
+  });
+  return `IDEA-${Math.max(...nums, 0) + 1}`.padStart(8, '0');
+}
+
+function createIdeaFile(title, description, why) {
+  const id = nextIdeaId();
+  const filename = `${id}-${slugify(title)}.md`;
+  const filepath = path.join(IDEA_DIR, filename);
+  const now = new Date().toISOString().slice(0, 16).replace('T', ' ');
+
+  const content = `# Idea
+**ID:** ${id}
+**Title:** ${title}
+**Status:** pending-review
+**Suggested Priority:** Medium
+**Source:** YouTube Ideas Cron
+**Created:** ${now}
+**Last Updated:** ${now}
+
+## Summary
+${description}
+
+## Why It Might Matter
+${why}
+
+## Suggested Outcome
+If accepted, convert to a live ticket with clear acceptance criteria.
+
+## Approval Decision
+Pending
+
+## Rejection Reason
+
+## Notes
+Source: YouTube video analysis via youtube-ideas.js
+`;
+
+  fs.writeFileSync(filepath, content);
+  return filepath;
+}
+
+// ─── Main ─────────────────────────────────────────────────────────────────────
+
+async function run(searchTerm, category) {
+  console.log(`\n=== YouTube Ideas Scanner — ${category} ===`);
+  console.log(`Searching: ${searchTerm}`);
+
   let results = [];
-  
   try {
-    const output = execSync(`openclaw web search --query "${searchTerm} YouTube tutorial" --count 8`, {
+    const output = execSync(`openclaw web search --query "${searchTerm} tutorial" --count 8`, {
       encoding: 'utf8',
-      timeout: 30000
+      timeout: 45000
     });
-    // Parse the output - it's JSON
-    const parsed = JSON.parse(output);
-    results = parsed.results || [];
+    results = parseWebSearchOutput(output);
   } catch (e) {
     console.error('Web search failed:', e.message);
-    // Fallback to direct search
-    try {
-      const output = execSync(`echo '[]'`, { encoding: 'utf8' });
-    } catch {}
+    console.log('No results fetched, exiting.');
+    return { searched: 0, ideas: 0, skipped: 0 };
   }
-  
+
   const videos = extractYouTubeVideos(results);
-  console.log(`Found ${videos.length} YouTube videos`);
-  
-  let totalIdeas = 0;
-  
+  console.log(`Videos found: ${videos.length}`);
+
+  let ideasCreated = 0;
+  let skippedVague = 0;
+  let skippedDuplicate = 0;
+
   for (const video of videos) {
-    const ideas = extractIdeasFromContent(video.title, video.description);
-    console.log(`   Found ${ideas.length} ideas`);
-    
+    const ideas = extractIdeasFromContent(video);
+    if (ideas.length === 0) continue;
+
     for (const idea of ideas) {
-      const added = await addIdeaToKanban(idea);
-      if (added) {
-        console.log(`   ✅ Added: ${idea.title.substring(0, 50)}...`);
-        totalIdeas++;
+      if (isVague(idea.title)) {
+        skippedVague++;
+        continue;
+      }
+      if (hasSimilarTitle(idea.title)) {
+        skippedDuplicate++;
+        continue;
+      }
+      try {
+        const filepath = createIdeaFile(idea.title, idea.description, idea.why);
+        console.log(`   ✅ Created: ${idea.title}`);
+        ideasCreated++;
+      } catch (e) {
+        console.error('   ❌ Failed to create idea:', e.message);
       }
     }
   }
-  
-  console.log(`\n=== Summary ===`);
-  console.log(`Videos analyzed: ${videos.length}`);
-  console.log(`Ideas added: ${totalIdeas}`);
+
+  const total = ideasCreated + skippedVague + skippedDuplicate;
+  console.log(`\n=== ${category} Summary ===`);
+  console.log(`Videos: ${videos.length} | Ideas created: ${ideasCreated} | Skipped vague: ${skippedVague} | Skipped duplicate: ${skippedDuplicate}`);
+
+  return { searched: videos.length, ideas: ideasCreated, skippedVague, skippedDuplicate };
 }
 
-run().catch(console.error);
+const category = process.argv[2] || 'ARR';
+const searchTerms = {
+  'ARR': 'Sonarr Radarr Plex Docker media server',
+  'OpenClaw': 'OpenClaw AI agent automation',
+};
+
+run(searchTerms[category] || category, category).catch(console.error);

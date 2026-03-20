@@ -40,3 +40,10 @@ Then apply these rules strictly:
 8. Status must reflect reality, not effort.
 
 Your job in this cron run is to process at most one approved live ticket safely.
+
+**Dashboard sync rule:**
+After picking a ticket (step 4), immediately call the dashboard API to update SQLite:
+```
+curl -s -X POST http://192.168.1.146:5000/api/kanban/process-next
+```
+This keeps the dashboard (SQLite) in sync with the filesystem kanban. The filesystem ticket file is your working copy — update its status and activity log there.
