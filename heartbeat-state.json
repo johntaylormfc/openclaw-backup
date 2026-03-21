@@ -1,17 +1,16 @@
 {
-  "updated": "2026-03-20T07:36:00Z",
-  "activeProject": "OC-0014",
-  "currentTask": "Downloading qwen2.5-coder:7b (ollama) - 18% done",
+  "updated": "2026-03-21T01:53:00Z",
+  "activeProject": "OC-0019",
+  "currentTask": "ARR Hardlink Optimization — awaiting John decision",
   "blockers": [
-    "OC-0014: waiting on model download to complete",
-    "OC-0016: waiting on John's LLM routing scope decisions",
-    "OC-0019: waiting on John's Synology hardlink decision"
+    "OC-0019 — Synology NFS hardlink blocker: 3 options sent to John, awaiting reply"
   ],
   "dashboardStatus": "up",
   "kanbanSnapshot": {
-    "ideas": 28,
-    "new": 0,
-    "blocked": 3,
+    "ideas": 29,
+    "new": 11,
+    "blocked": 1,
     "inProgress": 3
-  }
+  },
+  "notes": "OC-0019 hardlink blocker active since March 19. Options (a/b/c) sent via WhatsApp 4x. WhatsApp sessions_send timing out but inter-session delivery working. 11 new tickets in kanban/new/ unread."
 }
