@@ -14,4 +14,5 @@
 The Google Drive research sync cron is timing out at 120s. Increase timeout to prevent failed syncs.
 
 ## Activity Log
+- 2026-03-21 13:24 UTC — timeoutSeconds increased 120→180 in jobs.json (job fabe8448)
 
