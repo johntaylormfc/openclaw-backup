@@ -1,16 +1,15 @@
 {
-  "updated": "2026-03-21T01:53:00Z",
-  "activeProject": "OC-0019",
-  "currentTask": "ARR Hardlink Optimization — awaiting John decision",
-  "blockers": [
-    "OC-0019 — Synology NFS hardlink blocker: 3 options sent to John, awaiting reply"
-  ],
-  "dashboardStatus": "up",
-  "kanbanSnapshot": {
-    "ideas": 29,
-    "new": 11,
-    "blocked": 1,
-    "inProgress": 3
+  "lastHeartbeat": "2026-03-21T11:10:00Z",
+  "activeProject": "Operations (ongoing)",
+  "currentTask": "Heartbeat monitoring",
+  "dashboardStatus": "up (port 5000)",
+  "kanban": {
+    "ideas": 30,
+    "new": 10
   },
-  "notes": "OC-0019 hardlink blocker active since March 19. Options (a/b/c) sent via WhatsApp 4x. WhatsApp sessions_send timing out but inter-session delivery working. 11 new tickets in kanban/new/ unread."
+  "blockers": [
+    "OC-0019 - Hardlink storage optimization (awaiting john decision)",
+    "041f9567 - Memory gap fix (awaiting john decision)"
+  ],
+  "whatsAppStatus": "gateway connected"
 }

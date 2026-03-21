@@ -53,7 +53,7 @@ Credentials: john / John1234 (lowercase!)
 - Vector memory: DISABLED (March 5, 2026)
 - **Backup**: /home/john/.openclaw/scripts/memory-backup.sh (cron daily 03:00) → /home/john/ARR/backup/memory/ (14 snapshots)
 
-Last updated: 2026-03-17
+Last updated: 2026-03-21
 
 ## Daily Review Insights (March 17, 2026)
 - Arnold (OpenClaw restore & hardening) completed successfully
