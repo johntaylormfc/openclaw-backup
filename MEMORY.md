@@ -37,6 +37,7 @@
 - Exec tool can hang after system compaction
 - Google Drive sync: Service Account quota limits
 - Vector memory flush: disabled (Gemini 403 errors)
+- Health-watcher was broken (docker:24-cli API 1.43 vs host Docker 29.2.1 requiring API 1.44) — FIXED 2026-03-21 by upgrading to docker:27-cli
 
 ## BC Container (GSPRO)
 | Container | Web Port | URL |
@@ -54,6 +55,32 @@ Credentials: john / John1234 (lowercase!)
 - **Backup**: /home/john/.openclaw/scripts/memory-backup.sh (cron daily 03:00) → /home/john/ARR/backup/memory/ (14 snapshots)
 
 Last updated: 2026-03-21
+
+## Daily Review Insights (March 21, 2026)
+### What Went Well
+- Docker Health Agent fixed: upgraded docker:24-cli → docker:27-cli (API 1.43 → 1.47)
+- Health-watcher auto-detected unhealthy transmission container and restarted it at 21:59
+- All 33 cron jobs healthy with 0 consecutive errors
+- System stable - no blocked tickets requiring immediate action
+- All ARR services operational
+- Ticket OC (Docker Stack Health Agent, task-1773912740136) → Complete
+
+### What Could Be Improved
+- Missing memory file for March 20th - gap in daily documentation (weekend cron may have failed)
+- Multiple duplicate/stale ideas in kanban/idea/ folder - needs consolidation:
+  - OC-0012: 2 ideas (IDEA-0083, IDEA-0097)
+  - OC-0014: 2 ideas (IDEA-0087, IDEA-0098)
+  - OC-0016: 4 ideas (IDEA-0084, IDEA-0089, IDEA-0099, IDEA-REVIEW-OC0016)
+  - OC-0018: 3 ideas (IDEA-0090, IDEA-0102, IDEA-0103)
+  - OC-0019: 2 ideas (IDEA-0100, IDEA-REVIEW-OC0019)
+  - OC-0011: 2 ideas (IDEA-0085, IDEA-0101)
+- Weekend memory capture has gaps (March 16 missing, now March 20 missing)
+
+### New Patterns/Learnings
+- Docker API version mismatch causes SILENT failures - container Docker client must match or exceed host API version
+- Health-watcher was broken since ~March 16 but went unnoticed for 5 days - shows monitoring gap for the monitor itself
+- Auto-recovery working as designed (transmission auto-restarted)
+- Pattern: Duplicate tickets keep appearing for same OC numbers - ticket lifecycle management needs review
 
 ## Daily Review Insights (March 17, 2026)
 - Arnold (OpenClaw restore & hardening) completed successfully
