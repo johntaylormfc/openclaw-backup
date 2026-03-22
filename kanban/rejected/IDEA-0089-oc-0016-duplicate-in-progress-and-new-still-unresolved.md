@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-0089
 **Title:** [UNRESOLVED] OC-0016 — still exists in BOTH in-progress AND new folders (4 days)
-**Status:** Idea
+**Status:** Rejected
 **Suggested Priority:** High
 **Source:** Cron
 **Created:** 2026-03-19 08:03
-**Last Updated:** 2026-03-19 08:03
+**Last Updated:** 2026-03-22 04:02
 
 ## Summary
 OC-0016 appears in two places simultaneously — `/kanban/in-progress/` and `/kanban/new/` — creating an inconsistency that was flagged 4 days ago (IDEA-0084, created 2026-03-19 00:03) but never resolved. The in-progress copy has activity log entries dated 2026-03-19 01:00 UTC claiming the ticket was picked up, but the filesystem mtime is still 2026-03-11 22:51 — suggesting the activity log may have been edited in place without actually moving or acting on the ticket.
@@ -35,9 +35,10 @@ John picks one copy as authoritative and deletes the other. Additionally, answer
    - Cost/complexity preferences?
 
 ## Approval Decision
-Pending
+Rejected on 2026-03-22 04:02.
 
 ## Rejection Reason
+Duplicate - superseded by IDEA-0099
 
 ## Notes
-IDEA-0084 was created 8 hours ago and remains pending. This idea reiterates the same issue as it remains unresolved.
+Idea rejected on 2026-03-22 04:02. Reason: Duplicate - superseded by IDEA-0099

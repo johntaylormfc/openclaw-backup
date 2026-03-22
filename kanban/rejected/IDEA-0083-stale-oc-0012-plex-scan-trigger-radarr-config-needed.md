@@ -2,7 +2,7 @@
 
 **ID:** IDEA-0083
 **Title:** [STALE REVIEW] OC-0012 — Plex scan trigger needs Radarr config (6 days idle)
-**Status:** pending-review
+**Status:** Rejected
 **Created:** 2026-03-19 00:03
 **Source:** Automated stale review
 

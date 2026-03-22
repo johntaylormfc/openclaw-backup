@@ -2,7 +2,7 @@
 
 **ID:** IDEA-0085
 **Title:** [STALE REVIEW] OC-0011 — Restore Points snapshot system blocked 2+ days on scope
-**Status:** pending-review
+**Status:** Rejected
 **Created:** 2026-03-19 04:03
 **Source:** Automated stale review (cron)
 

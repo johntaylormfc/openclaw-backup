@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-0100
 **Title:** OC-0019 - Choose ARR Hardlink Optimization Approach
-**Status:** Idea
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Cron
 **Created:** 2026-03-20 00:01
-**Last Updated:** 2026-03-20 00:01
+**Last Updated:** 2026-03-22 04:02
 
 ## Summary
 OC-0019 analysis is complete and confirmed hardlinks can't work across Synology NFS exports — each share is its own export boundary. The ticket is effectively blocked and needs John to choose one of three documented approaches.
@@ -35,4 +35,4 @@ John picks an approach from the three options in OC-0019's blocker section.
 Request John pick an option from the blocker section of OC-0019.
 
 ## Approval Decision
-Pending
+Rejected on 2026-03-22 04:02.

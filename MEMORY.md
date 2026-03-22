@@ -47,6 +47,11 @@
 
 Credentials: john / John1234 (lowercase!)
 
+## Cloudflare Tunnel
+- Tunnel name: "openclaw"
+- PID: 176958 (running on Beelink)
+- DNS: openclaw.bcdev.co.uk - pending verification
+
 ## Memory System
 - Daily notes: memory/YYYY-MM-DD.md (load on-demand)
 - MEMORY.md: curated long-term brain
@@ -54,85 +59,32 @@ Credentials: john / John1234 (lowercase!)
 - Vector memory: DISABLED (March 5, 2026)
 - **Backup**: /home/john/.openclaw/scripts/memory-backup.sh (cron daily 03:00) → /home/john/ARR/backup/memory/ (14 snapshots)
 
-Last updated: 2026-03-21
+Last updated: 2026-03-22
 
-## Daily Review Insights (March 21, 2026)
-### What Went Well
-- Docker Health Agent fixed: upgraded docker:24-cli → docker:27-cli (API 1.43 → 1.47)
-- Health-watcher auto-detected unhealthy transmission container and restarted it at 21:59
+## Weekly Summary (March 15-22, 2026)
+
+### This Week's Key Fixes
+- **Docker Health Agent** (March 21): Upgraded docker:24-cli → docker:27-cli to fix API version mismatch. Health-watcher now auto-restarts unhealthy containers.
+- **Transmission RPC** (March 18): Fixed unauthenticated RPC access (security fix)
+- **OAuth bugs** (March 18): Fixed calendar-to-todoist and email-to-todoist using wrong creds file
+- **Backup retention** (March 18): Added 14-day ARR backup retention, freed 2.3GB
+- **Memory consolidation** (March 22): Archived bloated research files and old daily notes
+
+### Infrastructure
+- Cloudflare tunnel "openclaw" running (PID 176958)
 - All 33 cron jobs healthy with 0 consecutive errors
-- System stable - no blocked tickets requiring immediate action
-- All ARR services operational
-- Ticket OC (Docker Stack Health Agent, task-1773912740136) → Complete
+- Arnold (OpenClaw restore & hardening) completed March 17
 
-### What Could Be Improved
-- Missing memory file for March 20th - gap in daily documentation (weekend cron may have failed)
-- Multiple duplicate/stale ideas in kanban/idea/ folder - needs consolidation:
-  - OC-0012: 2 ideas (IDEA-0083, IDEA-0097)
-  - OC-0014: 2 ideas (IDEA-0087, IDEA-0098)
-  - OC-0016: 4 ideas (IDEA-0084, IDEA-0089, IDEA-0099, IDEA-REVIEW-OC0016)
-  - OC-0018: 3 ideas (IDEA-0090, IDEA-0102, IDEA-0103)
-  - OC-0019: 2 ideas (IDEA-0100, IDEA-REVIEW-OC0019)
-  - OC-0011: 2 ideas (IDEA-0085, IDEA-0101)
-- Weekend memory capture has gaps (March 16 missing, now March 20 missing)
+### Known Issues
+- 30 ideas in kanban/idea/ backlog - needs prioritization
+- Vector memory disabled (Gemini 403 errors)
+- OAuth tokens expire mid-month - needs proactive refresh
+- DNS CNAME openclaw.bcdev.co.uk pending verification
 
-### New Patterns/Learnings
+### Patterns
 - Docker API version mismatch causes SILENT failures - container Docker client must match or exceed host API version
-- Health-watcher was broken since ~March 16 but went unnoticed for 5 days - shows monitoring gap for the monitor itself
-- Auto-recovery working as designed (transmission auto-restarted)
-- Pattern: Duplicate tickets keep appearing for same OC numbers - ticket lifecycle management needs review
+- Duplicate tickets keep appearing for same OC numbers - ticket lifecycle management needs review
+- OAuth tokens expire mid-month - needs proactive refresh schedule
 
-## Daily Review Insights (March 17, 2026)
-- Arnold (OpenClaw restore & hardening) completed successfully
-- Memory audit fully restored - 23 files, runbooks created in harbor/
-- QMD implementation provides fallback when vector memory disabled
-- All 41 cron jobs healthy with 0 consecutive errors
-- OAuth tokens consistently expire mid-month - needs proactive refresh (recurring)
-- Weekend memory capture shows gaps (March 16 missing) - verify Saturday cron
-
-## Daily Review Insights (March 14, 2026)
-- Weekend memory capture working reliably at 10:00
-- Persistent issues from prior weeks still blocking:
-  - Calendar/Todoist OAuth scope problems
-  - Vector memory disabled (Gemini 403)
-  - gdrive-sync cron timeout
-- Pattern: OAuth tokens expire mid-month - needs proactive refresh schedule
-
-## Daily Review Insights (March 18, 2026)
-- M2.7 now primary model - awaiting API availability
-- Fixed calendar-to-todoist and email-to-todoist OAuth bugs (wrong creds file)
-- Set up Deepgram voice transcription (API key configured)
-- Cleaned 6 stopped containers
-- Added 14-day ARR backup retention - freed 2.3GB
-- Fixed Transmission RPC auth (was unauthenticated - security risk)
-- Git remote added: https://github.com/johntaylormfc/openclaw-backup
-- Deleted ARR_Trader workspace (john requested)
-- Git filter-branch run to remove secrets from history
-
-## Daily Review Insights (March 19, 2026)
-- Cloudflare tunnel setup in progress: tunnel created "openclaw", running on Beelink (PID 176958)
-- DNS CNAME for openclaw.bcdev.co.uk pending verification (John checking)
-- Multiple stale tickets addressed (OC-0012 through OC-0019)
-- Pattern: Duplicate/inconsistent tickets keep appearing (OC-0016 has 3+ versions)
-- 30 ideas in kanban/idea/ folder - backlog growing, needs prioritization
-
-## Daily Review Insights (March 18, 2026)
-- M2.7 now primary model - awaiting API availability
-- Fixed calendar-to-todoist and email-to-todoist OAuth bugs (wrong creds file)
-- Set up Deepgram voice transcription (API key configured)
-- Cleaned 6 stopped containers
-- Added 14-day ARR backup retention - freed 2.3GB
-- Fixed Transmission RPC auth (was unauthenticated - security risk)
-- Git remote added: https://github.com/johntaylormfc/openclaw-backup
-- Deleted ARR_Trader workspace (john requested)
-- Git filter-branch run to remove secrets from history
-
-## Daily Review Insights (March 17, 2026) - Arnold Restore
-- OpenClaw restore & hardening completed successfully (v2026.3.13)
-- Memory fully audited: 23 memory files restored to ~/.openclaw/workspace/memory/
-- Harbor workspace created: bcdevltd/harbor/ with 40-runbooks and 10-tickets structure
-- QMD implemented as fallback for disabled vector memory
-- All 41 cron jobs healthy with 0 consecutive errors
-- Memory search disabled (expected for Minimax-only deployments without embedding provider)
-- OpenClaw memory_search tool has "scope denied" issue in session context
-- Lesson: QMD backend works but memory_search tool itself needs fix for semantic search
+---
+*Memory curated: 2026-03-22 (weekly)*

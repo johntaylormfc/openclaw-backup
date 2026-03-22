@@ -2,7 +2,7 @@
 
 **ID:** IDEA-0084
 **Title:** [INCONSISTENCY] OC-0016 — ticket duplicated across in-progress AND new folders
-**Status:** pending-review
+**Status:** Rejected
 **Created:** 2026-03-19 00:03
 **Source:** Automated stale/inconsistency review
 

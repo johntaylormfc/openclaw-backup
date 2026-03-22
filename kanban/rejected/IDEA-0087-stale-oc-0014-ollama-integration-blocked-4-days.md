@@ -2,7 +2,7 @@
 
 **ID:** IDEA-0087
 **Title:** [STALE REVIEW] OC-0014 — Ollama integration blocked 4 days with no implementation
-**Status:** pending-review
+**Status:** Rejected
 **Created:** 2026-03-19 04:03
 **Source:** Automated stale review (cron)
 

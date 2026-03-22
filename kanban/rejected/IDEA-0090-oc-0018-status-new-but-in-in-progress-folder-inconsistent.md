@@ -1,7 +1,7 @@
 # Idea
 **ID:** IDEA-0090
 **Title:** OC-0018 — ticket says "New" but lives in in-progress/ folder (inconsistent)
-**Status:** Idea
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Cron stale review
 **Created:** 2026-03-19 16:05
@@ -42,8 +42,10 @@ Either:
 2. Delete the separate `OC-0018_BLOCKED.md` file if the blocker content is merged into the ticket
 
 ## Approval Decision
-Pending
+Rejected on 2026-03-22 04:02.
 
 ## Rejection Reason
+Duplicate - superseded by IDEA-0103
 
 ## Notes
+Idea rejected on 2026-03-22 04:02. Reason: Duplicate - superseded by IDEA-0103

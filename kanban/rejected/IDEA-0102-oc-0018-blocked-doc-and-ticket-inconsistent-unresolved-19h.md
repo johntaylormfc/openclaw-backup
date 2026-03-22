@@ -2,7 +2,7 @@
 
 **ID:** IDEA-0102
 **Title:** OC-0018 — blocker doc exists but ticket not updated + scope questions unanswered 19h
-**Status:** pending-review
+**Status:** Rejected
 **Source:** Cron stale review (2026-03-20 04:03 UTC)
 **Created:** 2026-03-20 04:03
 
