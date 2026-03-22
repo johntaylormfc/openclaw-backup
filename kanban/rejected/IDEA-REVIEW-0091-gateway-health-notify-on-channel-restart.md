@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-REVIEW-0091
 **Title:** Gateway health monitor — notify on channel auto-restart
-**Status:** Idea
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Cron
 **Created:** 2026-03-19
-**Last Updated:** 2026-03-19
+**Last Updated:** 2026-03-22 18:41
 
 ## Summary
 When the gateway's built-in health monitor restarts a channel (WhatsApp, Telegram, etc.), it currently does so silently. The operator only discovers this by reading logs or noticing the gap in message history. This idea proposes a configurable notification — via cron webhook or chat announce — whenever the health monitor triggers a channel restart.
@@ -33,8 +33,10 @@ A gateway config flag (e.g., `gateway.channelHealthNotify: true`) that, when ena
 Scope the health monitor event hook surface. Identify where in the gateway code restart events are triggered and whether they already emit an internal event that could be wired to a notification handler.
 
 ## Approval Decision
-Pending
+Rejected on 2026-03-22 18:41.
 
 ## Rejection Reason
+Already implemented today - gateway-watchdog.js running every 5 minutes.
 
 ## Notes
+Idea rejected on 2026-03-22 18:41. Reason: Already implemented today - gateway-watchdog.js running every 5 minutes.

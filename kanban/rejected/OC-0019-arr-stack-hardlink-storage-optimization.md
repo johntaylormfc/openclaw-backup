@@ -1,12 +1,12 @@
 # Ticket: ARR Stack Hardlink Storage Optimization
 **ID:** OC-0019
 **Title:** ARR Stack Hardlink Storage Optimization
-**Status:** In-Progress
+**Status:** Rejected
 **Outcome State:** Partial
 **Priority:** Medium
 **Owner:** Arnold (agent)
 **Created:** 2026-03-18 22:28
-**Last Updated:** 2026-03-19 11:00
+**Last Updated:** 2026-03-22 19:04
 
 ## Goal
 Implement and document proper hardlink configuration for the ARR stack to avoid duplicating media files. This saves disk space and enables instant file moves between download and media folders.

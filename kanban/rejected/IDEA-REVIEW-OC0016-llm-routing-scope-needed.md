@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-REVIEW-OC0016
 **Title:** OC-0016 Follow-up: Per-Task LLM Routing Scope Decisions
-**Status:** Idea
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Cron
 **Created:** 2026-03-19 18:00
-**Last Updated:** 2026-03-19 18:00
+**Last Updated:** 2026-03-22 18:31
 
 ## Summary
 OC-0016 (Per-Task LLM Routing) was picked up 2026-03-19 but immediately blocked again — it needs john's scope decisions on: which providers to add (Anthropic, OpenAI, Ollama, etc.), how routing should be triggered (per-agent, per-tag, automatic, manual), and cost/complexity preferences per task type.
@@ -31,9 +31,10 @@ John answers the routing questions in the blocked ticket, or decides to park/clo
 Ask john directly: "Which LLM providers do you want for routing, and how should routing decisions be made?" If no answer in 7 days, suggest closing or parking.
 
 ## Approval Decision
-Pending
+Rejected on 2026-03-22 18:31.
 
 ## Rejection Reason
+Duplicate of IDEA-0099 which was already closed. No cost benefit to routing - MiniMax flat rate.
 
 ## Notes
-This is a larger architectural change — worth doing right but only if john is engaged. If priorities have shifted, better to close now.
+Idea rejected on 2026-03-22 18:31. Reason: Duplicate of IDEA-0099 which was already closed. No cost benefit to routing - MiniMax flat rate.

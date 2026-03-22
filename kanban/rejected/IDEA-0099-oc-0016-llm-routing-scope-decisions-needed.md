@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-0099
 **Title:** OC-0016 - Resolve LLM Routing Scope Decisions
-**Status:** Idea
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Cron
 **Created:** 2026-03-20 00:01
-**Last Updated:** 2026-03-20 00:01
+**Last Updated:** 2026-03-22 17:26
 
 ## Summary
 OC-0016 (Per-Task LLM Routing) has been blocked since March 19th. OpenClaw has only MiniMax configured and no routing layer exists. Four architectural decisions are needed from John before any implementation can start.
@@ -33,4 +33,4 @@ John provides scope decisions documented in OC-0016's blocker section, or explic
 Request John answer the four scope questions in OC-0016's blocker section.
 
 ## Approval Decision
-Pending
+Rejected on 2026-03-22 17:26.

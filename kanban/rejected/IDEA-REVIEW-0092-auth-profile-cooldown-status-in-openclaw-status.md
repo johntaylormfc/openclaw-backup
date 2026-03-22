@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-REVIEW-0092
 **Title:** Surface auth profile cooldown and billing-disable state in `openclaw status`
-**Status:** Idea
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Cron
 **Created:** 2026-03-19
-**Last Updated:** 2026-03-19
+**Last Updated:** 2026-03-22 17:48
 
 ## Summary
 When OpenClaw's model failover system marks an auth profile as in cooldown (rate-limit backoff) or billing-disabled, this state is only visible by directly reading `~/.openclaw/agents/<agentId>/agent/auth-profiles.json`. This makes it difficult for operators to understand why a model fallback occurred without grepping logs or reading JSON. This idea proposes surfacing active cooldowns and billing-disabled profiles in `openclaw status` and `openclaw health --json`.
@@ -37,8 +37,10 @@ Model failover is a core reliability feature, but its operational state is opaqu
 Check the current `openclaw status` output fields and `openclaw health --json` schema. Identify where profile state summary could be injected from `auth-profiles.json`.
 
 ## Approval Decision
-Pending
+Rejected on 2026-03-22 17:48.
 
 ## Rejection Reason
+Useful but secondary - auth failures show in cron job failures. Deferred until OAuth monitoring becomes a pain point.
 
 ## Notes
+Idea rejected on 2026-03-22 17:48. Reason: Useful but secondary - auth failures show in cron job failures. Deferred until OAuth monitoring becomes a pain point.

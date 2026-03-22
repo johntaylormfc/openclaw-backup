@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-REVIEW-OC0019
 **Title:** OC-0019 Follow-up: Synology NAS Hardlink Approach Decision
-**Status:** Idea
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Cron
 **Created:** 2026-03-19 18:00
-**Last Updated:** 2026-03-19 18:00
+**Last Updated:** 2026-03-22 18:32
 
 ## Summary
 OC-0019 (ARR Hardlink Storage Optimization) is correctly configured in ARR apps (Sonarr/Radarr both have copyUsingHardlinks: true) but hardlinks fail because Synology exports /volume1/Complete, /volume1/TV, /volume1/Movies as separate NFS shares. John needs to choose: (1) consolidate Synology exports to enable hardlinks, (2) accept copy-only mode and document it, or (3) another approach.
@@ -31,9 +31,10 @@ John picks an option and the ticket progresses or closes with a documented concl
 Ask john which option he prefers. If no response in a week, nudge again.
 
 ## Approval Decision
-Pending
+Rejected on 2026-03-22 18:32.
 
 ## Rejection Reason
+John happy with current ARR setup - no need to optimise hardlinks.
 
 ## Notes
-ARR apps are already configured correctly — the blocker is entirely NAS-level. John's call on whether to reconfigure Synology or accept the limitation.
+Idea rejected on 2026-03-22 18:32. Reason: John happy with current ARR setup - no need to optimise hardlinks.

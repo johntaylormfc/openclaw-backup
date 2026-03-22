@@ -2,7 +2,7 @@
 
 **ID:** IDEA-0101
 **Title:** OC-0011 — Snapshot system: scope confirmed 8h ago, no implementation started
-**Status:** pending-review
+**Status:** Rejected
 **Source:** Cron stale review (2026-03-20 04:03 UTC)
 **Created:** 2026-03-20 04:03
 

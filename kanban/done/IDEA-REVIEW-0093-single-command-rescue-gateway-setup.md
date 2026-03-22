@@ -42,3 +42,10 @@ Pending
 ## Rejection Reason
 
 ## Notes
+
+## Implementation (2026-03-22)
+- Script: `/home/john/.openclaw/workspace/scripts/gateway-rescue.sh`
+- Checks: process, port, config JSON, disk, memory, logs, Docker containers
+- Auto-fixes: restart gateway, clear stale lock files
+- Usage: `bash gateway-rescue.sh` or `bash gateway-rescue.sh --dry-run`
+- Tested: gateway healthy, no issues found

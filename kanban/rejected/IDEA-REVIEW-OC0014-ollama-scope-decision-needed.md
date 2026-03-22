@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-REVIEW-OC0014
 **Title:** OC-0014 Follow-up: Define Ollama Integration Scope
-**Status:** Idea
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Cron
 **Created:** 2026-03-19 18:00
-**Last Updated:** 2026-03-19 18:00
+**Last Updated:** 2026-03-22 18:30
 
 ## Summary
 OC-0014 (Local Ollama Model Integration) has been blocked since 2026-03-15 because no scope was ever defined. Ollama is running on port 11434 but has no models installed. The ticket needs john to answer three questions: which model(s) to use, whether to install models or just configure OpenClaw's provider, and whether it's per-agent or global.
@@ -31,9 +31,10 @@ Either: (a) john provides scope answers and the ticket moves forward, or (b) joh
 Send john a direct question asking for the three scope answers. If no response in 7 days, nudge again or recommend rejection.
 
 ## Approval Decision
-Pending
+Rejected on 2026-03-22 18:30.
 
 ## Rejection Reason
+Duplicate of IDEA-0098 which was already closed. Ollama decision made - remove from stack.
 
 ## Notes
-Already 3 stale reviews (2026-03-18 twice) with no response. If still no input, suggest archiving/rejecting to avoid perpetual blocking.
+Idea rejected on 2026-03-22 18:30. Reason: Duplicate of IDEA-0098 which was already closed. Ollama decision made - remove from stack.

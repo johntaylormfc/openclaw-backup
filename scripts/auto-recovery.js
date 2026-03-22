@@ -158,7 +158,7 @@ async function main() {
       const jobId = job.id;
       if (!state.cronDisabled[jobId]) {
         try {
-          execSync(`openclaw cron update ${jobId} --enabled false`, { timeout: 10000 });
+          execSync(`openclaw cron disable ${jobId}`, { timeout: 10000 });
           state.cronDisabled[jobId] = { at: Date.now(), name: job.name, errors };
           log(`Cron job "${job.name}" disabled after ${errors} consecutive failures`, 'WARN');
           didRecovery = true;

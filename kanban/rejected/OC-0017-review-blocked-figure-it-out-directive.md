@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-####
 **Title:** Resolve blocked ticket OC-0017 — clarify or retire "Figure It Out" directive
-**Status:** Idea
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Cron
 **Created:** 2026-03-19 06:01
-**Last Updated:** 2026-03-19 06:01
+**Last Updated:** 2026-03-22 20:48
 
 ## Summary
 Ticket OC-0017 has been blocked since 2026-03-19 because it lacks any technical scope. It references a YouTube video but never defines what "Figure It Out" actually means, where it should live, or what specific behavior changes are expected. This idea proposes that John either clarifies the scope now or formally rejects/deprioritises the ticket so it stops appearing as a blocker.
@@ -36,9 +36,10 @@ Either:
 John reviews OC-0017's blocker log and answers the 4 questions listed there. A single message with brief answers would be enough to unblock.
 
 ## Approval Decision
-Pending
+Rejected on 2026-03-22 20:48.
 
 ## Rejection Reason
+Duplicate of OC-0017 figure-it-out - already resolved.
 
 ## Notes
-Cron job `e73b9bf1-e442-4006-a511-3ec322e9d1c5` runs daily at 06:00. This idea will be regenerated if the ticket remains blocked.
+Idea rejected on 2026-03-22 20:48. Reason: Duplicate of OC-0017 figure-it-out - already resolved.

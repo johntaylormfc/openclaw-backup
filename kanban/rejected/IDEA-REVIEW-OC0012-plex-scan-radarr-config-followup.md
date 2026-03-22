@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-REVIEW-OC0012
 **Title:** OC-0012 Follow-up: Complete Radarr Plex Scan Script Configuration
-**Status:** Idea
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Cron
 **Created:** 2026-03-19 18:00
-**Last Updated:** 2026-03-19 18:00
+**Last Updated:** 2026-03-22 18:30
 
 ## Summary
 The Plex library scan automation (OC-0012) is implemented and tested — the script at /home/john/ARR/scripts/plex-scan-trigger.sh works and returns HTTP 200 for both Movies and TV libraries. The only remaining step is for john to configure Radarr's Connect settings to call this script automatically on import/upgrade events.
@@ -31,9 +31,10 @@ John configures Radarr (Settings → Connect → Custom Script) per the instruct
 John opens Radarr at Settings → Connect → Add Custom Script and adds the script. Cron can send a reminder if not done within a week.
 
 ## Approval Decision
-Pending
+Rejected on 2026-03-22 18:30.
 
 ## Rejection Reason
+Manual step - script ready, John to configure Radarr Connect settings in UI when convenient
 
 ## Notes
-Last cron activity: 2026-03-18. Ticket has been blocked since 2026-03-13 with no config progress. Consider closing as accepted and scheduling a nudge reminder.
+Idea rejected on 2026-03-22 18:30. Reason: Manual step - script ready, John to configure Radarr Connect settings in UI when convenient

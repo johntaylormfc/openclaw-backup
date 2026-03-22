@@ -107,7 +107,11 @@ const gmail = google.gmail({ version: 'v1', auth: oauth2Client });
 function getLastRun() {
   try {
     if (fs.existsSync(STATE_FILE)) {
-      return JSON.parse(fs.readFileSync(STATE_FILE, 'utf8')).lastRun;
+      const lastRun = JSON.parse(fs.readFileSync(STATE_FILE, 'utf8')).lastRun;
+      // Subtract 1 hour to catch emails in the gap window
+      const d = new Date(lastRun);
+      d.setHours(d.getHours() - 1);
+      return d.toISOString();
     }
   } catch (e) {}
   // Default: last 24 hours
@@ -130,20 +134,19 @@ async function getExistingTasks() {
   return data.results || [];
 }
 
-// Check if task already exists for this email
-function taskExists(existingTasks, emailSubject, emailFrom) {
-  const searchStr = (emailSubject + ' ' + emailFrom).toLowerCase();
+// Check if task already exists for this email (by message ID in description)
+function taskExists(existingTasks, messageId) {
   return existingTasks.some(t => {
-    const taskStr = t.content.toLowerCase();
-    return taskStr.includes(emailFrom.toLowerCase()) || 
-           (emailSubject && taskStr.includes(emailSubject.substring(0, 30).toLowerCase()));
+    const desc = (t.description || '').toLowerCase();
+    return desc.includes(messageId.toLowerCase());
   });
 }
 
 // Create Todoist task
 async function createTask(subject, from, snippet, messageId) {
+  const gmailLink = `https://mail.google.com/mail/u/0/#inbox/${messageId}`;
   const taskContent = `Email: ${subject} | From: ${from}`;
-  const taskDescription = `${snippet}\n\nGmail Message ID: ${messageId}`;
+  const taskDescription = `Gmail: ${gmailLink}\n\nSummary: ${snippet}`;
   
   const response = await fetch('https://api.todoist.com/api/v1/tasks', {
     method: 'POST',
@@ -215,8 +218,8 @@ async function processEmails() {
         console.log(`\n📧 From: ${from}`);
         console.log(`   Subject: ${subject}`);
         
-        // Check for duplicates
-        if (taskExists(existingTasks, subject, from)) {
+        // Check for duplicates by message ID
+        if (taskExists(existingTasks, msg.id)) {
           console.log('   ⏭️  Duplicate found, skipping');
           continue;
         }
@@ -226,7 +229,7 @@ async function processEmails() {
         if (task) newTasks++;
         
         // Add to existing list to avoid creating multiple for same email
-        existingTasks.push({ content: subject + ' ' + from });
+        existingTasks.push({ description: `Gmail Message ID: ${msg.id}` });
       }
     }
     

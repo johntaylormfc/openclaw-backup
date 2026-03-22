@@ -1,5 +1,11 @@
 {
   "lastGatewayRestart": 0,
   "containerRestarts": {},
-  "cronDisabled": {}
+  "cronDisabled": {
+    "32757a02-f94a-4847-8abd-e65879bc242d": {
+      "at": 1774211680850,
+      "name": "ARR Notification Sender",
+      "errors": 5
+    }
+  }
 }

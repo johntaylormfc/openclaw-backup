@@ -2,7 +2,7 @@
 
 **ID:** IDEA-0103
 **Title:** OC-0018 — Two files in in-progress folder causing confusion, need merge
-**Status:** pending-review
+**Status:** Rejected
 **Source:** Cron stale review (2026-03-20 08:05 UTC)
 **Created:** 2026-03-20 08:05
 

@@ -2,11 +2,11 @@
 
 **ID:** IDEA-0095
 **Title:** Integrate Readarr Into Jellyseerr/Overseerr Book Request Flow
-**Status:** Idea
+**Status:** Rejected
 **Suggested Priority:** Low
 **Source:** Cron
 **Created:** 2026-03-19
-**Last Updated:** 2026-03-19
+**Last Updated:** 2026-03-22 20:44
 
 ## Summary
  John has Readarr (port 8787) and Calibre-Web (port 8083) running alongside Jellyseerr (port 5055) and Overseerr (port 5056). Currently, users can request movies and TV via the request portals but cannot request books — Readarr and Calibre-Web operate outside the automated ARR pipeline. Integrating Readarr would complete the ARR stack automation for all media types.
@@ -34,9 +34,10 @@
  Check Jellyseerr Settings → Services in the Web UI to see if Readarr appears as an option. If not, check Jellyseerr GitHub issues or docs for Readarr support status.
 
 ## Approval Decision
-Pending
+Rejected on 2026-03-22 20:44.
 
 ## Rejection Reason
+Jellyseerr has no ARR services configured. Manual setup required in Jellyseerr UI - too risky to configure automatically.
 
 ## Notes
- This is a UX/completeness improvement for the ARR stack. Not urgent — books are a lower-volume media type. Source: general ARR stack best practices and Jellyseerr/Overseerr documentation patterns.
+Idea rejected on 2026-03-22 20:44. Reason: Jellyseerr has no ARR services configured. Manual setup required in Jellyseerr UI - too risky to configure automatically.

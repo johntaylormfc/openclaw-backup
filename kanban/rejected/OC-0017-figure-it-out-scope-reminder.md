@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-####
 **Title:** Clarify scope for "Figure It Out" directive (OC-0017)
-**Status:** Idea
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Cron
 **Created:** 2026-03-19 12:02
-**Last Updated:** 2026-03-19 12:02
+**Last Updated:** 2026-03-22 20:48
 
 ## Summary
 OC-0017 (Implement "Figure It Out" Autonomous Directive) has been blocked since March 19th because the ticket lacks technical scope. John was asked four specific questions to unblock it:
@@ -37,9 +37,10 @@ John provides a clear answer to the four scoping questions, allowing OC-0017 to 
 Arnold to review the answers and update OC-0017 with a concrete technical plan, then move to In Progress.
 
 ## Approval Decision
-Pending
+Rejected on 2026-03-22 20:48.
 
 ## Rejection Reason
+Stale review item - OC-0017 'figure it out' directive already handled.
 
 ## Notes
-This is the first cron reminder for this blocker. If rejected, Arnold will not re-create this idea. If the scope is still undefined in future cron runs, a new reminder idea can be created.
+Idea rejected on 2026-03-22 20:48. Reason: Stale review item - OC-0017 'figure it out' directive already handled.

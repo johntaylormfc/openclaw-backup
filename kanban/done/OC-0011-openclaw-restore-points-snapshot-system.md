@@ -1,8 +1,8 @@
 # Ticket
 **ID:** OC-0011
 **Title:** OpenClaw Restore Points / Snapshot System
-**Status:** in-progress
-**Outcome State:** Partial
+**Status:** Completed
+**Outcome State:** Complete
 **Priority:** Medium
 **Owner:** Arnold 🦞
 **Created:** 2026-03-11 21:29
@@ -81,3 +81,15 @@ In-progress — scope confirmed, implementation pending.
 
 ## Completion Summary
 Not complete.
+## Completion Summary (2026-03-22)
+- Script: `/home/john/.openclaw/workspace/scripts/drive-openclaw-backup.js`
+- Usage:
+  - `node drive-openclaw-backup.js` — create and upload snapshot
+  - `node drive-openclaw-backup.js --list` — list available snapshots
+  - `node drive-openclaw-backup.js --restore <name>` — restore from snapshot
+- Creates tar.gz of ~/.openclaw/workspace/ and ~/.openclaw/config/
+- Excludes: node_modules, .git, memory/archived, canvas, logs, *.db
+- Uploads to Google Drive → "OpenClaw Snapshots" folder
+- 7-day retention pruning on Drive
+- Cron: nightly at 3am (Europe/London)
+- Tested: 0.3 MB snapshot created, uploaded, listed successfully ✅

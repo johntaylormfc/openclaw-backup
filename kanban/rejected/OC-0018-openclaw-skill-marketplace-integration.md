@@ -1,4 +1,7 @@
-# 🚫 OC-0018 BLOCKED — Scope Decision Required
+# OC-0018 — Skill Marketplace Integration
+
+**Status:** Rejected
+**Duplicate fix:** 2026-03-22 — merged duplicate root-owned file into this john-owned file
 
 **Ticket:** OC-0018-openclaw-skill-marketplace-integration.md  
 **Status:** Blocked (file permissions prevented updating original ticket)  

@@ -1,16 +1,11 @@
 {
-  "updated": "2026-03-22T11:24:00Z",
-  "activeProject": "Kanban maintenance",
-  "currentTask": "Cleaning up memory garbage chunks",
-  "blockers": [
-    "OC-0019 - Hardlink optimization: Synology NFS issue, needs John choice",
-    "041f9567 - Memory gap fix: needs John confirmation on weekday capture"
-  ],
-  "dashboardStatus": "up",
-  "kanbanSummary": {
-    "ideas": 23,
-    "new": 10,
-    "blocked": 2
+  "active_project": "none",
+  "current_task": "heartbeat check",
+  "last_heartbeat": "2026-03-22T22:54:00Z",
+  "dashboard_status": "healthy (port 5000 responding)",
+  "kanban": {
+    "ideas": 0,
+    "new": 0
   },
-  "lastHeartbeatTask": "Cleaned archived/research-1772212153121.md (3,455 duplicate GDrive URLs, 328KB → 4KB)"
+  "notes": "Sunday evening - nothing pending. All clear."
 }
