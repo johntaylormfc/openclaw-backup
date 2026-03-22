@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-0049
 **Title:** Implement Plex Autoscan for Smart Library Updates
-**Status:** Accepted
+**Status:** Rejected
 **Suggested Priority:** High
 **Source:** Cron
 **Created:** 2026-03-11
-**Last Updated:** 2026-03-11 22:50
+**Last Updated:** 2026-03-22 17:01
 
 ## Summary
 Add plex_autoscan to the ARR stack to replace full library scans with targeted folder scans. When Sonarr/Radarr imports a file, plex_autoscan will only scan that specific folder instead of triggering a full Plex library refresh.
@@ -33,9 +33,10 @@ Source: Reddit r/docker and GitHub (l3uddz/plex_autoscan)
 Accept this idea → convert to ticket → research plex_autoscan configuration → deploy test container
 
 ## Approval Decision
-Accepted on 2026-03-11 22:50 and converted to ticket OC-0015.
+Rejected on 2026-03-22 17:01.
 
 ## Rejection Reason
+John does not need plex_autoscan
 
 ## Notes
-Idea accepted and converted into live ticket OC-0015.
+Idea rejected on 2026-03-22 17:01. Reason: John does not need plex_autoscan

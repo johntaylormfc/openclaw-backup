@@ -2,7 +2,7 @@
 
 **ID:** IDEA-0086
 **Title:** [STALE REVIEW] OC-0013 — ARR backup automation blocked 4 days, no progress
-**Status:** pending-review
+**Status:** Rejected
 **Created:** 2026-03-19 04:03
 **Source:** Automated stale review (cron)
 

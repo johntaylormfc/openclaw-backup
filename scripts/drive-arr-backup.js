@@ -46,7 +46,7 @@ async function uploadArrBackup(filePath) {
 
   // Check for existing backup with same name and delete it first (for 7-day rotation)
   const existing = await drive.files.list({
-    q: `name='${fileName}' and '${ARR_BACKUP_FOLDER_ID}' in parents and trashed=false`,
+    q: `name="${fileName}" and "${ARR_BACKUP_FOLDER_ID}" in parents and trashed=false`,
     fields: 'files(id, name)'
   });
 
@@ -88,7 +88,7 @@ async function uploadArrBackup(filePath) {
   cutoff.setDate(cutoff.getDate() - 7);
 
   const oldBackups = await drive.files.list({
-    q: `'${ARR_BACKUP_FOLDER_ID}' in parents and trashed=false and name like 'arr_backup_%'`,
+    q: `"${ARR_BACKUP_FOLDER_ID}" in parents and trashed=false and name contains "arr_backup_"`,
     fields: 'files(id, name, createdTime)'
   });
 

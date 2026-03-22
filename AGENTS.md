@@ -4,6 +4,12 @@ This workspace uses process documents in /home/john/.openclaw/workspace/openclaw
 - KANBAN.md, TICKET_TEMPLATE.md, AGENT_RULES.md, STATUS_RULES.md
 
 ## Mandatory Rules
+
+### Browser Testing (Playwright)
+- **ALWAYS verify dashboard/UI changes with Playwright** before reporting "fixed" or "done"
+- Install: `cd /tmp && npm init -y > /dev/null && npm install playwright > /dev/null 2>&1`
+- Test with a script that: loads the page, triggers the action, checks for console errors and visible error text
+- Do NOT declare a UI fix complete without Playwright verification
 - Never mark Complete unless all acceptance criteria met and evidenced
 - If task cannot be completed, move to Blocked immediately with:
   - what was completed, what failed, why, what user must do to unblock, next step

@@ -17,3 +17,10 @@
 
 ## SearXNG (local search)
 - http://127.0.0.1:8890
+
+## Browser Testing (Playwright)
+- Install: `cd /tmp && npm init -y > /dev/null && npm install playwright > /dev/null 2>&1`
+- Run: `cd /tmp && node << 'EOF' <test_script> EOF`
+- **ALWAYS test dashboard changes with Playwright before declaring fix complete**
+- Test sequence: load page → navigate to section → trigger action → check for errors
+- Check for console errors (`page.on('console', ...)`) and visible error messages

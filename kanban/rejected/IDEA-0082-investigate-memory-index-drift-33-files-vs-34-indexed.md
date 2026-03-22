@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-0082
 **Title:** Investigate memory index drift (33 files vs 34 indexed)
-**Status:** Idea
+**Status:** Rejected
 **Suggested Priority:** Low
 **Source:** Daily Review
 **Created:** 2026-03-18 23:02
-**Last Updated:** 2026-03-18 23:02
+**Last Updated:** 2026-03-22 16:55
 
 ## Summary
 Memory hygiene check showed 33 files on disk but 34 in index. Minor discrepancy may indicate stale index entries.
@@ -29,10 +29,10 @@ If accepted, this idea should be converted into a live ticket with clear accepta
 Review the idea and either accept it into a live ticket or reject it with a reason.
 
 ## Approval Decision
-Pending
+Rejected on 2026-03-22 16:55.
 
 ## Rejection Reason
-Leave blank unless rejected.
+Vector memory disabled; daily memory system is the working recall mechanism
 
 ## Notes
-Idea created automatically from a plain-English request.
+Idea rejected on 2026-03-22 16:55. Reason: Vector memory disabled; daily memory system is the working recall mechanism

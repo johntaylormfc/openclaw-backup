@@ -2,11 +2,11 @@
 
 **ID:** IDEA-0094
 **Title:** Audit and Apply Plex TRaSH Guide Recommended Settings
-**Status:** Idea
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Cron
 **Created:** 2026-03-19
-**Last Updated:** 2026-03-19
+**Last Updated:** 2026-03-22 17:05
 
 ## Summary
  John's Plex container runs with default settings from the LinuxServer image. The TRaSH Guides (officially collaborated with Radarr/Sonarr developers) list specific Plex settings that improve performance, save disk space, and reduce unnecessary work — including database cache size, thumbnail generation, IPv6, and media deletion policies.
@@ -40,9 +40,10 @@
  Open Plex Web UI at http://192.168.1.146:32400/web, go through Settings → Library and Settings → Network, and compare against TRaSH guide recommendations. Apply changes incrementally and test playback.
 
 ## Approval Decision
-Pending
+Rejected on 2026-03-22 17:05.
 
 ## Rejection Reason
+Docker-compose env vars applied. Remaining settings require manual Plex Web UI changes - John to do directly
 
 ## Notes
- Source: TRaSH Guide Plex Media Server Settings (https://trash-guides.info/Plex/Tips/Plex-media-server/). This is distinct from OC-0012 which focuses on Sonarr/Radarr triggering Plex library rescans — this idea is about general Plex performance and correctness settings.
+Idea rejected on 2026-03-22 17:05. Reason: Docker-compose env vars applied. Remaining settings require manual Plex Web UI changes - John to do directly

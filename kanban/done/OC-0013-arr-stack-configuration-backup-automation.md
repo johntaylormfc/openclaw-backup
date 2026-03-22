@@ -25,11 +25,10 @@ Automate backup of entire ARR stack configuration (Sonarr, Radarr, Plex, etc.) o
 - Cron job already configured (nightly at 03:00 via "ARR Config Backup" job) ✓
 - 7-day local retention working ✓
 
-## ⚠️ Known Issue — Drive Upload Blocked
-- Google OAuth token has `drive.readonly` scope only — cannot upload files
-- Drive upload step gracefully fails (script continues, local backup succeeds)
-- **Fix needed:** Re-authenticate Google OAuth with `drive.file` scope
-- Until then: local backups work perfectly every night
+## ✅ Drive Upload — FIXED (2026-03-22)
+- Re-authenticated Google OAuth with full `drive` scope (not read-only)
+- Drive upload script tested and working — 40MB uploaded successfully
+- ARR backups now reach Google Drive ✅
 
 ## Acceptance Criteria
 - [x] Scope confirmed

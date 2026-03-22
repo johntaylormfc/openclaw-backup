@@ -52,6 +52,13 @@ Credentials: john / John1234 (lowercase!)
 - PID: 176958 (running on Beelink)
 - DNS: openclaw.bcdev.co.uk - pending verification
 
+## Voice Transcription
+- **Deepgram Nova-2** for voice messages
+- Script: `/home/john/.openclaw/workspace/scripts/transcribe.js`
+- Usage: `node transcribe.js <audio_file.ogg>`
+- API key stored in script (5eac7fadeb745001af5576b5b17ac2127a0d3327)
+- Whisper is NOT installed — do not try to use it
+
 ## Memory System
 - Daily notes: memory/YYYY-MM-DD.md (load on-demand)
 - MEMORY.md: curated long-term brain

@@ -2,7 +2,7 @@
 
 **ID:** IDEA-0088
 **Title:** [STALE REVIEW] OC-0015 — plex_autoscan blocked ~1 day, 6 decisions needed
-**Status:** pending-review
+**Status:** Rejected
 **Created:** 2026-03-19 04:03
 **Source:** Automated stale review (cron)
 

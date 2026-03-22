@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-0097
 **Title:** OC-0012 - Complete Radarr Plex Scan Configuration
-**Status:** Idea
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Cron
 **Created:** 2026-03-20 00:01
-**Last Updated:** 2026-03-20 00:01
+**Last Updated:** 2026-03-22 17:11
 
 ## Summary
 OC-0012 (Plex API Library Scan Automation) has been in Blocked status since March 13th. The trigger script is written and tested, but Radarr still needs manual UI configuration to call it on import events. This is a recurring stale ticket — user needs to configure Radarr Connect settings.
@@ -30,4 +30,4 @@ John either completes the Radarr UI configuration (Settings → Connect → Cust
 Ping John directly to complete the Radarr configuration. If no response in 2 weeks, move OC-0012 to rejected/done with note that config was never completed.
 
 ## Approval Decision
-Pending
+Rejected on 2026-03-22 17:11.

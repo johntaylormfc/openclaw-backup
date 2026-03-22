@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-0081
 **Title:** Fix memory_search tool scope denied issue
-**Status:** Idea
+**Status:** Rejected
 **Suggested Priority:** High
 **Source:** Daily Review
 **Created:** 2026-03-18 23:02
-**Last Updated:** 2026-03-18 23:02
+**Last Updated:** 2026-03-22 16:53
 
 ## Summary
 OpenClaw memory_search tool returns scope denied in session context. QMD backend works but the tool itself blocks semantic search requests.
@@ -29,10 +29,10 @@ If accepted, this idea should be converted into a live ticket with clear accepta
 Review the idea and either accept it into a live ticket or reject it with a reason.
 
 ## Approval Decision
-Pending
+Rejected on 2026-03-22 16:53.
 
 ## Rejection Reason
-Leave blank unless rejected.
+Vector memory is disabled and daily memory system covers recall needs
 
 ## Notes
-Idea created automatically from a plain-English request.
+Idea rejected on 2026-03-22 16:53. Reason: Vector memory is disabled and daily memory system covers recall needs

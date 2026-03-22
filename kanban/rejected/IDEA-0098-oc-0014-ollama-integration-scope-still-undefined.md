@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-0098
 **Title:** OC-0014 - Resolve Ollama Integration Scope
-**Status:** Idea
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Cron
 **Created:** 2026-03-20 00:01
-**Last Updated:** 2026-03-20 00:01
+**Last Updated:** 2026-03-22 17:12
 
 ## Summary
 OC-0014 (Local Ollama Model Integration) has been blocked since March 15th with no scope defined. OpenClaw is running MiniMax and Ollama is present but empty. The ticket needs three questions answered before any implementation can begin.
@@ -33,4 +33,4 @@ John answers the three scope questions in OC-0014, or explicitly closes the tick
 Request John answer the three scope questions in OC-0014.
 
 ## Approval Decision
-Pending
+Rejected on 2026-03-22 17:12.

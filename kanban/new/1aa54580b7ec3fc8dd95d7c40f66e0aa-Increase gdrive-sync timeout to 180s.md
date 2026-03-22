@@ -2,7 +2,7 @@
 
 **ID:** 1aa54580b7ec3fc8dd95d7c40f66e0aa
 **Title:** Increase gdrive-sync timeout to 180s
-**Status:** New
+**Status:** Complete
 **Column:** new
 **Priority:** Medium
 **Created:** 2026-03-12T23:04:01.157Z
