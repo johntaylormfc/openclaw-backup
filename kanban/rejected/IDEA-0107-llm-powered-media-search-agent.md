@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-0107
 **Title:** LLM-Powered Natural Language Media Search Agent
-**Status:** Pending Review
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Cron
 **Created:** 2026-03-23 08:00
-**Last Updated:** 2026-03-23 08:00
+**Last Updated:** 2026-03-23 18:43
 
 ## Summary
 Add an AI agent that lets john search his media library using natural language queries like "find me sci-fi movies from the 90s" or "what action movies did Tom Cruise star in?" The agent queries Plex API and returns matching results via WhatsApp or dashboard.
@@ -35,7 +35,7 @@ Scrolling through Plex library to find specific content is time-consuming. An LL
 Test Plex API with basic search queries to understand available metadata, then design prompt for LLM.
 
 ## Approval Decision
-Pending Review
+Rejected on 2026-03-23 18:43.
 
 ## Notes
-Idea created by Cron on 2026-03-23 08:00
+Idea rejected on 2026-03-23 18:43. Reason: Not approved at this time

@@ -6,6 +6,11 @@
       "at": 1774211680850,
       "name": "ARR Notification Sender",
       "errors": 5
+    },
+    "007bd1be-d806-4058-8cf5-61a2e583cca0": {
+      "at": 1774296710046,
+      "name": "Process next Kanban ticket",
+      "errors": 5
     }
   }
 }

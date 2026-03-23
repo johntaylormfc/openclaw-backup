@@ -1,11 +1,11 @@
 {
-  "lastHeartbeat": "2026-03-23T16:55:00Z",
+  "lastHeartbeat": "2026-03-23T22:55:00Z",
   "activeProject": null,
   "currentTask": null,
   "blockers": [],
   "dashboardStatus": "ok",
   "kanban": {
-    "ideas": 3,
+    "ideas": 6,
     "new": 0
   }
 }
