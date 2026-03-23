@@ -1,11 +1,11 @@
 {
-  "active_project": "none",
-  "current_task": "heartbeat check",
-  "last_heartbeat": "2026-03-22T22:54:00Z",
-  "dashboard_status": "healthy (port 5000 responding)",
+  "lastHeartbeat": "2026-03-23T04:25:00Z",
+  "activeProject": null,
+  "currentTask": null,
+  "blockers": [],
+  "dashboardStatus": "ok",
   "kanban": {
     "ideas": 0,
     "new": 0
-  },
-  "notes": "Sunday evening - nothing pending. All clear."
+  }
 }
