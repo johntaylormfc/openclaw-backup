@@ -15,6 +15,7 @@ const STATE_FILE = '/tmp/calendar-cron-lastrun.json';
 const tokenData = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/google-oauth-token.json`, 'utf8'));
 const credsData = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/google-oauth.json`, 'utf8'));
 const todoistKey = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/todoist.json`, 'utf8')).todoist.api_key;
+let gmailCreds = tokenData;
 
 // Authenticate
 // Required scopes for this script

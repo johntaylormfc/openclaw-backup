@@ -66,7 +66,25 @@ Credentials: john / John1234 (lowercase!)
 - Vector memory: DISABLED (March 5, 2026)
 - **Backup**: /home/john/.openclaw/scripts/memory-backup.sh (cron daily 03:00) → /home/john/ARR/backup/memory/ (14 snapshots)
 
-Last updated: 2026-03-22
+Last updated: 2026-03-24
+
+## Daily Notes (March 23, 2026)
+
+### What Went Well
+- Both system heartbeats passed (04:24 and 22:55 UTC)
+- WhatsApp gateway auto-recovered from brief 499/503 status disconnections
+- Dashboard port 5000 remained healthy throughout
+
+### What Could Be Improved
+- 6 new ideas added in one day - significant influx to backlog, needs prioritization
+- Brief WhatsApp disconnections (statuses 499/503) - root cause worth investigating if persistent
+
+### Patterns/Learnings
+- Kanban ideas grew rapidly (0 → 6 in a day) - backlog management needed
+- Auto-recovery mechanisms working well for WhatsApp gateway
+- ARR-related automation ideas dominate the new backlog
+
+---
 
 ## Weekly Summary (March 15-22, 2026)
 
