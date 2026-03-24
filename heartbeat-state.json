@@ -1,7 +1,11 @@
 {
-  "updated": "2026-03-24T05:25:00Z",
-  "active_project": "ARR Bot / OpenClaw",
-  "current_task": "Heartbeat monitoring",
+  "lastHeartbeat": "2026-03-24T17:15:00Z",
+  "activeProject": "Memory System (ongoing maintenance)",
+  "currentTask": "Weekly MEMORY.md auto-curation completed",
   "blockers": [],
-  "notes": "Gateway OK (WhatsApp connected), dashboard (port 5000) responding, 6 ideas pending in kanban/idea, 0 new tickets"
+  "dashboardStatus": "up",
+  "kanban": {
+    "ideas": 6,
+    "new": 0
+  }
 }
