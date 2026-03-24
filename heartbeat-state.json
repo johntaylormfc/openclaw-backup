@@ -1,11 +1,7 @@
 {
-  "lastHeartbeat": "2026-03-23T22:55:00Z",
-  "activeProject": null,
-  "currentTask": null,
+  "updated": "2026-03-24T04:25:00Z",
+  "active_project": "ARR Bot / OpenClaw",
+  "current_task": "Heartbeat monitoring",
   "blockers": [],
-  "dashboardStatus": "ok",
-  "kanban": {
-    "ideas": 6,
-    "new": 0
-  }
+  "notes": "Gateway OK, dashboard (port 5000) responding, 6 ideas pending in kanban/idea, 0 new tickets"
 }
