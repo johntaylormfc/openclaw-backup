@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-0111
 **Title:** OpenClaw ARR API Health Skill — Native Tool Layer
-**Status:** Idea
+**Status:** Accepted
 **Suggested Priority:** Medium
 **Source:** Web research
 **Created:** 2026-03-23 19:12
-**Last Updated:** 2026-03-23 19:12
+**Last Updated:** 2026-03-25 06:51
 
 ## Summary
 Create an OpenClaw skill (SKILL.md) that wraps Sonarr, Radarr, Prowlarr, Plex, and Tautulli REST APIs into discoverable tool calls. This gives any OpenClaw agent (including cron and webhook-triggered runs) the ability to check health, query download queues, fetch library stats, trigger rescans, and answer ARR status questions conversationally — all via the ARR_Bot persona.
@@ -29,10 +29,10 @@ If accepted, this idea should be converted into a live ticket with clear accepta
 Review the idea and either accept it into a live ticket or reject it with a reason.
 
 ## Approval Decision
-Pending
+Accepted on 2026-03-25 06:51 and converted to ticket OC-0033.
 
 ## Rejection Reason
 Leave blank unless rejected.
 
 ## Notes
-Idea created automatically from a plain-English request.
+Idea accepted and converted into live ticket OC-0033.

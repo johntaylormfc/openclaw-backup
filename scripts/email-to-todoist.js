@@ -127,9 +127,14 @@ function saveLastRun() {
 
 // Get existing Todoist tasks to avoid duplicates
 async function getExistingTasks() {
-  const response = await fetch(`https://api.todoist.com/api/v1/tasks?project_id=`, {
+  const response = await fetch(`https://api.todoist.com/api/v1/tasks`, {
     headers: { 'Authorization': `Bearer ${todoistKey}` }
   });
+  if (!response.ok) {
+    const err = await response.text();
+    console.error(`Todoist API error: ${err}`);
+    return [];
+  }
   const data = await response.json();
   return data.results || [];
 }

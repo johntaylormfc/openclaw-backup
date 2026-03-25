@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-0110
 **Title:** OpenClaw ARR Log Monitor + Alert Cron
-**Status:** Idea
+**Status:** Accepted
 **Suggested Priority:** High
 **Source:** Web research
 **Created:** 2026-03-23 19:12
-**Last Updated:** 2026-03-23 19:12
+**Last Updated:** 2026-03-25 06:50
 
 ## Summary
 Use OpenClaw's native cron scheduler with the exec tool to periodically scan Docker container logs for errors and warnings across the ARR stack (Sonarr, Radarr, Prowlarr, Bazarr, SABnzbd, qBittorrent, Transmission) and send WhatsApp alerts when issues are detected — including failed downloads, API timeouts, and disk space warnings.
@@ -29,10 +29,10 @@ If accepted, this idea should be converted into a live ticket with clear accepta
 Review the idea and either accept it into a live ticket or reject it with a reason.
 
 ## Approval Decision
-Pending
+Accepted on 2026-03-25 06:50 and converted to ticket OC-0032.
 
 ## Rejection Reason
 Leave blank unless rejected.
 
 ## Notes
-Idea created automatically from a plain-English request.
+Idea accepted and converted into live ticket OC-0032.
