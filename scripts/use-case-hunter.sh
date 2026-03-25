@@ -176,7 +176,7 @@ fi
 # 3. GitHub — top openclaw/arr repos
 # ─────────────────────────────────────────
 log "Searching GitHub..."
-github_results=$(curl -s "https://api.github.com/search/repositories?q=openclaw+OR+arr-automation&sort=stars&per_page=5" \
+github_results=$(curl -s "https://api.github.com/search/repositories?q=openclaw+agent+automation&sort=stars&per_page=5" \
   -H "Accept: application/vnd.github.v3+json" 2>/dev/null | \
   jq -r '.items[] | "\(.full_name) |\(.description // "no description")"' 2>/dev/null | head -3 || true)
 
@@ -200,7 +200,8 @@ log "Skipping Discord (no free API)"
 # 5. Web search via SearXNG (local)
 # ─────────────────────────────────────────
 log "Searching via SearXNG..."
-searxng_raw=$(curl -s "http://127.0.0.1:8890/search?q=openclaw+ai+agent+use+case&format=json&engines=google,duckduckgo&count=5" 2>/dev/null || true)
+# Broader, non-ARR queries — find what people use OpenClaw FOR
+searxng_raw=$(curl -s "http://127.0.0.1:8890/search?q=openclaw+ai+agent+practical+use+cases&format=json&engines=google,duckduckgo&count=5" 2>/dev/null || true)
 
 if [ -n "$searxng_raw" ]; then
   web_count=0

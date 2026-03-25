@@ -1,20 +1,20 @@
 # Idea
-**ID:** IDEA-0014
-**Title:** ARR Meeting Notes and Action Items
-**Status:** Pending Review
+**ID:** IDEA-0017
+**Title:** Morning Download Briefing
+**Status:** Rejected
 **Suggested Priority:** Low
 **Source:** openclaw.rocks 34 use cases (use-case-hunter)
 **Created:** 2026-03-25
-**Last Updated:** 2026-03-25
+**Last Updated:** 2026-03-25 14:08
 
 ## Summary
-ARR Meeting Notes and Action Items
+Morning Download Briefing
 
 ## Category
 Personal Chief of Staff
 
 ## Description
-Feed it ARR configuration meeting transcripts. It produces structured summaries and automatically creates follow-up tasks in Todoist. The 30 minutes spent after every config session writing up notes? Gone.
+A personalised daily summary delivered via WhatsApp before you wake up. New releases, failed downloads, Plex sync status, disk space warnings. Wake up, coffee's ready, brief is waiting.
 
 ## Why It Might Matter
 From the 34 OpenClaw Use Cases article on openclaw.rocks. Review when you have time.
@@ -30,4 +30,4 @@ From the 34 OpenClaw Use Cases article on openclaw.rocks. Review when you have t
 - Created: 2026-03-25 08:00
 
 ## Approval Decision
-Pending Review
+Rejected on 2026-03-25 14:08.

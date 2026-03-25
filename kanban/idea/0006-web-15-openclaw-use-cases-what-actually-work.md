@@ -1,5 +1,5 @@
 # Idea
-**ID:** 0040-web-openclaw-use-cases-what-actually-work
+**ID:** 0006-web-openclaw-use-cases-what-actually-work
 **Title:** 15 OpenClaw Use Cases: What Actually Works in 2026
 **Status:** Pending Review
 **Suggested Priority:** Medium
@@ -22,7 +22,7 @@ Found during daily web search for OpenClaw use cases.
 
 ## Context
 - Source: Web search via SearXNG via SearXNG
-- Found: 2026-03-25 09:05
+- Found: 2026-03-25 14:29
 
 ## Approval Decision
 Pending Review

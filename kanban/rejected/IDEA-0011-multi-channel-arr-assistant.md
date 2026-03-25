@@ -1,20 +1,20 @@
 # Idea
-**ID:** IDEA-0016
-**Title:** ARR Autonomous Project Management
-**Status:** Pending Review
+**ID:** IDEA-0011
+**Title:** Multi-channel ARR Assistant
+**Status:** Rejected
 **Suggested Priority:** Low
 **Source:** openclaw.rocks 34 use cases (use-case-hunter)
 **Created:** 2026-03-25
-**Last Updated:** 2026-03-25
+**Last Updated:** 2026-03-25 14:04
 
 ## Summary
-ARR Autonomous Project Management
+Multi-channel ARR Assistant
 
 ## Category
 Personal Chief of Staff
 
 ## Description
-Replace static Kanban boards with agent-driven coordination for your media library. Multiple sub-agents working in parallel on library maintenance, self-organising around the state file and reporting back on progress.
+One interface on Telegram/WhatsApp that routes tasks across Sonarr, Radarr, Plex, and other ARR services. You send a message, the agent hits the right API. No more switching between dashboards to manage the stack.
 
 ## Why It Might Matter
 From the 34 OpenClaw Use Cases article on openclaw.rocks. Review when you have time.
@@ -30,4 +30,4 @@ From the 34 OpenClaw Use Cases article on openclaw.rocks. Review when you have t
 - Created: 2026-03-25 08:00
 
 ## Approval Decision
-Pending Review
+Rejected on 2026-03-25 14:04.

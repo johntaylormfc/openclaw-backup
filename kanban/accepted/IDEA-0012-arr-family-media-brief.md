@@ -1,20 +1,20 @@
 # Idea
-**ID:** IDEA-0018
-**Title:** Daily ARR Subreddit Digest
-**Status:** Pending Review
+**ID:** IDEA-0012
+**Title:** ARR Family Media Brief
+**Status:** Accepted
 **Suggested Priority:** Low
 **Source:** openclaw.rocks 34 use cases (use-case-hunter)
 **Created:** 2026-03-25
-**Last Updated:** 2026-03-25
+**Last Updated:** 2026-03-25 14:05
 
 ## Summary
-Daily ARR Subreddit Digest
+ARR Family Media Brief
 
 ## Category
-Never Miss What Matters
+Personal Chief of Staff
 
 ## Description
-Browse and search Reddit on your behalf across r/sonarr, r/radarr, r/PleX, r/torrents. Every morning you get the signal without the noise — new developments, feature announcements, troubleshooting threads.
+A personalized daily summary delivered before the household wakes up — new additions to the media library, upcoming releases, download queue status. Consolidates Sonarr/Radarr/ Plex into one morning briefing via WhatsApp.
 
 ## Why It Might Matter
 From the 34 OpenClaw Use Cases article on openclaw.rocks. Review when you have time.
@@ -30,4 +30,4 @@ From the 34 OpenClaw Use Cases article on openclaw.rocks. Review when you have t
 - Created: 2026-03-25 08:00
 
 ## Approval Decision
-Pending Review
+Accepted on 2026-03-25 14:05 and converted to ticket OC-0035.

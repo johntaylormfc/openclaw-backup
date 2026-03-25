@@ -1,20 +1,20 @@
 # Idea
-**ID:** IDEA-0017
-**Title:** Morning Download Briefing
-**Status:** Pending Review
+**ID:** IDEA-0016
+**Title:** ARR Autonomous Project Management
+**Status:** Rejected
 **Suggested Priority:** Low
 **Source:** openclaw.rocks 34 use cases (use-case-hunter)
 **Created:** 2026-03-25
-**Last Updated:** 2026-03-25
+**Last Updated:** 2026-03-25 14:07
 
 ## Summary
-Morning Download Briefing
+ARR Autonomous Project Management
 
 ## Category
 Personal Chief of Staff
 
 ## Description
-A personalised daily summary delivered via WhatsApp before you wake up. New releases, failed downloads, Plex sync status, disk space warnings. Wake up, coffee's ready, brief is waiting.
+Replace static Kanban boards with agent-driven coordination for your media library. Multiple sub-agents working in parallel on library maintenance, self-organising around the state file and reporting back on progress.
 
 ## Why It Might Matter
 From the 34 OpenClaw Use Cases article on openclaw.rocks. Review when you have time.
@@ -30,4 +30,4 @@ From the 34 OpenClaw Use Cases article on openclaw.rocks. Review when you have t
 - Created: 2026-03-25 08:00
 
 ## Approval Decision
-Pending Review
+Rejected on 2026-03-25 14:07.

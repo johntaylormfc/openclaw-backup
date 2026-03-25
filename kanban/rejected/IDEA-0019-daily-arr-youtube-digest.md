@@ -1,20 +1,20 @@
 # Idea
-**ID:** IDEA-0011
-**Title:** Multi-channel ARR Assistant
-**Status:** Pending Review
+**ID:** IDEA-0019
+**Title:** Daily ARR YouTube Digest
+**Status:** Rejected
 **Suggested Priority:** Low
 **Source:** openclaw.rocks 34 use cases (use-case-hunter)
 **Created:** 2026-03-25
-**Last Updated:** 2026-03-25
+**Last Updated:** 2026-03-25 14:09
 
 ## Summary
-Multi-channel ARR Assistant
+Daily ARR YouTube Digest
 
 ## Category
-Personal Chief of Staff
+Never Miss What Matters
 
 ## Description
-One interface on Telegram/WhatsApp that routes tasks across Sonarr, Radarr, Plex, and other ARR services. You send a message, the agent hits the right API. No more switching between dashboards to manage the stack.
+Fetch and read transcripts from new videos on media server and ARR YouTube channels. For people who subscribe to 20+ channels but only have time for a few videos a day. The agent watches everything so you don't have to.
 
 ## Why It Might Matter
 From the 34 OpenClaw Use Cases article on openclaw.rocks. Review when you have time.
@@ -30,4 +30,4 @@ From the 34 OpenClaw Use Cases article on openclaw.rocks. Review when you have t
 - Created: 2026-03-25 08:00
 
 ## Approval Decision
-Pending Review
+Rejected on 2026-03-25 14:09.
