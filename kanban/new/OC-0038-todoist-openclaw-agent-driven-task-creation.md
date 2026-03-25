@@ -1,18 +1,18 @@
 # Ticket
-**ID:** OC-0034
-**Title:** 34 OpenClaw Use Cases: What People Actually Do With Their AI Agent
+**ID:** OC-0038
+**Title:** Todoist + OpenClaw — Agent-Driven Task Creation
 **Status:** New
 **Outcome State:** Partial
 **Priority:** Medium
 **Owner:** Unassigned
-**Created:** 2026-03-25 07:52
-**Last Updated:** 2026-03-25 07:52
+**Created:** 2026-03-25 20:45
+**Last Updated:** 2026-03-25 20:45
 
 ## Goal
-34 OpenClaw Use Cases: What People Actually Do With Their AI Agent
+OpenClaw creates, updates, and closes Todoist tasks autonomously — based on what's happening in the ARR stack, cron job outcomes, health checks, and project state. No manual task entry required.
 
 ## Why
-Found during daily web search for OpenClaw use cases.
+This work was accepted from idea IDEA-0054.
 
 ## Acceptance Criteria
 - [ ] Scope is confirmed
@@ -22,7 +22,7 @@ Found during daily web search for OpenClaw use cases.
 - [ ] Ticket is only completed when all required work is genuinely finished
 
 ## Context
-- Source Idea: IDEA-0011
+- Source Idea: IDEA-0054
 - Environment: /home/john/.openclaw/workspace
 
 ## Task Checklist
@@ -34,10 +34,10 @@ Found during daily web search for OpenClaw use cases.
 
 ## Activity Log
 ### Entries
-- **Timestamp:** 2026-03-25 07:52  
+- **Timestamp:** 2026-03-25 20:45  
   **Action:** Ticket created from accepted idea  
   **Result:** Ticket added to kanban/new  
-  **Why:** User accepted idea IDEA-0011  
+  **Why:** User accepted idea IDEA-0054  
   **Evidence:** Created via accept_idea.py  
   **Next Step:** Agent can pick up the ticket when requested
 

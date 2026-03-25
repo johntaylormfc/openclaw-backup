@@ -1,18 +1,18 @@
 # Ticket
-**ID:** OC-0032
-**Title:** OpenClaw ARR Log Monitor + Alert Cron
-**Status:** New
+**ID:** OC-0034
+**Title:** 34 OpenClaw Use Cases: What People Actually Do With Their AI Agent
+**Status:** In Progress
 **Outcome State:** Partial
 **Priority:** Medium
 **Owner:** Unassigned
-**Created:** 2026-03-25 06:50
-**Last Updated:** 2026-03-25 06:50
+**Created:** 2026-03-25 07:52
+**Last Updated:** 2026-03-25 07:52
 
 ## Goal
-Use OpenClaw's native cron scheduler with the exec tool to periodically scan Docker container logs for errors and warnings across the ARR stack (Sonarr, Radarr, Prowlarr, Bazarr, SABnzbd, qBittorrent, Transmission) and send WhatsApp alerts when issues are detected — including failed downloads, API timeouts, and disk space warnings.
+34 OpenClaw Use Cases: What People Actually Do With Their AI Agent
 
 ## Why
-Container crashes or API errors in ARR services are silent until the user notices missing downloads. An OpenClaw cron job with the exec tool can catch these early and push alerts directly to WhatsApp with actionable context.
+Found during daily web search for OpenClaw use cases.
 
 ## Acceptance Criteria
 - [ ] Scope is confirmed
@@ -22,7 +22,7 @@ Container crashes or API errors in ARR services are silent until the user notice
 - [ ] Ticket is only completed when all required work is genuinely finished
 
 ## Context
-- Source Idea: IDEA-0110
+- Source Idea: IDEA-0011
 - Environment: /home/john/.openclaw/workspace
 
 ## Task Checklist
@@ -34,10 +34,10 @@ Container crashes or API errors in ARR services are silent until the user notice
 
 ## Activity Log
 ### Entries
-- **Timestamp:** 2026-03-25 06:50  
+- **Timestamp:** 2026-03-25 07:52  
   **Action:** Ticket created from accepted idea  
   **Result:** Ticket added to kanban/new  
-  **Why:** User accepted idea IDEA-0110  
+  **Why:** User accepted idea IDEA-0011  
   **Evidence:** Created via accept_idea.py  
   **Next Step:** Agent can pick up the ticket when requested
 
@@ -71,3 +71,6 @@ Ticket created from accepted idea and ready for pickup.
 
 ## Completion Summary
 Not complete.
+
+---
+**Auto-Pickup:** Started at 2026-03-25 23:04 by pick-up-new-tickets cron

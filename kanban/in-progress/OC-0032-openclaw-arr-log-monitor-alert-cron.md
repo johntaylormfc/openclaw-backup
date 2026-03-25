@@ -1,18 +1,18 @@
 # Ticket
-**ID:** OC-0030
-**Title:** Docker Compose Healthcheck Automation for ARR Containers
-**Status:** New
+**ID:** OC-0032
+**Title:** OpenClaw ARR Log Monitor + Alert Cron
+**Status:** In Progress
 **Outcome State:** Partial
 **Priority:** Medium
 **Owner:** Unassigned
-**Created:** 2026-03-25 06:47
-**Last Updated:** 2026-03-25 06:47
+**Created:** 2026-03-25 06:50
+**Last Updated:** 2026-03-25 06:50
 
 ## Goal
-Add proper healthcheck configurations to all ARR containers in docker-compose.yml and create a monitoring script that alerts when any container becomes unhealthy. Currently, most ARR services lack healthchecks, making it hard to detect downtime early.
+Use OpenClaw's native cron scheduler with the exec tool to periodically scan Docker container logs for errors and warnings across the ARR stack (Sonarr, Radarr, Prowlarr, Bazarr, SABnzbd, qBittorrent, Transmission) and send WhatsApp alerts when issues are detected — including failed downloads, API timeouts, and disk space warnings.
 
 ## Why
-ARR containers can stop responding without obvious symptoms. Healthchecks would provide early warning via the dashboard or WhatsApp notification, preventing missed downloads and reducing downtime.
+Container crashes or API errors in ARR services are silent until the user notices missing downloads. An OpenClaw cron job with the exec tool can catch these early and push alerts directly to WhatsApp with actionable context.
 
 ## Acceptance Criteria
 - [ ] Scope is confirmed
@@ -22,7 +22,7 @@ ARR containers can stop responding without obvious symptoms. Healthchecks would 
 - [ ] Ticket is only completed when all required work is genuinely finished
 
 ## Context
-- Source Idea: IDEA-0105
+- Source Idea: IDEA-0110
 - Environment: /home/john/.openclaw/workspace
 
 ## Task Checklist
@@ -34,10 +34,10 @@ ARR containers can stop responding without obvious symptoms. Healthchecks would 
 
 ## Activity Log
 ### Entries
-- **Timestamp:** 2026-03-25 06:47  
+- **Timestamp:** 2026-03-25 06:50  
   **Action:** Ticket created from accepted idea  
   **Result:** Ticket added to kanban/new  
-  **Why:** User accepted idea IDEA-0105  
+  **Why:** User accepted idea IDEA-0110  
   **Evidence:** Created via accept_idea.py  
   **Next Step:** Agent can pick up the ticket when requested
 
@@ -71,3 +71,6 @@ Ticket created from accepted idea and ready for pickup.
 
 ## Completion Summary
 Not complete.
+
+---
+**Auto-Pickup:** Started at 2026-03-25 21:05 by pick-up-new-tickets cron
