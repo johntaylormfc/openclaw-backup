@@ -1,15 +1,15 @@
 # Ticket
-**ID:** OC-0037
-**Title:** GitHub: AlexAnys/awesome-openclaw-usecases-zh |🇨🇳 OpenClaw（个人智能体）中文最佳用例大全 | 40+个真实场景（国内特色 + 海外的国内生态适配）：自动化办公、内容创作、服务器运维、个人助理、知识管理 | 新手友好 | Chinese guide for OpenClaw AI agent use cases
-**Status:** New
+**ID:** OC-0036
+**Title:** GitHub: abhi1693/openclaw-mission-control |AI Agent Orchestration Dashboard - Manage AI agents, assign tasks, and coordinate multi-agent collaboration via OpenClaw Gateway.
+**Status:** In Progress
 **Outcome State:** Partial
 **Priority:** Medium
 **Owner:** Unassigned
-**Created:** 2026-03-25 20:41
-**Last Updated:** 2026-03-25 20:41
+**Created:** 2026-03-25 14:33
+**Last Updated:** 2026-03-25 14:33
 
 ## Goal
-GitHub: AlexAnys/awesome-openclaw-usecases-zh |🇨🇳 OpenClaw（个人智能体）中文最佳用例大全 | 40+个真实场景（国内特色 + 海外的国内生态适配）：自动化办公、内容创作、服务器运维、个人助理、知识管理 | 新手友好 | Chinese guide for OpenClaw AI agent use cases
+GitHub: abhi1693/openclaw-mission-control |AI Agent Orchestration Dashboard - Manage AI agents, assign tasks, and coordinate multi-agent collaboration via OpenClaw Gateway.
 
 ## Why
 Found during daily web search for OpenClaw use cases.
@@ -22,7 +22,7 @@ Found during daily web search for OpenClaw use cases.
 - [ ] Ticket is only completed when all required work is genuinely finished
 
 ## Context
-- Source Idea: 0004-github-alexanysawesome-openclaw-usecases-zh-github-alexanysawesome-openclaw-usecases
+- Source Idea: 0003-github-abhi1693openclaw-mission-control-github-abhi1693openclaw-mission-control-
 - Environment: /home/john/.openclaw/workspace
 
 ## Task Checklist
@@ -34,10 +34,10 @@ Found during daily web search for OpenClaw use cases.
 
 ## Activity Log
 ### Entries
-- **Timestamp:** 2026-03-25 20:41  
+- **Timestamp:** 2026-03-25 14:33  
   **Action:** Ticket created from accepted idea  
   **Result:** Ticket added to kanban/new  
-  **Why:** User accepted idea 0004-github-alexanysawesome-openclaw-usecases-zh-github-alexanysawesome-openclaw-usecases  
+  **Why:** User accepted idea 0003-github-abhi1693openclaw-mission-control-github-abhi1693openclaw-mission-control-  
   **Evidence:** Created via accept_idea.py  
   **Next Step:** Agent can pick up the ticket when requested
 
@@ -71,3 +71,6 @@ Ticket created from accepted idea and ready for pickup.
 
 ## Completion Summary
 Not complete.
+
+---
+**Auto-Pickup:** Started at 2026-03-26 01:04 by pick-up-new-tickets cron

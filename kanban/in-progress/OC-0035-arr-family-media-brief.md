@@ -1,7 +1,7 @@
 # Ticket
 **ID:** OC-0035
 **Title:** ARR Family Media Brief
-**Status:** New
+**Status:** In Progress
 **Outcome State:** Partial
 **Priority:** Medium
 **Owner:** Unassigned
@@ -71,3 +71,6 @@ Ticket created from accepted idea and ready for pickup.
 
 ## Completion Summary
 Not complete.
+
+---
+**Auto-Pickup:** Started at 2026-03-26 00:04 by pick-up-new-tickets cron
