@@ -57,11 +57,8 @@ cat > "$WHATSAPP_MSG_FILE" << EOF
 Started work automatically. I'll report back when there's something to review.
 EOF
 
-# Send WhatsApp
-curl -s -X POST "http://localhost:8080/api/notify" \
-  -H "Content-Type: application/json" \
-  -d "{\"message\": $(cat "$WHATSAPP_MSG_FILE" | jq -Rs .)}" \
-  2>/dev/null || echo "$(cat "$WHATSAPP_MSG_FILE")"
+# Send WhatsApp — the cron announce delivery handles this, but echo the message as fallback
+echo "$(cat "$WHATSAPP_MSG_FILE")"
 
 rm -f "$WHATSAPP_MSG_FILE"
 echo "Done. Ticket $ticket_id picked up."
