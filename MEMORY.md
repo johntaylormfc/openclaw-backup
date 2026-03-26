@@ -15,6 +15,10 @@
 2. Rebuild: `cd /home/john/ARR/dashboard-v2 && npm run build`
 3. Restart: `docker restart arr-dashboard arr-dashboard-v2`
 
+## Mission Control (OC-0035)
+- **URL:** http://192.168.1.146:5001/
+- **Token:** hx4nEu4W2ZoXsiEfWRCAQcgDsNzzht7kpBUfsGHhqxzEsgHhLll2g39woASs1c
+
 ## ARR Stack
 | Service | URL | API Key |
 |---------|-----|---------|
@@ -132,3 +136,16 @@ Last updated: 2026-03-25
 
 ---
 *Memory curated: 2026-03-22 (weekly)*
+
+## Memory System Upgrades (2026-03-26)
+- Memory flush threshold: raised from 4000 → 13000 tokens (was too aggressive)
+- Session transcript capture: fixed cron to read from actual sessions dir (/home/john/.openclaw/agents/main/sessions/)
+- Transcript manager: rewritten to parse OpenClaw JSONL format, detect topics, extract decisions
+- Daily memory log: now pulls from session-summaries.json with topic + decision summaries
+- QMD backend: enabled (was builtin). QMD installed at /home/john/.openclaw/agents/main/qmd/
+- Hybrid search: enabled (BM25 + vector, 70/30 split)
+- MMR deduplication: enabled (lambda=0.7)
+- Temporal decay: enabled (30-day half-life for daily notes)
+- Session memory indexing: enabled (experimental)
+
+Last updated: 2026-03-26

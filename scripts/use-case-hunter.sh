@@ -27,11 +27,11 @@ find "$KANBAN_IDEA_DIR" -name "IDEA-*.md" -type f 2>/dev/null | while IFS= read 
   echo "$title" >> "$KNOWN_TITLES"
 
   # Extract URL
-  url=$(fgrep "## URL" "$file" 2>/dev/null | head -1 | sed 's/## URL//' | sed 's/^ *//' | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]\r')
+  url=$(fgrep "## URL" "$file" 2>/dev/null | head -1 | sed 's/## URL//' | sed 's/^ *//' | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]\r' || true)
   echo "$url" >> "$KNOWN_URLS"
 
   # Extract GitHub repo name (format: "GitHub: owner/repo | description")
-  repo=$(echo "$title" | sed -n 's/^GitHub: \([^|]*\)|.*/\1/Ip' | tr '[:upper:]' '[:lower:]' | tr -d '\r')
+  repo=$(echo "$title" | sed -n 's/^GitHub: \([^|]*\)|.*/\1/Ip' | tr '[:upper:]' '[:lower:]' | tr -d '\r' || true)
   echo "$repo" >> "$KNOWN_REPOS"
 done
 
@@ -230,12 +230,22 @@ fi
 
 log "Hunt complete. New ideas: $new_ideas"
 
-# Send WhatsApp via OpenClaw gateway
-curl -s -X POST "http://localhost:8080/api/notify" \
-  -H "Content-Type: application/json" \
-  -d "{\"message\": $(echo "$WHATSAPP_MSG" | jq -Rs .)}" \
-  2>/dev/null || echo "$WHATSAPP_MSG"
-
+# Output summary — cron delivery handles WhatsApp notification
+echo ""
+echo "🔍 OpenClaw Use Case Hunt — $TODAY"
+echo ""
+if [ "$new_ideas" -gt 0 ]; then
+  echo "Found $new_ideas new idea(s):"
+  for name in "${new_idea_names[@]}"; do
+    echo "• $name"
+  done
+  echo ""
+  echo "Review anytime — accept to fill out requirements!"
+else
+  echo "No new ideas today. Checked ClawHub, Reddit, GitHub, and web."
+  echo "Try again tomorrow!"
+fi
+echo ""
 echo "Hunt complete: $new_ideas new ideas added."
 
 # Cleanup

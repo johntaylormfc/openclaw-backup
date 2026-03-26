@@ -1,15 +1,26 @@
-# Drive Backup Issue - March 26, 2026
+# Backup Issue - 2026-03-26
 
-## Problem
-Backup failed - rclone config is empty. No remote named "openclaw" configured.
+**Time:** 05:21 UTC
+**Status:** Partially Complete
 
-## Required Action
-Need to configure rclone with Google Drive:
-```bash
-rclone config
-```
+## What Happened
+1. ✅ Git configured successfully
+2. ✅ Changes staged and committed (7 files, 48 insertions)
+3. ✅ Pushed to GitHub (branch: master, not main)
+4. ❌ WhatsApp notification FAILED
 
-Create a remote named "openclaw" pointing to Google Drive, then re-run the backup.
+## Why WhatsApp Failed
+- No working WhatsApp API/MCP found in this workspace
+- arr-webhook-notifier exists but:
+  - Has permission errors writing to `/tmp/arr_notifications.jsonl`
+  - Only handles Sonarr/Radarr webhooks, not arbitrary messages
+- Dashboard API at `:5000` doesn't expose WhatsApp endpoints
 
-## Status
-- ❌ Failed at 00:02 UTC
+## Files Changed
+- kanban: new → in-progress (4 tickets)
+- kanban/notes/backup-issue-2026-03-26.md (new)
+- memory/2026-03-26.md (new)
+
+## Next Steps
+- Configure WhatsApp notification method OR
+- Remove WhatsApp step from backup cron job

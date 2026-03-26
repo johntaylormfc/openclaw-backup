@@ -24,7 +24,9 @@ Backup first:
 
 <!-- managed-memory-status:start -->
 ## Memory Status
-- QMD Memory Refresh: **disabled**
-- Semantic Memory Index: **disabled**
-- Weekly MEMORY.md Auto-Curation: **enabled**
+- QMD Memory Backend: **enabled** (BM25 + vector hybrid, MMR, temporal decay)
+- Session Transcript Capture: **enabled** (hourly, sessions → session-summaries.json)
+- Daily Memory Log: **enabled** (21:00 weekdays, reads session-summaries.json)
+- Weekly MEMORY.md Auto-Curation: **enabled** (Sundays 05:00)
+- Memory Flush Threshold: **13000 tokens** (was 4000 — now captures meaningful content)
 <!-- managed-memory-status:end -->

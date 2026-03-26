@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 /**
  * Daily Memory Log
- * Creates/updates today's memory file with conversation summaries
+ * Creates/updates today's memory file with session summaries
+ * Reads from session-summaries.json (populated by hourly transcript-manager.js)
  */
 
 const fs = require('fs');
 const path = require('path');
 
 const MEMORY_DIR = '/home/john/.openclaw/workspace/memory';
-const WORKSPACE = '/home/john/.openclaw/workspace';
+const SUMMARY_JSON = '/home/john/.openclaw/workspace/memory/session-summaries.json';
 const TODAY = new Date().toISOString().split('T')[0];
 const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const dayName = DAY_NAMES[new Date().getDay()];
@@ -33,82 +34,93 @@ function writeFile(filePath, content) {
   fs.writeFileSync(filePath, content, 'utf8');
 }
 
-function getSessionSummary() {
-  // Look for recent session transcripts
-  const transcriptsDir = path.join(WORKSPACE, 'transcripts');
-  if (!fs.existsSync(transcriptsDir)) return null;
-  
-  const files = fs.readdirSync(transcriptsDir)
-    .filter(f => f.endsWith('.json'))
-    .map(f => ({ f, mtime: fs.statSync(path.join(transcriptsDir, f)).mtime.getTime() }))
-    .sort((a, b) => b.mtime - a.mtime)
-    .slice(0, 3);
-  
-  if (!files.length) return null;
-  
-  let totalMessages = 0;
-  let totalWords = 0;
-  const recentFiles = files.map(({ f }) => {
-    try {
-      const content = JSON.parse(fs.readFileSync(path.join(transcriptsDir, f), 'utf8'));
-      const messages = Array.isArray(content) ? content : (content.messages || []);
-      const words = messages.reduce((sum, m) => sum + (m.text || '').split(/\s+/).length, 0);
-      totalMessages += messages.length;
-      totalWords += words;
-      return { name: f, messages: messages.length, date: new Date(files.find(x => x.f === f).mtime).toISOString() };
-    } catch(e) {
-      return null;
+function getTodaySummaries() {
+  if (!fs.existsSync(SUMMARY_JSON)) return [];
+  try {
+    const all = JSON.parse(fs.readFileSync(SUMMARY_JSON, 'utf8'));
+    // Get all entries for today
+    return all.filter(s => s.date === TODAY);
+  } catch(e) {
+    return [];
+  }
+}
+
+function getTopTopics(summaries) {
+  const counts = {};
+  for (const s of summaries) {
+    for (const t of s.topics || []) {
+      counts[t] = (counts[t] || 0) + s.messageCount;
     }
-  }).filter(Boolean);
-  
-  if (!totalMessages) return null;
-  
-  return {
-    files: recentFiles,
-    totalMessages,
-    totalWords
-  };
+  }
+  return Object.entries(counts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 8)
+    .map(([t]) => t);
 }
 
-function createOrUpdateDailyMemory() {
-  const memPath = getMemoryPath();
-  const existing = readFile(memPath);
-  
-  // Check if already has today's header
-  const hasTodayHeader = existing.includes(`# ${TODAY}`);
-  
-  if (existing && hasTodayHeader) {
-    console.log(`[memory] ${TODAY} already exists, checking for updates...`);
-    return { action: 'skip', reason: 'already_exists' };
+function buildDailyEntry() {
+  const summaries = getTodaySummaries();
+  const topTopics = getTopTopics(summaries);
+  const totalMsgs = summaries.reduce((sum, s) => sum + (s.messageCount || 0), 0);
+
+  // Get decisions from today's sessions
+  const decisions = summaries
+    .flatMap(s => s.decisions || [])
+    .filter(Boolean)
+    .slice(0, 5);
+
+  // Get top contributors
+  const contributors = [...new Set(summaries.flatMap(s => s.contributors || []))];
+
+  // Key session info
+  const bigSession = summaries.sort((a, b) => (b.messageCount || 0) - (a.messageCount || 0))[0];
+
+  let entry = `# ${TODAY} (${dayName})\n\n`;
+  entry += `## Sessions Today\n`;
+  entry += `- ${summaries.length} sessions, ${totalMsgs} total messages\n`;
+  entry += `- Topics: ${topTopics.join(', ') || 'General'}\n`;
+  if (contributors.includes('assistant')) {
+    entry += `- Agents active\n`;
   }
-  
-  // Build header
-  const header = `# ${TODAY} — ${dayName}\n\n`;
-  
-  // Get session summary
-  const sessionInfo = getSessionSummary();
-  
-  let content = header;
-  
-  if (sessionInfo) {
-    content += `## Session Activity\n`;
-    content += `- ${sessionInfo.totalMessages} messages, ~${Math.round(sessionInfo.totalWords / 100) * 100} words\n`;
-    content += `- Recent sessions: ${sessionInfo.files.map(f => f.name.replace('.json', '')).join(', ')}\n\n`;
+
+  if (bigSession && bigSession.topics && bigSession.topics.length) {
+    entry += `\n## Main Session (${bigSession.messageCount} msgs)\n`;
+    entry += `Topics: ${bigSession.topics.join(', ')}\n`;
+    entry += `Summary: ${bigSession.firstMsg}\n`;
   }
-  
-  content += `## Summary\n\n<!-- Add today's conversation summary below this line -->\n\n---\n`;
-  
+
+  if (decisions.length) {
+    entry += `\n## Decisions Today\n`;
+    for (const d of decisions) {
+      entry += `- ${d}\n`;
+    }
+  }
+
+  entry += `\n---\n`;
+  return entry;
+}
+
+function main() {
+  const memoryPath = getMemoryPath();
+  const existing = fileExists(memoryPath) ? readFile(memoryPath) : '';
+
+  // Check if we already have a proper entry for today
+  if (existing.includes(`## Sessions Today`)) {
+    console.log(`Daily entry for ${TODAY} already exists. Skipping.`);
+    return;
+  }
+
+  const entry = buildDailyEntry();
+
+  // If file exists, append; otherwise create
   if (existing) {
-    // Prepend today's section to existing file
-    content = content + existing;
+    writeFile(memoryPath, existing + '\n\n' + entry);
+  } else {
+    writeFile(memoryPath, entry);
   }
-  
-  writeFile(memPath, content);
-  console.log(`[memory] Created/updated ${memPath}`);
-  return { action: 'created', path: memPath };
+
+  console.log(`Daily memory entry written to ${memoryPath}`);
+  console.log(entry);
 }
 
-// Run
-const result = createOrUpdateDailyMemory();
-console.log(`[memory] Result: ${result.action}`);
-if (result.path) console.log(`[memory] Path: ${result.path}`);
+main();

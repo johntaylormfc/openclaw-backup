@@ -1,183 +1,253 @@
 #!/usr/bin/env node
 /**
  * Session Transcript Manager
- * Tracks full chat history with searchable summaries
+ * Reads from agent session directories and writes summaries to memory/
  */
 
 const fs = require('fs');
 const path = require('path');
 
-const TRANSCRIPT_DIR = '/home/john/.openclaw/workspace/transcripts';
-const SUMMARY_FILE = '/home/john/.openclaw/workspace/memory/session-summaries.md';
+const TRANSCRIPT_DIR = '/home/john/.openclaw/agents/main/sessions';
+const MEMORY_DIR = '/home/john/.openclaw/workspace/memory';
 const SUMMARY_JSON = '/home/john/.openclaw/workspace/memory/session-summaries.json';
+const SUMMARY_MD = '/home/john/.openclaw/workspace/memory/session-summaries.md';
 
 // Ensure directories exist
-if (!fs.existsSync(TRANSCRIPT_DIR)) {
-  fs.mkdirSync(TRANSCRIPT_DIR, { recursive: true });
+if (!fs.existsSync(MEMORY_DIR)) {
+  fs.mkdirSync(MEMORY_DIR, { recursive: true });
 }
 
 function getToday() {
   return new Date().toISOString().split('T')[0];
 }
 
-function saveTranscript(sessionId, messages) {
-  const today = getToday();
-  const file = path.join(TRANSCRIPT_DIR, `${today}.json`);
-  
-  let transcripts = {};
-  if (fs.existsSync(file)) {
-    transcripts = JSON.parse(fs.readFileSync(file, 'utf8'));
+function getRecentSessions(maxAgeMinutes = 120) {
+  if (!fs.existsSync(TRANSCRIPT_DIR)) return [];
+  const now = Date.now();
+  const maxAge = maxAgeMinutes * 60 * 1000;
+
+  return fs.readdirSync(TRANSCRIPT_DIR)
+    .filter(f => f.endsWith('.jsonl') && !f.includes('.deleted.'))
+    .filter(f => {
+      const stat = fs.statSync(path.join(TRANSCRIPT_DIR, f));
+      return (now - stat.mtimeMs) < maxAge;
+    })
+    .map(f => path.join(TRANSCRIPT_DIR, f));
+}
+
+function extractText(content) {
+  if (typeof content === 'string') return content;
+  if (Array.isArray(content)) {
+    return content.map(block => {
+      if (typeof block === 'string') return block;
+      if (block.type === 'text') return block.text || '';
+      if (block.text) return block.text;
+      return '';
+    }).filter(Boolean).join('\n');
   }
-  
-  transcripts[sessionId] = {
-    timestamp: new Date().toISOString(),
-    messageCount: messages.length,
-    messages: messages.slice(-50)  // Keep last 50 messages
-  };
-  
-  fs.writeFileSync(file, JSON.stringify(transcripts, null, 2));
+  if (content.text) return content.text;
+  return '';
+}
+
+function parseMessages(filePath) {
+  try {
+    const content = fs.readFileSync(filePath, 'utf8');
+    const lines = content.trim().split('\n');
+    const messages = [];
+
+    for (const line of lines) {
+      if (!line.trim()) continue;
+      try {
+        const entry = JSON.parse(line);
+        if (entry.type !== 'message') continue;
+
+        const role = entry.message?.role || 'unknown';
+        const rawContent = entry.message?.content;
+        const text = extractText(rawContent);
+
+        if (text) {
+          messages.push({ role, text });
+        }
+      } catch {
+        // Skip malformed lines
+      }
+    }
+    return messages;
+  } catch (e) {
+    return [];
+  }
 }
 
 function generateSummary(sessionId, messages) {
   if (!messages || messages.length === 0) return null;
-  
-  const firstMsg = messages[0].content?.substring(0, 100) || 'Empty';
-  const lastMsg = messages[messages.length - 1].content?.substring(0, 100) || 'Empty';
-  
-  // Extract topics
-  const topics = [];
-  const allText = messages.map(m => m.content || '').join(' ').toLowerCase();
-  
-  const topicKeywords = {
-    'trading': ['trading', 'stocks', 'crypto', 'alpaca', 'bot'],
-    'docker': ['docker', 'container', 'arr', 'sonarr', 'radarr'],
-    'dashboard': ['dashboard', 'kanban', 'tasks'],
+
+  const text = messages.map(m => m.text || '').join(' ');
+  const textLower = text.toLowerCase();
+
+  // Topic detection
+  const topicMap = {
+    'arr': ['sonarr', 'radarr', 'prowlarr', 'sabnzbd', 'qbittorrent', 'arr stack'],
+    'docker': ['docker', 'container', 'compose', 'docker-compose'],
+    'dashboard': ['dashboard', 'kanban', 'tickets'],
     'memory': ['memory', 'remember', 'forget'],
-    'github': ['github', 'repo', 'pr'],
-    'email': ['email', 'todoist', 'gmail']
+    'github': ['github', 'repo', 'git push'],
+    'email': ['email', 'gmail', 'todoist'],
+    'openclaw': ['openclaw', 'cron', 'gateway', 'skill', 'clawhub'],
+    'mission-control': ['mission control', 'oc-0035'],
+    'health': ['health', 'monitor', 'alert'],
+    'bc': ['business central', 'bcdev', 'navision'],
+    'ideas': ['idea', 'kanban', 'backlog']
   };
-  
-  for (const [topic, keywords] of Object.entries(topicKeywords)) {
-    if (keywords.some(k => allText.includes(k))) {
-      topics.push(topic);
+
+  const topics = [];
+  for (const [topic, keywords] of Object.entries(topicMap)) {
+    if (keywords.some(k => textLower.includes(k))) topics.push(topic);
+  }
+
+  // Extract key decisions
+  const decisionPatterns = [
+    /\b(decided|agreed|approved|approved?|close[sd]?|reject(?:ed)?)\b/gi,
+    /\b(will|going to|must|should)\s+\w+/gi
+  ];
+  const decisions = [];
+  const seen = new Set();
+  for (const pattern of decisionPatterns) {
+    const matches = text.match(pattern) || [];
+    for (const m of matches) {
+      const norm = m.toLowerCase().substring(0, 50);
+      if (!seen.has(norm)) { seen.add(norm); decisions.push(m); }
     }
   }
-  
+
   return {
     sessionId,
     date: getToday(),
     time: new Date().toISOString(),
     topics,
-    firstMessage: firstMsg,
-    lastMessage: lastMsg,
-    messageCount: messages.length
+    messageCount: messages.length,
+    firstMsg: text.substring(0, 150).replace(/\n+/g, ' ').trim(),
+    lastMsg: text.slice(-200).replace(/\n+/g, ' ').trim(),
+    decisions: decisions.slice(0, 5),
+    contributors: [...new Set(messages.map(m => m.role).filter(Boolean))]
   };
 }
 
-function updateSummaryIndex(summary) {
-  let summaries = [];
-  if (fs.existsSync(SUMMARY_JSON)) {
-    try {
-      summaries = JSON.parse(fs.readFileSync(SUMMARY_JSON, 'utf8'));
-    } catch (e) {
-      summaries = [];
-    }
-  }
-  
-  // Avoid duplicates
-  summaries = summaries.filter(s => s.sessionId !== summary.sessionId || s.date !== summary.date);
-  summaries.unshift(summary);
-  
-  // Keep last 100
-  summaries = summaries.slice(0, 100);
-  
-  fs.writeFileSync(SUMMARY_JSON, JSON.stringify(summaries, null, 2));
-  
-  // Also update markdown
-  let md = '# Session Summaries\n\n';
-  for (const s of summaries.slice(0, 20)) {
-    md += `## ${s.date} - ${s.topics.join(', ') || 'General'}\n`;
-    md += `- Messages: ${s.messageCount}\n`;
-    md += `- First: ${s.firstMessage}\n`;
-    md += `- Last: ${s.lastMessage}\n\n`;
-  }
-  
-  fs.writeFileSync(SUMMARY_FILE, md);
+function loadExistingSummaries() {
+  if (!fs.existsSync(SUMMARY_JSON)) return [];
+  try {
+    return JSON.parse(fs.readFileSync(SUMMARY_JSON, 'utf8'));
+  } catch { return []; }
 }
 
-function searchTranscripts(query) {
-  const files = fs.readdirSync(TRANSCRIPT_DIR).filter(f => f.endsWith('.json'));
-  const results = [];
-  const queryLower = query.toLowerCase();
-  
-  for (const file of files) {
-    const data = JSON.parse(fs.readFileSync(path.join(TRANSCRIPT_DIR, file), 'utf8'));
-    for (const [sessionId, transcript] of Object.entries(data)) {
-      for (const msg of transcript.messages || []) {
-        if ((msg.content || '').toLowerCase().includes(queryLower)) {
-          results.push({
-            file,
-            sessionId,
-            message: msg.content?.substring(0, 200)
-          });
-          break;  // One match per session
-        }
-      }
+function saveSummaries(summaries) {
+  const seen = new Set();
+  const unique = summaries.filter(s => {
+    const key = `${s.sessionId}-${s.date}`;
+    if (seen.has(key)) return false;
+    seen.add(key); return true;
+  }).slice(0, 200);
+
+  fs.writeFileSync(SUMMARY_JSON, JSON.stringify(unique, null, 2));
+
+  // Generate markdown summary
+  let md = `# Session Summaries\n\n_Last updated: ${new Date().toISOString()}_\n\n`;
+  for (const s of unique.slice(0, 30)) {
+    md += `## ${s.date} | ${s.topics.join(', ') || 'General'} | ${s.messageCount} msgs\n`;
+    if (s.decisions && s.decisions.length) {
+      md += `> Decisions: ${s.decisions.slice(0, 3).join('; ')}\n`;
     }
+    md += `> ${s.firstMsg}\n\n`;
   }
-  
-  return results.slice(0, 10);
+
+  fs.writeFileSync(SUMMARY_MD, md);
 }
 
-function updateFromFiles(files) {
-  if (!files || files.length === 0) {
-    console.log('No files to update');
+function appendToTodayMemory(summaries) {
+  const today = getToday();
+  const todayFile = path.join(MEMORY_DIR, `${today}.md`);
+  const existing = fs.existsSync(todayFile) ? fs.readFileSync(todayFile, 'utf8') : '';
+
+  const todaySummaries = summaries.filter(s => s.date === today);
+  if (todaySummaries.length === 0) return;
+
+  // Build session entries
+  const entries = todaySummaries.map(s => {
+    let entry = `### Session: ${s.sessionId.substring(0, 8)}...\n` +
+      `Time: ${s.time}\n` +
+      `Topics: ${s.topics.join(', ') || 'General'}\n` +
+      `Messages: ${s.messageCount}\n` +
+      `Summary: ${s.firstMsg}`;
+    if (s.decisions.length) {
+      entry += `\nDecisions: ${s.decisions.join('; ')}`;
+    }
+    return entry;
+  }).join('\n\n');
+
+  if (existing.includes(`## Sessions ${today}`)) return; // Already wrote today
+
+  const header = existing ? '\n\n---\n\n' : '';
+  const section = `## Sessions ${today}\n\n${entries}`;
+  fs.writeFileSync(todayFile, existing + header + section);
+}
+
+function update(sinceMinutes = 120) {
+  const files = getRecentSessions(sinceMinutes);
+  if (files.length === 0) {
+    console.log('No recent sessions found');
     return;
   }
-  
-  let updated = 0;
+
+  console.log(`Processing ${files.length} recent session(s)`);
+  const summaries = loadExistingSummaries();
+
   for (const file of files) {
-    try {
-      if (!fs.existsSync(file)) continue;
-      
-      const data = JSON.parse(fs.readFileSync(file, 'utf8'));
-      
-      for (const [sessionId, transcript] of Object.entries(data)) {
-        if (transcript.messages && transcript.messages.length > 0) {
-          const summary = generateSummary(sessionId, transcript.messages);
-          if (summary) {
-            updateSummaryIndex(summary);
-            updated++;
-          }
-        }
-      }
-    } catch (err) {
-      console.error(`Error processing ${file}:`, err.message);
+    const sessionId = path.basename(file, '.jsonl');
+    const messages = parseMessages(file);
+    if (messages.length === 0) continue;
+
+    const summary = generateSummary(sessionId, messages);
+    if (!summary) continue;
+
+    const existingIdx = summaries.findIndex(
+      s => s.sessionId === summary.sessionId && s.date === summary.date
+    );
+    if (existingIdx >= 0) {
+      summaries[existingIdx] = summary;
+    } else {
+      summaries.unshift(summary);
     }
+    console.log(`  [${sessionId.substring(0, 8)}] ${summary.messageCount} msgs | ${summary.topics.join(', ') || 'general'}`);
   }
-  console.log(`Updated ${updated} session summaries`);
+
+  saveSummaries(summaries);
+  appendToTodayMemory(summaries);
+  console.log(`Done. ${summaries.length} total summaries`);
 }
 
 // CLI
 const args = process.argv.slice(2);
-if (args[0] === 'save') {
-  // Usage: node transcript-manager.js save <sessionId> '<messages_json>'
+if (args[0] === 'update') {
+  const mins = parseInt(args[1] || '120', 10);
+  update(mins);
+} else if (args[0] === 'save') {
   const sessionId = args[1];
   const messages = JSON.parse(args[2] || '[]');
-  saveTranscript(sessionId, messages);
-  
   const summary = generateSummary(sessionId, messages);
   if (summary) {
-    updateSummaryIndex(summary);
+    const summaries = loadExistingSummaries();
+    summaries.unshift(summary);
+    saveSummaries(summaries);
+    appendToTodayMemory(summaries);
   }
-  console.log('Transcript saved');
-} else if (args[0] === 'update') {
-  // Usage: node transcript-manager.js update <file1> <file2> ...
-  const files = args.slice(1);
-  updateFromFiles(files);
 } else if (args[0] === 'search') {
-  const results = searchTranscripts(args.slice(1).join(' '));
-  console.log(JSON.stringify(results, null, 2));
+  const summaries = loadExistingSummaries();
+  const query = args.slice(1).join(' ').toLowerCase();
+  const results = summaries.filter(s =>
+    s.topics.some(t => t.includes(query)) ||
+    s.firstMsg.toLowerCase().includes(query) ||
+    (s.decisions || []).some(d => d.toLowerCase().includes(query))
+  );
+  console.log(JSON.stringify(results.slice(0, 10), null, 2));
 } else {
-  console.log('Usage: transcript-manager.js save <sessionId> <json> | update <files...> | search <query>');
+  update(120);
 }
