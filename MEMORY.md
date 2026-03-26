@@ -23,7 +23,8 @@
 | Service | URL | API Key |
 |---------|-----|---------|
 | Sonarr | http://192.168.1.146:8989 | e990b7b615554edeaca78919ade1e975 |
-| Radarr | http://192.168.1.146:7878 | - |
+| Radarr | http://192.168.1.146:7878 | a43e5fe67a7d45c7a488aaa93c78f0a1 |
+| Prowlarr | http://192.168.1.146:9696 | 17756336779d494b92c56ac4095dab9a |
 
 ## John's Preferences
 - Ideas → kanban queue
