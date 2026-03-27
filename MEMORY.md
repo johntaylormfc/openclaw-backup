@@ -152,4 +152,28 @@ Last updated: 2026-03-25
 - Temporal decay: enabled (30-day half-life for daily notes)
 - Session memory indexing: enabled (experimental)
 
-Last updated: 2026-03-26
+Last updated: 2026-03-27
+
+## Daily Notes (March 26, 2026)
+
+### What Went Well
+- System stable - heartbeats passed (02:24, 05:34 UTC), Gateway UP
+- OC-0033 implemented: Created arr-api/SKILL.md + arr-stack-overview.sh
+- ARR API keys discovered via docker exec (Radarr: a43e5fe67a7d45c7a488aaa93c78f0a1, Prowlarr: 17756336779d494b92c56ac4095dab9a)
+- MEMORY.md updated with corrected ARR API keys
+- 200 sessions processed, 944 messages handled
+- Dashboard DB backup ran successfully
+- Cron jobs healthy (auto-recovery, gateway watchdog, cron health, healthcheck)
+
+### What Could Be Improved
+- ARR service health issues: Radarr (error+warnings), Prowlarr (error+warnings+warning), Sonarr (warning) - real issues need investigation
+- Very high session count (200) - possible duplicate cron runs or session leak
+
+### Patterns/Learnings
+- Docker exec useful for discovering ARR credentials when not documented
+- ARR services have underlying errors - should investigate as separate ticket
+- Session volume very high - monitor for performance impact
+
+---
+
+*Memory curated: 2026-03-27 (daily review)*

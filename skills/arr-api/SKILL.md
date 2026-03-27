@@ -7,8 +7,8 @@ Wraps Sonarr, Radarr, Prowlarr, Plex, Tautulli, SABnzbd, qBittorrent, and Transm
 | Service | URL | API Key |
 |---------|-----|---------|
 | Sonarr | http://192.168.1.146:8989 | e990b7b615554edeaca78919ade1e975 |
-| Radarr | http://192.168.1.146:7878 | (same key) |
-| Prowlarr | http://192.168.1.146:9696 | (same key) |
+| Radarr | http://192.168.1.146:7878 | a43e5fe67a7d45c7a488aaa93c78f0a1 |
+| Prowlarr | http://192.168.1.146:9696 | 17756336779d494b92c56ac4095dab9a |
 | Plex | http://192.168.1.146:32400 | (managed via token) |
 | Tautulli | http://192.168.1.146:8181 | (api_key in config) |
 | SABnzbd | http://192.168.1.146:8080 | (from config) |
@@ -49,25 +49,25 @@ curl -s -X POST "http://192.168.1.146:8989/api/v3/command?apiKey=e990b7b615554ed
 ### radarr_health
 Check Radarr system health.
 ```bash
-curl -s "http://192.168.1.146:7878/api/v3/health?apiKey=e990b7b615554edeaca78919ade1e975"
+curl -s "http://192.168.1.146:7878/api/v3/health?apiKey=a43e5fe67a7d45c7a488aaa93c78f0a1"
 ```
 
 ### radarr_queue
 List Radarr download queue.
 ```bash
-curl -s "http://192.168.1.146:7878/api/v3/queue?apiKey=e990b7b615554edeaca78919ade1e975&includeUnknown=true"
+curl -s "http://192.168.1.146:7878/api/v3/queue?apiKey=a43e5fe67a7d45c7a488aaa93c78f0a1&includeUnknown=true"
 ```
 
 ### radarr_system_status
 Get Radarr version and disk space.
 ```bash
-curl -s "http://192.168.1.146:7878/api/v3/system/status?apiKey=e990b7b615554edeaca78919ade1e975"
+curl -s "http://192.168.1.146:7878/api/v3/system/status?apiKey=a43e5fe67a7d45c7a488aaa93c78f0a1"
 ```
 
 ### radarr_rescan
 Trigger a movie rescan.
 ```bash
-curl -s -X POST "http://192.168.1.146:7878/api/v3/command?apiKey=e990b7b615554edeaca78919ade1e975" \
+curl -s -X POST "http://192.168.1.146:7878/api/v3/command?apiKey=a43e5fe67a7d45c7a488aaa93c78f0a1" \
   -H "Content-Type: application/json" \
   -d '{"name":"RescanMovie","movieIds":[null]}'
 ```
@@ -75,13 +75,13 @@ curl -s -X POST "http://192.168.1.146:7878/api/v3/command?apiKey=e990b7b615554ed
 ### prowlarr_indexers
 List all indexers and their status.
 ```bash
-curl -s "http://192.168.1.146:9696/api/v1/indexer?apiKey=e990b7b615554edeaca78919ade1e975"
+curl -s "http://192.168.1.146:9696/api/v1/indexer?apiKey=17756336779d494b92c56ac4095dab9a"
 ```
 
 ### prowlarr_health
 Check Prowlarr system health.
 ```bash
-curl -s "http://192.168.1.146:9696/api/v1/health?apiKey=e990b7b615554edeaca78919ade1e975"
+curl -s "http://192.168.1.146:9696/api/v1/health?apiKey=17756336779d494b92c56ac4095dab9a"
 ```
 
 ### plex_library_stats
