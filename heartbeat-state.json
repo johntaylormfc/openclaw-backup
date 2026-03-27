@@ -1,15 +1,11 @@
 {
-  "lastHeartbeat": "2026-03-26T23:17:00Z",
+  "lastHeartbeat": "2026-03-27T02:46:00Z",
   "activeProject": null,
   "currentTask": null,
   "blockers": [],
   "systemStatus": {
     "dashboard": "healthy",
-    "whatsapp": "connected (brief 503 at 22:26, auto-recovered)",
-    "cloudflareTunnel": "running",
-    "kanban": {
-      "ideas": 0,
-      "new": 0
-    }
+    "whatsapp": "connected",
+    "kanban": { "ideas": 0, "new": 0 }
   }
 }
