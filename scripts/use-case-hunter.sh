@@ -21,7 +21,7 @@ KNOWN_TITLES=$(mktemp)
 KNOWN_URLS=$(mktemp)
 KNOWN_REPOS=$(mktemp)
 
-find "$KANBAN_IDEA_DIR" -name "IDEA-*.md" -type f 2>/dev/null | while IFS= read -r file; do
+find "$KANBAN_IDEA_DIR" -name "*.md" -type f 2>/dev/null | while IFS= read -r file; do
   # Extract and normalise title — use fgrep for exact string match on markdown bold syntax
   title=$(fgrep "**Title:**" "$file" 2>/dev/null | sed 's/^\*\*Title:\*\* *//' | tr '[:upper:]' '[:lower:]' | tr -s ' ' | tr -d '\r')
   echo "$title" >> "$KNOWN_TITLES"
@@ -127,7 +127,7 @@ EOF
 
 # Count existing ideas for numbering
 shopt -s nullglob
-IDEA_FILES=("$KANBAN_IDEA_DIR"/IDEA-*.md)
+IDEA_FILES=("$KANBAN_IDEA_DIR"/*.md)
 IDEA_COUNT=${#IDEA_FILES[@]}
 NEXT_NUM=$((IDEA_COUNT + 1))
 shopt -u nullglob
