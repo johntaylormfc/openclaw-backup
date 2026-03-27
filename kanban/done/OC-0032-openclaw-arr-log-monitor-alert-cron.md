@@ -1,8 +1,8 @@
 # Ticket
 **ID:** OC-0032
 **Title:** OpenClaw ARR Log Monitor Alert Cron
-**Status:** In Progress
-**Outcome State:** Partial
+**Status:** Complete
+**Outcome State:** Resolved
 **Priority:** Medium
 **Owner:** Unassigned
 **Created:** 2026-03-25 06:50
@@ -63,3 +63,7 @@ Not complete.
 
 ---
 **Auto-Pickup:** Started at 2026-03-26 14:04 by pick-up-new-tickets cron
+
+## Closure
+**Closed:** 2026-03-27
+**Summary:** Script created at /home/john/.openclaw/workspace/scripts/arr-log-monitor.sh. Monitors Sonarr, Radarr, Prowlarr, SABnzbd, Transmission, Flaresolverr, Readarr, Bazarr, Ombi, Overseerr, Jellyseerr, Tautulli logs every 30 min. Filters benign noise (SocketException stack traces, symlink warnings, HTTP 404s). Sends WhatsApp alert with 1h cooldown per container. Cron scheduled (every 30 min, silent unless alert fires).

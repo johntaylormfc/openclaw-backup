@@ -1,8 +1,8 @@
 # Ticket
 **ID:** OC-0033
 **Title:** OpenClaw ARR API Health Skill (Native Tool Layer)
-**Status:** In Progress
-**Outcome State:** Partial
+**Status:** Complete
+**Outcome State:** Resolved
 **Priority:** Medium
 **Owner:** Unassigned
 **Created:** 2026-03-25 06:51
@@ -91,3 +91,21 @@ Not complete.
 
 ---
 **Auto-Pickup:** Started at 2026-03-26 15:06 by pick-up-new-tickets cron
+
+## Closure
+**Status:** Complete
+**Closed:** 2026-03-27
+**Summary:** SKILL.md implemented and validated. arr-api skill operational.
+
+### Follow-on Issues (not blocking closure):
+1. **Radarr RemotePathMappingCheck** — Transmission remote path  not accessible inside container. New ticket may be needed.
+2. **Prowlarr dead indexers** — 8 indexers have no definition. Should be cleaned up in Prowlarr UI.
+
+
+## Closure
+**Closed:** 2026-03-27
+**Summary:** SKILL.md implemented and validated. arr-api skill operational.
+
+### Follow-on Issues (not blocking closure):
+1. **Radarr RemotePathMappingCheck** — Transmission remote path not accessible inside container. New ticket may be needed.
+2. **Prowlarr dead indexers** — 8 indexers have no definition. Should be cleaned up in Prowlarr UI.

@@ -1,5 +1,8 @@
 # ARR_Bot Memory
 
+## Operating Model
+OPERATING_MODEL.md governs all task framing, response standards, debugging, and working style. Read it before any substantive request.
+
 ## CRITICAL: The Site (Dashboard)
 - **URL**: http://192.168.1.146:5000 (port 4000 = old, ignore)
 - Port 5000 = NEW BC Dev Limited Dashboard with API

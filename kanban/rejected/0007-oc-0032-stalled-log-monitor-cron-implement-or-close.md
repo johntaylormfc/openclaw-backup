@@ -24,3 +24,6 @@ OC-0032 (OpenClaw ARR Log Monitor Alert Cron) has been in-progress since 2026-03
 
 ## Source Ticket
 OC-0032 — OpenClaw ARR Log Monitor Alert Cron
+
+---
+*Rejected 2026-03-27: Implemented - ARR Log Monitor script created and cron scheduled.*

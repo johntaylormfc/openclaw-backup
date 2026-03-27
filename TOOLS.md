@@ -1,5 +1,7 @@
 # TOOLS.md - Local Notes
 
+**OPERATING MODEL:** OPERATING_MODEL.md — task framing and response standards apply to all work here.
+
 ## THE SITE (Dashboard) - CRITICAL
 - **URL**: http://192.168.1.146:5000 (NOT 4000!)
 - Port 4000 = old static site (don't use)

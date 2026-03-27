@@ -1,7 +1,20 @@
 # OpenClaw Workspace Instructions
 
+**OPERATING MODEL:** See OPERATING_MODEL.md — governs all task framing, response standards, and working style. This file takes precedence for operational guidance.
+
 This workspace uses process documents in /home/john/.openclaw/workspace/openclaw-docs/:
 - KANBAN.md, TICKET_TEMPLATE.md, AGENT_RULES.md, STATUS_RULES.md
+
+## Task-Framing (Mandatory for Substantive Requests)
+
+Every substantive task must be framed before tools are touched:
+- **TASK** — What exactly needs to happen?
+- **INTENT** — Why does John want this? What outcome matters?
+- **ENVIRONMENT** — What files, containers, services, paths are involved?
+- **CONSTRAINTS** — What must not break?
+- **OUTPUT** — What does done look like?
+- **SUCCESS CRITERIA** — How to verify?
+- **PLAN** — Smallest next step (one tool call at a time)
 
 ## Mandatory Rules
 
