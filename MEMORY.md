@@ -152,7 +152,29 @@ Last updated: 2026-03-25
 - Temporal decay: enabled (30-day half-life for daily notes)
 - Session memory indexing: enabled (experimental)
 
-Last updated: 2026-03-27
+Last updated: 2026-03-28
+
+## Daily Notes (March 27, 2026)
+
+### What Went Well
+- OpenClaw snapshot backup successful (03:04 UTC, 0.4 MB → Google Drive)
+- Dashboard DB backup ran
+- ARR config backup ran
+- All cron jobs healthy (auto-recovery, gateway watchdog, cron health, healthcheck)
+- 200 sessions, 629 messages processed
+- All systems nominal at 21:15 UTC heartbeat
+
+### What Could Be Improved
+- ARR services still showing errors/warnings (Radarr, Prowlarr, Sonarr)
+- High session volume (200) - continues from March 26
+- 5 ideas in kanban backlog
+
+### Patterns/Learnings
+- System stable with regular maintenance cron jobs
+- Backlog management: 5 ideas pending, not at 3+ threshold yet
+- ARR services errors are persistent - may need dedicated investigation
+
+---
 
 ## Daily Notes (March 26, 2026)
 

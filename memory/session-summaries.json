@@ -1,5 +1,758 @@
 [
   {
+    "sessionId": "fcc2874c-45e0-4d78-9a1c-86388a677ba8",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.815Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
+    "lastMsg": "h and sends WhatsApp if the gateway went down and recovered. Current time: Saturday, March 28th, 2026 — 19:53 (Europe/London) / 2026-03-28 19:53 UTC [watchdog] Gateway: UP Gateway is UP — all clear. ✅",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "f5685109-626d-4e1b-bbf6-e46c9265edd0",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.815Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Satu",
+    "lastMsg": "-03-28T19:44:47.162Z] [INFO] Gateway: OK [2026-03-28T19:44:50.868Z] [INFO] === Auto-Recovery Check Complete — all healthy === <final> ✅ Auto-Recovery Check Complete — all healthy (Gateway OK) </final>",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "f34bbaf1-502e-4092-b58f-f957a568a3db",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.815Z",
+    "topics": [
+      "arr",
+      "docker",
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 5,
+    "firstMsg": "[cron:33c0c409-d4fd-44af-b2a1-040e1486e72d ARR Log Monitor] Run: /home/john/.openclaw/workspace/scripts/arr-log-monitor.sh echo \"Log monitor run comp",
+    "lastMsg": "n === [2026-03-28 20:03] Run complete at Sat 28 Mar 20:03:15 GMT 2026 Log monitor run complete — no errors detected in ARR container logs this cycle. Last alert was READARR at 19:02 (cooldown active).",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "efda179f-6648-4997-9a91-92fbfef25559",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.815Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:f74cac9c-c88a-46ab-8ea5-0fcee980a2c4 Cron Health Monitor] Check cron job health: cd /home/john/.openclaw/workspace/scripts && node cron-monitor.",
+    "lastMsg": "03 UTC === Cron Job Health === Total: 46 | Healthy: 37 | Disabled: 8 Issues: 0 ✅ All jobs healthy <final> ✅ Cron health check complete — 46 jobs, 37 healthy, 8 disabled, 0 issues. All clear. </final>",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "efcebce2-1ab7-4354-b12d-dab611ffcf22",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.815Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
+    "lastMsg": "the gateway went down and recovered. Current time: Saturday, March 28th, 2026 — 20:24 (Europe/London) / 2026-03-28 20:24 UTC [watchdog] Gateway: UP <final> ✅ Gateway UP — no issues detected. </final>",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "e797214b-bee0-42d1-8019-e7836c3e5851",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.815Z",
+    "topics": [
+      "docker",
+      "dashboard",
+      "openclaw"
+    ],
+    "messageCount": 51,
+    "firstMsg": "System: [2026-03-28 04:03:30 GMT] Execute: openclaw cron list --json 2>&1 | jq '.jobs' > /tmp/arr-cronjobs.json && docker cp /tmp/arr-cronjobs.json ar",
+    "lastMsg": "bs.json Handle this reminder internally. Do not relay it to the user unless explicitly requested. Current time: Saturday, March 28th, 2026 — 20:04 (Europe/London) / 2026-03-28 20:04 UTC (no output) ✅",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "dc803cb9-9c1e-4c61-bee6-2ae07d4153ae",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.814Z",
+    "topics": [
+      "arr",
+      "docker",
+      "dashboard",
+      "memory",
+      "github",
+      "email",
+      "openclaw",
+      "health",
+      "bc",
+      "ideas"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:healthcheck-hourly-001 Hourly Health Snapshot] Run healthcheck: ~/.openclaw/workspace/tools/openclaw_healthcheck.sh Current time: Saturday, Marc",
+    "lastMsg": "system-BDbeCphF.js:944\",\"method\":\"console.log\"}},\"time\":\"2026-03-28T19:59:51.290+00:00\"} --- Uptime ---    20:04:02 up 11 days, 20:53,  1 user,  load average: 0.68, 1.21, 0.76 === Check Complete ===",
+    "decisions": [
+      "close",
+      "rejected"
+    ],
+    "contributors": [
+      "user",
+      "toolResult"
+    ]
+  },
+  {
+    "sessionId": "d9d4e5e8-f167-48cb-9ae3-a2ae4f1e2a81",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.810Z",
+    "topics": [
+      "openclaw"
+    ],
+    "messageCount": 1,
+    "firstMsg": "[cron:95c94692-2469-43c1-81fc-1913481b378d Session Transcript Capture] Capture session transcripts: cd /home/john/.openclaw/workspace/scripts && node",
+    "lastMsg": "home/john/.openclaw/workspace/scripts && node transcript-manager.js update 60 echo \"Transcript capture complete\" Current time: Saturday, March 28th, 2026 — 20:33 (Europe/London) / 2026-03-28 20:33 UTC",
+    "decisions": [],
+    "contributors": [
+      "user"
+    ]
+  },
+  {
+    "sessionId": "d20154f7-563d-4df1-98cc-e58e49abd132",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.810Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
+    "lastMsg": "ends WhatsApp if the gateway went down and recovered. Current time: Saturday, March 28th, 2026 — 20:14 (Europe/London) / 2026-03-28 20:14 UTC [watchdog] Gateway: UP Gateway is UP — no issues detected.",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "d1b27fc5-d2c8-481e-8eb2-0bf496dd892e",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.810Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
+    "lastMsg": "h and sends WhatsApp if the gateway went down and recovered. Current time: Saturday, March 28th, 2026 — 20:29 (Europe/London) / 2026-03-28 20:29 UTC [watchdog] Gateway: UP Gateway is UP — all good. 🟢",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "d086b0cb-f7a5-49a8-945e-ecf74709952e",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.809Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Satu",
+    "lastMsg": ":49:47.974Z] [INFO] Gateway: OK [2026-03-28T19:49:51.678Z] [INFO] === Auto-Recovery Check Complete — all healthy === <final> ✅ Auto-Recovery check complete — all healthy. Gateway operational. </final>",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "cbdde432-e42f-4f41-b5b7-adc7438952b8",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.809Z",
+    "topics": [
+      "arr",
+      "docker",
+      "dashboard",
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 4,
+    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Satu",
+    "lastMsg": "eck Complete — all healthy === ✅ Auto-Recovery Check Complete — all healthy - **Gateway:** OK - **Critical containers:** All running - **Cron jobs:** No failures detected No recovery actions needed.",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "bbb65c4b-8da2-4cf1-a17b-abd04c94e22b",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.809Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Satu",
+    "lastMsg": "== [2026-03-28T20:09:47.335Z] [INFO] Gateway: OK [2026-03-28T20:09:51.112Z] [INFO] === Auto-Recovery Check Complete — all healthy === ✅ Auto-Recovery Check complete — all systems healthy. Gateway: OK.",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "baba5303-21cb-4807-81ed-a5ca21a75c83",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.809Z",
+    "topics": [
+      "dashboard",
+      "openclaw"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:f11a76f9-9925-45ba-b56b-329414be4a9c Dashboard Snapshot] Execute: /home/john/ARR/scripts/backup-dashboard.sh && echo Snapshot complete Current t",
+    "lastMsg": "/ui-20260328-2003/dashboard.db Backup complete: ui-20260328-2003 Files: dist/, dashboard.db Snapshot complete ✅ Dashboard snapshot complete — `ui-20260328-2003` backed up to `/home/john/ARR/backups/`.",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "ab1f9d1b-125c-436c-88d7-64ca38f234e3",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.809Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Satu",
+    "lastMsg": "9:52.312Z] [INFO] === Auto-Recovery Check Complete — all healthy === <final> ✅ Auto-Recovery Check — All Healthy | Check | Status | |-------|--------| | Gateway | OK | *19:39 UTC · Beelink* </final>",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "aacaa2c1-7262-4150-beab-d86c253c2939",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.809Z",
+    "topics": [
+      "docker",
+      "dashboard",
+      "memory",
+      "email",
+      "openclaw",
+      "health",
+      "bc"
+    ],
+    "messageCount": 4,
+    "firstMsg": "[cron:cron-triage-30m-001 Cron Error Triage] Run triage: ~/.openclaw/workspace/tools/openclaw_cron_triage.sh Current time: Saturday, March 28th, 2026",
+    "lastMsg": "eck | Status | |-------|--------| | Gateway | ✅ Running (127.0.0.1:18789) | | Cron Scheduler | ✅ Enabled (46 jobs) | | Recent Errors | ✅ None | | All Jobs | ✅ OK | No action needed — system is clean.",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "a24fa924-1594-49f5-afc5-8b7e22cae80b",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.809Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
+    "lastMsg": "sends WhatsApp if the gateway went down and recovered. Current time: Saturday, March 28th, 2026 — 19:43 (Europe/London) / 2026-03-28 19:43 UTC [watchdog] Gateway: UP Gateway is UP. No issues detected.",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "9b9dbf02-4a10-4a78-a584-87d76c34c947",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.809Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Satu",
+    "lastMsg": "Z] [INFO] Gateway: OK [2026-03-28T20:24:51.909Z] [INFO] === Auto-Recovery Check Complete — all healthy === <final> ✅ Auto-Recovery Check — All Healthy - **Gateway:** OK - **Time:** 20:24 UTC </final>",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "8ff1b289-1cc7-46e3-ad36-e05c85fbbef8",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.808Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Satu",
+    "lastMsg": "-Recovery Check Started === [2026-03-28T20:14:46.607Z] [INFO] Gateway: OK [2026-03-28T20:14:50.352Z] [INFO] === Auto-Recovery Check Complete — all healthy === All systems healthy — nothing to recover.",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "8a8e5588-1d23-4da5-9d26-69aac867a00b",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.808Z",
+    "topics": [
+      "dashboard",
+      "github",
+      "openclaw",
+      "ideas"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:ba5191d7-2d02-4504-9218-894e4a560de2 Auto-Pickup New Kanban Tickets] Run /home/john/.openclaw/workspace/scripts/pick-up-new-tickets.sh and repor",
+    "lastMsg": "task explicitly calls for messaging a specific external recipient, note who/where it should go instead of sending it yourself. No new tickets to pick up. Script output: **No new tickets to pick up.**",
+    "decisions": [
+      "will be",
+      "should go"
+    ],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "83eaed79-6c63-464a-b696-5afa592cd2eb",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.808Z",
+    "topics": [
+      "email",
+      "openclaw"
+    ],
+    "messageCount": 4,
+    "firstMsg": "[cron:5905f716-4342-4453-ac2e-a4652c43a5f3 Calendar to Todoist] Run: node /home/john/.openclaw/workspace/scripts/calendar-to-todoist.js Current time:",
+    "lastMsg": "asn't finished. To complete setup, the script likely needs to be run interactively or via a web callback to generate the token file. Want me to check the script to see what the OAuth flow looks like?",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "837a9044-e6f4-4d60-a1a3-ffffe7ee8112",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.808Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Satu",
+    "lastMsg": "== [2026-03-28T19:59:47.394Z] [INFO] Gateway: OK [2026-03-28T19:59:51.363Z] [INFO] === Auto-Recovery Check Complete — all healthy === <final> ✅ Auto-Recovery Check — all healthy (Gateway: OK) </final>",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "7f4d87a1-a417-4627-a600-05ef9c48d699",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.808Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
+    "lastMsg": "lth and sends WhatsApp if the gateway went down and recovered. Current time: Saturday, March 28th, 2026 — 19:38 (Europe/London) / 2026-03-28 19:38 UTC [watchdog] Gateway: UP Gateway is UP — no issues.",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "7a0af734-3552-4a06-88c2-9c1f5d87de07",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.808Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Satu",
+    "lastMsg": "ted === [2026-03-28T19:34:49.918Z] [INFO] Gateway: OK [2026-03-28T19:34:53.610Z] [INFO] === Auto-Recovery Check Complete — all healthy === <final> ✅ Auto-Recovery Check Complete — all healthy </final>",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "6f81944a-535d-49f4-b791-a516f6e6cf09",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.808Z",
+    "topics": [
+      "dashboard",
+      "openclaw"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:3ab0b6ce-8680-42d2-8215-615a4641c507 Dashboard DB Backup] Execute: cp /home/john/ARR/dashboard-data/dashboard.db /home/john/ARR/backups/dashboar",
+    "lastMsg": ".db Current time: Saturday, March 28th, 2026 — 20:03 (Europe/London) / 2026-03-28 20:03 UTC (no output) <final> ✅ Dashboard DB backed up to `/home/john/ARR/backups/dashboard-20260328-2003.db` </final>",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "6c2b1547-83e1-4f2e-a530-259da4fb173d",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.808Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Satu",
+    "lastMsg": "03-28T19:54:48.842Z] [INFO] Gateway: OK [2026-03-28T19:54:52.538Z] [INFO] === Auto-Recovery Check Complete — all healthy === <final> ✅ Auto-Recovery Check Complete — all healthy (Gateway: OK) </final>",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "6a867bd9-c145-4453-9687-a1e81c9b4a4c",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.808Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
+    "lastMsg": "sends WhatsApp if the gateway went down and recovered. Current time: Saturday, March 28th, 2026 — 19:48 (Europe/London) / 2026-03-28 19:48 UTC [watchdog] Gateway: UP Gateway is UP — no alert sent. 🦞",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "5e6aca42-669f-401d-adb3-2568029fed92",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.807Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
+    "lastMsg": "ds WhatsApp if the gateway went down and recovered. Current time: Saturday, March 28th, 2026 — 20:04 (Europe/London) / 2026-03-28 20:04 UTC [watchdog] Gateway: UP Gateway is UP — no issues detected. ✅",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "55bf1c27-407c-4dfe-87cd-ffb4e0ee9299",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.807Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
+    "lastMsg": "WhatsApp if the gateway went down and recovered. Current time: Saturday, March 28th, 2026 — 19:58 (Europe/London) / 2026-03-28 19:58 UTC [watchdog] Gateway: UP 🦞 Gateway: **UP** — no issues detected.",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "50de043d-b4c1-44e6-8b9d-ff52222f4f43",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.807Z",
+    "topics": [
+      "email",
+      "openclaw"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:5d6d8f30-d40e-4330-a623-1d0cd5ba2635 Email to Todoist] Run: node /home/john/.openclaw/workspace/scripts/email-to-todoist.js Current time: Saturd",
+    "lastMsg": "ntext. To fix this, you need to provide a refresh token so the script can authenticate automatically. Do you have one set up already, or do you need instructions to get one from Google Cloud Console?",
+    "decisions": [
+      "will be"
+    ],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "43abafae-3f09-4684-9338-da7f46d972fa",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.807Z",
+    "topics": [
+      "openclaw"
+    ],
+    "messageCount": 7,
+    "firstMsg": "System: [2026-03-28 03:27:07 GMT] WhatsApp gateway connected. Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or",
+    "lastMsg": "Up 5 days arr-webhook-notifier Up 5 days bc-coredns Up 11 days bc-caddy-proxy Up 11 days searxng Up 11 days omnitools Up 11 days recyclarr Up 11 days portainer Up 11 days 0 0 (no output) HEARTBEAT_OK",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "36c01a01-dc02-454e-9746-4ef3b1c45aa7",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.806Z",
+    "topics": [
+      "email",
+      "openclaw"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:5d6d8f30-d40e-4330-a623-1d0cd5ba2635 Email to Todoist] Run: node /home/john/.openclaw/workspace/scripts/email-to-todoist.js Current time: Saturd",
+    "lastMsg": "penclaw/workspace/scripts/email-to-todoist.js ``` Then paste the redirect URL when prompted. Once authenticated, the token will be saved and future cron runs should work without interaction. </final>",
+    "decisions": [
+      "will be",
+      "should work"
+    ],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "2c62bb46-77bc-46f1-bb44-14a16fc92f7a",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.806Z",
+    "topics": [
+      "email",
+      "openclaw"
+    ],
+    "messageCount": 8,
+    "firstMsg": "[cron:5905f716-4342-4453-ac2e-a4652c43a5f3 Calendar to Todoist] Run: node /home/john/.openclaw/workspace/scripts/calendar-to-todoist.js Current time:",
+    "lastMsg": "leting the OAuth authorization? You'll need to either: - Run a local server to catch the callback, or - Use Google's OAuth Playground to exchange the code for tokens Do you have a preferred approach?",
+    "decisions": [
+      "should have"
+    ],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "28ebd4f9-1e87-4d56-bef1-e88e04f6753c",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.806Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:33c0c409-d4fd-44af-b2a1-040e1486e72d ARR Log Monitor] Run: /home/john/.openclaw/workspace/scripts/arr-log-monitor.sh echo \"Log monitor run comp",
+    "lastMsg": "rr-log-monitor.sh echo \"Log monitor run complete\" Current time: Saturday, March 28th, 2026 — 20:32 (Europe/London) / 2026-03-28 20:32 UTC (no output) Log monitor run complete — no issues detected. 🦞",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "244ba860-d0a5-485a-859f-8320e3ec2af0",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.805Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
+    "lastMsg": "and sends WhatsApp if the gateway went down and recovered. Current time: Saturday, March 28th, 2026 — 19:33 (Europe/London) / 2026-03-28 19:33 UTC [watchdog] Gateway: UP Gateway is UP — no alert sent.",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "1c470374-8c3f-4dce-a573-3b76a5effccc",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.805Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Satu",
+    "lastMsg": "03-28T20:29:47.367Z] [INFO] Gateway: OK [2026-03-28T20:29:51.171Z] [INFO] === Auto-Recovery Check Complete — all healthy === <final> ✅ Auto-Recovery Check Complete — all healthy - Gateway: OK </final>",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "1886fa61-b15c-4891-9bd1-cc7a4ed5f2ef",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.805Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
+    "lastMsg": "d recovered. Current time: Saturday, March 28th, 2026 — 20:19 (Europe/London) / 2026-03-28 20:19 UTC [watchdog] Gateway: UP <final> ✅ Gateway watchdog complete — Gateway is UP. No alert sent. </final>",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "0d357ea4-8d07-429a-aab3-2a7757e4a4ab",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.805Z",
+    "topics": [
+      "arr",
+      "docker",
+      "dashboard",
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 4,
+    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Satu",
+    "lastMsg": "43e6-bcb7-c69819693592\"     }   ],   \"total\": 2530,   \"offset\": 0,   \"limit\": 50,   \"hasMore\": true,   \"nextOffset\": 50 } <final> ✅ Auto-Recovery Check — all healthy (Gateway: OK) · 20:04 UTC </final>",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "0a7adcfd-b8c6-4258-bda5-80cdb24d6dcf",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.804Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
+    "lastMsg": "alth and sends WhatsApp if the gateway went down and recovered. Current time: Saturday, March 28th, 2026 — 20:09 (Europe/London) / 2026-03-28 20:09 UTC [watchdog] Gateway: UP Gateway is UP — all good.",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "03039224-edb2-4e4a-87b6-8850e6e16ad0",
+    "date": "2026-03-28",
+    "time": "2026-03-28T20:33:06.803Z",
+    "topics": [
+      "memory",
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 6,
+    "firstMsg": "[cron:cron-triage-30m-001 Cron Error Triage] Run triage: ~/.openclaw/workspace/tools/openclaw_cron_triage.sh Current time: Saturday, March 28th, 2026",
+    "lastMsg": "ago memory-dir-main (qmd://memory-dir-main/) - 50 files, updated 9h ago ``` No action required — system self-healed. The collection repair mechanism caught the initial race condition and stabilized.",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
     "sessionId": "f9c89528-2594-49d4-8d3f-3c308fac357b",
     "date": "2026-03-27",
     "time": "2026-03-27T09:04:33.024Z",
@@ -3017,771 +3770,6 @@
     "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
     "lastMsg": "ends WhatsApp if the gateway went down and recovered. Current time: Friday, March 27th, 2026 — 04:43 (Europe/London) / 2026-03-27 04:43 UTC [watchdog] Gateway: UP Gateway is UP ✅ — no issues detected.",
     "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "44333ccc-94b7-4e93-87c1-a205df720eda",
-    "date": "2026-03-27",
-    "time": "2026-03-27T05:03:33.345Z",
-    "topics": [
-      "dashboard",
-      "memory",
-      "email",
-      "openclaw",
-      "health",
-      "ideas"
-    ],
-    "messageCount": 4,
-    "firstMsg": "[cron:cron-triage-30m-001 Cron Error Triage] Run triage: ~/.openclaw/workspace/tools/openclaw_cron_triage.sh Current time: Friday, March 27th, 2026 —",
-    "lastMsg": "ndon | ✅ ok | | MiniMax Guard | 03:15 daily | ✅ ok | | Weekend Memory Capture | 10:00 Sat/Sun | ✅ ok | | Memory Consolidation | Sunday 04:00 | ✅ ok | No recent errors in the log. All systems nominal.",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "43a7e7a3-512f-4640-bdbc-e420ced78222",
-    "date": "2026-03-27",
-    "time": "2026-03-27T05:03:33.345Z",
-    "topics": [
-      "email",
-      "openclaw"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:5905f716-4342-4453-ac2e-a4652c43a5f3 Calendar to Todoist] Run: node /home/john/.openclaw/workspace/scripts/calendar-to-todoist.js Current time:",
-    "lastMsg": "=== Summary === New tasks created: 0 <final> === Calendar to Todoist Sync === Found 0 events in next 48 hours Checking against 33 existing Todoist tasks === Summary === New tasks created: 0 </final>",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "430681b9-0850-4cde-83ee-0f84cd9bf2ed",
-    "date": "2026-03-27",
-    "time": "2026-03-27T05:03:33.345Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Frid",
-    "lastMsg": "== [2026-03-27T04:04:47.929Z] [INFO] Gateway: OK [2026-03-27T04:04:51.703Z] [INFO] === Auto-Recovery Check Complete — all healthy === <final> ✅ Auto-Recovery Check — all healthy - Gateway: OK </final>",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "3bbf8f34-3264-4286-b0cb-d8152a2e87ad",
-    "date": "2026-03-27",
-    "time": "2026-03-27T05:03:33.345Z",
-    "topics": [
-      "openclaw"
-    ],
-    "messageCount": 1,
-    "firstMsg": "[cron:95c94692-2469-43c1-81fc-1913481b378d Session Transcript Capture] Capture session transcripts: cd /home/john/.openclaw/workspace/scripts && node",
-    "lastMsg": "/home/john/.openclaw/workspace/scripts && node transcript-manager.js update 60 echo \"Transcript capture complete\" Current time: Friday, March 27th, 2026 — 05:03 (Europe/London) / 2026-03-27 05:03 UTC",
-    "decisions": [],
-    "contributors": [
-      "user"
-    ]
-  },
-  {
-    "sessionId": "385b3929-20d1-4310-a192-62440d719892",
-    "date": "2026-03-27",
-    "time": "2026-03-27T05:03:33.345Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
-    "lastMsg": "ends WhatsApp if the gateway went down and recovered. Current time: Friday, March 27th, 2026 — 04:33 (Europe/London) / 2026-03-27 04:33 UTC [watchdog] Gateway: UP Gateway is UP — no issues detected. ✅",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "270fae89-429a-4b91-856e-11e07f77bd18",
-    "date": "2026-03-27",
-    "time": "2026-03-27T05:03:33.344Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
-    "lastMsg": "ealth and sends WhatsApp if the gateway went down and recovered. Current time: Friday, March 27th, 2026 — 04:53 (Europe/London) / 2026-03-27 04:53 UTC [watchdog] Gateway: UP Gateway is UP — all clear.",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "1505e95d-85a1-45d9-9142-07b536ce0817",
-    "date": "2026-03-27",
-    "time": "2026-03-27T08:04:22.359Z",
-    "topics": [
-      "memory",
-      "openclaw",
-      "ideas"
-    ],
-    "messageCount": 5,
-    "firstMsg": "System: [2026-03-27 03:04:12 GMT] WhatsApp gateway connected. Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or",
-    "lastMsg": "ptional) - Review and clean up old research files - Set up regular backup of memory files --- ## Done - OpenClaw restore and hardening (2026-03-17) - Memory audit (2026-03-17)  200 0 0 HEARTBEAT_OK",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "1290ddb5-fc9a-40e2-b78d-2d45041cac34",
-    "date": "2026-03-27",
-    "time": "2026-03-27T05:03:33.344Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
-    "lastMsg": "tsApp if the gateway went down and recovered. Current time: Friday, March 27th, 2026 — 04:04 (Europe/London) / 2026-03-27 04:04 UTC [watchdog] Gateway: UP <final> ✅ Gateway is UP — all clear. </final>",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "10404f66-9b88-402b-83ea-f8348f688604",
-    "date": "2026-03-27",
-    "time": "2026-03-27T05:03:33.344Z",
-    "topics": [
-      "memory",
-      "email",
-      "openclaw",
-      "health",
-      "ideas"
-    ],
-    "messageCount": 4,
-    "firstMsg": "[cron:cron-triage-30m-001 Cron Error Triage] Run triage: ~/.openclaw/workspace/tools/openclaw_cron_triage.sh Current time: Friday, March 27th, 2026 —",
-    "lastMsg": "y**, no errors detected. **Job Status Summary:** - 45 total jobs scheduled - Next wake: 5 hours (09:16 UTC) - All jobs showing \"ok\" status - No errors in recent log Everything looks good! 🦞</final>",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "05e9cb4d-52e7-4879-b9d1-7a8d8654f681",
-    "date": "2026-03-27",
-    "time": "2026-03-27T05:03:33.343Z",
-    "topics": [
-      "dashboard",
-      "openclaw"
-    ],
-    "messageCount": 4,
-    "firstMsg": "[cron:3ab0b6ce-8680-42d2-8215-615a4641c507 Dashboard DB Backup] Execute: cp /home/john/ARR/dashboard-data/dashboard.db /home/john/ARR/backups/dashboar",
-    "lastMsg": "UTC (no output) -rw-r--r-- 1 john john 274432 Mar 27 04:04 /home/john/ARR/backups/dashboard-20260327-0404.db Backup created successfully ✅ Dashboard DB backed up: `dashboard-20260327-0404.db` (274 KB)",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "04e2d839-83cd-4043-9fee-e40806a8f376",
-    "date": "2026-03-27",
-    "time": "2026-03-27T05:03:33.343Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Frid",
-    "lastMsg": "-03-27T04:44:48.278Z] [INFO] Gateway: OK [2026-03-27T04:44:52.015Z] [INFO] === Auto-Recovery Check Complete — all healthy === <final> ✅ Auto-Recovery Check complete — all healthy. Gateway: OK </final>",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "fe2f7784-8c82-4731-a5d7-62e80f03b154",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.056Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
-    "lastMsg": "covered. Current time: Friday, March 27th, 2026 — 03:34 (Europe/London) / 2026-03-27 03:34 UTC [watchdog] Gateway: UP <final> [watchdog] Gateway: UP 🟢 Gateway is healthy — no action needed. </final>",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "f7f5193c-d2c4-46eb-852a-442c167f49ce",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.055Z",
-    "topics": [
-      "dashboard",
-      "openclaw"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:3ab0b6ce-8680-42d2-8215-615a4641c507 Dashboard DB Backup] Execute: cp /home/john/ARR/dashboard-data/dashboard.db /home/john/ARR/backups/dashboar",
-    "lastMsg": "d-$(date +\\%Y\\%m\\%d-\\%H\\%M).db Current time: Friday, March 27th, 2026 — 03:04 (Europe/London) / 2026-03-27 03:04 UTC (no output) <final> ✅ Dashboard DB backed up: `dashboard-20260327-0304.db` </final>",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "f0bf8b9d-88c1-4900-9f90-77a77130ae4b",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.055Z",
-    "topics": [
-      "email",
-      "openclaw"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:5905f716-4342-4453-ac2e-a4652c43a5f3 Calendar to Todoist] Run: node /home/john/.openclaw/workspace/scripts/calendar-to-todoist.js Current time:",
-    "lastMsg": "= Calendar to Todoist Sync === Found **0 events** in next 48 hours Checked against 33 existing Todoist tasks **New tasks created: 0** Nothing to sync right now — no upcoming calendar events. </final>",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "dff363f0-8c1e-4a90-bb3c-52f2a1345c84",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.055Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
-    "lastMsg": "nds WhatsApp if the gateway went down and recovered. Current time: Friday, March 27th, 2026 — 03:44 (Europe/London) / 2026-03-27 03:44 UTC [watchdog] Gateway: UP Gateway is UP — no issues detected. 🦞",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "dfd9479c-77e9-4ae3-9fd8-f13f26a8ee98",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.055Z",
-    "topics": [
-      "email",
-      "openclaw"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:5905f716-4342-4453-ac2e-a4652c43a5f3 Calendar to Todoist] Run: node /home/john/.openclaw/workspace/scripts/calendar-to-todoist.js Current time:",
-    "lastMsg": "Todoist tasks === Summary === New tasks created: 0 <final> === Calendar to Todoist Sync === Found **0 events** in next 48 hours Checked against 33 existing Todoist tasks New tasks created: 0 </final>",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "d8aee211-7048-4147-afee-42093f839898",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.055Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 4,
-    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
-    "lastMsg": "l> ✅ Gateway is **UP** — no issues detected. - `lastUp`: restored to current timestamp - `wasDown` flag cleared (if set) - WhatsApp notification not sent (gateway never went down this cycle) </final>",
-    "decisions": [
-      "reject",
-      "will notify"
-    ],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "d2b2102d-754f-4c5d-bfd3-42d99b9205e0",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.055Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Frid",
-    "lastMsg": "=== [2026-03-27T03:05:18.752Z] [INFO] Gateway: OK [2026-03-27T03:05:22.536Z] [INFO] === Auto-Recovery Check Complete — all healthy === <final> ✅ Auto-Recovery Check — all healthy (Gateway OK) </final>",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "d1ddc3ef-fc86-49a2-9354-ab33d594d2ad",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.055Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
-    "lastMsg": "gateway went down and recovered. Current time: Friday, March 27th, 2026 — 03:54 (Europe/London) / 2026-03-27 03:54 UTC [watchdog] Gateway: UP <final> 🦞 Gateway watchdog: **UP** — all clear. </final>",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "cfe3be60-a0ff-406e-90a4-56f7cc6ff619",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.055Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
-    "lastMsg": "eway went down and recovered. Current time: Friday, March 27th, 2026 — 03:14 (Europe/London) / 2026-03-27 03:14 UTC [watchdog] Gateway: UP Gateway is UP. No issues detected — no notification needed. ✅",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "c5b5c73f-fa23-4eb1-b01b-201bd31ee691",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.055Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Frid",
-    "lastMsg": "[2026-03-27T03:57:29.884Z] [INFO] === Auto-Recovery Check Complete — all healthy === 🦞 **Auto-Recovery Check Complete** — all healthy - Gateway: OK --- *Next scheduled run: as configured in cron.*",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "b1b62bfb-007e-47c1-b3ae-b58bccba5d4a",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.054Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Frid",
-    "lastMsg": "NFO] === Auto-Recovery Check Complete — all healthy === <final> ✅ **Auto-Recovery Check Complete** | Check | Status | |-------|--------| | Gateway | ✅ OK | All systems healthy at 03:52 UTC. </final>",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "ade03c6e-8636-43b2-89a4-40459e09816e",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.054Z",
-    "topics": [
-      "memory",
-      "email",
-      "openclaw",
-      "health",
-      "ideas"
-    ],
-    "messageCount": 4,
-    "firstMsg": "[cron:cron-triage-30m-001 Cron Error Triage] Run triage: ~/.openclaw/workspace/tools/openclaw_cron_triage.sh Current time: Friday, March 27th, 2026 —",
-    "lastMsg": "eout on run `11eb7e44-7f6f-4587-9df6-20229c673967` — this is a provider/model issue, not a cron config problem. The job likely retried or completed on fallback. No action needed — system operational.",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "a6f1172c-8e6c-4502-b172-2706f33f3a61",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.054Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
-    "lastMsg": "health and sends WhatsApp if the gateway went down and recovered. Current time: Friday, March 27th, 2026 — 03:39 (Europe/London) / 2026-03-27 03:39 UTC [watchdog] Gateway: UP Gateway is UP — all good.",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "8d54d16c-6a8c-4017-88eb-169e70a6f24d",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.054Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
-    "lastMsg": "d sends WhatsApp if the gateway went down and recovered. Current time: Friday, March 27th, 2026 — 03:19 (Europe/London) / 2026-03-27 03:19 UTC [watchdog] Gateway: UP Gateway is UP. No issues detected.",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "7f950cef-a8a2-4745-b98b-a0622bdfa049",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.054Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
-    "lastMsg": "gateway went down and recovered. Current time: Friday, March 27th, 2026 — 03:04 (Europe/London) / 2026-03-27 03:04 UTC [watchdog] Gateway: UP <final> ✅ Gateway watchdog complete — Gateway: UP </final>",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "7f305cac-9b5a-4852-a2b2-09749242a7ea",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.054Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:f74cac9c-c88a-46ab-8ea5-0fcee980a2c4 Cron Health Monitor] Check cron job health: cd /home/john/.openclaw/workspace/scripts && node cron-monitor.",
-    "lastMsg": "TC === Cron Job Health === Total: 45 | Healthy: 36 | Disabled: 8 Issues: 0 ✅ All jobs healthy <final> ✅ **Cron Health Check** — All clear - 45 jobs total | 36 healthy | 8 disabled | 0 issues </final>",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "7c960aa0-bb1f-43b5-96bb-618f9c9bd3f9",
-    "date": "2026-03-27",
-    "time": "2026-03-27T05:03:33.350Z",
-    "topics": [
-      "arr",
-      "docker",
-      "dashboard",
-      "memory",
-      "github",
-      "email",
-      "openclaw",
-      "health",
-      "bc",
-      "ideas"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:healthcheck-hourly-001 Hourly Health Snapshot] Run healthcheck: ~/.openclaw/workspace/tools/openclaw_healthcheck.sh Current time: Friday, March",
-    "lastMsg": "**: 20Gi/27Gi used   - ✅ **Uptime**: 10 days, 4:52 - ⚠️ **One job error**: \"YouTube Ideas - OpenClaw\" timed out (1 consecutive error) — intermittent AI timeout issue All critical systems operational.",
-    "decisions": [
-      "close",
-      "rejected"
-    ],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "77f16efa-89bc-4ecc-9e8b-5a0afddb0c51",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.050Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Frid",
-    "lastMsg": "== Auto-Recovery Check Started === [2026-03-27T03:25:30.106Z] [INFO] Gateway: OK [2026-03-27T03:25:33.928Z] [INFO] === Auto-Recovery Check Complete — all healthy === All systems healthy — Gateway OK ✅",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "77278ea7-bdf5-43d6-826a-022a27260806",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.050Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Frid",
-    "lastMsg": "03-27T03:47:25.986Z] [INFO] Gateway: OK [2026-03-27T03:47:29.686Z] [INFO] === Auto-Recovery Check Complete — all healthy === <final> ✅ Auto-Recovery check complete — all healthy at 03:47 UTC. </final>",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "6fa80147-a13e-460a-b4dc-8b5f454c8d30",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.050Z",
-    "topics": [
-      "memory",
-      "email",
-      "openclaw",
-      "health",
-      "ideas"
-    ],
-    "messageCount": 4,
-    "firstMsg": "[cron:cron-triage-30m-001 Cron Error Triage] Run triage: ~/.openclaw/workspace/tools/openclaw_cron_triage.sh Current time: Friday, March 27th, 2026 —",
-    "lastMsg": "scheduled **Recent Activity:** - ARR Config Backup — ran 15m ago ✅ - OpenClaw Snapshot Backup — ran 13m ago ✅   - MiniMax Guard — ran 2m ago ✅ No action required. Just noting the one timeout event.",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "6cf4a614-9dd2-4031-a90f-932fd9de35f7",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.049Z",
-    "topics": [
-      "github",
-      "openclaw"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:minimax-guard-daily-001 Daily MiniMax-only Guard] Run the MiniMax-only guard script: /home/john/.openclaw/workspace/tools/minimax_only_guard.sh",
-    "lastMsg": "| MiniMax extension | Installed | | Ollama | Present but not primary (OK) | | MiniMax API connectivity | Reachable (401 auth required - normal for OAuth refresh) | No issues found. No fixes required.",
-    "decisions": [
-      "will be",
-      "should go"
-    ],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "66461d43-e4ee-4ac2-ae1d-af934afac7d9",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.049Z",
-    "topics": [
-      "email",
-      "openclaw",
-      "bc"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:5d6d8f30-d40e-4330-a623-1d0cd5ba2635 Email to Todoist] Run: node /home/john/.openclaw/workspace/scripts/email-to-todoist.js Current time: Friday",
-    "lastMsg": "st 33 existing Todoist tasks === Summary === New tasks created: 0 <final> ✅ Email → Todoist sync complete (03:30) - 1 recent email checked - 33 existing tasks compared - 0 new tasks created </final>",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "61e3c6f3-5ca7-464f-aac5-0240bcc5d3d7",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.049Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Frid",
-    "lastMsg": "2:25.778Z] [INFO] Gateway: OK [2026-03-27T03:32:29.541Z] [INFO] === Auto-Recovery Check Complete — all healthy === <final> ✅ Auto-Recovery Check — all systems healthy. Gateway OK. (03:32 UTC) </final>",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "5b318722-f6b9-482b-8ea6-eab72dd370cb",
-    "date": "2026-03-27",
-    "time": "2026-03-27T08:04:22.365Z",
-    "topics": [
-      "docker",
-      "dashboard",
-      "openclaw"
-    ],
-    "messageCount": 3,
-    "firstMsg": "System: [2026-03-27 04:03:51 GMT] Execute: openclaw cron list --json 2>&1 | jq '.jobs' > /tmp/arr-cronjobs.json && docker cp /tmp/arr-cronjobs.json ar",
-    "lastMsg": "le this reminder internally. Do not relay it to the user unless explicitly requested. Current time: Friday, March 27th, 2026 — 04:03 (Europe/London) / 2026-03-27 04:03 UTC (no output) <final> </final>",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "559a5df2-09da-4943-b772-4296027f5810",
-    "date": "2026-03-27",
-    "time": "2026-03-27T05:03:33.346Z",
-    "topics": [
-      "docker",
-      "dashboard",
-      "memory",
-      "github",
-      "email",
-      "openclaw",
-      "health",
-      "ideas"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:95c94692-2469-43c1-81fc-1913481b378d Session Transcript Capture] Capture session transcripts: cd /home/john/.openclaw/workspace/scripts && node",
-    "lastMsg": "enclaw   [f7f5193c] 3 msgs | dashboard, openclaw   [fe2f7784] 3 msgs | openclaw, health Done. 237 total summaries  Transcript capture complete. Processed 39 recent sessions — total summaries now 237.",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "550704e5-060c-4be8-b15b-49e9f7acd889",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.048Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Frid",
-    "lastMsg": "== Auto-Recovery Check Started === [2026-03-27T03:37:29.436Z] [INFO] Gateway: OK [2026-03-27T03:37:33.206Z] [INFO] === Auto-Recovery Check Complete — all healthy === All systems healthy — Gateway OK ✅",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "47a5fbbb-d89c-414f-8644-f9d70985e13d",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.048Z",
-    "topics": [
-      "arr",
-      "docker",
-      "dashboard",
-      "openclaw",
-      "health",
-      "ideas"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Frid",
-    "lastMsg": "\"nextOffset\": 50 } <final> 🦞 **Auto-Recovery Check — 03:10 UTC** ✅ All systems healthy. Gateway operational. No recovery actions needed. *(Run completed in 19s — next run in 5 minutes)* </final>",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "394e55e9-056a-4129-a430-0e8fb07aa666",
-    "date": "2026-03-27",
-    "time": "2026-03-27T04:04:23.047Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway",
-    "lastMsg": "recovered. Current time: Friday, March 27th, 2026 — 03:49 (Europe/London) / 2026-03-27 03:49 UTC [watchdog] Gateway: UP <final> ✅ Gateway watchdog complete — gateway is UP. No alerts needed. </final>",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "328c26ee-1524-4f9b-ab9e-fe01ac08be4c",
-    "date": "2026-03-27",
-    "time": "2026-03-27T05:03:33.344Z",
-    "topics": [
-      "dashboard",
-      "github",
-      "openclaw",
-      "ideas"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:ba5191d7-2d02-4504-9218-894e4a560de2 Auto-Pickup New Kanban Tickets] Run /home/john/.openclaw/workspace/scripts/pick-up-new-tickets.sh and repor",
-    "lastMsg": "tomatically. If the task explicitly calls for messaging a specific external recipient, note who/where it should go instead of sending it yourself. No new tickets to pick up. No new tickets to pick up.",
-    "decisions": [
-      "will be",
-      "should go"
-    ],
     "contributors": [
       "user",
       "toolResult",
