@@ -34,10 +34,16 @@ Deepgram Nova-2 via /home/john/.openclaw/workspace/scripts/transcribe.js
 Ideas → kanban | PRs for GitHub | WhatsApp | ALWAYS backup before dashboard | Never restore DB to fix UI
 
 ## Open Issues
-Vector memory DISABLED (Gemini 403, Mar 5) | OAuth expiry mid-month | ARR health errors | 30+ idea backlog | DNS CNAME pending
+Vector memory DISABLED (Gemini 403, Mar 5) | OAuth expiry mid-month | ARR health errors | DNS CNAME pending
 
 ## This Week (March 23-29)
 System stable, 33 cron jobs healthy, Cloudflare tunnel running, Dashboard 5000 healthy, Arnold restore done Mar 17
+
+## Weekend Notes (March 28-29)
+- System healthy through weekend, no interventions needed
+- Paradise City import interrupted by NFS slowness; Sonarr rescan workaround works (S1E3 imported successfully via rescan)
+- Kanban idea backlog cleared (previously 5 backlogged); kanban/idea now empty — good state
+- Heartbeat at 23:45 UTC Mar 28 confirmed: all 30 Docker containers running, dashboard/gateway healthy
 
 ## Key Decisions (March 2026)
 Session capture → 20:30 UTC | Docker exec to extract undocumented Radarr API key | Mission Control deleted (duplicate/unneeded)
