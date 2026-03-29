@@ -74,128 +74,55 @@ Credentials: john / John1234 (lowercase!)
 - Vector memory: DISABLED (March 5, 2026)
 - **Backup**: /home/john/.openclaw/scripts/memory-backup.sh (cron daily 03:00) → /home/john/ARR/backup/memory/ (14 snapshots)
 
-Last updated: 2026-03-25
+Last updated: 2026-03-29
 
-## Daily Notes (March 24, 2026)
+## Key Decisions (March 2026)
 
-### What Went Well
-- System heartbeat passed (02:25 UTC)
-- Dashboard port 5000 healthy
-- Cloudflare tunnel (PID 176958) running stably
-- No blocked tickets
-- Kanban backlog stable (no new ideas added)
+### Session Capture Timing Fix (March 25)
+- Issue: Main WhatsApp session was NOT being captured in session-summaries.json by 21:00 cron
+- Root cause: Session Transcript Capture runs hourly at XX:00; main session started after last capture before 21:00
+- Fix: Rescheduled from `0 * * * *` to `30 20 * * *` (20:30 UTC) so it captures day's conversations before Daily Memory Log runs at 21:00
 
-### What Could Be Improved
-- Daily memory notes are minimal - more context could be captured
-- Ideas directory shows 6 in heartbeat but was empty on check - possible cleanup or timing mismatch
+### ARR API Key Discovery (March 25)
+- Radarr API key was unknown, not documented
+- Extracted via `docker exec radarr cat /config/config.xml` → `a43e5fe67a7d45c7a488aaa93c78f0a1`
+- Prowlarr key verified: `17756336779d494b92c56ac4095dab9a`
+- Created OC-0033: arr-api skill + arr-stack-overview.sh script
 
-### Patterns/Learnings
-- System running smoothly with minimal intervention needed
-- Backlog management stabilizing after March 23 spike
-
----
-
-## Daily Notes (March 23, 2026)
-
-### What Went Well
-- Both system heartbeats passed (04:24 and 22:55 UTC)
-- WhatsApp gateway auto-recovered from brief 499/503 status disconnections
-- Dashboard port 5000 remained healthy throughout
-
-### What Could Be Improved
-- 6 new ideas added in one day - significant influx to backlog, needs prioritization
-- Brief WhatsApp disconnections (statuses 499/503) - root cause worth investigating if persistent
-
-### Patterns/Learnings
-- Kanban ideas grew rapidly (0 → 6 in a day) - backlog management needed
-- Auto-recovery mechanisms working well for WhatsApp gateway
-- ARR-related automation ideas dominate the new backlog
+### ARR Health Issues (Ongoing - needs investigation)
+- Radarr: error + warnings
+- Prowlarr: error + warnings + warning
+- Sonarr: warning
 
 ---
 
-## Weekly Summary (March 15-22, 2026)
+## Weekly Summary (March 23-29, 2026)
 
-### This Week's Key Fixes
-- **Docker Health Agent** (March 21): Upgraded docker:24-cli → docker:27-cli to fix API version mismatch. Health-watcher now auto-restarts unhealthy containers.
-- **Transmission RPC** (March 18): Fixed unauthenticated RPC access (security fix)
-- **OAuth bugs** (March 18): Fixed calendar-to-todoist and email-to-todoist using wrong creds file
-- **Backup retention** (March 18): Added 14-day ARR backup retention, freed 2.3GB
-- **Memory consolidation** (March 22): Archived bloated research files and old daily notes
+### Week Overview
+- System stability maintained with minimal intervention
+- All cron jobs healthy (auto-recovery, gateway watchdog, cron health, healthcheck)
+- Kanban backlog fluctuated (6 → 5 → 0 ideas)
+- Very high session volume March 26 (200 sessions, 944 messages)
+- WhatsApp gateway auto-recovered from brief 499/503 disconnections (March 23)
 
 ### Infrastructure
 - Cloudflare tunnel "openclaw" running (PID 176958)
 - All 33 cron jobs healthy with 0 consecutive errors
+- Dashboard port 5000 healthy throughout
 - Arnold (OpenClaw restore & hardening) completed March 17
 
-### Known Issues
-- 30 ideas in kanban/idea/ backlog - needs prioritization
+### Stale Issues (still open)
+- 30+ ideas in kanban/idea/ backlog - needs prioritization
 - Vector memory disabled (Gemini 403 errors)
 - OAuth tokens expire mid-month - needs proactive refresh
 - DNS CNAME openclaw.bcdev.co.uk pending verification
+- ARR health persistent errors/warnings - needs investigation
 
 ### Patterns
-- Docker API version mismatch causes SILENT failures - container Docker client must match or exceed host API version
-- Duplicate tickets keep appearing for same OC numbers - ticket lifecycle management needs review
-- OAuth tokens expire mid-month - needs proactive refresh schedule
-
----
-*Memory curated: 2026-03-22 (weekly)*
-
-## Memory System Upgrades (2026-03-26)
-- Memory flush threshold: raised from 4000 → 13000 tokens (was too aggressive)
-- Session transcript capture: fixed cron to read from actual sessions dir (/home/john/.openclaw/agents/main/sessions/)
-- Transcript manager: rewritten to parse OpenClaw JSONL format, detect topics, extract decisions
-- Daily memory log: now pulls from session-summaries.json with topic + decision summaries
-- QMD backend: enabled (was builtin). QMD installed at /home/john/.openclaw/agents/main/qmd/
-- Hybrid search: enabled (BM25 + vector, 70/30 split)
-- MMR deduplication: enabled (lambda=0.7)
-- Temporal decay: enabled (30-day half-life for daily notes)
-- Session memory indexing: enabled (experimental)
-
-Last updated: 2026-03-28
-
-## Daily Notes (March 27, 2026)
-
-### What Went Well
-- OpenClaw snapshot backup successful (03:04 UTC, 0.4 MB → Google Drive)
-- Dashboard DB backup ran
-- ARR config backup ran
-- All cron jobs healthy (auto-recovery, gateway watchdog, cron health, healthcheck)
-- 200 sessions, 629 messages processed
-- All systems nominal at 21:15 UTC heartbeat
-
-### What Could Be Improved
-- ARR services still showing errors/warnings (Radarr, Prowlarr, Sonarr)
-- High session volume (200) - continues from March 26
-- 5 ideas in kanban backlog
-
-### Patterns/Learnings
-- System stable with regular maintenance cron jobs
-- Backlog management: 5 ideas pending, not at 3+ threshold yet
-- ARR services errors are persistent - may need dedicated investigation
-
----
-
-## Daily Notes (March 26, 2026)
-
-### What Went Well
-- System stable - heartbeats passed (02:24, 05:34 UTC), Gateway UP
-- OC-0033 implemented: Created arr-api/SKILL.md + arr-stack-overview.sh
-- ARR API keys discovered via docker exec (Radarr: a43e5fe67a7d45c7a488aaa93c78f0a1, Prowlarr: 17756336779d494b92c56ac4095dab9a)
-- MEMORY.md updated with corrected ARR API keys
-- 200 sessions processed, 944 messages handled
-- Dashboard DB backup ran successfully
-- Cron jobs healthy (auto-recovery, gateway watchdog, cron health, healthcheck)
-
-### What Could Be Improved
-- ARR service health issues: Radarr (error+warnings), Prowlarr (error+warnings+warning), Sonarr (warning) - real issues need investigation
-- Very high session count (200) - possible duplicate cron runs or session leak
-
-### Patterns/Learnings
 - Docker exec useful for discovering ARR credentials when not documented
-- ARR services have underlying errors - should investigate as separate ticket
-- Session volume very high - monitor for performance impact
+- Session capture timing matters for daily memory accuracy
+- Auto-recovery works well for WhatsApp gateway disconnects
+- Backlog growth happens in waves - monitor for spikes
 
 ---
-
-*Memory curated: 2026-03-27 (daily review)*
+*Memory curated: 2026-03-29 (weekly)*
