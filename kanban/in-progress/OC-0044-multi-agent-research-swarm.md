@@ -1,18 +1,18 @@
 # Ticket
-**ID:** OC-0041
-**Title:** 15 OpenClaw Use Cases: What Actually Works in 2026
-**Status:** New
+**ID:** OC-0044
+**Title:** Multi-agent research swarm
+**Status:** In Progress
 **Outcome State:** Partial
 **Priority:** Medium
 **Owner:** Unassigned
-**Created:** 2026-03-29 10:22
-**Last Updated:** 2026-03-29 10:22
+**Created:** 2026-03-29 11:02
+**Last Updated:** 2026-03-29 11:02
 
 ## Goal
-15 OpenClaw Use Cases: What Actually Works in 2026
+Coordinated swarm of agents working in parallel on research tasks: one searches, one synthesises, one cross-references, one writes. Produces comprehensive research faster than a single agent.
 
 ## Why
-Found during daily web search for OpenClaw use cases.
+Research acceleration - parallel processing for complex multi-source research
 
 ## Acceptance Criteria
 - [ ] Scope is confirmed
@@ -22,7 +22,7 @@ Found during daily web search for OpenClaw use cases.
 - [ ] Ticket is only completed when all required work is genuinely finished
 
 ## Context
-- Source Idea: 0005-web-openclaw-use-cases-what-actually-work
+- Source Idea: IDEA-0158
 - Environment: /home/john/.openclaw/workspace
 
 ## Task Checklist
@@ -34,10 +34,10 @@ Found during daily web search for OpenClaw use cases.
 
 ## Activity Log
 ### Entries
-- **Timestamp:** 2026-03-29 10:22  
+- **Timestamp:** 2026-03-29 11:02  
   **Action:** Ticket created from accepted idea  
   **Result:** Ticket added to kanban/new  
-  **Why:** User accepted idea 0005-web-openclaw-use-cases-what-actually-work  
+  **Why:** User accepted idea IDEA-0158  
   **Evidence:** Created via accept_idea.py  
   **Next Step:** Agent can pick up the ticket when requested
 
@@ -71,3 +71,6 @@ Ticket created from accepted idea and ready for pickup.
 
 ## Completion Summary
 Not complete.
+
+---
+**Auto-Pickup:** Started at 2026-03-29 16:04 by pick-up-new-tickets cron

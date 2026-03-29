@@ -1,7 +1,7 @@
 # Ticket
 **ID:** OC-0042
 **Title:** OpenClaw Use Cases That'll Make You Rethink What AI Agents Can Do
-**Status:** New
+**Status:** In Progress
 **Outcome State:** Partial
 **Priority:** Medium
 **Owner:** Unassigned
@@ -71,3 +71,6 @@ Ticket created from accepted idea and ready for pickup.
 
 ## Completion Summary
 Not complete.
+
+---
+**Auto-Pickup:** Started at 2026-03-29 14:04 by pick-up-new-tickets cron

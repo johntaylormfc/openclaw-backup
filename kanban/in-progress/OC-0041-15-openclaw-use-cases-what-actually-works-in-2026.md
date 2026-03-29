@@ -1,15 +1,15 @@
 # Ticket
-**ID:** OC-0043
-**Title:** OpenClaw: 50 Real-World Use Cases for the Open-Source AI Agent ...
-**Status:** New
+**ID:** OC-0041
+**Title:** 15 OpenClaw Use Cases: What Actually Works in 2026
+**Status:** In Progress
 **Outcome State:** Partial
 **Priority:** Medium
 **Owner:** Unassigned
-**Created:** 2026-03-29 10:27
-**Last Updated:** 2026-03-29 10:27
+**Created:** 2026-03-29 10:22
+**Last Updated:** 2026-03-29 10:22
 
 ## Goal
-OpenClaw: 50 Real-World Use Cases for the Open-Source AI Agent ...
+15 OpenClaw Use Cases: What Actually Works in 2026
 
 ## Why
 Found during daily web search for OpenClaw use cases.
@@ -22,7 +22,7 @@ Found during daily web search for OpenClaw use cases.
 - [ ] Ticket is only completed when all required work is genuinely finished
 
 ## Context
-- Source Idea: 0007-web-openclaw-real-world-use-cases-for-the
+- Source Idea: 0005-web-openclaw-use-cases-what-actually-work
 - Environment: /home/john/.openclaw/workspace
 
 ## Task Checklist
@@ -34,10 +34,10 @@ Found during daily web search for OpenClaw use cases.
 
 ## Activity Log
 ### Entries
-- **Timestamp:** 2026-03-29 10:27  
+- **Timestamp:** 2026-03-29 10:22  
   **Action:** Ticket created from accepted idea  
   **Result:** Ticket added to kanban/new  
-  **Why:** User accepted idea 0007-web-openclaw-real-world-use-cases-for-the  
+  **Why:** User accepted idea 0005-web-openclaw-use-cases-what-actually-work  
   **Evidence:** Created via accept_idea.py  
   **Next Step:** Agent can pick up the ticket when requested
 
@@ -71,3 +71,6 @@ Ticket created from accepted idea and ready for pickup.
 
 ## Completion Summary
 Not complete.
+
+---
+**Auto-Pickup:** Started at 2026-03-29 13:04 by pick-up-new-tickets cron
