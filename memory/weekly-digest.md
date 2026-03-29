@@ -1,38 +1,32 @@
 # Weekly Memory Digest
-**Week:** 2026-03-16 to 2026-03-22
-**Memory files:** 13
+**Week:** 2026-03-23 to 2026-03-29
+**Memory files:** 7
 
 ## Topics Worked On
-- Heartbeat Summary (06:44)
-- Active Work
+- Heartbeats
 - Notes
-- Daily Review (Evening)
-- What Went Well
-- What Could Be Improved
-- Patterns/Learnings
-- Blockers (Active)
-- Research Activity
-- Heartbeat Summary (23:00)
-- Weekend Status
-- Recent Activity (from March 12)
-- Blockers (from March 12)
-- Today's Notes
-- Date
+- Heartbeat Log
+- Summary
+- What Was Worked On
+- Decisions Made
+- Kanban
+- Session Transcript Capture Issue (Root Cause)
+- Session: fa571805-0143-4766-9e17-88e1f30b51a8
+- Sessions 2026-03-26
+- Session: 74b864bb...
+- Session: f2b1b7a0...
+- Session: f16f03d1...
+- Session: ecb9844c...
+- Session: e22c44a6...
 
 ## Files Updated
-- 2026-03-10.md
-- 2026-03-12.md
-- 2026-03-14.md
-- 2026-03-15.md
-- 2026-03-17.md
-- 2026-03-19.md
-- 2026-03-21.md
-- dashboard-changes.md
-- dashboard-resilience-plan.md
-- pinned.md
-- projects.md
-- runbooks.md
-- weekly-digest.md
+- 2026-03-23.md
+- 2026-03-24.md
+- 2026-03-25.md
+- 2026-03-26.md
+- 2026-03-27.md
+- 2026-03-28.md
+- session-summaries.md
 
 ## Decisions Made This Week
 No decisions tracked.

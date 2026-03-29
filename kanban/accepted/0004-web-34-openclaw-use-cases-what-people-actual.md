@@ -1,11 +1,11 @@
 # Idea
 **ID:** 0004-web-openclaw-use-cases-what-people-actual
 **Title:** 34 OpenClaw Use Cases: What People Actually Do With Their AI Agent
-**Status:** Pending Review
+**Status:** Accepted
 **Suggested Priority:** Medium
 **Source:** Web search via SearXNG (use-case-hunter)
 **Created:** 2026-03-28
-**Last Updated:** 2026-03-28
+**Last Updated:** 2026-03-29 10:19
 
 ## Summary
 34 OpenClaw Use Cases: What People Actually Do With Their AI Agent
@@ -25,4 +25,4 @@ Found during daily web search for OpenClaw use cases.
 - Found: 2026-03-28 09:03
 
 ## Approval Decision
-Pending Review
+Accepted on 2026-03-29 10:19 and converted to ticket OC-0040.

@@ -6,8 +6,8 @@
 - URL: http://192.168.1.146:5000 (4000 = old, ignore)
 - Edit: /home/john/ARR/dashboard-v2/ | Build: `npm run build` | Restart: `docker restart arr-dashboard arr-dashboard-v2`
 
-## Mission Control — http://192.168.1.146:5001/
-Token: hx4nEu4W2ZoXsiEfWRCAQcgDsNzzht7kpBUfsGHhqxzEsgHhLll2g39woASs1c
+## Mission Control
+DELETED (March 2026) — was at http://192.168.1.146:5001/
 
 ## ARR Stack
 - Sonarr: http://192.168.1.146:8989 | e990b7b615554edeaca78919ade1e975
@@ -40,6 +40,6 @@ Vector memory DISABLED (Gemini 403, Mar 5) | OAuth expiry mid-month | ARR health
 System stable, 33 cron jobs healthy, Cloudflare tunnel running, Dashboard 5000 healthy, Arnold restore done Mar 17
 
 ## Key Decisions (March 2026)
-Session capture → 20:30 UTC | Docker exec to extract undocumented Radarr API key
+Session capture → 20:30 UTC | Docker exec to extract undocumented Radarr API key | Mission Control deleted (duplicate/unneeded)
 
 *Curated: 2026-03-29*

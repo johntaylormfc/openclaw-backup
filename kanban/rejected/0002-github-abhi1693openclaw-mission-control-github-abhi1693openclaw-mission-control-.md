@@ -1,11 +1,11 @@
 # Idea
 **ID:** 0002-github-abhi1693openclaw-mission-control-github-abhi1693openclaw-mission-control-
 **Title:** GitHub: abhi1693/openclaw-mission-control |AI Agent Orchestration Dashboard - Manage AI agents, assign tasks, and coordinate multi-agent collaboration via OpenClaw Gateway.
-**Status:** Pending Review
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** GitHub (use-case-hunter)
-**Created:** 2026-03-27
-**Last Updated:** 2026-03-27
+**Created:** 2026-03-28
+**Last Updated:** 2026-03-29 10:16
 
 ## Summary
 GitHub: abhi1693/openclaw-mission-control |AI Agent Orchestration Dashboard - Manage AI agents, assign tasks, and coordinate multi-agent collaboration via OpenClaw Gateway.
@@ -22,10 +22,7 @@ Found during daily web search for OpenClaw use cases.
 
 ## Context
 - Source: GitHub via SearXNG
-- Found: 2026-03-27 09:04
+- Found: 2026-03-28 09:03
 
 ## Approval Decision
-Pending Review
-
----
-*Rejected 2026-03-27: Duplicate of Use Case Hunter run from 2026-03-26 (same repos/articles found again — no deduplication check in script)*
+Rejected on 2026-03-29 10:16.
