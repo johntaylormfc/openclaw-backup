@@ -12,5 +12,8 @@
       "name": "Process next Kanban ticket",
       "errors": 5
     }
+  },
+  "containerLastAttempt": {
+    "transmission": 1774769088111
   }
 }
