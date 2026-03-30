@@ -1,7 +1,7 @@
 # Idea
 **ID:** IDEA-0110
 **Title:** OpenClaw ARR Log Monitor + Alert Cron
-**Status:** Accepted
+**Status:** In Progress
 **Suggested Priority:** High
 **Source:** Web research
 **Created:** 2026-03-23 19:12
@@ -36,3 +36,6 @@ Leave blank unless rejected.
 
 ## Notes
 Idea accepted and converted into live ticket OC-0032.
+
+---
+**Auto-Pickup:** Started at 2026-03-30 12:05 by pick-up-new-tickets cron

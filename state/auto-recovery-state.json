@@ -11,6 +11,11 @@
       "at": 1774296710046,
       "name": "Process next Kanban ticket",
       "errors": 5
+    },
+    "fe28d320-1b8c-476b-a36c-cbae3e0516ac": {
+      "at": 1774858433563,
+      "name": "Gateway Watchdog",
+      "errors": 5
     }
   },
   "containerLastAttempt": {

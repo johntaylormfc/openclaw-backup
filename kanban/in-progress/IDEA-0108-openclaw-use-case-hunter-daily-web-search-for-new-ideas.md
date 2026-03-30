@@ -1,7 +1,7 @@
 # Idea
 **ID:** IDEA-0108
 **Title:** OpenClaw Use Case Hunter - Daily Web Search for New Ideas
-**Status:** Accepted
+**Status:** In Progress
 **Suggested Priority:** Medium
 **Source:** User
 **Created:** 2026-03-23 18:50
@@ -36,3 +36,6 @@ Leave blank unless rejected.
 
 ## Notes
 Idea accepted and converted into live ticket OC-0031.
+
+---
+**Auto-Pickup:** Started at 2026-03-30 11:19 by pick-up-new-tickets cron

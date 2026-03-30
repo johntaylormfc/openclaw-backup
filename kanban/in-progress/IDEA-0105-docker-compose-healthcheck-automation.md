@@ -1,7 +1,7 @@
 # Idea
 **ID:** IDEA-0105
 **Title:** Docker Compose Healthcheck Automation for ARR Containers
-**Status:** Accepted
+**Status:** In Progress
 **Suggested Priority:** High
 **Source:** Cron
 **Created:** 2026-03-23 08:00
@@ -37,3 +37,6 @@ Accepted on 2026-03-25 06:47 and converted to ticket OC-0030.
 
 ## Notes
 Idea accepted and converted into live ticket OC-0030.
+
+---
+**Auto-Pickup:** Started at 2026-03-30 09:10 by pick-up-new-tickets cron
