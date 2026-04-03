@@ -1,7 +1,7 @@
 # Idea
 **ID:** IDEA-0160
 **Title:** ARR Config Rolling Backup Cron
-**Status:** Accepted
+**Status:** Done
 **Suggested Priority:** High
 **Source:** Weekly Idea Dump (Cron)
 **Created:** 2026-03-30

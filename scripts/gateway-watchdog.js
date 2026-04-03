@@ -1,49 +1,84 @@
 #!/usr/bin/env node
 /**
- * Gateway Watchdog
- * Checks gateway health and notifies on restart
+ * Gateway Watchdog v2
+ * Checks gateway health via process presence + log activity, notifies on restart
  */
 
 const fs = require('fs');
 const { execSync } = require('child_process');
-const https = require('https');
 const http = require('http');
+const https = require('https');
 
-const GATEWAY_URL = 'http://127.0.0.1:18789';
+const GATEWAY_LOG = '/home/john/.hermes/logs/gateway.log';
 const STATE_FILE = '/tmp/gateway-watchdog.state';
-const TOKEN = 'd3ba6ef8256497ca2e45253ded692f590dc32bcf9bed31bf';
+const TOKEN = 'd3ba6e...31bf';
+const MIN_UP_TIME_SEC = 60; // consider "up" if process has been running > 60s
 
-function httpGet(url) {
-  return new Promise((resolve, reject) => {
-    const mod = url.startsWith('https') ? https : http;
-    const req = mod.get(url, { timeout: 5000 }, res => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => resolve({ status: res.statusCode, data }));
-    });
-    req.on('error', reject);
-    req.on('timeout', () => { req.destroy(); reject(new Error('timeout')); });
-  });
+function getGatewayPID() {
+  try {
+    const out = execSync('pgrep -f "hermes_cli.main gateway"', { encoding: 'utf8' });
+    return parseInt(out.trim().split('\n')[0], 10);
+  } catch (e) {
+    return null;
+  }
 }
 
-async function checkGateway() {
+function getGatewayUptime() {
   try {
-    const { status, data } = await httpGet(`${GATEWAY_URL}/health`);
-    if (status === 200) {
-      const json = JSON.parse(data);
-      return { up: json.status === 'live', status: json };
+    const pid = getGatewayPID();
+    if (!pid) return 0;
+    
+    // Get start time using ps with explicit format
+    const out = execSync(`ps -p ${pid} -o lstart=`, { encoding: 'utf8' });
+    const startStr = out.trim(); // e.g. "Mon Mar 30 17:13:15 2026"
+    
+    const startTime = new Date(startStr);
+    if (Number.isNaN(startTime.getTime())) return 0;
+    
+    const now = Date.now();
+    return Math.floor((now - startTime.getTime()) / 1000);
+  } catch (e) {
+    return 0;
+  }
+}
+
+function getLogRecentError() {
+  try {
+    const log = fs.readFileSync(GATEWAY_LOG, 'utf8');
+    const lines = log.trim().split('\n');
+    const recent = lines.slice(-50);
+    
+    for (const line of recent) {
+      if (line.includes('ERROR') && !line.includes('vision') && !line.includes('Telegram') && !line.includes('auth')) {
+        return line;
+      }
     }
-    return { up: false, status: null };
-  } catch(e) {
-    return { up: false, status: null, error: e.message };
+    return null;
+  } catch (e) {
+    return 'Cannot read log';
+  }
+}
+
+function isLogActive() {
+  // Gateway is active if process is running (log mtime is secondary)
+  const pid = getGatewayPID();
+  if (!pid) return false;
+  
+  try {
+    const stat = fs.statSync(GATEWAY_LOG);
+    // Use mtimeMs directly - both Date.now() and stat.mtimeMs are UTC ms, timezone-neutral
+    const ageSec = (Date.now() - stat.mtimeMs) / 1000;
+    return ageSec < 900; // log touched in last 15 min
+  } catch (e) {
+    return false;
   }
 }
 
 function loadState() {
   try {
     return JSON.parse(fs.readFileSync(STATE_FILE, 'utf8'));
-  } catch(e) {
-    return { lastUp: null, lastCheck: null, wasDown: false };
+  } catch (e) {
+    return { lastUp: null, lastCheck: null, wasDown: false, notifiedRecovery: false };
   }
 }
 
@@ -55,7 +90,7 @@ async function sendWhatsApp(message) {
   try {
     const payload = JSON.stringify({
       channel: 'whatsapp',
-      to: '+447967688452',
+      to: '+447****8452',
       text: message
     });
     
@@ -81,37 +116,56 @@ async function sendWhatsApp(message) {
       req.write(payload);
       req.end();
     });
-  } catch(e) {
+  } catch (e) {
     return { error: e.message };
   }
 }
 
 async function main() {
   const state = loadState();
-  const check = await checkGateway();
   const now = Date.now();
   
-  console.log(`[watchdog] Gateway: ${check.up ? 'UP' : 'DOWN'}`);
+  // Primary check: process uptime
+  const uptime = getGatewayUptime();
+  const processUp = uptime >= MIN_UP_TIME_SEC;
   
-  if (check.up) {
-    if (state.wasDown) {
+  // Secondary check: log is being actively written
+  const logActive = isLogActive();
+  
+  // Combined status
+  const isUp = processUp && logActive;
+  
+  console.log(`[watchdog] Gateway: ${isUp ? 'UP' : 'DOWN'} (uptime: ${uptime}s, log active: ${logActive})`);
+  
+  if (isUp) {
+    if (state.wasDown && !state.notifiedRecovery) {
       // Gateway just came back up - notify!
       const downtime = state.lastCheck ? Math.round((now - state.lastCheck) / 1000) : '?';
-      const msg = `⚠️ OpenClaw Gateway is back online\n\n- Was down for ~${downtime}s\n- Status: ${check.status?.status || 'unknown'}\n- Time: ${new Date().toISOString()}`;
+      const recentError = getLogRecentError();
+      
+      let msg = `🦞 OpenClaw Gateway is back online\n\n`;
+      if (state.downtimeSec) {
+        msg += `- Down for ~${Math.floor(state.downtimeSec / 60)}m ${state.downtimeSec % 60}s\n`;
+      }
+      msg += `- Status: ${recentError ? 'OK (error was logged)' : 'OK'}\n`;
+      msg += `- Time: ${new Date().toISOString()}`;
       
       console.log('[watchdog] Gateway restarted! Sending notification...');
       const result = await sendWhatsApp(msg);
       console.log('[watchdog] WhatsApp result:', result.status || result.error);
       
-      // Clear wasDown flag
-      state.wasDown = false;
+      state.notifiedRecovery = true;
     }
     state.lastUp = now;
+    state.wasDown = false;
+    state.notifiedRecovery = false;
   } else {
+    // Process is down or starting up
     if (state.lastUp !== null && !state.wasDown) {
       // First time we detect it as down
       console.log('[watchdog] Gateway down detected, will notify on recovery...');
       state.wasDown = true;
+      state.downtimeSec = state.lastUp ? Math.round((now - state.lastUp) / 1000) : 0;
     }
   }
   

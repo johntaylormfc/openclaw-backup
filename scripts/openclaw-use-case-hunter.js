@@ -17,6 +17,51 @@ const SEARCH_QUERIES = [
 ];
 
 const SEEN_FILE = '/tmp/openclaw_hunter_seen.txt';
+let dedup = { knownTitles: new Set(), knownUrls: new Set(), knownRepos: new Set() };
+
+// ─────────────────────────────────────────
+// Load dedup sets from ALL kanban folders
+// ─────────────────────────────────────────
+function loadKanbanDedup() {
+  const kanbanDir = '/home/john/.openclaw/workspace/kanban';
+  const knownTitles = new Set();
+  const knownUrls = new Set();
+  const knownRepos = new Set();
+
+  for (const dir of ['idea', 'complete', 'done', 'rejected']) {
+    const dirPath = path.join(kanbanDir, dir);
+    let files;
+    try {
+      files = fs.readdirSync(dirPath).filter(f => f.endsWith('.md'));
+    } catch {
+      continue;
+    }
+    for (const file of files) {
+      const content = fs.readFileSync(path.join(dirPath, file), 'utf8');
+      // Extract title
+      const titleMatch = content.match(/\*\*Title:\*\*\s*(.+)/i);
+      if (titleMatch) knownTitles.add(titleMatch[1].trim().toLowerCase());
+      // Extract URL
+      const urlMatch = content.match(/## URL\n(.+)/i);
+      if (urlMatch && urlMatch[1].trim()) knownUrls.add(urlMatch[1].trim().toLowerCase());
+      // Extract GitHub repo
+      const repoMatch = content.match(/GitHub:\s*([^\s|]+(?:\/[^\s|]+)?)/i);
+      if (repoMatch) knownRepos.add(repoMatch[1].trim().toLowerCase());
+    }
+  }
+  return { knownTitles, knownUrls, knownRepos };
+}
+
+function isDuplicate(title, url, repo) {
+  const titleNorm = (title || '').toLowerCase().trim();
+  const urlNorm = (url || '').toLowerCase().trim();
+  const repoNorm = (repo || '').toLowerCase().trim();
+
+  if (urlNorm && dedup.knownUrls.has(urlNorm)) return `URL already seen: ${urlNorm}`;
+  if (titleNorm && dedup.knownTitles.has(titleNorm)) return `Title already exists: ${titleNorm}`;
+  if (repoNorm && dedup.knownRepos.has(repoNorm)) return `Repo already exists: ${repoNorm}`;
+  return null;
+}
 
 function searchWeb(query) {
   try {
@@ -82,6 +127,7 @@ function extractUrls(text) {
 
 async function main() {
   const seen = loadSeen();
+  dedup = loadKanbanDedup();
   let newFindings = 0;
 
   for (const query of SEARCH_QUERIES) {
@@ -112,6 +158,13 @@ async function main() {
             const title = clean.slice(0, 80).replace(/\n/g, ' ').trim();
             const summary = `Discovered: ${clean.slice(0, 300)} Source: ${url}`;
             const why = 'Found via automated use case hunting - review for potential value to ARR stack or OpenClaw setup';
+
+            // Skip if already in kanban (any folder)
+            const dupReason = isDuplicate(title, url, null);
+            if (dupReason) {
+              console.log(`Skipped duplicate: ${dupReason}`);
+              continue;
+            }
 
             if (createIdea(title, summary, why)) {
               newFindings++;

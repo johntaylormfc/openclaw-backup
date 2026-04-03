@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-0105
 **Title:** Docker Compose Healthcheck Automation for ARR Containers
-**Status:** In Progress
+**Status:** Rejected
 **Suggested Priority:** High
 **Source:** Cron
 **Created:** 2026-03-23 08:00
-**Last Updated:** 2026-03-25 06:47
+**Last Updated:** 2026-03-30 19:16
 
 ## Summary
 Add proper healthcheck configurations to all ARR containers in docker-compose.yml and create a monitoring script that alerts when any container becomes unhealthy. Currently, most ARR services lack healthchecks, making it hard to detect downtime early.
@@ -33,10 +33,7 @@ ARR containers can stop responding without obvious symptoms. Healthchecks would 
 Review docker-compose.yml healthcheck syntax for each service and draft a monitoring script.
 
 ## Approval Decision
-Accepted on 2026-03-25 06:47 and converted to ticket OC-0030.
+Rejected on 2026-03-30 19:16.
 
 ## Notes
-Idea accepted and converted into live ticket OC-0030.
-
----
-**Auto-Pickup:** Started at 2026-03-30 09:10 by pick-up-new-tickets cron
+Idea rejected on 2026-03-30 19:16. Reason: Duplicate — already has ticket (see complete/ or done/)

@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-0108
 **Title:** OpenClaw Use Case Hunter - Daily Web Search for New Ideas
-**Status:** In Progress
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** User
 **Created:** 2026-03-23 18:50
-**Last Updated:** 2026-03-25 06:48
+**Last Updated:** 2026-03-30 19:16
 
 ## Summary
 Daily cron job that searches the web for interesting OpenClaw setups, skills, and automations from other users. Creates kanban ideas from noteworthy findings and reports to WhatsApp.
@@ -29,13 +29,10 @@ If accepted, this idea should be converted into a live ticket with clear accepta
 Review the idea and either accept it into a live ticket or reject it with a reason.
 
 ## Approval Decision
-Accepted on 2026-03-25 06:48 and converted to ticket OC-0031.
+Rejected on 2026-03-30 19:16.
 
 ## Rejection Reason
-Leave blank unless rejected.
+Duplicate — already has ticket (see complete/ or done/)
 
 ## Notes
-Idea accepted and converted into live ticket OC-0031.
-
----
-**Auto-Pickup:** Started at 2026-03-30 11:19 by pick-up-new-tickets cron
+Idea rejected on 2026-03-30 19:16. Reason: Duplicate — already has ticket (see complete/ or done/)

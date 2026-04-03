@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-0158
 **Title:** Multi-agent research swarm
-**Status:** Accepted
+**Status:** Rejected
 **Suggested Priority:** High
 **Source:** Clawbot.blog: 50 Real-World OpenClaw Use Cases
 **Created:** 2026-03-29 10:28
-**Last Updated:** 2026-03-29 11:02
+**Last Updated:** 2026-03-30 19:16
 
 ## Summary
 Coordinated swarm of agents working in parallel on research tasks: one searches, one synthesises, one cross-references, one writes. Produces comprehensive research faster than a single agent.
@@ -29,10 +29,10 @@ If accepted, this idea should be converted into a live ticket with clear accepta
 Review the idea and either accept it into a live ticket or reject it with a reason.
 
 ## Approval Decision
-Accepted on 2026-03-29 11:02 and converted to ticket OC-0044.
+Rejected on 2026-03-30 19:16.
 
 ## Rejection Reason
-Leave blank unless rejected.
+Duplicate — already has ticket (see complete/ or done/)
 
 ## Notes
-Idea accepted and converted into live ticket OC-0044.
+Idea rejected on 2026-03-30 19:16. Reason: Duplicate — already has ticket (see complete/ or done/)

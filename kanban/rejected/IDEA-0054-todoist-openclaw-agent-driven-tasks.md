@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-0054
 **Title:** Todoist + OpenClaw — Agent-Driven Task Creation
-**Status:** Accepted
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** awesome-openclaw-usecases-zh (AlexAnys)
 **Created:** 2026-03-25
-**Last Updated:** 2026-03-25 20:45
+**Last Updated:** 2026-03-30 19:16
 
 ## Summary
 OpenClaw creates, updates, and closes Todoist tasks autonomously — based on what's happening in the ARR stack, cron job outcomes, health checks, and project state. No manual task entry required.
@@ -24,4 +24,4 @@ John already has Todoist connected. This extends it so the agent proactively cre
 - [ ] Test on real events (failed downloads, container restarts, etc.)
 
 ## Approval Decision
-Accepted on 2026-03-25 20:45 and converted to ticket OC-0038.
+Rejected on 2026-03-30 19:16.

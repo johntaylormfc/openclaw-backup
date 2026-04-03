@@ -1,17 +1,17 @@
 # Idea
-**ID:** 0004-web-openclaw-use-cases-what-people-actual
-**Title:** 34 OpenClaw Use Cases: What People Actually Do With Their AI Agent
-**Status:** Pending Review
+**ID:** 0005-web-openclaw-use-cases-thatll-make-you-rethi
+**Title:** OpenClaw Use Cases That'll Make You Rethink What AI Agents Can Do
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Web search via SearXNG (use-case-hunter)
 **Created:** 2026-03-30
-**Last Updated:** 2026-03-30
+**Last Updated:** 2026-03-30 18:16
 
 ## Summary
-34 OpenClaw Use Cases: What People Actually Do With Their AI Agent
+OpenClaw Use Cases That'll Make You Rethink What AI Agents Can Do
 
 ## URL
-https://openclaw.rocks/blog/openclaw-use-cases
+https://aiblewmymind.substack.com/p/openclaw-ai-agent-use-cases-guide
 
 ## Why It Might Matter
 Found during daily web search for OpenClaw use cases.
@@ -25,4 +25,4 @@ Found during daily web search for OpenClaw use cases.
 - Found: 2026-03-30 10:04
 
 ## Approval Decision
-Pending Review
+Rejected on 2026-03-30 18:16.

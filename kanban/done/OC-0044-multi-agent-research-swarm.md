@@ -1,18 +1,18 @@
 # Ticket
-**ID:** OC-0045
-**Title:** Docker Image Update Watcher for ARR Stack
-**Status:** In Progress
-**Outcome State:** Partial
+**ID:** OC-0044
+**Title:** Multi-agent research swarm
+**Status:** Done
+**Outcome State:** Closed by user (2026-03-30)
 **Priority:** Medium
 **Owner:** Unassigned
-**Created:** 2026-03-30 08:05
-**Last Updated:** 2026-03-30 08:05
+**Created:** 2026-03-29 11:02
+**Last Updated:** 2026-03-29 11:02
 
 ## Goal
-A scheduled cron that periodically checks whether newer Docker image tags are available for John's ARR containers (Sonarr, Radarr, Prowlarr, PlexAutoscan, etc.) and sends a WhatsApp/Mission Control alert — without auto-updating, keeping control in John's hands.
+Coordinated swarm of agents working in parallel on research tasks: one searches, one synthesises, one cross-references, one writes. Produces comprehensive research faster than a single agent.
 
 ## Why
-ARR containers run best when kept up to date, but manually checking each image is tedious. A lightweight watcher surfaces updates as a weekly digest, so nothing falls dangerously out of date without John noticing.
+Research acceleration - parallel processing for complex multi-source research
 
 ## Acceptance Criteria
 - [ ] Scope is confirmed
@@ -22,7 +22,7 @@ ARR containers run best when kept up to date, but manually checking each image i
 - [ ] Ticket is only completed when all required work is genuinely finished
 
 ## Context
-- Source Idea: IDEA-0159
+- Source Idea: IDEA-0158
 - Environment: /home/john/.openclaw/workspace
 
 ## Task Checklist
@@ -34,10 +34,10 @@ ARR containers run best when kept up to date, but manually checking each image i
 
 ## Activity Log
 ### Entries
-- **Timestamp:** 2026-03-30 08:05  
+- **Timestamp:** 2026-03-29 11:02  
   **Action:** Ticket created from accepted idea  
   **Result:** Ticket added to kanban/new  
-  **Why:** User accepted idea IDEA-0159  
+  **Why:** User accepted idea IDEA-0158  
   **Evidence:** Created via accept_idea.py  
   **Next Step:** Agent can pick up the ticket when requested
 
@@ -73,4 +73,4 @@ Ticket created from accepted idea and ready for pickup.
 Not complete.
 
 ---
-**Auto-Pickup:** Started at 2026-03-30 08:08 by pick-up-new-tickets cron
+**Auto-Pickup:** Started at 2026-03-29 16:04 by pick-up-new-tickets cron

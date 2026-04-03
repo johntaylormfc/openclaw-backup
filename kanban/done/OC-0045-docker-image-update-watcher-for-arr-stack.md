@@ -1,18 +1,18 @@
 # Ticket
-**ID:** OC-0046
-**Title:** ARR Config Rolling Backup Cron
-**Status:** New
-**Outcome State:** Partial
+**ID:** OC-0045
+**Title:** Docker Image Update Watcher for ARR Stack
+**Status:** Done
+**Outcome State:** Closed by user (2026-03-30)
 **Priority:** Medium
 **Owner:** Unassigned
 **Created:** 2026-03-30 08:05
 **Last Updated:** 2026-03-30 08:05
 
 ## Goal
-A daily cron that backs up the entire /home/john/ARR config directory (docker-compose.yml, config files, app data) to a local rotating backup folder (e.g., rolling 7-day retention) and optionally pushes to a remote location. Prevents config loss from container misadventures or disk failures.
+A scheduled cron that periodically checks whether newer Docker image tags are available for John's ARR containers (Sonarr, Radarr, Prowlarr, PlexAutoscan, etc.) and sends a WhatsApp/Mission Control alert — without auto-updating, keeping control in John's hands.
 
 ## Why
-John's ARR stack is the backbone of his media setup. A single bad docker-compose edit or a corrupted config file can take down the whole stack. Automated rolling backups mean there's always a recent known-good state to roll back to.
+ARR containers run best when kept up to date, but manually checking each image is tedious. A lightweight watcher surfaces updates as a weekly digest, so nothing falls dangerously out of date without John noticing.
 
 ## Acceptance Criteria
 - [ ] Scope is confirmed
@@ -22,7 +22,7 @@ John's ARR stack is the backbone of his media setup. A single bad docker-compose
 - [ ] Ticket is only completed when all required work is genuinely finished
 
 ## Context
-- Source Idea: IDEA-0160
+- Source Idea: IDEA-0159
 - Environment: /home/john/.openclaw/workspace
 
 ## Task Checklist
@@ -37,7 +37,7 @@ John's ARR stack is the backbone of his media setup. A single bad docker-compose
 - **Timestamp:** 2026-03-30 08:05  
   **Action:** Ticket created from accepted idea  
   **Result:** Ticket added to kanban/new  
-  **Why:** User accepted idea IDEA-0160  
+  **Why:** User accepted idea IDEA-0159  
   **Evidence:** Created via accept_idea.py  
   **Next Step:** Agent can pick up the ticket when requested
 
@@ -71,3 +71,6 @@ Ticket created from accepted idea and ready for pickup.
 
 ## Completion Summary
 Not complete.
+
+---
+**Auto-Pickup:** Started at 2026-03-30 08:08 by pick-up-new-tickets cron

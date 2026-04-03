@@ -10,41 +10,35 @@ Before doing anything else, read these files:
 - /home/john/.openclaw/workspace/openclaw-docs/AGENT_RULES.md
 - /home/john/.openclaw/workspace/openclaw-docs/STATUS_RULES.md
 
-Then:
+## Your job: process one ticket from new/ → done/
 
-1. Find the next ticket to process in:
-/home/john/.openclaw/workspace/kanban/new/
+Steps:
 
-2. Pick the oldest ticket unless a ticket clearly states higher priority.
+1. **Pick up** the oldest ticket from:
+   /home/john/.openclaw/workspace/kanban/new/
 
-3. Move the ticket to:
-/home/john/.openclaw/workspace/kanban/in-progress/
-when work starts.
+2. **Move it to** in-progress when work starts:
+   /home/john/.openclaw/workspace/kanban/in-progress/
 
-4. Update the ticket as you work, including:
-- Status
-- Outcome State
-- Last Updated
-- Task Checklist
-- Activity Log
-- Current Position
+3. **Work the ticket** — update Status, Outcome State, Last Updated, Task Checklist, Activity Log, Current Position as you go.
 
-5. If any required dependency, permission, missing input, technical issue, failed step, or need for John's decision/approval/scope choice prevents completion:
-- move the ticket to /home/john/.openclaw/workspace/kanban/blocked/
-- fully complete the Blocker section
-- clearly state exactly what the user must do to unblock it
-- if blocked on John's decision, approval, confirmation, or scope choice, explicitly say what John needs to decide
+4. **If you hit a blocker:**
+   - Move the ticket to /home/john/.openclaw/workspace/kanban/blocked/
+   - Fill in the Blocker section with the exact issue and what John must do to unblock
+   - Do NOT finish the ticket — leave it blocked
 
-6. Only move a ticket to:
-/home/john/.openclaw/workspace/kanban/complete/
-if all acceptance criteria are genuinely satisfied and evidenced.
+5. **If the work is genuinely complete** (all acceptance criteria met):
+   - Move to /home/john/.openclaw/workspace/kanban/done/
+   - Send a WhatsApp to John saying the ticket is done and awaiting his sign-off
 
-7. Never mark partial work as complete.
+6. **Rule: never mark done unless all acceptance criteria are genuinely satisfied and evidenced.**
+   Partial work stays in in-progress.
 
-8. Keep status truthful. Status must reflect reality, not effort.
+7. **Rule: status reflects reality, not effort.**
 
-9. Make all ticket updates practical and auditable.
+8. **Resuming a blocked ticket:**
+   - Confirm the blocker is genuinely removed
+   - Move it back to /home/john/.openclaw/workspace/kanban/new/
+   - Wait for next cron run to pick it up again (do not move directly to in-progress)
 
-10. If resuming a blocked ticket, first confirm the blocker is genuinely removed, then move it back to In Progress before completing it.
-
-Your job is to process one ticket properly, not many tickets badly.
+Process one ticket properly. Done is better than thorough.

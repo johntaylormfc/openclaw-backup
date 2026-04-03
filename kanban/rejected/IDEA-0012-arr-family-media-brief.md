@@ -1,11 +1,11 @@
 # Idea
 **ID:** IDEA-0012
 **Title:** ARR Family Media Brief
-**Status:** Accepted
+**Status:** Rejected
 **Suggested Priority:** Low
 **Source:** openclaw.rocks 34 use cases (use-case-hunter)
 **Created:** 2026-03-25
-**Last Updated:** 2026-03-25 14:05
+**Last Updated:** 2026-03-30 19:16
 
 ## Summary
 ARR Family Media Brief
@@ -30,4 +30,4 @@ From the 34 OpenClaw Use Cases article on openclaw.rocks. Review when you have t
 - Created: 2026-03-25 08:00
 
 ## Approval Decision
-Accepted on 2026-03-25 14:05 and converted to ticket OC-0035.
+Rejected on 2026-03-30 19:16.

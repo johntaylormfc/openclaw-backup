@@ -2,29 +2,34 @@
 
 **OPERATING MODEL:** OPERATING_MODEL.md
 
-## Dashboard (CRITICAL)
+## Dashboard
 - URL: http://192.168.1.146:5000 (4000 = old, ignore)
 - Edit: /home/john/ARR/dashboard-v2/ | Build: `npm run build` | Restart: `docker restart arr-dashboard arr-dashboard-v2`
 
-## Mission Control
-DELETED (March 2026) — was at http://192.168.1.146:5001/
-
 ## ARR Stack
-- Sonarr: http://192.168.1.146:8989 | e990b7b615554edeaca78919ade1e975
-- Radarr: http://192.168.1.146:7878 | a43e5fe67a7d45c7a488aaa93c78f0a1
-- Prowlarr: http://192.168.1.146:9696 | 17756336779d494b92c56ac4095dab9a
+- Sonarr: http://192.168.1.146:8989 | API key in memory/credentials.md
+- Radarr: http://192.168.1.146:7878 | API key in memory/credentials.md
+- Prowlarr: http://192.168.1.146:9696 | API key in memory/credentials.md
 
-## BC Container (GSPRO)
-- bcdev (18205): http://192.168.1.228:18205/BC/?tenant=default
-- glapproval (18206): http://192.168.1.228:18206/BC/?tenant=default
-- Creds: john / John1234 (lowercase!) | Add `?tenant=default` after restart
+## GSPro PC (192.168.1.228)
+- **WinRM** (primary): bot / BotBotBot! | Port 5985 | Basic auth + AllowUnencrypted | BcContainerHelper 6.1.11
+- SSH: bot / BotBotBot! (backup)
+- Admin user: john / M0therwell9!
+- Docker Windowsfilter VHD lock — `docker rm` works as bot user
+
+## BC Containers on GSPro (WinRM)
+- JTTest: ports 7146-7147, 8082 | healthy
+- glapproval: ports 7151-7152 | healthy
+- custcontacts: ports 7148-7149, 8081 | healthy
+- Credentials: john / John1234 | Always use `?tenant=default` in URL
+- New containers: sandbox + GB + latest SaaS + fresh download | name = app name
 
 ## Cloudflare Tunnel
 Name: "openclaw" | PID: 176958 (Beelink) | DNS: openclaw.bcdev.co.uk - pending
 
 ## Voice Transcription
 Deepgram Nova-2 via /home/john/.openclaw/workspace/scripts/transcribe.js
-`node transcribe.js <audio_file.ogg>` | Key: 5eac7fadeb745001af5576b5b17ac2127a0d3327
+`node transcribe.js <audio_file.ogg>` | Key in memory/credentials.md
 
 ## Memory System
 - Daily: memory/YYYY-MM-DD.md | Long-term: MEMORY.md | Projects: memory/projects.md
@@ -34,18 +39,9 @@ Deepgram Nova-2 via /home/john/.openclaw/workspace/scripts/transcribe.js
 Ideas → kanban | PRs for GitHub | WhatsApp | ALWAYS backup before dashboard | Never restore DB to fix UI
 
 ## Open Issues
-Vector memory DISABLED (Gemini 403, Mar 5) | OAuth expiry mid-month | ARR health errors | DNS CNAME pending
+- GLApproval AL compilation BLOCKED: AL0219 "string literal expected" on Caption/field() strings — root cause is encoding mismatch (files likely Windows-1252 interpreted as UTF-8); fix = re-encode all 8 .al files to UTF-8 NO BOM on GSPRO at `C:\ProgramData\BcContainerHelper\Extensions\glapproval\my\GLAccApproval\src\`
+- Cron jobs may not be firing: all `lastRun`/`nextRun` fields null as of April 3; verify scheduler health
+- Vector memory DISABLED (Gemini 403) | OAuth mid-month | ARR health errors | DNS CNAME pending
 
-## This Week (March 23-29)
-System stable, 33 cron jobs healthy, Cloudflare tunnel running, Dashboard 5000 healthy, Arnold restore done Mar 17
-
-## Weekend Notes (March 28-29)
-- System healthy through weekend, no interventions needed
-- Paradise City import interrupted by NFS slowness; Sonarr rescan workaround works (S1E3 imported successfully via rescan)
-- Kanban idea backlog cleared (previously 5 backlogged); kanban/idea now empty — good state
-- Heartbeat at 23:45 UTC Mar 28 confirmed: all 30 Docker containers running, dashboard/gateway healthy
-
-## Key Decisions (March 2026)
-Session capture → 20:30 UTC | Docker exec to extract undocumented Radarr API key | Mission Control deleted (duplicate/unneeded)
-
-*Curated: 2026-03-29*
+## Key Decisions
+Session capture → 20:30 UTC | Mission Control deleted (duplicate) | WinRM setup Apr 2026 for GSPro access

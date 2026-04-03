@@ -1,7 +1,7 @@
 # Idea
 **ID:** IDEA-0159
 **Title:** Docker Image Update Watcher for ARR Stack
-**Status:** Accepted
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Weekly Idea Dump (Cron)
 **Created:** 2026-03-30

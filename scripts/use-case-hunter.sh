@@ -15,13 +15,18 @@ mkdir -p "$KANBAN_IDEA_DIR" "/home/john/.openclaw/workspace/logs"
 log() { echo "[$TIMESTAMP] $*" >> "$LOGFILE"; }
 
 # ─────────────────────────────────────────
-# Build dedup sets from existing ideas
+# Build dedup sets from ALL kanban folders
+# (idea/, complete/, done/, rejected/) so we
+# never create duplicate ideas
 # ─────────────────────────────────────────
 KNOWN_TITLES=$(mktemp)
 KNOWN_URLS=$(mktemp)
 KNOWN_REPOS=$(mktemp)
 
-find "$KANBAN_IDEA_DIR" -name "*.md" -type f 2>/dev/null | while IFS= read -r file; do
+KANBAN_DIR="/home/john/.openclaw/workspace/kanban"
+for dir in idea complete done rejected; do
+  find "$KANBAN_DIR/$dir" -name "*.md" -type f 2>/dev/null
+done | while IFS= read -r file; do
   # Extract and normalise title — use fgrep for exact string match on markdown bold syntax
   title=$(fgrep "**Title:**" "$file" 2>/dev/null | sed 's/^\*\*Title:\*\* *//' | tr '[:upper:]' '[:lower:]' | tr -s ' ' | tr -d '\r')
   echo "$title" >> "$KNOWN_TITLES"

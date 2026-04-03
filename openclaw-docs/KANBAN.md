@@ -3,17 +3,21 @@
 ## Columns
 | Column | Purpose |
 |--------|---------|
-| new | Fresh tickets awaiting pickup |
-| in-progress | Active work |
-| blocked | Waiting on external input |
-| review | Completed, awaiting review |
-| done | Fully completed |
+| idea | Cron-generated suggestions for John to review |
+| new | Accepted tickets, ready for cron to pick up |
+| in-progress | Cron is actively working the ticket |
+| done | Work complete, awaiting John's sign-off |
+| complete | John has confirmed, fully done |
+| blocked | Issue hit, blocker documented, needs John's input |
 
 ## Workflow
-1. Pick from new → move to in-progress
-2. Blocked: document what's needed to unblock
-3. Review: ensure criteria met
-4. Done: final state
+1. Cron creates idea → John accepts or rejects
+2. Accepted → moves to new (ticket is live)
+3. Cron picks up from new → moves to in-progress
+4. Work hits a blocker → moves to blocked (blocker clearly documented)
+5. John unblocks → moves back to new → cron picks up again
+6. Cron finishes → moves to done (notifies John)
+7. John reviews → confirms complete/ or pushes back to new with note
 
 ## Tags
 - `[bug]` - defect

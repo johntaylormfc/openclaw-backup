@@ -1,18 +1,18 @@
 # Ticket
-**ID:** OC-0044
-**Title:** Multi-agent research swarm
-**Status:** In Progress
-**Outcome State:** Partial
+**ID:** OC-0046
+**Title:** ARR Config Rolling Backup Cron
+**Status:** Done
+**Outcome State:** Duplicate — merged with OC-0047
 **Priority:** Medium
 **Owner:** Unassigned
-**Created:** 2026-03-29 11:02
-**Last Updated:** 2026-03-29 11:02
+**Created:** 2026-03-30 08:05
+**Last Updated:** 2026-03-30 08:05
 
 ## Goal
-Coordinated swarm of agents working in parallel on research tasks: one searches, one synthesises, one cross-references, one writes. Produces comprehensive research faster than a single agent.
+A daily cron that backs up the entire /home/john/ARR config directory (docker-compose.yml, config files, app data) to a local rotating backup folder (e.g., rolling 7-day retention) and optionally pushes to a remote location. Prevents config loss from container misadventures or disk failures.
 
 ## Why
-Research acceleration - parallel processing for complex multi-source research
+John's ARR stack is the backbone of his media setup. A single bad docker-compose edit or a corrupted config file can take down the whole stack. Automated rolling backups mean there's always a recent known-good state to roll back to.
 
 ## Acceptance Criteria
 - [ ] Scope is confirmed
@@ -22,7 +22,7 @@ Research acceleration - parallel processing for complex multi-source research
 - [ ] Ticket is only completed when all required work is genuinely finished
 
 ## Context
-- Source Idea: IDEA-0158
+- Source Idea: IDEA-0160
 - Environment: /home/john/.openclaw/workspace
 
 ## Task Checklist
@@ -34,10 +34,10 @@ Research acceleration - parallel processing for complex multi-source research
 
 ## Activity Log
 ### Entries
-- **Timestamp:** 2026-03-29 11:02  
+- **Timestamp:** 2026-03-30 08:05  
   **Action:** Ticket created from accepted idea  
   **Result:** Ticket added to kanban/new  
-  **Why:** User accepted idea IDEA-0158  
+  **Why:** User accepted idea IDEA-0160  
   **Evidence:** Created via accept_idea.py  
   **Next Step:** Agent can pick up the ticket when requested
 
@@ -71,6 +71,3 @@ Ticket created from accepted idea and ready for pickup.
 
 ## Completion Summary
 Not complete.
-
----
-**Auto-Pickup:** Started at 2026-03-29 16:04 by pick-up-new-tickets cron
