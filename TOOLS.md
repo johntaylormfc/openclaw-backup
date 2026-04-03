@@ -5,7 +5,7 @@
 ## Dashboard (CRITICAL)
 - URL: http://192.168.1.146:5000 (NOT 4000 — old static site)
 - Source: /home/john/ARR/dashboard-v2/ | Build: `cd /home/john/ARR/dashboard-v2 && npm run build`
-- External: johntaylormfc.ddns.net (src/utils/index.js) | Restart: `docker restart arr-dashboard arr-dashboard-v2`
+- External: johntaylormfc.ddns.net | Restart: `docker restart arr-dashboard arr-dashboard-v2`
 
 ## Quick Links
 SearXNG: http://127.0.0.1:8890 | Mission Control: http://192.168.1.146:5001/

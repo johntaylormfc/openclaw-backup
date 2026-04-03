@@ -28,7 +28,7 @@ for dir in idea complete done rejected; do
   find "$KANBAN_DIR/$dir" -name "*.md" -type f 2>/dev/null
 done | while IFS= read -r file; do
   # Extract and normalise title — use fgrep for exact string match on markdown bold syntax
-  title=$(fgrep "**Title:**" "$file" 2>/dev/null | sed 's/^\*\*Title:\*\* *//' | tr '[:upper:]' '[:lower:]' | tr -s ' ' | tr -d '\r')
+  title=$(fgrep "**Title:**" "$file" 2>/dev/null | sed 's/^\*\*Title:\*\* *//' | tr '[:upper:]' '[:lower:]' | tr -s ' ' | tr -d '\r' || true)
   echo "$title" >> "$KNOWN_TITLES"
 
   # Extract URL

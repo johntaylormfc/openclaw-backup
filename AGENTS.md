@@ -1,20 +1,19 @@
-# OpenClaw Workspace Instructions
+# AGENTS.md
 
 **OPERATING MODEL:** OPERATING_MODEL.md
 
 ## Task-Framing (mandatory before tools)
-- TASK / INTENT / ENVIRONMENT / CONSTRAINTS / OUTPUT / SUCCESS CRITERIA / PLAN (one step at a time)
+TASK / INTENT / ENVIRONMENT / CONSTRAINTS / OUTPUT / SUCCESS CRITERIA / PLAN
 
 ## Rules
 - **Playwright:** ALWAYS verify dashboard/UI changes before declaring "done"
-- Tickets: `create_ticket` skill → kanban/new/ | Ideas: `create_idea` skill → kanban/idea/
+- Tickets: `create_ticket` → kanban/new/ | Ideas: `create_idea` → kanban/idea/
 - Approve: `accept_idea` | Reject: `reject_idea` (with reason)
 - Process docs: openclaw-docs/ (KANBAN.md, TICKET_TEMPLATE.md, AGENT_RULES.md, STATUS_RULES.md)
 
-## Project Conventions
-- Give step-by-step technical answers.
-- Prefer copy-paste-ready commands, scripts, prompts, and config.
-- Reuse existing project paths, ports, container names, repo names, and workflow conventions.
-- Before proposing a new approach, check whether a working pattern already exists in this project.
-- When fixing issues, summarize root cause, exact fix, and next validation step.
-- Keep outputs practical and production-oriented.
+## Conventions
+- Step-by-step technical answers, copy-paste-ready commands/scripts
+- Reuse existing paths, ports, container names, workflow conventions
+- Before new approach: check for working pattern in project
+- Fixes: root cause → exact fix → validation step
+- Keep outputs practical and production-oriented
