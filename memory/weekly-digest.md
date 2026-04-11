@@ -1,32 +1,29 @@
 # Weekly Memory Digest
-**Week:** 2026-03-23 to 2026-03-29
-**Memory files:** 7
+**Week:** 2026-04-05 to 2026-04-11
+**Memory files:** 4
 
 ## Topics Worked On
-- Heartbeats
-- Notes
-- Heartbeat Log
-- Summary
-- What Was Worked On
-- Decisions Made
-- Kanban
-- Session Transcript Capture Issue (Root Cause)
-- Session: fa571805-0143-4766-9e17-88e1f30b51a8
-- Sessions 2026-03-26
-- Session: 74b864bb...
-- Session: f2b1b7a0...
-- Session: f16f03d1...
-- Session: ecb9844c...
-- Session: e22c44a6...
+- Observations
+- Gap Analysis
+- Kanban Ideas Count
+- Action Taken
+- Snapshot Backup (04:40 UTC)
+- Action Required
+- Sessions Today
+- Main Session (19 msgs)
+- Decisions Today
+- 2026-04-11 | docker, dashboard, openclaw | 3 msgs
+- 2026-04-11 | dashboard, openclaw, ideas | 3 msgs
+- 2026-04-11 | openclaw, health | 3 msgs
+- 2026-04-11 | email, openclaw, health | 5 msgs
+- 2026-04-11 | email, openclaw | 5 msgs
+- 2026-04-11 | github, openclaw | 3 msgs
 
 ## Files Updated
-- 2026-03-23.md
-- 2026-03-24.md
-- 2026-03-25.md
-- 2026-03-26.md
-- 2026-03-27.md
-- 2026-03-28.md
+- 2026-04-10.md
+- 2026-04-11.md
 - session-summaries.md
+- weekly-digest.md
 
 ## Decisions Made This Week
 No decisions tracked.

@@ -7,9 +7,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
 
-const KANBAN_API = 'http://localhost:4000/api/kanban';
 const IDEA_DIR = path.join(__dirname, '..', 'kanban', 'idea');
 
 // ─── Deduplication ──────────────────────────────────────────────────────────
@@ -69,13 +67,12 @@ function extractTicketId(title) {
   return match ? `OC-${match[1]}` : null;
 }
 
-// ─── Parse web search results ────────────────────────────────────────────────
+// ─── Load pre-fetched results from file ──────────────────────────────────────
 
-function parseWebSearchOutput(output) {
+function loadResultsFromFile(filepath) {
   try {
-    // Output is JSON from openclaw web search
-    const parsed = JSON.parse(output);
-    return parsed.results || [];
+    const content = fs.readFileSync(filepath, 'utf8');
+    return JSON.parse(content);
   } catch {
     return [];
   }
@@ -84,14 +81,15 @@ function parseWebSearchOutput(output) {
 function extractYouTubeVideos(results) {
   const videos = [];
   for (const r of results) {
-    if (!r.url) continue;
-    if (r.url.includes('youtube.com/watch') || r.url.includes('youtu.be/')) {
-      const match = r.url.match(/v=([^&]+)/) || r.url.match(/youtu\.be\/([^?]+)/);
+    const url = r.link || r.url || '';
+    if (!url) continue;
+    if (url.includes('youtube.com/watch') || url.includes('youtu.be/')) {
+      const match = url.match(/v=([^&]+)/) || url.match(/youtu\.be\/([^?]+)/);
       videos.push({
         videoId: match ? match[1] : null,
         title: (r.title || '').replace(/<<<.*?>>>/g, '').trim(),
         description: (r.description || r.snippet || '').replace(/<<<.*?>>>/g, '').trim(),
-        url: r.url
+        url: url
       });
     }
   }
@@ -235,16 +233,20 @@ async function run(searchTerm, category) {
   console.log(`\n=== YouTube Ideas Scanner — ${category} ===`);
   console.log(`Searching: ${searchTerm}`);
 
+  // Load pre-fetched results (fetched via web_search tool before calling this script)
+  const resultsFile = path.join('/tmp', `youtube-search-${Date.now()}.json`);
   let results = [];
   try {
-    const output = execSync(`openclaw web search --query "${searchTerm} tutorial" --count 8`, {
-      encoding: 'utf8',
-      timeout: 45000
-    });
-    results = parseWebSearchOutput(output);
+    const files = fs.readdirSync('/tmp').filter(f => f.startsWith('youtube-search-')).sort().reverse();
+    if (files.length > 0) {
+      results = loadResultsFromFile(path.join('/tmp', files[0]));
+    }
   } catch (e) {
-    console.error('Web search failed:', e.message);
-    console.log('No results fetched, exiting.');
+    console.error('Failed to load results file:', e.message);
+  }
+
+  if (results.length === 0) {
+    console.log('No results found in temp file, exiting.');
     return { searched: 0, ideas: 0, skipped: 0 };
   }
 

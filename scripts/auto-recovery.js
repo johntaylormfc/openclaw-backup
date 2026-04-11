@@ -15,7 +15,7 @@ const STATE_FILE = '/home/john/.openclaw/workspace/state/auto-recovery-state.jso
 // Critical containers to monitor (ARR stack core)
 const CRITICAL_CONTAINERS = [
   'sonarr', 'radarr', 'prowlarr', 'plex',
-  'emby', 'jellyfin', 'sabnzbd', 'transmission',
+  'sabnzbd', 'transmission',
   'arr-dashboard', 'arr-dashboard-v2', 'gluetun'
 ];
 

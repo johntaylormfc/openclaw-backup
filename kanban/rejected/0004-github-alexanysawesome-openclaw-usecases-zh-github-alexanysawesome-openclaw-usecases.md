@@ -1,14 +1,14 @@
 # Idea
 **ID:** 0004-github-alexanysawesome-openclaw-usecases-zh-github-alexanysawesome-openclaw-usecases
-**Title:** GitHub: AlexAnys/awesome-openclaw-usecases-zh |🇨🇳 OpenClaw（个人智能体）中文最佳用例大全 | 40+个真实场景（国内特色 + 海外的国内生态适配）：自动化办公、内容创作、服务器运维、个人助理、知识管理 | 新手友好 | Chinese guide for OpenClaw AI agent use cases
-**Status:** In Progress
+**Title:** GitHub: AlexAnys/awesome-openclaw-usecases-zh |🇨🇳 OpenClaw中文用例大全 | 46个真实场景 | 国内特色 + 海外案例的国内适配 | 自动化办公·内容创作·运维·AI助理·知识管理 | 新手友好 | Chinese guide for OpenClaw AI agent use cases
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** GitHub (use-case-hunter)
-**Created:** 2026-03-25
-**Last Updated:** 2026-03-25 20:41
+**Created:** 2026-04-11
+**Last Updated:** 2026-04-11 04:55
 
 ## Summary
-GitHub: AlexAnys/awesome-openclaw-usecases-zh |🇨🇳 OpenClaw（个人智能体）中文最佳用例大全 | 40+个真实场景（国内特色 + 海外的国内生态适配）：自动化办公、内容创作、服务器运维、个人助理、知识管理 | 新手友好 | Chinese guide for OpenClaw AI agent use cases
+GitHub: AlexAnys/awesome-openclaw-usecases-zh |🇨🇳 OpenClaw中文用例大全 | 46个真实场景 | 国内特色 + 海外案例的国内适配 | 自动化办公·内容创作·运维·AI助理·知识管理 | 新手友好 | Chinese guide for OpenClaw AI agent use cases
 
 ## URL
 https://github.com/AlexAnys/awesome-openclaw-usecases-zh
@@ -22,10 +22,7 @@ Found during daily web search for OpenClaw use cases.
 
 ## Context
 - Source: GitHub via SearXNG
-- Found: 2026-03-25 14:29
+- Found: 2026-04-11 04:40
 
 ## Approval Decision
-Accepted on 2026-03-25 20:41 and converted to ticket OC-0037.
-
----
-**Auto-Pickup:** Started at 2026-03-30 17:05 by pick-up-new-tickets cron
+Rejected on 2026-04-11 04:55.
