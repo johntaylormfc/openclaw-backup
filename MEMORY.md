@@ -18,6 +18,12 @@ Memory: daily=memory/YYYY-MM-DD.md | longterm=MEMORY.md | backup=/home/john/.ope
 
 John: Ideas→kanban | PRs→GitHub | WhatsApp | backup b.dashboard | never restore DB for UI
 
-Open: GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM C:\ProgramData\BcContainerHelper\Extensions\glapproval\my\GLAccApproval\src\ | Cron lastRun/nextRun null Apr3 | Vector Gemini 403 | OAuth midmonth | ARR health | DNS CNAME pending
+Open: GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM C:\ProgramData\BcContainerHelper\Extensions\glapproval\my\GLAccApproval\src\ | Vector Gemini 403 | OAuth midmonth | ARR health | DNS CNAME pending
 
 Decisions: capture 20:30 UTC | MC deleted dup | WinRM Apr2026
+
+## 2026-04-11 Learning: Cron Gap Detection
+Daily Review cron (a56d2aa8) silently skipped 2026-04-05 through 2026-04-10.
+- Isolated sessions may exit without writing memory/YYYY-MM-DD.md
+- Fix: consider adding a self-check at start of cron: if previous day memory exists, skip; if not, write placeholder
+- Pattern: gap first noticed 2026-04-11; last known good run was 2026-04-03

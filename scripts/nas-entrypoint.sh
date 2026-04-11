@@ -19,5 +19,5 @@ for PAIR in $NAS_DIRS; do
     fi
 done
 
-echo "[nas-entrypoint] Starting original entrypoint: $@"
-exec "$@"
+echo "[nas-entrypoint] Starting /init"
+exec /init
