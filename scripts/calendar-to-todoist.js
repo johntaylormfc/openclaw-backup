@@ -12,7 +12,7 @@ const CONFIG_PATH = '/home/john/.openclaw/workspace/config';
 const STATE_FILE = '/tmp/calendar-cron-lastrun.json';
 
 // Load credentials - token from token file, client from credentials file
-const tokenData = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/google-oauth-token.json`, 'utf8'));
+const tokenData = JSON.parse(fs.readFileSync('/home/john/.openclaw/secure/google-oauth-token.json', 'utf8'));
 const credsData = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/google-oauth.json`, 'utf8'));
 const todoistKey = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/todoist.json`, 'utf8')).todoist.api_key;
 let gmailCreds = tokenData;

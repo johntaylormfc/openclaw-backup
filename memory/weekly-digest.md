@@ -12,12 +12,12 @@
 - Sessions Today
 - Main Session (19 msgs)
 - Decisions Today
-- 2026-04-11 | docker, dashboard, openclaw | 3 msgs
-- 2026-04-11 | dashboard, openclaw, ideas | 3 msgs
+- 04:54 — Weekend Triage
+- Sessions 2026-04-11
+- Session: ffe1caf1...
+- Session: fdc5aa03...
+- Session: f9073079...
 - 2026-04-11 | openclaw, health | 3 msgs
-- 2026-04-11 | email, openclaw, health | 5 msgs
-- 2026-04-11 | email, openclaw | 5 msgs
-- 2026-04-11 | github, openclaw | 3 msgs
 
 ## Files Updated
 - 2026-04-10.md

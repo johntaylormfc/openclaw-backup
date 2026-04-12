@@ -22,6 +22,11 @@ Open: GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM C:\ProgramData\BcContaine
 
 Decisions: capture 20:30 UTC | MC deleted dup | WinRM Apr2026
 
+## 2026-04-12 Learning: Weekly Curation
+- OAuth token expiration patterns: Drive backup `invalid_grant`, similar to Gmail
+- Weekend triage: 9 ideas → 6 rejected (generic), 3 accepted → tickets OC-0048, OC-0049, OC-0050
+- Routine cron running: auto-recovery, health checks, dashboard backups, GitHub backup
+
 ## 2026-04-11 Learning: OAuth Token Expiration Recurring
 - Drive backup FAILED: `invalid_grant` - refresh token invalid/expired/revoked
 - Pattern: similar to Gmail OAuth issues
@@ -32,7 +37,7 @@ Decisions: capture 20:30 UTC | MC deleted dup | WinRM Apr2026
 - Created tickets OC-0048, OC-0049, OC-0050 from accepted ideas
 - Kanban: 0 idea/3 new/0 blocked/181 rejected
 
-## Open Issues (as of 2026-04-11)
+## Open Issues (as of 2026-04-12)
 - node-llama-cpp missing → memory search BROKEN; fix: `npm i -g openclaw@latest` or set provider to gemini/openai
 - Telegram bot 409 Conflict → dual getUpdates polling; second instance running
 - clawdbot-dashboard.service broken: CHDIR /home/john/.cargo/bin/cargo (dir missing)
