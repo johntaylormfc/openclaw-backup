@@ -22,11 +22,15 @@ Open: GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM C:\ProgramData\BcContaine
 
 Decisions: capture 20:30 UTC | MC deleted dup | WinRM Apr2026
 
-## 2026-04-11 Learning: Cron Gap Detection
-Daily Review cron (a56d2aa8) silently skipped 2026-04-05 through 2026-04-10.
-- Isolated sessions may exit without writing memory/YYYY-MM-DD.md
-- Fix: consider adding a self-check at start of cron: if previous day memory exists, skip; if not, write placeholder
-- Pattern: gap first noticed 2026-04-11; last known good run was 2026-04-03
+## 2026-04-11 Learning: OAuth Token Expiration Recurring
+- Drive backup FAILED: `invalid_grant` - refresh token invalid/expired/revoked
+- Pattern: similar to Gmail OAuth issues
+- Fix needed: re-authenticate backup script credentials
+
+## 2026-04-11 Learning: Weekend Triage Effective
+- 9 ideas in kanban/idea → 6 rejected (generic/web listicles), 3 accepted (ARR-native)
+- Created tickets OC-0048, OC-0049, OC-0050 from accepted ideas
+- Kanban: 0 idea/3 new/0 blocked/181 rejected
 
 ## Open Issues (as of 2026-04-11)
 - node-llama-cpp missing → memory search BROKEN; fix: `npm i -g openclaw@latest` or set provider to gemini/openai
@@ -35,5 +39,5 @@ Daily Review cron (a56d2aa8) silently skipped 2026-04-05 through 2026-04-10.
 - mission-control.service broken: CHDIR /usr/bin/node (dir missing)
 - GLApproval AL0219 encoding: 8 .al files need re-encode to UTF-8 NO BOM on GSPRO
 - Vector Gemini 403
-- OAuth midmonth refresh due
+- OAuth token refresh failures (Drive backup, Gmail)
 - DNS CNAME openclaw.bcdev.co.uk pending
