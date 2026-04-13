@@ -6,25 +6,28 @@ echo "=== Cron Triage ==="
 echo "Time: $(date)"
 echo ""
 
-# Check gateway status
-echo "--- Gateway Status ---"
-openclaw gateway status 2>&1 || echo "Gateway check failed"
+# Check for failed cron job runs
+echo "--- Failed Jobs (from jobs.json) ---"
+grep -A 20 '"lastStatus": "error"' /home/john/.openclaw/cron/jobs.json 2>/dev/null | grep -E '"name"|"lastError"|"consecutiveErrors"' | paste - - -d' ' || echo "No recent failures"
 echo ""
 
-# Check for failed cron jobs
-echo "--- Recent Cron Runs ---"
-openclaw cron list 2>&1 | head -30
+# Check gateway health via process list
+echo "--- Gateway Process ---"
+pgrep -la openclaw-gateway | head -3 || echo "Gateway not running"
 echo ""
 
-# Check gateway logs for errors
-echo "--- Recent Errors (last 50 lines) ---"
-journalctl --user -u openclaw-gateway -n 50 --no-pager 2>/dev/null | grep -iE "(error|failed|exception|critical)" | tail -20 || echo "No recent errors in journal"
+# Check recent cron run logs for errors
+echo "--- Recent Error Logs (last 5 runs) ---"
+ls -t /home/john/.openclaw/cron/runs/*.jsonl 2>/dev/null | head -5 | while read f; do
+  echo "=== $(basename $f) ==="
+  grep -iE "(error|failed|exception|timeout)" "$f" 2>/dev/null | tail -3 || echo "No errors"
+done
 echo ""
 
-# Check cron scheduler status
-echo "--- Cron Scheduler ---"
-openclaw cron status 2>&1
+# Quick cron state check
+echo "--- Quick Status ---"
+grep -c '"lastStatus": "ok"' /home/john/.openclaw/cron/jobs.json 2>/dev/null | xargs -I{} echo "OK jobs: {}"
+grep -c '"lastStatus": "error"' /home/john/.openclaw/cron/jobs.json 2>/dev/null | xargs -I{} echo "Error jobs: {}"
 echo ""
 
-# Summary
 echo "=== Triage Complete ==="
