@@ -26,6 +26,7 @@ Decisions: capture 20:30 UTC | MC deleted dup | WinRM Apr2026
 - OAuth token expiration patterns: Drive backup `invalid_grant`, similar to Gmail
 - Weekend triage: 9 ideas → 6 rejected (generic), 3 accepted → tickets OC-0048, OC-0049, OC-0050
 - Routine cron running: auto-recovery, health checks, dashboard backups, GitHub backup
+- Kanban idea threshold working: 7 ideas present (>=3) → no new ideas added
 
 ## 2026-04-11 Learning: OAuth Token Expiration Recurring
 - Drive backup FAILED: `invalid_grant` - refresh token invalid/expired/revoked
