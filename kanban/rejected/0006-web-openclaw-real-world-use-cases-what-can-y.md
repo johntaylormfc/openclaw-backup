@@ -1,7 +1,7 @@
 # Idea
 **ID:** 0006-web-openclaw-real-world-use-cases-what-can-y
 **Title:** OpenClaw Real-World Use Cases: What Can You Actually Do with AI Agents ...
-**Status:** Pending Review
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Web search via SearXNG (use-case-hunter)
 **Created:** 2026-04-12
@@ -26,3 +26,6 @@ Found during daily web search for OpenClaw use cases.
 
 ## Approval Decision
 Pending Review
+
+## Rejection Reason
+Rejected by Arnold on 2026-04-13

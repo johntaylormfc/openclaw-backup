@@ -1,7 +1,7 @@
 # Idea
 **ID:** 0011-web-openclaw-business-use-cases-workflow-exa
 **Title:** OpenClaw Business Use Cases: Workflow Examples and Enterprise Risks ...
-**Status:** Pending Review
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Web search via SearXNG (use-case-hunter)
 **Created:** 2026-04-13
@@ -26,3 +26,6 @@ Found during daily web search for OpenClaw use cases.
 
 ## Approval Decision
 Pending Review
+
+## Rejection Reason
+Rejected by Arnold on 2026-04-13

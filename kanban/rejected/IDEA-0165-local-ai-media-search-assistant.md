@@ -1,7 +1,7 @@
 # Idea
 **ID:** IDEA-0165
 **Title:** Local AI media search assistant
-**Status:** Pending Review
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Cron
 **Created:** 2026-04-13 08:00
@@ -26,3 +26,6 @@ If accepted, this idea should be converted into a live ticket with clear accepta
 
 ## Suggested Next Step
 Review the idea and either accept it into a live ticket or reject it with a reason.
+
+## Rejection Reason
+Rejected by Arnold on 2026-04-13

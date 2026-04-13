@@ -70,7 +70,20 @@ Ticket created from accepted idea and ready for pickup.
 -
 
 ## Completion Summary
-Not complete.
+✅ COMPLETED 2026-04-13
+
+**What was built:**
+- `/home/john/ARR/vpn-coordinator/` — new container + script
+- `vpn-coordinator.sh` — watches gluetun health transitions (unhealthy→healthy), triggers rolling restart of threadfin → transmission → m3u-proxy
+- Added to docker-compose.yml as `vpn-coordinator` service
+- health-watcher SKIP_CONTAINERS updated to exclude vpn-coordinator and transmission (now handled by coordinator)
+
+**Validation:**
+- Container built and started: healthy
+- Log shows coordinator active, watching gluetun every 10s
+- Gluetun currently healthy, no rolling restart triggered (correct behaviour)
+
+**Next step:** Monitor logs at `docker logs -f vpn-coordinator` or `/home/john/ARR/vpn-coordinator/logs/vpn-coordinator.log` to confirm it triggers correctly on next VPN blip.
 
 ---
 **Auto-Pickup:** Started at 2026-04-11 05:07 by pick-up-new-tickets cron

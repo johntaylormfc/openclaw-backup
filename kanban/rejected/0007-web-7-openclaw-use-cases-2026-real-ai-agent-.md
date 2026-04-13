@@ -1,7 +1,7 @@
 # Idea
 **ID:** 0007-web-openclaw-use-cases-2026-real-ai-agent-
 **Title:** 7 OpenClaw Use Cases 2026: Real AI Agent Examples
-**Status:** Pending Review
+**Status:** Rejected
 **Suggested Priority:** Medium
 **Source:** Web search via SearXNG (use-case-hunter)
 **Created:** 2026-04-12
@@ -26,3 +26,6 @@ Found during daily web search for OpenClaw use cases.
 
 ## Approval Decision
 Pending Review
+
+## Rejection Reason
+Rejected by Arnold on 2026-04-13
