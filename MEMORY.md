@@ -22,6 +22,12 @@ Open: GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM C:\ProgramData\BcContaine
 
 Decisions: capture 20:30 UTC | MC deleted dup | WinRM Apr2026
 
+## 2026-04-13 Learning: Daily Review Pattern Established
+- System operating smoothly on weekends
+- All cron jobs running (auto-recovery, health checks, dashboard backups, ARR log monitor, cron triage)
+- Kanban idea threshold (>=3) working - prevents idea bloat during quiet periods
+- No new ideas needed: 0 ideas in folder (threshold met for "don't add more")
+
 ## 2026-04-12 Learning: Weekly Curation
 - OAuth token expiration patterns: Drive backup `invalid_grant`, similar to Gmail
 - Weekend triage: 9 ideas → 6 rejected (generic), 3 accepted → tickets OC-0048, OC-0049, OC-0050
