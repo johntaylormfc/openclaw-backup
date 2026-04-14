@@ -8,12 +8,22 @@ echo ""
 
 # Check for failed cron job runs
 echo "--- Failed Jobs (from jobs.json) ---"
-grep -A 20 '"lastStatus": "error"' /home/john/.openclaw/cron/jobs.json 2>/dev/null | grep -E '"name"|"lastError"|"consecutiveErrors"' | paste - - -d' ' || echo "No recent failures"
+grep -o '"id": "[^"]*"' /home/john/.openclaw/cron/jobs.json 2>/dev/null | while read id; do
+  job_id=$(echo "$id" | cut -d'"' -f4)
+  status=$(cat /home/john/.openclaw/cron/jobs.json 2>/dev/null | jq -r ".jobs[] | select(.id == \"$job_id\") | .state.lastStatus // .state.lastStatus // empty" 2>/dev/null)
+  if [ "$status" = "error" ]; then
+    name=$(cat /home/john/.openclaw/cron/jobs.json 2>/dev/null | jq -r ".jobs[] | select(.id == \"$job_id\") | .name" 2>/dev/null)
+    err=$(cat /home/john/.openclaw/cron/jobs.json 2>/dev/null | jq -r ".jobs[] | select(.id == \"$job_id\") | .state.lastError // empty" 2>/dev/null)
+    consec=$(cat /home/john/.openclaw/cron/jobs.json 2>/dev/null | jq -r ".jobs[] | select(.id == \"$job_id\") | .state.consecutiveErrors // 0" 2>/dev/null)
+    echo "  - $name (id: $job_id)"
+    echo "    consecutiveErrors: $consec, lastError: $err"
+  fi
+done || echo "No recent failures"
 echo ""
 
 # Check gateway health via process list
 echo "--- Gateway Process ---"
-pgrep -la openclaw-gateway | head -3 || echo "Gateway not running"
+pgrep -f 'openclaw.*gateway' | head -3 | xargs -I{} ps -p {} -o pid,etime,cmd 2>/dev/null || echo "Gateway not running"
 echo ""
 
 # Check recent cron run logs for errors
@@ -26,8 +36,10 @@ echo ""
 
 # Quick cron state check
 echo "--- Quick Status ---"
-grep -c '"lastStatus": "ok"' /home/john/.openclaw/cron/jobs.json 2>/dev/null | xargs -I{} echo "OK jobs: {}"
-grep -c '"lastStatus": "error"' /home/john/.openclaw/cron/jobs.json 2>/dev/null | xargs -I{} echo "Error jobs: {}"
+ok_count=$(cat /home/john/.openclaw/cron/jobs.json 2>/dev/null | jq '[.jobs[] | select(.state.lastStatus == "ok")] | length' 2>/dev/null || echo 0)
+err_count=$(cat /home/john/.openclaw/cron/jobs.json 2>/dev/null | jq '[.jobs[] | select(.state.lastStatus == "error")] | length' 2>/dev/null || echo 0)
+echo "OK jobs: $ok_count"
+echo "Error jobs: $err_count"
 echo ""
 
 echo "=== Triage Complete ==="
