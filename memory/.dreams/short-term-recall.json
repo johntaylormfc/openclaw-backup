@@ -1,0 +1,161 @@
+{
+  "version": 1,
+  "updatedAt": "2026-04-15T23:12:31.140Z",
+  "entries": {
+    "memory:memory/archived/2026-03-27.md:266:301": {
+      "key": "memory:memory/archived/2026-03-27.md:266:301",
+      "path": "memory/archived/2026-03-27.md",
+      "startLine": 266,
+      "endLine": 301,
+      "source": "memory",
+      "snippet": "### Session: be3163be... Time: 2026-03-27T02:03:35.789Z Topics: arr, docker, dashboard, memory, github, email, openclaw, health, bc, ideas Messages: 3 Summary: [cron:healthcheck-hourly-001 Hourly Health Snapshot] Run healthcheck: ~/.openclaw/workspace/tools/openclaw_healthcheck.sh Current time: Friday, March Decisions: close; rejected ### Session: bc43a714... Time: 2026-03-27T02:03:35.785Z Topics: openclaw, health Messages: 3 Summary: [cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Frid ### Session: b8bc13e6... Time: 2026-03-27T02:03:35.785Z Topics: email, openclaw, bc Messages: 3 Summary: [cr",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.41014976203441617,
+      "maxScore": 0.41014976203441617,
+      "firstRecalledAt": "2026-04-15T23:12:31.140Z",
+      "lastRecalledAt": "2026-04-15T23:12:31.140Z",
+      "queryHashes": [
+        "c363a3ab62b2"
+      ],
+      "recallDays": [
+        "2026-04-16"
+      ],
+      "conceptTags": [
+        "2026-03-27t02",
+        "35.789z",
+        "healthcheck-hourly-001",
+        "35.785z",
+        "auto-recovery",
+        "home/john",
+        "be3163be",
+        "time"
+      ]
+    },
+    "memory:memory/archived/2026-02-24.md:1:33": {
+      "key": "memory:memory/archived/2026-02-24.md:1:33",
+      "path": "memory/archived/2026-02-24.md",
+      "startLine": 1,
+      "endLine": 33,
+      "source": "memory",
+      "snippet": "# February 24, 2026 ## Morning (Before Exec Stuck) - Dashboard fixes completed - Command Center 2.0 implemented with retry/block functionality - Added MCP servers: Puppeteer, Notion, PostgreSQL - Fixed duplicate sidebar button ID - Added Agent Tasks section - Full dashboard audit completed ## Issues - Exec tool stuck - commands not returning - Gateway cron delivery issues ## Systems - Dashboard: healthy - WhatsApp: connected - MCP servers: 14 total, 11 healthy - GitHub: auth working - Trading: paper mode $100k+ ## Backups - /home/john/backup-latest-20260224-1651/ - /home/john/backup-command-center-20260224-1543/ ## 19:44 Update - Exec still stuck - Gateway being restarted repeatedly ##",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.40759984552860257,
+      "maxScore": 0.40759984552860257,
+      "firstRecalledAt": "2026-04-15T23:12:31.140Z",
+      "lastRecalledAt": "2026-04-15T23:12:31.140Z",
+      "queryHashes": [
+        "c363a3ab62b2"
+      ],
+      "recallDays": [
+        "2026-04-16"
+      ],
+      "conceptTags": [
+        "backup",
+        "backups",
+        "gateway",
+        "2.0",
+        "retry/block",
+        "february",
+        "morning",
+        "exec"
+      ]
+    },
+    "memory:memory/archived/2026-03-25.md:27:34": {
+      "key": "memory:memory/archived/2026-03-25.md:27:34",
+      "path": "memory/archived/2026-03-25.md",
+      "startLine": 27,
+      "endLine": 34,
+      "source": "memory",
+      "snippet": "- 22:44 UTC: All clear. Gateway watchdog run. - 21:43 UTC: All clear. Gateway UP. ## Session Transcript Capture Issue (Root Cause) - Main conversation happened during the day but was NOT captured in session-summaries.json by 21:00 cron - Cause: Session Transcript Capture runs hourly at XX:00; the main WhatsApp session started after the last capture before 21:00 - Fix applied 2026-03-27: Session Transcript Capture rescheduled from `0 * * * *` to `30 20 * * *` (20:30 UTC) so it captures the day's conversations before the 21:00 Daily Memory Log runs",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.39966095387935635,
+      "maxScore": 0.39966095387935635,
+      "firstRecalledAt": "2026-04-15T23:12:31.140Z",
+      "lastRecalledAt": "2026-04-15T23:12:31.140Z",
+      "queryHashes": [
+        "c363a3ab62b2"
+      ],
+      "recallDays": [
+        "2026-04-16"
+      ],
+      "conceptTags": [
+        "gateway",
+        "session-summaries.json",
+        "utc",
+        "all",
+        "clear",
+        "watchdog",
+        "run",
+        "transcript"
+      ]
+    },
+    "memory:memory/archived/2026-03-10.md:1:14": {
+      "key": "memory:memory/archived/2026-03-10.md:1:14",
+      "path": "memory/archived/2026-03-10.md",
+      "startLine": 1,
+      "endLine": 14,
+      "source": "memory",
+      "snippet": "# 2026-03-10 Memory ## Heartbeat Summary (06:44) - Dashboard: OK (port 5000) - Kanban: 33 tasks, 53 ideas - Vector memory: Still failing (403 error - known issue, disabled) - Blockers: Calendar/Todoist sync (needs re-auth), Vector memory (disabled) ## Active Work - ARR stack management: ongoing - Dashboard running on port 5000 ## Notes",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.38860792219638823,
+      "maxScore": 0.38860792219638823,
+      "firstRecalledAt": "2026-04-15T23:12:31.140Z",
+      "lastRecalledAt": "2026-04-15T23:12:31.140Z",
+      "queryHashes": [
+        "c363a3ab62b2"
+      ],
+      "recallDays": [
+        "2026-04-16"
+      ],
+      "conceptTags": [
+        "calendar/todoist",
+        "re-auth",
+        "heartbeat",
+        "summary",
+        "dashboard",
+        "kanban",
+        "tasks",
+        "ideas"
+      ]
+    },
+    "memory:memory/archived/2026-03-28.md:1:46": {
+      "key": "memory:memory/archived/2026-03-28.md:1:46",
+      "path": "memory/archived/2026-03-28.md",
+      "startLine": 1,
+      "endLine": 46,
+      "source": "memory",
+      "snippet": "# 2026-03-28 - Weekend Notes ## Activity (past 24h) - Heartbeat (Fri 27 Mar 16:02 UTC): Dashboard healthy, Kanban empty, Ideas=0 - Paradise City import interrupted - manual copy stalled due to NFS slowness, S1E3 imported via rescan ## Weekend Status - Saturday morning, system operational - No active tasks in kanban/new ## Learnings None new --- ## Sessions 2026-03-28 ### Session: fcc2874c... Time: 2026-03-28T20:33:06.815Z Topics: openclaw, health Messages: 3 Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway ### Session: f5685109... Time: 2026-03-28T20:33:06.815Z Topics: opencl",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.39245720505714415,
+      "maxScore": 0.39245720505714415,
+      "firstRecalledAt": "2026-04-15T23:12:31.140Z",
+      "lastRecalledAt": "2026-04-15T23:12:31.140Z",
+      "queryHashes": [
+        "c363a3ab62b2"
+      ],
+      "recallDays": [
+        "2026-04-16"
+      ],
+      "conceptTags": [
+        "gateway",
+        "kanban/new",
+        "2026-03-28t20",
+        "06.815z",
+        "home/john",
+        "weekend",
+        "activity",
+        "24h"
+      ]
+    }
+  }
+}
