@@ -28,6 +28,15 @@ oauth2Client.setCredentials({
 });
 
 const drive = google.drive({ version: 'v3', auth: oauth2Client });
+  // Auto-save tokens whenever google-auth-library refreshes them
+  oauth2Client.on('tokens', (tokens) => {
+    try {
+      const saved = JSON.parse(fs.readFileSync('/home/john/.openclaw/workspace/config/google-oauth-token.json', 'utf8'));
+      fs.writeFileSync('/home/john/.openclaw/workspace/config/google-oauth-token.json', JSON.stringify(Object.assign(saved, tokens), null, 2));
+      console.log('[drive-arr-backup] Token refreshed and saved, new expiry:', new Date(tokens.expiry_date).toISOString());
+    } catch(e) { console.error('[drive-arr-backup] Token save error:', e.message); }
+  });
+
 
 // ARR backups folder in Google Drive — uses existing backups folder
 const ARR_BACKUP_FOLDER_ID = '13rBLT8yDcpe8neNykDyMpTGAH6tX3bB8'; // OpenClaw backups folder

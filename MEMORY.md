@@ -48,6 +48,12 @@ Decisions: capture 20:30 UTC | MC deleted dup | WinRM Apr2026
 - node-llama-cpp missing → memory search BROKEN; fix: `npm i -g openclaw@latest` or set provider to gemini/openai
 - Telegram bot 409 Conflict → dual getUpdates polling; second instance running
 - clawdbot-dashboard.service broken: CHDIR /home/john/.cargo/bin/cargo (dir missing)
+## 2026-04-14 RDP Black Screen Fix (Beelink)
+- Symptom: RDP login → black screen, xfwm4 had died on :10 session (stale 11 days)
+- Fix: `xfwm4 --replace --display=:10.0` + `xfdesktop --display=:10.0` on existing :10 session
+- If that fails: RDP client → Display → Colors=High(16-bit), Experience → untick bitmap caching
+
+## Open Issues
 - mission-control.service broken: CHDIR /usr/bin/node (dir missing)
 - GLApproval AL0219 encoding: 8 .al files need re-encode to UTF-8 NO BOM on GSPRO
 - Vector Gemini 403
