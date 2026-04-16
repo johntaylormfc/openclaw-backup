@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-16T04:26:03.069Z",
+  "updatedAt": "2026-04-16T17:04:18.335Z",
   "entries": {
     "memory:memory/archived/2026-03-27.md:266:301": {
       "key": "memory:memory/archived/2026-03-27.md:266:301",
@@ -201,16 +201,17 @@
       "endLine": 1008,
       "source": "memory",
       "snippet": "Topics: arr, docker, dashboard, memory, github, email, openclaw, health, bc, ideas Messages: 3 Summary: [cron:healthcheck-hourly-001 Hourly Health Snapshot] Run healthcheck: ~/.openclaw/workspace/tools/openclaw_healthcheck.sh Current time: Thursday, Marc Decisions: close; rejected ### Session: 76c6c90b... Time: 2026-03-26T11:10:39.893Z Topics: arr, docker, dashboard, memory, github, email, openclaw, health, bc, ideas Messages: 3 Summary: [cron:healthcheck-hourly-001 Hourly Health Snapshot] Run healthcheck: ~/.openclaw/workspace/tools/openclaw_healthcheck.sh Current time: Thursday, Marc Decisions: close; rejected ### Session: 74d3b608... Time: 2026-03-26T11:10:39.889Z Topics: openclaw, heal",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.9906488001346587,
+      "totalScore": 1.4183311522006987,
       "maxScore": 0.49797472357749933,
       "firstRecalledAt": "2026-04-15T23:45:33.197Z",
-      "lastRecalledAt": "2026-04-16T00:43:42.222Z",
+      "lastRecalledAt": "2026-04-16T16:10:55.547Z",
       "queryHashes": [
         "f2c707cfcbf7",
-        "a3e2739f6e49"
+        "a3e2739f6e49",
+        "f92c97df76ee"
       ],
       "recallDays": [
         "2026-04-16"
@@ -329,15 +330,16 @@
       "endLine": 1229,
       "source": "memory",
       "snippet": "Time: 2026-03-26T11:10:39.882Z Topics: openclaw, health Messages: 3 Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway ### Session: 43478080... Time: 2026-03-26T11:10:39.882Z Topics: openclaw, health Messages: 3 Summary: [cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Thur ### Session: 43144b5a... Time: 2026-03-26T11:10:39.881Z Topics: arr, docker, dashboard, memory, github, email, openclaw, health, bc, ideas Messages: 3 Summary: [cron:healthcheck-hourly-001 Hourly Health Snapshot] Run h",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.4657316833734512,
+      "totalScore": 0.8996842473745346,
       "maxScore": 0.4657316833734512,
       "firstRecalledAt": "2026-04-16T00:43:42.222Z",
-      "lastRecalledAt": "2026-04-16T00:43:42.222Z",
+      "lastRecalledAt": "2026-04-16T16:10:55.547Z",
       "queryHashes": [
-        "a3e2739f6e49"
+        "a3e2739f6e49",
+        "f92c97df76ee"
       ],
       "recallDays": [
         "2026-04-16"
@@ -360,16 +362,17 @@
       "endLine": 679,
       "source": "memory",
       "snippet": "Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway Decisions: rejected; close; will be; should go; should escalate ### Session: 2d411084... Time: 2026-03-27T01:03:56.240Z Topics: openclaw, health Messages: 3 Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway ### Session: 01d5578c... Time: 2026-03-27T01:03:56.240Z Topics: memory, openclaw, health Messages: 4 Summary: [cron:cron-triage-30m-001 Cron Error Triage] Run triage: ~/.openclaw/workspace/tools/openclaw_cron_triage.sh Curr",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.2275684903227206,
+      "totalScore": 1.6634548435770389,
       "maxScore": 0.7599600951038714,
       "firstRecalledAt": "2026-04-16T00:43:42.222Z",
-      "lastRecalledAt": "2026-04-16T04:26:03.069Z",
+      "lastRecalledAt": "2026-04-16T16:10:55.547Z",
       "queryHashes": [
         "a3e2739f6e49",
-        "f0afa9d1e4e3"
+        "f0afa9d1e4e3",
+        "f92c97df76ee"
       ],
       "recallDays": [
         "2026-04-16"
@@ -17186,6 +17189,192 @@
         "08.829z",
         "home/john/arr/backups/dashboar",
         "summary"
+      ]
+    },
+    "memory:memory/archived/2026-02-13.md:1:54": {
+      "key": "memory:memory/archived/2026-02-13.md:1:54",
+      "path": "memory/archived/2026-02-13.md",
+      "startLine": 1,
+      "endLine": 54,
+      "source": "memory",
+      "snippet": "# 2026-02-13 ## ARR_Bot Bootstrap - Set up as ARR_Bot for john's ARR stack (Docker *ARR apps) - docker-compose.yml restored from backup, fixed gluetun VPN config ## Dashboard (port 4000) - Fixed homepage integration (docker socket, allowed hosts) - Added Cron Jobs section - Added \"Show Completed Tasks\" button - Fixed version to v3.0 - Moved completed tasks button to kanban header - Hidden \"Complete\" column from kanban board ## Kanban Workflow - Backlog → pick up on heartbeat → work to completion - Ideas go to backlog, when john accepts move to queue - Heartbeat picks up tasks from backlog/todo ## Second Brain - Phase 1: Notes, search, dashboard - DONE - Phase 2: Web Clipper URL - DONE",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4320429116487503,
+      "maxScore": 0.4320429116487503,
+      "firstRecalledAt": "2026-04-16T16:10:55.547Z",
+      "lastRecalledAt": "2026-04-16T16:10:55.547Z",
+      "queryHashes": [
+        "f92c97df76ee"
+      ],
+      "recallDays": [
+        "2026-04-16"
+      ],
+      "conceptTags": [
+        "backup",
+        "arr-bot",
+        "docker-compose.yml",
+        "v3.0",
+        "backlog/todo",
+        "bootstrap",
+        "set",
+        "john's"
+      ]
+    },
+    "memory:memory/archived/2026-02-20.md:1:22": {
+      "key": "memory:memory/archived/2026-02-20.md:1:22",
+      "path": "memory/archived/2026-02-20.md",
+      "startLine": 1,
+      "endLine": 22,
+      "source": "memory",
+      "snippet": "# February 20, 2026 - Notes - Added multi-timeframe confirmation (daily trend filter) - Added MACD indicator - Added volume filtering - Added dynamic position sizing based on conviction score - Bot restarted with new code at ~22:24 ## Freelance Dev Work - Added to kanban: \"Freelance Dev Work - Business Central Extensions\" - Discussed monetization options: Fiverr/Upwork, selling extensions, retainers - Todoist API key not found - added reminder to get it ## System Status - All 14 cron jobs healthy (ARR Config Backup now working) - Dashboard healthy - Bot running with new indicators - GitHub repo reviews continue hourly ## Todo - Get Todoist API key from john",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4051797091960907,
+      "maxScore": 0.4051797091960907,
+      "firstRecalledAt": "2026-04-16T16:10:55.547Z",
+      "lastRecalledAt": "2026-04-16T16:10:55.547Z",
+      "queryHashes": [
+        "f92c97df76ee"
+      ],
+      "recallDays": [
+        "2026-04-16"
+      ],
+      "conceptTags": [
+        "backup",
+        "multi-timeframe",
+        "fiverr/upwork",
+        "february",
+        "added",
+        "multi",
+        "timeframe",
+        "confirmation"
+      ]
+    },
+    "memory:memory/archived/2026-03-27.md:699:735": {
+      "key": "memory:memory/archived/2026-03-27.md:699:735",
+      "path": "memory/archived/2026-03-27.md",
+      "startLine": 699,
+      "endLine": 735,
+      "source": "memory",
+      "snippet": "Topics: github, openclaw, health Messages: 3 Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway ### Session: deafa431... Time: 2026-03-27T03:04:44.081Z Topics: docker, dashboard, memory, openclaw, ideas Messages: 7 Summary: System: [2026-03-26 03:25:02 GMT] WhatsApp gateway connected. Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or ### Session: dd8efc7c... Time: 2026-03-27T00:03:52.933Z Topics: openclaw, health Messages: 3 Summary: [cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.45415483713150023,
+      "maxScore": 0.45415483713150023,
+      "firstRecalledAt": "2026-04-16T17:04:18.335Z",
+      "lastRecalledAt": "2026-04-16T17:04:18.335Z",
+      "queryHashes": [
+        "80e6095e0d2a"
+      ],
+      "recallDays": [
+        "2026-04-16"
+      ],
+      "conceptTags": [
+        "gateway",
+        "home/john",
+        "2026-03-27t03",
+        "44.081z",
+        "heartbeat.md",
+        "2026-03-27t00",
+        "52.933z",
+        "auto-recovery"
+      ]
+    },
+    "memory:memory/archived/2026-03-14.md:1:24": {
+      "key": "memory:memory/archived/2026-03-14.md:1:24",
+      "path": "memory/archived/2026-03-14.md",
+      "startLine": 1,
+      "endLine": 24,
+      "source": "memory",
+      "snippet": "# 2026-03-14 - Weekend Notes ## Weekend Status - **Day**: Saturday - **Time**: 10:00 - **Status**: Weekend memory capture running ## Recent Activity (from March 12) - OpenClaw GitHub backup completed (19 files, +2223/-176 lines) - Research sync to Google Drive successful (7 files) - GitHub branch mismatch issue (main vs master) - WhatsApp API confirmed on port 9001 (not 5000) - Gmail OAuth token expired - re-auth completed - Cron jobs: 32 active, 1 timeout (gdrive-sync) ## Blockers (from March 12) - Gmail OAuth token expired (alerted john) - Calendar/Todoist sync broken (OAuth scope issues) - Vector memory disabled (Gemini 403 errors) ## Today's Notes - Memory capture cron executed at 10",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.42565458118915556,
+      "maxScore": 0.42565458118915556,
+      "firstRecalledAt": "2026-04-16T17:04:18.335Z",
+      "lastRecalledAt": "2026-04-16T17:04:18.335Z",
+      "queryHashes": [
+        "80e6095e0d2a"
+      ],
+      "recallDays": [
+        "2026-04-16"
+      ],
+      "conceptTags": [
+        "backup",
+        "re-auth",
+        "gdrive-sync",
+        "calendar/todoist",
+        "weekend",
+        "status",
+        "day",
+        "saturday"
+      ]
+    },
+    "memory:memory/archived/2026-03-22.md:76:108": {
+      "key": "memory:memory/archived/2026-03-22.md:76:108",
+      "path": "memory/archived/2026-03-22.md",
+      "startLine": 76,
+      "endLine": 108,
+      "source": "memory",
+      "snippet": "## Drive ARR Backup - OAuth Fixed (16:30 UTC) - Re-authenticated Google OAuth with write scope (was read-only) - Fixed Drive API query syntax (`LIKE` → `contains`, quote style) - ARR backups now upload to Google Drive successfully - Script: `/home/john/.openclaw/workspace/scripts/drive-arr-backup.js` ## OpenClaw Snapshot System Built (17:30 UTC) - Script: `/home/john/.openclaw/workspace/scripts/drive-openclaw-backup.js` - Nightly cron at 3am → Google Drive \"OpenClaw Snapshots\" folder - 7-day retention - Restore: `node drive-openclaw-backup.js --restore <snapshot-name>` - 0.3MB snapshot tested and uploaded ✅ ## Daily Memory Cron Fixed (17:45 UTC) - session-end-handler.js was a stub - never",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4279940247535705,
+      "maxScore": 0.4279940247535705,
+      "firstRecalledAt": "2026-04-16T17:04:18.335Z",
+      "lastRecalledAt": "2026-04-16T17:04:18.335Z",
+      "queryHashes": [
+        "80e6095e0d2a"
+      ],
+      "recallDays": [
+        "2026-04-16"
+      ],
+      "conceptTags": [
+        "backup",
+        "backups",
+        "re-authenticated",
+        "read-only",
+        "home/john",
+        "7-day",
+        "drive-openclaw-backup.js",
+        "snapshot-name"
+      ]
+    },
+    "memory:memory/archived/2026-03-19.md:1:8": {
+      "key": "memory:memory/archived/2026-03-19.md:1:8",
+      "path": "memory/archived/2026-03-19.md",
+      "startLine": 1,
+      "endLine": 8,
+      "source": "memory",
+      "snippet": "## 16:59 UTC - Cloudflare Tunnel Setup (In Progress) - **What:** Setting up Cloudflare tunnel to get permanent public URL for OpenClaw gateway (for OAuth re-authentication) - **Done:** Cloudflare account created, bcdev.co.uk zone active, tunnel created (\"openclaw\"), tunnel running on Beelink (PID 176958), cloudflared in ~/.cloudflared/ - **Blocker:** DNS CNAME record for openclaw.bcdev.co.uk not confirmed visible — John checking dashboard - **Next:** Verify DNS CNAME record exists in Cloudflare dashboard, then update Google OAuth redirect URI to https://openclaw.bcdev.co.uk - **Key info:** Tunnel token embedded in credentials file at ~/.cloudflared/credentials/6eca68ce-d242-4907-8a0e-f2a567",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4217686653137207,
+      "maxScore": 0.4217686653137207,
+      "firstRecalledAt": "2026-04-16T17:04:18.335Z",
+      "lastRecalledAt": "2026-04-16T17:04:18.335Z",
+      "queryHashes": [
+        "80e6095e0d2a"
+      ],
+      "recallDays": [
+        "2026-04-16"
+      ],
+      "conceptTags": [
+        "gateway",
+        "re-authentication",
+        "bcdev.co.uk",
+        "openclaw.bcdev.co.uk",
+        "utc",
+        "cloudflare",
+        "tunnel",
+        "setup"
       ]
     }
   }

@@ -1,6 +1,7 @@
+# Rejected Idea
 # Idea
-**ID:** 0002-web-openclaw-use-cases-ways-to-automate-w
-**Title:** OpenClaw use cases: 25 ways to automate work and life - Hostinger
+**ID:** 0001-web-awesome-openclaw-use-cases--github
+**Title:** Awesome OpenClaw Use Cases - GitHub
 **Status:** Pending Review
 **Suggested Priority:** Medium
 **Source:** Web search via SearXNG (use-case-hunter)
@@ -8,10 +9,10 @@
 **Last Updated:** 2026-04-14
 
 ## Summary
-OpenClaw use cases: 25 ways to automate work and life - Hostinger
+Awesome OpenClaw Use Cases - GitHub
 
 ## URL
-https://www.hostinger.com/tutorials/openclaw-use-cases
+https://github.com/hesamsheikh/awesome-openclaw-usecases
 
 ## Why It Might Matter
 Found during daily web search for OpenClaw use cases.
@@ -26,3 +27,7 @@ Found during daily web search for OpenClaw use cases.
 
 ## Approval Decision
 Pending Review
+
+## Reason
+Bulk-rejected 2026-04-16: All 4 queued ideas were generic web listicles with no actionable detail for the ARR stack. Extracted two useful concepts (self-healing monitoring, morning digest) and converted to tickets OC-0051 and OC-0052.
+

@@ -1,3 +1,4 @@
+# Rejected Idea
 # Idea
 **ID:** 0003-web-how-real-openclaw-use-cases-built-a-th
 **Title:** How 9 Real OpenClaw Use Cases Built a Thriving SaaS Business in Just 30 ...
@@ -26,3 +27,7 @@ Found during daily web search for OpenClaw use cases.
 
 ## Approval Decision
 Pending Review
+
+## Reason
+Bulk-rejected 2026-04-16: All 4 queued ideas were generic web listicles with no actionable detail for the ARR stack. Extracted two useful concepts (self-healing monitoring, morning digest) and converted to tickets OC-0051 and OC-0052.
+
