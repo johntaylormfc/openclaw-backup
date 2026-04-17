@@ -11,8 +11,6 @@ Sonarr :8989 | Radarr :7878 | Prowlarr :9696 | keys: memory/credentials.md
 ## GSPro 192.168.1.228
 WinRM bot/BotBotBot! p5985 | SSH bot/BotBotBot! | admin john/M0therwell9!
 
-## BC Containers
-JTTest 7146-47,8082 | glapproval 7151-52 | custcontacts 7148-49,8081 | creds john/John1234
 
 ## Credentials
 keys: memory/credentials.md | OpenCF PID 176958 Beelink | DNS openclaw.bcdev.co.uk pending
@@ -31,6 +29,6 @@ GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM | Vector Gemini 403 | OAuth mid
 - RDP client fallback: Display→Colors=High(16-bit), Experience→untick bitmap caching
 
 ## Open Issues
-- mission-control.service: CHDIR /usr/bin/node (dir missing)
+
 - GLApproval AL0219 encoding: 8 .al files need re-encode UTF-8 NO BOM on GSPRO
 - Vector Gemini 403 | OAuth refresh failures | DNS CNAME pending

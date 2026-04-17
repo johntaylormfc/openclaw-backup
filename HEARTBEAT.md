@@ -16,7 +16,7 @@ memory/projects.md → MEMORY.md → memory/YYYY-MM-DD.md
 Log to memory/YYYY-MM-DD.md | Update MEMORY.md for new learnings
 
 ## Paths
-Dashboard: http://192.168.1.146:5000 | Mission Control: http://192.168.1.146:5001/
+Dashboard: http://192.168.1.146:5000
 ARR skills: /home/john/.openclaw/workspace/skills/arr-api/ | Kanban: /home/john/.openclaw/workspace/kanban/
 
 ## Config

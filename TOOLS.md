@@ -8,7 +8,7 @@
 - Restart: `docker restart arr-dashboard arr-dashboard-v2`
 
 ## Quick Links
-SearXNG: http://127.0.0.1:8890 | Mission Control: http://192.168.1.146:5001/
+SearXNG: http://127.0.0.1:8890
 
 ## Playwright Test
 `cd /tmp && npm init -y > /dev/null && npm install playwright > /dev/null 2>&1`

@@ -21,7 +21,7 @@ export BC_PASSWORD='your_password'
 ```
 bc new <key> [country] [version] [--dry-run]
 ```
-Example: `bc new glapproval 18206 19206`
+Example: `bc new mybccontainer 18206 19206`
 
 **Important:** Use lowercase username 'john' - uppercase fails!
 

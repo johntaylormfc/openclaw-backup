@@ -181,9 +181,9 @@ fi
 # 3. GitHub — top openclaw/arr repos
 # ─────────────────────────────────────────
 log "Searching GitHub..."
-github_results=$(curl -s "https://api.github.com/search/repositories?q=openclaw+agent+automation&sort=stars&per_page=5" \
+github_results=$(curl -s "https://api.github.com/search/repositories?q=openclaw+openclaw-agent+OR+openclaw-skill+OR+openclaw-plugin&sort=stars&per_page=10" \
   -H "Accept: application/vnd.github.v3+json" 2>/dev/null | \
-  jq -r '.items[] | "\(.full_name) |\(.description // "no description")"' 2>/dev/null | head -3 || true)
+  jq -r '.items[0:3][] | "\(.full_name) |\(.description // "no description")"' 2>/dev/null || true)
 
 if [ -n "$github_results" ]; then
   while IFS= read -r repo; do
@@ -205,20 +205,31 @@ log "Skipping Discord (no free API)"
 # 5. Web search via SearXNG (local)
 # ─────────────────────────────────────────
 log "Searching via SearXNG..."
-# Broader, non-ARR queries — find what people use OpenClaw FOR
-searxng_raw=$(curl -s "http://127.0.0.1:8890/search?q=openclaw+ai+agent+practical+use+cases&format=json&engines=google,duckduckgo&count=5" 2>/dev/null || true)
+# Targeted queries: find real OpenClaw implementations, not listicles
+# Filter out known listicle domains
+WEB_EXCLUDE_DOMAINS="sphere.com|make-use-of.com|techrepublic.com|medium.com/|ilovepc.io|digitalcitizen.life|home_network_engineer"
 
-if [ -n "$searxng_raw" ]; then
-  web_count=0
-  while IFS= read -r title && IFS= read -r url; do
-    [ -z "$title" ] && continue
-    [[ $web_count -ge 2 ]] && break
-    if found_new "$title" "$url" ""; then
-      create_idea "web" "$title" "$url" "Web search via SearXNG"
-      web_count=$((web_count + 1))
-    fi
-  done < <(echo "$searxng_raw" | jq -r '.results[] | "\(.title)\n\(.url)"' 2>/dev/null)
-fi
+for query in "openclaw+self-hosted+automation+workflow" "openclaw+ai+agent+setup+guide" "openclaw+open+source+use+case"; do
+  searxng_raw=$(curl -s "http://127.0.0.1:8890/search?q=${query}&format=json&engines=google,duckduckgo&count=8" 2>/dev/null || true)
+  if [ -n "$searxng_raw" ]; then
+    while IFS= read -r title && IFS= read -r url; do
+      [ -z "$title" ] || [ -z "$url" ] && continue
+      # Skip known listicle/aggregator domains
+      if echo "$url" | grep -qiE "$WEB_EXCLUDE_DOMAINS"; then
+        log "Skipped listicle domain: $url"; continue
+      fi
+      # Skip very short titles (likely headlines)
+      if [ "${#title}" -lt 20 ]; then
+        log "Skipped short title: $title"; continue
+      fi
+      if found_new "$title" "$url" ""; then
+        create_idea "web" "$title" "$url" "Web search via SearXNG"
+        web_count=$((web_count + 1))
+        [[ $web_count -ge 1 ]] && break 2  # Max 1 web result per run
+      fi
+    done < <(echo "$searxng_raw" | jq -r '.results[] | "\(.title)\n\(.url)"' 2>/dev/null)
+  fi
+done
 
 # ─────────────────────────────────────────
 # WhatsApp digest

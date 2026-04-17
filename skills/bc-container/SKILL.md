@@ -17,7 +17,7 @@ Create and manage Business Central containers on GSPRO Windows PC via SSH.
 
 ## Parameters
 
-- **containerName**: Required - Name for the container (e.g., glapproval)
+- **containerName**: Required - Name for the container (e.g., mybccontainer)
 - **webPort**: Required - Web port (e.g., 18207 for new extension)
 - **devPort**: Required - Dev services port (e.g., 19207) - USE THIS IN launch.json
 - **oDataPort**: Required - OData services port (e.g., 19208)

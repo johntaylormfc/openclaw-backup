@@ -82,7 +82,7 @@ function getKanbanOvernight() {
         const stat = fs.statSync(`${dir}/${file}`);
         if (stat.mtime > yesterday) {
           const content = fs.readFileSync(`${dir}/${file}`, 'utf8');
-          const title = content.match(/^#.*?:\s*(.+)/m) || content.match(/^#\s+(.+)/m) || [null, file];
+          const title = content.match(/^\*\*Title:\*\*\s*(.+)/m) || content.match(/^#.*?:\s*(.+)/m) || [null, file];
           result[key].push({ id: file.replace('.md',''), title: title[1] || file });
         }
       }
