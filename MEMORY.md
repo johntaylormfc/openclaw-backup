@@ -39,3 +39,25 @@ GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM | Vector Gemini 403 | OAuth mid
 - ✅ Kanban ticket processing running multiple times daily
 - ✅ ARR log monitor working - detecting indexer rate-limits
 - ℹ️ GitHub backup WhatsApp notification still failing (no API configured - known issue)
+
+## 2026-04-17 Review
+### What Went Well
+- ✅ Auto-Recovery cron optimized - runs in ~12s, no more timeouts
+- ✅ Transmission container fixed - healthcheck retuned, now healthy
+- ✅ Ideas queue quality improved - tightened web search filter
+- ✅ Dashboard enhancements - ARR Queue, Cron Health, Activity Feed panels
+- ✅ Dashboard z-index fix deployed (glass-card layering)
+- ✅ hermes+OpenClaw config verified - separate ports, no conflicts
+- ✅ System healthy - 41 OK jobs, 0 error jobs most of day
+
+### What Could Be Improved
+- Gmail OAuth still needs manual browser flow (John at TTY)
+- Drive OAuth scope error unresolved since Apr 14
+- hermes transient SIGKILL at 15:51 - RAM pressure issue
+- fe28d320 cron job keeps skipping (misconfigured payload.kind)
+
+### Patterns/Learnings
+- RAM pressure triggers hermes SIGKILL - monitor free memory
+- MiniMax API transient overloads - jobs auto-retry successfully
+- Dashboard z-index issues with glass-card - add relative z-50 to header
+- Auto-recovery direct exec > agentTurn (faster, more reliable)
