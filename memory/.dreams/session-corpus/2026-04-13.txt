@@ -113,3 +113,15 @@
 [main/sessions/459cdf54-3854-46a2-b28d-623a5c192138.jsonl.reset.2026-04-14T13-36-35.256Z#L118] User: Conversation info (untrusted metadata): ```json { "message_id": "AC79B8A35A088BDB9B9C5284AE53BF31", "sender_id": "+447967688452", "sender": "John Taylor", "timestamp": "Mon 2026-04-13 14:58 GMT+1" } ``` Sender (untrusted metadata): ```json { "
 [main/sessions/459cdf54-3854-46a2-b28d-623a5c192138.jsonl.reset.2026-04-14T13-36-35.256Z#L131] Assistant: Here's what landed across those ~2.5 weeks of releases (2026.3.28 → 2026.4.12): **Big new stuff** - **Active Memory plugin** — dedicated memory sub-agent that automatically pulls in relevant context before each reply (no more manually say
 [main/sessions/459cdf54-3854-46a2-b28d-623a5c192138.jsonl.reset.2026-04-14T13-36-35.256Z#L133] User: System (untrusted): [2026-04-13 14:59:17 GMT+1] Exec completed (delta-sh, code 0) :: error: unknown command 'changelog' (Did you mean channels?) An async command you ran earlier has completed. The result is shown in the system messages above. 
+[main/sessions/459cdf54-3854-46a2-b28d-623a5c192138.jsonl.reset.2026-04-14T13-36-35.256Z#L5] User: Do you still have access to my Google account
+[main/sessions/459cdf54-3854-46a2-b28d-623a5c192138.jsonl.reset.2026-04-14T13-36-35.256Z#L20] User: Yes pleaae
+[main/sessions/459cdf54-3854-46a2-b28d-623a5c192138.jsonl.reset.2026-04-14T13-36-35.256Z#L43] User: http://127.0.0.1:44431/oauth2/callback?state=TCVLgA_LsGYiSquS5qzwcjTk75EZLAbbOUhwVgaq_gA&iss=https://accounts.google.com&code=4/0Aci98E-Ma5_21KSyAvAJoRemuFWKIYqCVxAXv17a6uGVI72GUQS4HEj03fDTl4uUANrJLw&scope=email%20https://www.googleapis.com/aut
+[main/sessions/459cdf54-3854-46a2-b28d-623a5c192138.jsonl.reset.2026-04-14T13-36-35.256Z#L52] User: http://127.0.0.1:44149/oauth2/callback?state=19gwbBxbkm0Aa04mKR-avHCoiSaRBamKNTHrrD3wGbc&iss=https://accounts.google.com&code=4/0Aci98E_ICNrf92rcQacpNe1lxFGADqQUOK00iVRKtJIIbtWBXlynF-IMDh3-xmd3Bm9wzQ&scope=email%20https://www.googleapis.com/aut
+[main/sessions/459cdf54-3854-46a2-b28d-623a5c192138.jsonl.reset.2026-04-14T13-36-35.256Z#L65] User: How long till they need reauthorised
+[main/sessions/459cdf54-3854-46a2-b28d-623a5c192138.jsonl.reset.2026-04-14T13-36-35.256Z#L70] User: Thanks
+[main/sessions/459cdf54-3854-46a2-b28d-623a5c192138.jsonl.reset.2026-04-14T13-36-35.256Z#L73] User: Are you on the latest version of openclaw
+[main/sessions/459cdf54-3854-46a2-b28d-623a5c192138.jsonl.reset.2026-04-14T13-36-35.256Z#L80] User: Yes please
+[main/sessions/459cdf54-3854-46a2-b28d-623a5c192138.jsonl.reset.2026-04-14T13-36-35.256Z#L105] User: Are we back
+[main/sessions/459cdf54-3854-46a2-b28d-623a5c192138.jsonl.reset.2026-04-14T13-36-35.256Z#L118] User: What has improved since the previous version we were on
+[main/sessions/459cdf54-3854-46a2-b28d-623a5c192138.jsonl.reset.2026-04-14T13-36-35.256Z#L134] Assistant: NO_REPLY
+[main/sessions/459cdf54-3854-46a2-b28d-623a5c192138.jsonl.reset.2026-04-14T13-36-35.256Z#L135] User: What is outstanding on the kanban board
