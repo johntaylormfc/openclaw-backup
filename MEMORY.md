@@ -22,7 +22,7 @@ Deepgram Nova-2 | /home/john/.openclaw/workspace/scripts/transcribe.js
 Ideas→kanban | PRs→GitHub | WhatsApp | backup b.dashboard | never restore DB for UI
 
 ## Open
-GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM | Vector Gemini 403 | OAuth midmonth | DNS CNAME pending
+GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM | OAuth (Gmail needs re-auth) | DNS CNAME pending
 
 ## 2026-04-14 RDP Black Screen Fix (Beelink)
 - Fix: `xfwm4 --replace --display=:10.0` + `xfdesktop --display=:10.0`
@@ -31,14 +31,34 @@ GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM | Vector Gemini 403 | OAuth mid
 ## Open Issues
 
 - GLApproval AL0219 encoding: 8 .al files need re-encode UTF-8 NO BOM on GSPRO
-- Vector Gemini 403 | OAuth refresh failures | DNS CNAME pending
+- Gmail OAuth: needs manual browser flow (`gog auth add` at TTY)
+- Drive OAuth scope error (since Apr 14) - needs re-auth
+- DNS CNAME pending for openclaw.bcdev.co.uk
+- fe28d320 cron job keeps skipping (misconfigured payload.kind)
 
-## 2026-04-16 Review
-- ✅ Snapshot backup successful (Google Drive upload)
-- ✅ Auto-recovery monitor stable - all systems healthy
-- ✅ Kanban ticket processing running multiple times daily
-- ✅ ARR log monitor working - detecting indexer rate-limits
-- ℹ️ GitHub backup WhatsApp notification still failing (no API configured - known issue)
+## 2026-04-19 Weekly Summary
+
+### What Went Well
+- ✅ Snapshot backup working reliably (Apr 16, 18, 19 all successful)
+- ✅ Auto-Recovery cron optimized - runs in ~12s, no timeouts
+- ✅ Transmission container fixed - healthcheck retuned, now healthy
+- ✅ Dashboard enhancements - ARR Queue, Cron Health, Activity Feed panels
+- ✅ Dashboard z-index fix deployed (glass-card layering)
+- ✅ hermes+OpenClaw config verified - separate ports (18789 vs 44803), no conflicts
+- ✅ System healthy - 41 OK jobs, 0 error jobs most of week
+
+### What Could Be Improved
+- Gmail OAuth still needs manual browser flow (John at TTY)
+- Drive OAuth scope error unresolved since Apr 14
+- hermes transient SIGKILL on Apr 17 (RAM pressure - 1.1GB free, 20GB swap)
+- fe28d320 cron job keeps skipping (misconfigured payload.kind)
+
+### Patterns/Learnings
+- RAM pressure triggers hermes SIGKILL - monitor free memory
+- MiniMax API transient overloads - jobs auto-retry successfully
+- Dashboard z-index issues with glass-card - add relative z-50 to header
+- Auto-recovery direct exec > agentTurn (faster, more reliable)
+- Snapshot backups: tarball creation + Drive upload both working
 
 ## 2026-04-17 Review
 ### What Went Well
