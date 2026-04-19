@@ -1,5 +1,5 @@
 {
-  "lastRun": "{\"totalUnread\":9,\"oldestAll\":4,\"heavy7\":[],\"stale30\":[]}",
+  "lastRun": "{\"totalUnread\":16,\"oldestAll\":5,\"heavy7\":[],\"stale30\":[]}",
   "history": [
     {
       "date": "2026-04-17",
@@ -20,6 +20,11 @@
       "date": "2026-04-18",
       "totalUnread": 9,
       "oldestAll": 4
+    },
+    {
+      "date": "2026-04-19",
+      "totalUnread": 16,
+      "oldestAll": 5
     }
   ]
 }
