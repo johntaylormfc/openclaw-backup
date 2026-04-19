@@ -1,29 +1,32 @@
 # Weekly Memory Digest
-**Week:** 2026-04-05 to 2026-04-11
-**Memory files:** 4
+**Week:** 2026-04-12 to 2026-04-18
+**Memory files:** 7
 
 ## Topics Worked On
-- Observations
-- Gap Analysis
-- Kanban Ideas Count
-- Action Taken
-- Snapshot Backup (04:40 UTC)
-- Action Required
+- Backup Status: FAILED
 - Sessions Today
-- Main Session (19 msgs)
-- Decisions Today
-- 04:54 — Weekend Triage
-- Sessions 2026-04-11
-- Session: ffe1caf1...
-- Session: fdc5aa03...
-- Session: f9073079...
-- 2026-04-11 | openclaw, health | 3 msgs
+- Sessions 2026-04-13
+- Session: ff53b63e...
+- Session: fb687f0c...
+- Session: f192ce74...
+- Session: f189c3be...
+- Session: ef8adba1...
+- Session: ee0c6601...
+- Session: ea30f538...
+- Backup Errors
+- Sessions 2026-04-15
+- Session: ceb11148...
+- Session: c378447c...
+- Session: c190a75f...
 
 ## Files Updated
-- 2026-04-10.md
-- 2026-04-11.md
+- 2026-04-13.md
+- 2026-04-14.md
+- 2026-04-15.md
+- 2026-04-16.md
+- 2026-04-17.md
+- 2026-04-18.md
 - session-summaries.md
-- weekly-digest.md
 
 ## Decisions Made This Week
 No decisions tracked.
