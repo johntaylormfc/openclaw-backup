@@ -99,6 +99,22 @@ GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM | OAuth (Gmail needs re-auth) |
 - Dashboard z-index issues with glass-card - add relative z-50 to header
 - Auto-recovery direct exec > agentTurn (faster, more reliable)
 
+## 2026-04-20 Daily Review (Apr 19)
+### What Went Well
+- ✅ All cron jobs running normally through weekend
+- ✅ Auto-recovery health checks passing (23:00-08:00)
+- ✅ No alerts or recovery events triggered
+- ✅ Weekend system stable
+
+### What Could Be Improved
+- Gateway last heartbeat still stale (2026-03-27) - but gateway responds
+- No new work completed - quiet weekend
+
+### Patterns/Learnings
+- Weekend cron jobs maintaining system health autonomously
+- hermes transient SIGKILL on Apr 17 (RAM pressure - 1.1GB free, 20GB swap)
+- fe28d320 cron job keeps skipping (misconfigured payload.kind)
+
 ## Promoted From Short-Term Memory (2026-04-20)
 
 <!-- openclaw-memory-promotion:memory:memory/2026-04-15.md:4:7 -->
