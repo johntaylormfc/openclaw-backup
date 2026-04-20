@@ -98,3 +98,22 @@ GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM | OAuth (Gmail needs re-auth) |
 - MiniMax API transient overloads - jobs auto-retry successfully
 - Dashboard z-index issues with glass-card - add relative z-50 to header
 - Auto-recovery direct exec > agentTurn (faster, more reliable)
+
+## Promoted From Short-Term Memory (2026-04-20)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-04-15.md:4:7 -->
+- Time: 2026-04-15T23:10:59.934Z Topics: arr, docker, dashboard, memory, github, email, openclaw, health, bc, ideas Messages: 683 [score=0.812 recalls=0 avg=0.620 source=memory/2026-04-15.md:4-6]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-15.md:8:8 -->
+- Decisions: rejected; approve; approved; close; will follow [score=0.812 recalls=0 avg=0.620 source=memory/2026-04-15.md:8-8]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-15.md:11:14 -->
+- Time: 2026-04-15T23:10:59.923Z Topics: arr, docker, dashboard, openclaw, health Messages: 4 Summary: [cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Thur [score=0.812 recalls=0 avg=0.620 source=memory/2026-04-15.md:11-14]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-15.md:17:20 -->
+- Time: 2026-04-15T23:10:59.922Z Topics: arr, docker, dashboard, memory, github, email, openclaw, health, bc, ideas Messages: 10 [score=0.812 recalls=0 avg=0.620 source=memory/2026-04-15.md:17-19]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-15.md:24:27 -->
+- Time: 2026-04-15T23:10:59.922Z Topics: docker, dashboard, github, openclaw, ideas Messages: 9 Summary: [cron:007bd1be-d806-4058-8cf5-61a2e583cca0 Process next Kanban ticket] Read and follow /home/john/.openclaw/workspace/RUN_NEXT_TICKET_CRON.md and proc [score=0.812 recalls=0 avg=0.620 source=memory/2026-04-15.md:24-27]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-13.md:5:5 -->
+- **Time:** 03:02 Europe/London (02:02 UTC) [score=0.807 recalls=0 avg=0.620 source=memory/2026-04-13.md:5-5]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-13.md:9:10 -->
+- Error: ENOENT: no such file or directory, open '/home/john/.openclaw/workspace/config/google-oauth-token.json' Script: /home/john/.openclaw/workspace/scripts/drive-openclaw-backup.js [score=0.807 recalls=0 avg=0.620 source=memory/2026-04-13.md:9-10]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-13.md:13:13 -->
+- **Root Cause:** Google OAuth token file missing at expected path `config/google-oauth-token.json`. [score=0.807 recalls=0 avg=0.620 source=memory/2026-04-13.md:13-13]
