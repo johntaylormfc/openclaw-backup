@@ -7,6 +7,37 @@
 const { google } = require('googleapis');
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
+
+// polyfill fetch using https module
+function fetch(url, options = {}) {
+  return new Promise((resolve, reject) => {
+    const urlObj = new URL(url);
+    const opts = {
+      hostname: urlObj.hostname,
+      port: urlObj.port || 443,
+      path: urlObj.pathname + urlObj.search,
+      method: options.method || 'GET',
+      headers: options.headers || {}
+    };
+    const req = https.request(opts, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        const response = {
+          ok: res.statusCode >= 200 && res.statusCode < 300,
+          status: res.statusCode,
+          json: () => Promise.resolve(JSON.parse(data)),
+          text: () => Promise.resolve(data)
+        };
+        resolve(response);
+      });
+    });
+    req.on('error', reject);
+    if (options.body) req.write(options.body);
+    req.end();
+  });
+}
 
 const CONFIG_PATH = '/home/john/.openclaw/workspace/config';
 const STATE_FILE = '/tmp/email-cron-lastrun.json';
