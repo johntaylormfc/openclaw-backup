@@ -133,3 +133,12 @@ GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM | OAuth (Gmail needs re-auth) |
 - Error: ENOENT: no such file or directory, open '/home/john/.openclaw/workspace/config/google-oauth-token.json' Script: /home/john/.openclaw/workspace/scripts/drive-openclaw-backup.js [score=0.807 recalls=0 avg=0.620 source=memory/2026-04-13.md:9-10]
 <!-- openclaw-memory-promotion:memory:memory/2026-04-13.md:13:13 -->
 - **Root Cause:** Google OAuth token file missing at expected path `config/google-oauth-token.json`. [score=0.807 recalls=0 avg=0.620 source=memory/2026-04-13.md:13-13]
+
+## Promoted From Short-Term Memory (2026-04-21)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-04-15.md:21:21 -->
+- Decisions: reject; rejected; will be; should go [score=0.826 recalls=0 avg=0.620 source=memory/2026-04-15.md:21-21]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-16.md:3:5 -->
+- - **Result:** ✅ Success - **File:** openclaw-snapshot_2026-04-16T02-04-19.tar.gz (0.8 MB) - **Uploaded to:** Google Drive ## Light Sleep <!-- openclaw:dreaming:light:start --> - Candidate: Snapshot Backup — 02:04 UTC: **Result:** ✅ Success; **File:** openclaw-snapshot_2026-04-16T02-04-19.tar.gz (0.8 MB); **Uploaded to:** Google Drive [score=0.822 recalls=0 avg=0.620 source=memory/2026-04-16.md:3-9]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-16.md:475:478 -->
+- Time: 2026-04-16T20:34:01.077Z Topics: arr, docker, github, openclaw, health Messages: 3 Summary: [cron:cron-triage-30m-001 Cron Error Triage] Run triage: ~/.openclaw/workspace/tools/openclaw_cron_triage.sh Current time: Thursday, April 16th, 2026 [score=0.812 recalls=0 avg=0.620 source=memory/2026-04-16.md:475-478]
