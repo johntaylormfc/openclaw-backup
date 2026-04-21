@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-21T02:05:07.972Z",
+  "updatedAt": "2026-04-21T11:33:19.569Z",
   "entries": {
     "memory:memory/archived/2026-03-27.md:266:301": {
       "key": "memory:memory/archived/2026-03-27.md:266:301",
@@ -96603,6 +96603,130 @@
         "but",
         "already",
         "exists"
+      ]
+    },
+    "memory:memory/archived/2026-03-27.md:1:47": {
+      "key": "memory:memory/archived/2026-03-27.md:1:47",
+      "path": "memory/archived/2026-03-27.md",
+      "startLine": 1,
+      "endLine": 47,
+      "source": "memory",
+      "snippet": "# 2026-03-27 ## OpenClaw Snapshot Backup (03:04 UTC) - ✅ Backup script ran successfully - Created: `openclaw-snapshot_2026-03-27T03-04-08.tar.gz` (0.4 MB) - Uploaded to Google Drive - No errors --- ## Sessions 2026-03-27 ### Session: f9a8024b... Time: 2026-03-27T03:04:44.082Z Topics: openclaw, health Messages: 3 Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway ### Session: f80934d7... Time: 2026-03-27T03:04:44.082Z Topics: openclaw, health Messages: 1 Summary: [cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/aut",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.6924459112494992,
+      "maxScore": 0.6924459112494992,
+      "firstRecalledAt": "2026-04-21T11:33:19.569Z",
+      "lastRecalledAt": "2026-04-21T11:33:19.569Z",
+      "queryHashes": [
+        "68c7ff911b74"
+      ],
+      "recallDays": [
+        "2026-04-21"
+      ],
+      "conceptTags": [
+        "backup",
+        "gateway",
+        "0.4",
+        "2026-03-27t03",
+        "44.082z",
+        "home/john",
+        "auto-recovery",
+        "openclaw/workspace/scripts/aut"
+      ]
+    },
+    "memory:memory/archived/2026-03-26.md:370:406": {
+      "key": "memory:memory/archived/2026-03-26.md:370:406",
+      "path": "memory/archived/2026-03-26.md",
+      "startLine": 370,
+      "endLine": 406,
+      "source": "memory",
+      "snippet": "Topics: dashboard, github, openclaw, health, ideas Messages: 3 Summary: [cron:ba5191d7-2d02-4504-9218-894e4a560de2 Auto-Pickup New Kanban Tickets] Run /home/john/.openclaw/workspace/scripts/pick-up-new-tickets.sh and repor Decisions: will be; should go ### Session: 204346f2... Time: 2026-03-26T11:12:08.136Z Topics: email, openclaw Messages: 3 Summary: [cron:5905f716-4342-4453-ac2e-a4652c43a5f3 Calendar to Todoist] Run: node /home/john/.openclaw/workspace/scripts/calendar-to-todoist.js Current time: ### Session: 1da252c1... Time: 2026-03-26T11:12:08.136Z Topics: email, openclaw, bc Messages: 3 Summary: [cron:5d6d8f30-d40e-4330-a623-1d0cd5ba2635 Email to Todoist] Run: node /home/john/.opencl",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4245022267103195,
+      "maxScore": 0.4245022267103195,
+      "firstRecalledAt": "2026-04-21T11:33:19.569Z",
+      "lastRecalledAt": "2026-04-21T11:33:19.569Z",
+      "queryHashes": [
+        "68c7ff911b74"
+      ],
+      "recallDays": [
+        "2026-04-21"
+      ],
+      "conceptTags": [
+        "auto-pickup",
+        "home/john",
+        "2026-03-26t11",
+        "08.136z",
+        "topics",
+        "dashboard",
+        "github",
+        "openclaw"
+      ]
+    },
+    "memory:memory/archived/2026-03-31.md:97:123": {
+      "key": "memory:memory/archived/2026-03-31.md:97:123",
+      "path": "memory/archived/2026-03-31.md",
+      "startLine": 97,
+      "endLine": 123,
+      "source": "memory",
+      "snippet": "The AL compiler (16.4.33.4744) uses Windows-1252 (code page 1252) by DEFAULT when reading source files, NOT UTF-8. Characters 0x80-0x9F are interpreted differently: - Byte 0x93 (curly open quote in Windows-1252) = \" in UTF-8 would be E2 80 9C - BUT if the original file was encoded as Windows-1252 and then saved as UTF-8, a \" encoded as 0x93 in Win-1252 would appear as a single byte 0x93 which is INVALID UTF-8 However, Format-Hex showed clean bytes. Could be that the SOURCE of the files (where they were originally created) used Windows-1252 encoding, and when they were converted to UTF-8, some characters got corrupted. ### Test: Verify BOM effect Container enum file starts with EF BB BF (UT",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.39043494164943693,
+      "maxScore": 0.39043494164943693,
+      "firstRecalledAt": "2026-04-21T11:33:19.569Z",
+      "lastRecalledAt": "2026-04-21T11:33:19.569Z",
+      "queryHashes": [
+        "68c7ff911b74"
+      ],
+      "recallDays": [
+        "2026-04-21"
+      ],
+      "conceptTags": [
+        "16.4.33.4744",
+        "windows-1252",
+        "utf-8",
+        "0x80-0x9f",
+        "win-1252",
+        "format-hex",
+        "the",
+        "compiler"
+      ]
+    },
+    "memory:memory/archived/2026-03-26.md:672:707": {
+      "key": "memory:memory/archived/2026-03-26.md:672:707",
+      "path": "memory/archived/2026-03-26.md",
+      "startLine": 672,
+      "endLine": 707,
+      "source": "memory",
+      "snippet": "Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway ### Session: bee64738... Time: 2026-03-26T11:10:39.908Z Topics: openclaw, health Messages: 3 Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway ### Session: bd33620e... Time: 2026-03-26T11:10:39.908Z Topics: openclaw, health Messages: 3 Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway ### Session: bab71a53... Time: 202",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4396004110574722,
+      "maxScore": 0.4396004110574722,
+      "firstRecalledAt": "2026-04-21T11:33:19.569Z",
+      "lastRecalledAt": "2026-04-21T11:33:19.569Z",
+      "queryHashes": [
+        "68c7ff911b74"
+      ],
+      "recallDays": [
+        "2026-04-21"
+      ],
+      "conceptTags": [
+        "gateway",
+        "home/john",
+        "2026-03-26t11",
+        "39.908z",
+        "summary",
+        "cron:fe28d320",
+        "1b8c",
+        "476b"
       ]
     }
   }

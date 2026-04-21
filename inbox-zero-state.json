@@ -1,5 +1,5 @@
 {
-  "lastRun": "{\"totalUnread\":32,\"oldestAll\":6,\"heavy7\":[],\"stale30\":[]}",
+  "lastRun": "{\"totalUnread\":14,\"oldestAll\":7,\"heavy7\":[],\"stale30\":[{\"sender\":\"alexandrospsaltoulis@galloway-macleod.co.uk\",\"count\":2,\"oldestDays\":7}]}",
   "history": [
     {
       "date": "2026-04-17",
@@ -30,6 +30,11 @@
       "date": "2026-04-20",
       "totalUnread": 32,
       "oldestAll": 6
+    },
+    {
+      "date": "2026-04-21",
+      "totalUnread": 14,
+      "oldestAll": 7
     }
   ]
 }
