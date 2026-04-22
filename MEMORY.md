@@ -161,3 +161,8 @@ GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM | OAuth (Gmail needs re-auth) |
 - - **Result:** ✅ Success - **File:** openclaw-snapshot_2026-04-16T02-04-19.tar.gz (0.8 MB) - **Uploaded to:** Google Drive ## Light Sleep <!-- openclaw:dreaming:light:start --> - Candidate: Snapshot Backup — 02:04 UTC: **Result:** ✅ Success; **File:** openclaw-snapshot_2026-04-16T02-04-19.tar.gz (0.8 MB); **Uploaded to:** Google Drive [score=0.822 recalls=0 avg=0.620 source=memory/2026-04-16.md:3-9]
 <!-- openclaw-memory-promotion:memory:memory/2026-04-16.md:475:478 -->
 - Time: 2026-04-16T20:34:01.077Z Topics: arr, docker, github, openclaw, health Messages: 3 Summary: [cron:cron-triage-30m-001 Cron Error Triage] Run triage: ~/.openclaw/workspace/tools/openclaw_cron_triage.sh Current time: Thursday, April 16th, 2026 [score=0.812 recalls=0 avg=0.620 source=memory/2026-04-16.md:475-478]
+
+## Promoted From Short-Term Memory (2026-04-22)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-04-16.md:479:479 -->
+- Decisions: will copy [score=0.816 recalls=0 avg=0.620 source=memory/2026-04-16.md:479-479]
