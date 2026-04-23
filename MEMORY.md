@@ -166,3 +166,8 @@ GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM | OAuth (Gmail needs re-auth) |
 
 <!-- openclaw-memory-promotion:memory:memory/2026-04-16.md:479:479 -->
 - Decisions: will copy [score=0.816 recalls=0 avg=0.620 source=memory/2026-04-16.md:479-479]
+
+## Promoted From Short-Term Memory (2026-04-23)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-04-17.md:473:475 -->
+- - Candidate: Possible Lasting Truths: # 2026-04-13 - OpenClaw Snapshot Backup ## Backup Status: FAILED **Time:** 03:02 Europe/London (02:02 UTC) **Error:** ``` Error: ENOENT: no such file or directory, open '/home/john/.openclaw/workspace/config/google-oauth-token.json' Script: /home/john/.op - confidence: 0.62 - evidence: memory/2026-04-16.md:464-466 [score=0.829 recalls=0 avg=0.620 source=memory/2026-04-17.md:18-20]

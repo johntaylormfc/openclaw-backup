@@ -1,7 +1,13 @@
 {
   "lastGatewayRestart": 0,
   "containerRestarts": {},
-  "cronDisabled": {},
+  "cronDisabled": {
+    "cron-triage-30m-001": {
+      "at": 1776951906951,
+      "name": "Cron Error Triage",
+      "errors": 5
+    }
+  },
   "containerLastAttempt": {
     "transmission": 1774882203082,
     "arr-dashboard-v2": 1774882203259
