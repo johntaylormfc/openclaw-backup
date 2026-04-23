@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-23T08:04:16.319Z",
+  "updatedAt": "2026-04-23T20:32:35.899Z",
   "entries": {
     "memory:memory/archived/2026-03-27.md:266:301": {
       "key": "memory:memory/archived/2026-03-27.md:266:301",
@@ -137,19 +137,21 @@
       "endLine": 46,
       "source": "memory",
       "snippet": "# 2026-03-28 - Weekend Notes ## Activity (past 24h) - Heartbeat (Fri 27 Mar 16:02 UTC): Dashboard healthy, Kanban empty, Ideas=0 - Paradise City import interrupted - manual copy stalled due to NFS slowness, S1E3 imported via rescan ## Weekend Status - Saturday morning, system operational - No active tasks in kanban/new ## Learnings None new --- ## Sessions 2026-03-28 ### Session: fcc2874c... Time: 2026-03-28T20:33:06.815Z Topics: openclaw, health Messages: 3 Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway ### Session: f5685109... Time: 2026-03-28T20:33:06.815Z Topics: opencl",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.39245720505714415,
-      "maxScore": 0.39245720505714415,
+      "totalScore": 1.1406434137805601,
+      "maxScore": 0.7481862087234159,
       "firstRecalledAt": "2026-04-15T23:12:31.140Z",
-      "lastRecalledAt": "2026-04-15T23:12:31.140Z",
+      "lastRecalledAt": "2026-04-23T17:02:46.918Z",
       "queryHashes": [
-        "c363a3ab62b2"
+        "c363a3ab62b2",
+        "f2be94d6e5bc"
       ],
       "recallDays": [
         "2026-04-16",
-        "2026-04-15"
+        "2026-04-15",
+        "2026-04-23"
       ],
       "conceptTags": [
         "gateway",
@@ -155035,6 +155037,192 @@
         "dream",
         "diary",
         "entry"
+      ]
+    },
+    "memory:memory/archived/2026-03-26.md:71:108": {
+      "key": "memory:memory/archived/2026-03-26.md:71:108",
+      "path": "memory/archived/2026-03-26.md",
+      "startLine": 71,
+      "endLine": 108,
+      "source": "memory",
+      "snippet": "Time: 2026-03-26T11:12:08.149Z Topics: dashboard, memory, openclaw, ideas Messages: 4 Summary: [cron:cron-triage-30m-001 Cron Error Triage] Run triage: ~/.openclaw/workspace/tools/openclaw_cron_triage.sh Current time: Thursday, March 26th, 2026 ### Session: ebc06b23... Time: 2026-03-26T11:12:08.148Z Topics: openclaw, health Messages: 2 Summary: [cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Thur ### Session: e1900465... Time: 2026-03-26T11:12:08.148Z Topics: openclaw, health Messages: 3 Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/worksp",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7184199319193626,
+      "maxScore": 0.7184199319193626,
+      "firstRecalledAt": "2026-04-23T17:02:46.918Z",
+      "lastRecalledAt": "2026-04-23T17:02:46.918Z",
+      "queryHashes": [
+        "f2be94d6e5bc"
+      ],
+      "recallDays": [
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "gateway",
+        "2026-03-26t11",
+        "08.149z",
+        "cron-triage-30m-001",
+        "08.148z",
+        "auto-recovery",
+        "home/john",
+        "openclaw/worksp"
+      ]
+    },
+    "memory:memory/archived/2026-03-27.md:318:355": {
+      "key": "memory:memory/archived/2026-03-27.md:318:355",
+      "path": "memory/archived/2026-03-27.md",
+      "startLine": 318,
+      "endLine": 355,
+      "source": "memory",
+      "snippet": "Time: 2026-03-27T02:03:35.781Z Topics: openclaw, health Messages: 3 Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway ### Session: 6fe3ca52... Time: 2026-03-27T02:03:35.781Z Topics: email, openclaw, bc Messages: 3 Summary: [cron:5d6d8f30-d40e-4330-a623-1d0cd5ba2635 Email to Todoist] Run: node /home/john/.openclaw/workspace/scripts/email-to-todoist.js Current time: Friday ### Session: 67ba1cf7... Time: 2026-03-27T02:03:35.781Z Topics: openclaw, health Messages: 3 Summary: [cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/script",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.6995431608894989,
+      "maxScore": 0.6995431608894989,
+      "firstRecalledAt": "2026-04-23T17:02:46.918Z",
+      "lastRecalledAt": "2026-04-23T17:02:46.918Z",
+      "queryHashes": [
+        "f2be94d6e5bc"
+      ],
+      "recallDays": [
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "gateway",
+        "2026-03-27t02",
+        "35.781z",
+        "home/john",
+        "auto-recovery",
+        "openclaw/workspace/script",
+        "time",
+        "27t02"
+      ]
+    },
+    "memory:memory/archived/2026-03-27.md:458:493": {
+      "key": "memory:memory/archived/2026-03-27.md:458:493",
+      "path": "memory/archived/2026-03-27.md",
+      "startLine": 458,
+      "endLine": 493,
+      "source": "memory",
+      "snippet": "Time: 2026-03-27T01:03:56.251Z Topics: openclaw, health Messages: 3 Summary: [cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Frid ### Session: f489c6b6... Time: 2026-03-27T01:03:56.251Z Topics: openclaw, health Messages: 3 Summary: [cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Frid ### Session: f2a2b013... Time: 2026-03-27T01:03:56.251Z Topics: openclaw, health Messages: 3 Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gatew",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7096683526924987,
+      "maxScore": 0.7096683526924987,
+      "firstRecalledAt": "2026-04-23T17:02:46.918Z",
+      "lastRecalledAt": "2026-04-23T17:02:46.918Z",
+      "queryHashes": [
+        "f2be94d6e5bc"
+      ],
+      "recallDays": [
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "gateway",
+        "2026-03-27t01",
+        "56.251z",
+        "auto-recovery",
+        "home/john",
+        "openclaw/workspace/scripts/gatew",
+        "time",
+        "27t01"
+      ]
+    },
+    "memory:memory/2026-04-18.md:60:95": {
+      "key": "memory:memory/2026-04-18.md:60:95",
+      "path": "memory/2026-04-18.md",
+      "startLine": 60,
+      "endLine": 95,
+      "source": "memory",
+      "snippet": "### Session: dbb6be8e... Time: 2026-04-18T20:34:40.013Z Topics: openclaw Messages: 3 Summary: [cron:95c94692-2469-43c1-81fc-1913481b378d Session Transcript Capture] Capture session transcripts: cd /home/john/.openclaw/workspace/scripts && node ### Session: cde7b556... Time: 2026-04-18T20:34:40.013Z Topics: email, openclaw Messages: 3 Summary: [cron:5905f716-4342-4453-ac2e-a4652c43a5f3 Calendar to Todoist] Run: node /home/john/.openclaw/workspace/scripts/calendar-to-todoist.js Current time: ### Session: c3a2d788... Time: 2026-04-18T20:34:40.013Z Topics: arr, docker, email, openclaw, health Messages: 3 Summary: [cron:cron-triage-30m-001 Cron Error Triage] Run triage: ~/.openclaw/workspace/to",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.6182079922568988,
+      "maxScore": 0.6182079922568988,
+      "firstRecalledAt": "2026-04-23T17:02:46.918Z",
+      "lastRecalledAt": "2026-04-23T17:02:46.918Z",
+      "queryHashes": [
+        "f2be94d6e5bc"
+      ],
+      "recallDays": [
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "2026-04-18t20",
+        "40.013z",
+        "home/john",
+        "openclaw/workspace/scripts",
+        "cron-triage-30m-001",
+        "openclaw/workspace/to",
+        "dbb6be8e",
+        "time"
+      ]
+    },
+    "memory:memory/archived/2026-03-28.md:120:156": {
+      "key": "memory:memory/archived/2026-03-28.md:120:156",
+      "path": "memory/archived/2026-03-28.md",
+      "startLine": 120,
+      "endLine": 156,
+      "source": "memory",
+      "snippet": "Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway ### Session: 9b9dbf02... Time: 2026-03-28T20:33:06.809Z Topics: openclaw, health Messages: 3 Summary: [cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Satu ### Session: 8ff1b289... Time: 2026-03-28T20:33:06.808Z Topics: openclaw, health Messages: 3 Summary: [cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Satu ### Session: 8a8e5588... Time: 2",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4661353141069412,
+      "maxScore": 0.4661353141069412,
+      "firstRecalledAt": "2026-04-23T20:32:35.899Z",
+      "lastRecalledAt": "2026-04-23T20:32:35.899Z",
+      "queryHashes": [
+        "122ac7f2bf62"
+      ],
+      "recallDays": [
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "gateway",
+        "home/john",
+        "2026-03-28t20",
+        "06.809z",
+        "auto-recovery",
+        "06.808z",
+        "summary",
+        "cron:fe28d320"
+      ]
+    },
+    "memory:memory/archived/2026-03-03.md:1:14": {
+      "key": "memory:memory/archived/2026-03-03.md:1:14",
+      "path": "memory/archived/2026-03-03.md",
+      "startLine": 1,
+      "endLine": 14,
+      "source": "memory",
+      "snippet": "# March 3, 2026 ## Today's Events - Calendar to Todoist sync failed: OAuth scope insufficient (needs calendar.readonly) - Email to Todoist also likely broken (same OAuth issue) - Both need re-authentication with calendar scope ## Systems Status - Dashboard: http://192.168.1.146:5000 (arr-dashboard-v2 container) - **Blocker**: Google OAuth needs calendar scope for Calendar to Todoist ## TODO - Re-auth Google OAuth with calendar.readonly scope for both calendar-to-todoist and email-to-todoist scripts",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.4261519849300384,
+      "maxScore": 0.4261519849300384,
+      "firstRecalledAt": "2026-04-23T20:32:35.899Z",
+      "lastRecalledAt": "2026-04-23T20:32:35.899Z",
+      "queryHashes": [
+        "122ac7f2bf62"
+      ],
+      "recallDays": [
+        "2026-04-23"
+      ],
+      "conceptTags": [
+        "calendar.readonly",
+        "re-authentication",
+        "192.168.1.146",
+        "arr-dashboard-v2",
+        "re-auth",
+        "calendar-to-todoist",
+        "email-to-todoist",
+        "march"
       ]
     }
   }

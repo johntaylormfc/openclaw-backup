@@ -1,5 +1,291 @@
 [
   {
+    "sessionId": "f805cdae-c9b6-4b17-b90e-2976f06b672e",
+    "date": "2026-04-23",
+    "time": "2026-04-23T20:33:14.523Z",
+    "topics": [
+      "openclaw"
+    ],
+    "messageCount": 1,
+    "firstMsg": "[cron:95c94692-2469-43c1-81fc-1913481b378d Session Transcript Capture] Capture session transcripts: cd /home/john/.openclaw/workspace/scripts && node",
+    "lastMsg": "home/john/.openclaw/workspace/scripts && node transcript-manager.js update 60 echo \"Transcript capture complete\" Current time: Thursday, April 23rd, 2026 - 21:33 (Europe/London) / 2026-04-23 20:33 UTC",
+    "decisions": [],
+    "contributors": [
+      "user"
+    ]
+  },
+  {
+    "sessionId": "c3fa45a0-af4e-4c35-8db1-c88665edb677",
+    "date": "2026-04-23",
+    "time": "2026-04-23T20:33:14.523Z",
+    "topics": [
+      "dashboard",
+      "memory",
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 4,
+    "firstMsg": "[cron:healthcheck-hourly-001 Hourly Health Snapshot] Run healthcheck: ~/.openclaw/workspace/tools/openclaw_healthcheck.sh Current time: Thursday, Apri",
+    "lastMsg": "status 499) - 2 auto-reconnects at 20:15 and 20:53 ✓ Self-recovered - Cron delivery warning: missing target for failure notification (expected - no actionable issue) No action needed. System healthy.",
+    "decisions": [
+      "closed"
+    ],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "b38b9f71-0869-436e-ae27-117e354679ba",
+    "date": "2026-04-23",
+    "time": "2026-04-23T20:33:14.522Z",
+    "topics": [
+      "email",
+      "openclaw",
+      "bc"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:5d6d8f30-d40e-4330-a623-1d0cd5ba2635 Email to Todoist] Run: node /home/john/.openclaw/workspace/scripts/email-to-todoist.js Current time: Thursd",
+    "lastMsg": "Checking emails since: 2026-04-23T18:32:08.999Z Found 0 recent emails Checking against 50 existing Todoist tasks === Summary === New tasks created: 0  No recent emails found — 0 new tasks created. ✅",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "a625615e-508b-4228-a779-7a90b5dd8874",
+    "date": "2026-04-23",
+    "time": "2026-04-23T20:33:14.522Z",
+    "topics": [
+      "email",
+      "openclaw",
+      "bc"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:5d6d8f30-d40e-4330-a623-1d0cd5ba2635 Email to Todoist] Run: node /home/john/.openclaw/workspace/scripts/email-to-todoist.js Current time: Thursd",
+    "lastMsg": "04-23T19:03:07.678Z Found 1 recent emails Checking against 50 existing Todoist tasks === Summary === New tasks created: 0  Done. Found 1 recent email but it was already synced (0 new tasks created).",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "92c2c9d6-59f0-468f-9701-8df8b661aaa8",
+    "date": "2026-04-23",
+    "time": "2026-04-23T20:33:14.522Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:33c0c409-d4fd-44af-b2a1-040e1486e72d ARR Log Monitor] Run: /home/john/.openclaw/workspace/scripts/arr-log-monitor.sh echo \"Log monitor run comp",
+    "lastMsg": ", 2026 - 21:32 (Europe/London) / 2026-04-23 20:32 UTC (no output) Log monitor run complete. No issues detected — script produced no output, meaning no errors or warnings in the ARR logs this cycle. 🦞",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "8b38eb91-6c97-4ea6-9216-4ed82add26ac",
+    "date": "2026-04-23",
+    "time": "2026-04-23T20:33:14.522Z",
+    "topics": [
+      "docker",
+      "dashboard",
+      "openclaw"
+    ],
+    "messageCount": 19,
+    "firstMsg": "System: [2026-04-23 19:04:47 GMT+1] Execute: openclaw cron list --json 2>&1 | jq '.jobs' > /tmp/arr-cronjobs.json && docker cp /tmp/arr-cronjobs.json",
+    "lastMsg": "son Handle this reminder internally. Do not relay it to the user unless explicitly requested. Current time: Thursday, April 23rd, 2026 - 21:04 (Europe/London) / 2026-04-23 20:04 UTC (no output) Done.",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "8a9d7558-3a73-453c-b111-0be8df684d0c",
+    "date": "2026-04-23",
+    "time": "2026-04-23T20:33:14.521Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:33c0c409-d4fd-44af-b2a1-040e1486e72d ARR Log Monitor] Run: /home/john/.openclaw/workspace/scripts/arr-log-monitor.sh echo \"Log monitor run comp",
+    "lastMsg": "s/arr-log-monitor.sh echo \"Log monitor run complete\" Current time: Thursday, April 23rd, 2026 - 21:03 (Europe/London) / 2026-04-23 20:03 UTC (no output) Log monitor run complete - no issues detected.",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "8a02818a-cf9b-45ce-9bd9-7f0658cfc0bd",
+    "date": "2026-04-23",
+    "time": "2026-04-23T20:33:14.521Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 7,
+    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Output the result.",
+    "lastMsg": "s above. Handle the result internally. Do not relay it to the user unless explicitly requested. Current time: Thursday, April 23rd, 2026 - 20:45 (Europe/London) / 2026-04-23 19:45 UTC Already handled.",
+    "decisions": [
+      "will be"
+    ],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "8283829b-db18-4f73-a364-dcb9bd217b1d",
+    "date": "2026-04-23",
+    "time": "2026-04-23T20:33:14.521Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 118,
+    "firstMsg": "System: [2026-04-23 18:09:55 GMT+1] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js System:  System: This checks gateway health a",
+    "lastMsg": "rent time: Thursday, April 23rd, 2026 - 21:29 (Europe/London) / 2026-04-23 20:29 UTC <!doctype html> <html lang=\"en\">   <head>     <meta charset=\"UTF-8\" />     <meta name=\"viewport\" con  HEARTBEAT_OK",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "826cd7fe-3db8-4081-b778-fc78187ce4d1",
+    "date": "2026-04-23",
+    "time": "2026-04-23T20:33:14.519Z",
+    "topics": [
+      "docker",
+      "dashboard",
+      "openclaw",
+      "health",
+      "ideas"
+    ],
+    "messageCount": 27,
+    "firstMsg": "System: [2026-04-23 18:09:09 GMT+1] WhatsApp gateway disconnected (status 428) System: [2026-04-23 18:09:12 GMT+1] WhatsApp gateway connected as +4479",
+    "lastMsg": "ed ~39 min ago, containers are still warming up. Dashboard is responding. The WhatsApp cron job that failed 5 times has been re-enabled by the recovery itself — that's the expected cycle. All good. 🦞",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "4fbb40bb-103d-404b-b516-c1d58c652811",
+    "date": "2026-04-23",
+    "time": "2026-04-23T20:33:14.518Z",
+    "topics": [
+      "dashboard",
+      "openclaw"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:3ab0b6ce-8680-42d2-8215-615a4641c507 Dashboard DB Backup] Execute: cp /home/john/ARR/dashboard-data/dashboard.db /home/john/ARR/backups/dashboar",
+    "lastMsg": "hn/ARR/backups/dashboard-$(date +\\%Y\\%m\\%d-\\%H\\%M).db Current time: Thursday, April 23rd, 2026 - 21:04 (Europe/London) / 2026-04-23 20:04 UTC (no output) Backup created: `dashboard-20260423-2104.db` ✅",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "2a2a41df-decb-4c6e-a3ac-831dfd877044",
+    "date": "2026-04-23",
+    "time": "2026-04-23T20:33:14.518Z",
+    "topics": [
+      "memory",
+      "openclaw"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:a26f16a2-e5b6-4d31-86d3-031670712bc3 Daily Memory Log] Run: node /home/john/.openclaw/workspace/scripts/daily-memory-log.js This reads session-",
+    "lastMsg": "s: General ---  Done — daily memory entry written to `memory/2026-04-23.md`. Zero sessions logged today, so the summary is sparse. The transcript-manager.js feed will populate it as sessions happen.",
+    "decisions": [
+      "will populate"
+    ],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "1a7765ae-9753-489b-92d8-7b08d96479bd",
+    "date": "2026-04-23",
+    "time": "2026-04-23T20:33:14.518Z",
+    "topics": [
+      "email",
+      "openclaw"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:5905f716-4342-4453-ac2e-a4652c43a5f3 Calendar to Todoist] Run: node /home/john/.openclaw/workspace/scripts/calendar-to-todoist.js Current time:",
+    "lastMsg": "3 UTC === Calendar to Todoist Sync === Found 0 events in next 48 hours Checking against 50 existing Todoist tasks === Summary === New tasks created: 0  No new tasks — 0 events in the next 48 hours ✅",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "1994ea68-7e47-4d93-b4db-e0f5af76461e",
+    "date": "2026-04-23",
+    "time": "2026-04-23T20:33:14.518Z",
+    "topics": [
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 3,
+    "firstMsg": "[cron:f74cac9c-c88a-46ab-8ea5-0fcee980a2c4 Cron Health Monitor] Check cron job health: node /home/john/.openclaw/workspace/scripts/cron-monitor.js Cur",
+    "lastMsg": "23rd, 2026 - 21:03 (Europe/London) / 2026-04-23 20:03 UTC === Cron Job Health === Total: 44 | Healthy: 0 | Disabled: 8 Issues: 0 ✅ All jobs healthy ✅ All 44 cron jobs healthy | 8 disabled | 0 issues",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
+    "sessionId": "1604a5a2-53fb-414e-90e2-7105b6e284c9",
+    "date": "2026-04-23",
+    "time": "2026-04-23T20:33:14.517Z",
+    "topics": [
+      "docker",
+      "dashboard",
+      "memory",
+      "github",
+      "email",
+      "openclaw",
+      "health"
+    ],
+    "messageCount": 5,
+    "firstMsg": "[cron:5905f716-4342-4453-ac2e-a4652c43a5f3 Calendar to Todoist] Run: node /home/john/.openclaw/workspace/scripts/calendar-to-todoist.js Current time:",
+    "lastMsg": "= Calendar to Todoist Sync === Found 0 events in next 48 hours Checking against 50 existing Todoist tasks === Summary === New tasks created: 0  No events in the next 48 hours — no new tasks created.",
+    "decisions": [],
+    "contributors": [
+      "user",
+      "toolResult",
+      "assistant"
+    ]
+  },
+  {
     "sessionId": "e55c976c-663b-42d6-bc8e-b79b9cf3340a",
     "date": "2026-04-22",
     "time": "2026-04-22T21:20:02.314Z",
@@ -3949,299 +4235,6 @@
       "will be",
       "should go"
     ],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "b6ff8585-9206-4b47-80d3-68f69acb82c6",
-    "date": "2026-04-12",
-    "time": "2026-04-12T20:33:15.369Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Sund",
-    "lastMsg": "tarted === [2026-04-12T19:59:04.223Z] [INFO] Gateway: OK [2026-04-12T19:59:06.795Z] [INFO] === Auto-Recovery Check Complete — all healthy === 🦞 Auto-recovery check complete — all healthy. Gateway OK.",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "b38825de-a4a3-418b-b4a7-5610cce8dacb",
-    "date": "2026-04-12",
-    "time": "2026-04-12T20:33:15.369Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:33c0c409-d4fd-44af-b2a1-040e1486e72d ARR Log Monitor] Run: /home/john/.openclaw/workspace/scripts/arr-log-monitor.sh echo \"Log monitor run comp",
-    "lastMsg": "ho \"Log monitor run complete\" Current time: Sunday, April 12th, 2026 - 21:01 (Europe/London) / 2026-04-12 20:01 UTC (no output)  Log monitor ran clean — no errors, warnings, or exceptions detected. ✅",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "b247684a-ec37-44fd-adb3-2dc3956048da",
-    "date": "2026-04-12",
-    "time": "2026-04-12T20:33:15.369Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Sund",
-    "lastMsg": "026-04-12T19:39:01.570Z] [INFO] Gateway: OK [2026-04-12T19:39:04.128Z] [INFO] === Auto-Recovery Check Complete — all healthy ===  ✅ Auto-Recovery Check complete — all healthy. Gateway is operational.",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "83a67405-d0a9-463e-964f-98b9bc0e2c48",
-    "date": "2026-04-12",
-    "time": "2026-04-12T20:33:15.369Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Sund",
-    "lastMsg": "ry Check Started === [2026-04-12T19:34:03.376Z] [INFO] Gateway: OK [2026-04-12T19:34:05.985Z] [INFO] === Auto-Recovery Check Complete — all healthy ===  All clear — Gateway OK, no issues detected. 🦞",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "8323b89d-7ae1-4cae-9e5b-1dcd51aba564",
-    "date": "2026-04-12",
-    "time": "2026-04-12T20:33:15.368Z",
-    "topics": [
-      "dashboard",
-      "memory",
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 4,
-    "firstMsg": "[cron:healthcheck-hourly-001 Hourly Health Snapshot] Run healthcheck: ~/.openclaw/workspace/tools/openclaw_healthcheck.sh Current time: Sunday, April",
-    "lastMsg": "blocks `cd ... && node ...` chains. Need to invoke as direct `node /path/to/script.js` instead. Want me to fix the cron preflight issue? The Telegram conflict might need you to investigate manually.",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "8079a7c8-c860-4df2-85dc-e7bc66651e41",
-    "date": "2026-04-12",
-    "time": "2026-04-12T20:33:15.368Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Sund",
-    "lastMsg": "] [INFO] === Auto-Recovery Check Started === [2026-04-12T20:29:02.460Z] [INFO] Gateway: OK [2026-04-12T20:29:05.088Z] [INFO] === Auto-Recovery Check Complete — all healthy ===  All systems healthy. ✅",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "6b62d27b-a2d5-4544-a271-72927a10d51e",
-    "date": "2026-04-12",
-    "time": "2026-04-12T20:33:15.367Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Sund",
-    "lastMsg": "arted === [2026-04-12T20:14:03.516Z] [INFO] Gateway: OK [2026-04-12T20:14:06.106Z] [INFO] === Auto-Recovery Check Complete — all healthy ===  ✅ Auto-Recovery Check — all healthy. Gateway operational.",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "660a486b-7067-4aaa-a35f-f16fb62c9ba3",
-    "date": "2026-04-12",
-    "time": "2026-04-12T20:33:15.367Z",
-    "topics": [
-      "email",
-      "openclaw",
-      "bc"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:5d6d8f30-d40e-4330-a623-1d0cd5ba2635 Email to Todoist] Run: node /home/john/.openclaw/workspace/scripts/email-to-todoist.js Current time: Sunday",
-    "lastMsg": ":01:05.235Z Found 0 recent emails Checking against 27 existing Todoist tasks === Summary === New tasks created: 0  ✅ **Email → Todoist sync complete.** No new emails since last run, 0 tasks created.",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "63c69567-c90f-419d-bb01-3071aaaa757a",
-    "date": "2026-04-12",
-    "time": "2026-04-12T20:33:15.367Z",
-    "topics": [
-      "docker",
-      "dashboard",
-      "memory",
-      "email",
-      "openclaw",
-      "health",
-      "bc",
-      "ideas"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:cron-triage-30m-001 Cron Error Triage] Run triage: ~/.openclaw/workspace/tools/openclaw_cron_triage.sh Current time: Sunday, April 12th, 2026 -",
-    "lastMsg": "builtin index, still functional | | node-llama-cpp missing | Info | Optional dep for local embeddings — not required | All 24 active cron jobs are healthy (ok/skipped status). No intervention needed.",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "63a9eb0a-b572-427f-b90d-b452646c98cb",
-    "date": "2026-04-12",
-    "time": "2026-04-12T20:33:15.367Z",
-    "topics": [
-      "email",
-      "openclaw"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:5905f716-4342-4453-ac2e-a4652c43a5f3 Calendar to Todoist] Run: node /home/john/.openclaw/workspace/scripts/calendar-to-todoist.js Current time:",
-    "lastMsg": "`~/.google_token.json` or similar) 2. Re-run the script to trigger the OAuth flow, or check the script for a `--reauth` flag Want me to check the script and credentials location to get this back up?",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "628c7d3d-3694-412f-96be-176c29bda383",
-    "date": "2026-04-12",
-    "time": "2026-04-12T20:33:15.367Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Sund",
-    "lastMsg": "] [INFO] === Auto-Recovery Check Started === [2026-04-12T20:04:02.210Z] [INFO] Gateway: OK [2026-04-12T20:04:05.382Z] [INFO] === Auto-Recovery Check Complete — all healthy ===  All systems healthy. ✅",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "5b10fc74-0cb7-440b-8877-65f670e391c0",
-    "date": "2026-04-12",
-    "time": "2026-04-12T20:33:15.366Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Sund",
-    "lastMsg": "y: OK [2026-04-12T19:54:08.457Z] [INFO] === Auto-Recovery Check Complete — all healthy === ✅ **Auto-Recovery Check Complete** - **Gateway:** OK - **Result:** All healthy — no recovery actions needed.",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "5587b541-87cb-4f5f-a964-7d0782420336",
-    "date": "2026-04-12",
-    "time": "2026-04-12T20:33:15.366Z",
-    "topics": [
-      "openclaw",
-      "health"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Sund",
-    "lastMsg": "d === [2026-04-12T20:19:03.251Z] [INFO] Gateway: OK [2026-04-12T20:19:05.850Z] [INFO] === Auto-Recovery Check Complete — all healthy === ✅ **Auto-Recovery Check Complete — all healthy** - Gateway: OK",
-    "decisions": [],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "54f9f183-abb3-4131-93c1-e76025ee0ba6",
-    "date": "2026-04-12",
-    "time": "2026-04-12T20:33:15.366Z",
-    "topics": [
-      "arr",
-      "docker",
-      "dashboard",
-      "memory",
-      "github",
-      "email",
-      "openclaw",
-      "mission-control",
-      "health",
-      "ideas"
-    ],
-    "messageCount": 17,
-    "firstMsg": "[cron:007bd1be-d806-4058-8cf5-61a2e583cca0 Process next Kanban ticket] Read and follow /home/john/.openclaw/workspace/RUN_NEXT_TICKET_CRON.md and proc",
-    "lastMsg": "`OC-0049-tautulli-watch-pattern-whatsapp-morning-digest.md` - `OC-0050-arr-container-config-drift-detector.md` Per the Kanban rules, no new ticket will be picked up while work is already in progress.",
-    "decisions": [
-      "approved",
-      "Approve",
-      "Reject",
-      "rejected",
-      "close"
-    ],
-    "contributors": [
-      "user",
-      "toolResult",
-      "assistant"
-    ]
-  },
-  {
-    "sessionId": "49d28c4a-bcdd-4f11-a233-6aa1c7a783a5",
-    "date": "2026-04-12",
-    "time": "2026-04-12T20:33:15.364Z",
-    "topics": [
-      "dashboard",
-      "openclaw"
-    ],
-    "messageCount": 3,
-    "firstMsg": "[cron:3ab0b6ce-8680-42d2-8215-615a4641c507 Dashboard DB Backup] Execute: cp /home/john/ARR/dashboard-data/dashboard.db /home/john/ARR/backups/dashboar",
-    "lastMsg": "john/ARR/backups/dashboard-$(date +\\%Y\\%m\\%d-\\%H\\%M).db Current time: Sunday, April 12th, 2026 - 21:03 (Europe/London) / 2026-04-12 20:03 UTC (no output) Backup created: `dashboard-20260412-2103.db` ✅",
-    "decisions": [],
     "contributors": [
       "user",
       "toolResult",

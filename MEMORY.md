@@ -36,6 +36,26 @@ GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM | OAuth (Gmail needs re-auth) |
 - DNS CNAME pending for openclaw.bcdev.co.uk
 - fe28d320 cron job keeps skipping (misconfigured payload.kind)
 
+---
+
+## 2026-04-23 Daily Review
+### What Went Well
+- ✅ Snapshot backup successful (1.4 MB, 02:04 UTC)
+- ✅ All cron jobs executed without errors (auto-recovery, healthcheck, triage, memory log)
+- ✅ Dashboard functions normal (DB backup, snapshot, kanban processing)
+- ✅ GitHub backup and Drive backup working
+- ✅ Email to Todoist pipeline working
+
+### What Could Be Improved
+- fe28d320 cron job still skipping (persistent misconfigured payload.kind issue)
+- Gmail OAuth still needs manual browser flow
+- Drive OAuth scope error unresolved since Apr 14
+
+### Patterns/Learnings
+- Snapshot backup size varies (0.8 MB Apr 16 → 1.4 MB Apr 22) - may indicate more files being backed up
+- fe28d320 cron job has been consistently failing for weeks - needs permanent fix
+- System is highly autonomous - minimal intervention needed
+
 ## 2026-04-18 Daily Review
 ### What Went Well
 - ✅ Snapshot backup successful (~1.0 MB, 03:05 UTC)
