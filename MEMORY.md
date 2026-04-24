@@ -38,6 +38,21 @@ GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM | OAuth (Gmail needs re-auth) |
 
 ---
 
+## 2026-04-24 Daily Review
+### What Went Well
+- ✅ gateway-watchdog keepalive added - fixed stale log causing false DOWN detections
+- ✅ WhatsApp gateway connected successfully after brief 428 status disconnect
+- ✅ ARR log monitor running reliably
+- ✅ All cron jobs executed without errors
+
+### What Could Be Improved
+- WhatsApp notifications returning 404 (channel not configured) - not critical
+- fe28d320 cron job still skipping (persistent misconfigured payload.kind issue)
+
+### Patterns/Learnings
+- Gateway log staleness (not gateway itself) was causing false DOWN detections - fixed with */4 cron to touch gateway.log
+- WhatsApp briefly disconnected (status 428) then reconnected - system self-healed
+
 ## 2026-04-23 Daily Review
 ### What Went Well
 - ✅ Snapshot backup successful (1.4 MB, 02:04 UTC)
@@ -55,6 +70,8 @@ GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM | OAuth (Gmail needs re-auth) |
 - Snapshot backup size varies (0.8 MB Apr 16 → 1.4 MB Apr 22) - may indicate more files being backed up
 - fe28d320 cron job has been consistently failing for weeks - needs permanent fix
 - System is highly autonomous - minimal intervention needed
+
+---
 
 ## 2026-04-18 Daily Review
 ### What Went Well

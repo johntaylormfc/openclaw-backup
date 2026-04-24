@@ -6,18 +6,16 @@
 
 const fs = require('fs');
 const { execSync } = require('child_process');
-const http = require('http');
-const https = require('https');
 
 const GATEWAY_LOG = '/home/john/.hermes/logs/gateway.log';
 const STATE_FILE = '/tmp/gateway-watchdog.state';
-const TOKEN = 'd3ba6e...31bf';
 const MIN_UP_TIME_SEC = 60; // consider "up" if process has been running > 60s
 
 function getGatewayPID() {
   try {
-    const out = execSync('pgrep -f "hermes_cli.main gateway"', { encoding: 'utf8' });
-    return parseInt(out.trim().split('\n')[0], 10);
+    // Use --oldest to get the real gateway process, not transient wrappers/subshells
+    const out = execSync('pgrep --oldest -f "hermes_cli.main gateway"', { encoding: 'utf8' });
+    return parseInt(out.trim(), 10);
   } catch (e) {
     return null;
   }
@@ -87,37 +85,17 @@ function saveState(state) {
 }
 
 async function sendWhatsApp(message) {
+  const { execSync } = require('child_process');
   try {
-    const payload = JSON.stringify({
-      channel: 'whatsapp',
-      to: '+447****8452',
-      text: message
-    });
-    
-    const options = {
-      hostname: '127.0.0.1',
-      port: 18789,
-      path: '/v1/messages/send',
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${TOKEN}`,
-        'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(payload)
-      }
-    };
-    
-    return new Promise((resolve, reject) => {
-      const req = http.request(options, res => {
-        let data = '';
-        res.on('data', chunk => data += chunk);
-        res.on('end', () => resolve({ status: res.statusCode, data }));
-      });
-      req.on('error', reject);
-      req.write(payload);
-      req.end();
-    });
+    const escaped = message.replace(/'/g, "'\\''");
+    const cmd = `openclaw message send --channel whatsapp --target +447967688452 --message '${escaped}'`;
+    const out = execSync(cmd, { encoding: 'utf8', timeout: 15000 });
+    return { status: 200, data: out.trim() };
   } catch (e) {
-    return { error: e.message };
+    const out = e.stdout || '';
+    const err = e.stderr || '';
+    if (out.includes('Sent via gateway') || out.includes('Message ID')) return { status: 200, data: out.trim() };
+    return { status: 500, data: (out + ' ' + err).trim() || e.message };
   }
 }
 
