@@ -25,7 +25,7 @@ KNOWN_REPOS=$(mktemp)
 
 KANBAN_DIR="/home/john/.openclaw/workspace/kanban"
 for dir in idea complete done rejected; do
-  find "$KANBAN_DIR/$dir" -name "*.md" -type f 2>/dev/null
+  [ -d "$KANBAN_DIR/$dir" ] && find "$KANBAN_DIR/$dir" -name "*.md" -type f 2>/dev/null || true
 done | while IFS= read -r file; do
   # Extract and normalise title — use fgrep for exact string match on markdown bold syntax
   title=$(fgrep "**Title:**" "$file" 2>/dev/null | sed 's/^\*\*Title:\*\* *//' | tr '[:upper:]' '[:lower:]' | tr -s ' ' | tr -d '\r' || true)
