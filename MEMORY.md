@@ -208,3 +208,12 @@ GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM | OAuth (Gmail needs re-auth) |
 
 <!-- openclaw-memory-promotion:memory:memory/2026-04-17.md:473:475 -->
 - - Candidate: Possible Lasting Truths: # 2026-04-13 - OpenClaw Snapshot Backup ## Backup Status: FAILED **Time:** 03:02 Europe/London (02:02 UTC) **Error:** ``` Error: ENOENT: no such file or directory, open '/home/john/.openclaw/workspace/config/google-oauth-token.json' Script: /home/john/.op - confidence: 0.62 - evidence: memory/2026-04-16.md:464-466 [score=0.829 recalls=0 avg=0.620 source=memory/2026-04-17.md:18-20]
+
+## Promoted From Short-Term Memory (2026-04-25)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-04-18.md:16:19 -->
+- [snapshot] Creating openclaw-snapshot_2026-04-18T02-05-41.tar.gz... [snapshot] Created 1.0 MB [snapshot] Uploaded: openclaw-snapshot_2026-04-18T02-05-41.tar.gz [snapshot] Done. [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-18.md:16-19]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-18.md:22:22 -->
+- **Notes:** Backup created and uploaded successfully (~1.0 MB). [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-18.md:22-22]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-18.md:29:32 -->
+- Time: 2026-04-18T20:34:40.065Z Topics: openclaw, health Messages: 4 Summary: [cron:33c0c409-d4fd-44af-b2a1-040e1486e72d ARR Log Monitor] Run: /home/john/.openclaw/workspace/scripts/arr-log-monitor.sh echo "Log monitor run comp [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-18.md:29-32]
