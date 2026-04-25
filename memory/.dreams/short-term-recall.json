@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-25T02:04:53.846Z",
+  "updatedAt": "2026-04-25T08:33:15.016Z",
   "entries": {
     "memory:memory/archived/2026-03-27.md:266:301": {
       "key": "memory:memory/archived/2026-03-27.md:266:301",
@@ -155235,19 +155235,21 @@
       "endLine": 156,
       "source": "memory",
       "snippet": "Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway ### Session: 9b9dbf02... Time: 2026-03-28T20:33:06.809Z Topics: openclaw, health Messages: 3 Summary: [cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Satu ### Session: 8ff1b289... Time: 2026-03-28T20:33:06.808Z Topics: openclaw, health Messages: 3 Summary: [cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Satu ### Session: 8a8e5588... Time: 2",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.9322706282138824,
-      "maxScore": 0.4661353141069412,
+      "totalScore": 1.4162561297416687,
+      "maxScore": 0.48398550152778624,
       "firstRecalledAt": "2026-04-23T20:32:35.899Z",
-      "lastRecalledAt": "2026-04-24T21:02:22.692Z",
+      "lastRecalledAt": "2026-04-25T08:33:15.016Z",
       "queryHashes": [
-        "122ac7f2bf62"
+        "122ac7f2bf62",
+        "1de41d7f3f0b"
       ],
       "recallDays": [
         "2026-04-23",
-        "2026-04-24"
+        "2026-04-24",
+        "2026-04-25"
       ],
       "conceptTags": [
         "gateway",
@@ -185686,6 +185688,37 @@
         "created",
         "anne",
         "marie"
+      ]
+    },
+    "memory:memory/archived/2026-03-27.md:541:576": {
+      "key": "memory:memory/archived/2026-03-27.md:541:576",
+      "path": "memory/archived/2026-03-27.md",
+      "startLine": 541,
+      "endLine": 576,
+      "source": "memory",
+      "snippet": "Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway ### Session: b5c583e9... Time: 2026-03-27T01:03:56.245Z Topics: openclaw, health Messages: 3 Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway ### Session: ad20d5df... Time: 2026-03-27T01:03:56.245Z Topics: openclaw, health Messages: 3 Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway ### Session: 9dd15b26... Time: 202",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.48304153382778164,
+      "maxScore": 0.48304153382778164,
+      "firstRecalledAt": "2026-04-25T08:33:15.016Z",
+      "lastRecalledAt": "2026-04-25T08:33:15.016Z",
+      "queryHashes": [
+        "1de41d7f3f0b"
+      ],
+      "recallDays": [
+        "2026-04-25"
+      ],
+      "conceptTags": [
+        "gateway",
+        "home/john",
+        "2026-03-27t01",
+        "56.245z",
+        "summary",
+        "cron:fe28d320",
+        "1b8c",
+        "476b"
       ]
     }
   }

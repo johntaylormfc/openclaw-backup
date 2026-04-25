@@ -18,7 +18,7 @@ CONTAINERS="sonarr radarr prowlarr sabnzbd transmission flaresolverr readarr baz
 # Error patterns (case-insensitive)
 ERROR_PATTERNS="error|failed|fatal|crash|killed|unhealthy|timeout|permission denied|disk full|no space left"
 # Known benign / already-monitored issues to suppress
-IGNORE_PATTERNS="SocketException|symbolic link.*file exists|HttpClient.*HTTP Error|CancellationToken|stack trace|System\.Net\.|at System\.|at NzbDrone|An admin is not configured|Indexer is disabled till.*due to recent failures"
+IGNORE_PATTERNS="SocketException|symbolic link.*file exists|HttpClient.*HTTP Error|CancellationToken|stack trace|System\.Net\.|at System\.|at NzbDrone|An admin is not configured|Indexer is disabled till.*due to recent failures|Query successful, but no results|Validation failed.*indexer"
 
 # Cooldown: don't re-alert for same issue within this many seconds
 COOLDOWN=3600
