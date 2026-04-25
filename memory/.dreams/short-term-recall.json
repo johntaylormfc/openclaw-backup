@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-25T08:33:15.016Z",
+  "updatedAt": "2026-04-25T13:32:46.291Z",
   "entries": {
     "memory:memory/archived/2026-03-27.md:266:301": {
       "key": "memory:memory/archived/2026-03-27.md:266:301",
@@ -96848,20 +96848,21 @@
       "endLine": 84,
       "source": "memory",
       "snippet": "Time: 2026-04-15T23:10:59.920Z Topics: github, email, openclaw, bc Messages: 6 Summary: [cron:5d6d8f30-d40e-4330-a623-1d0cd5ba2635 Email to Todoist] Run: node /home/john/.openclaw/workspace/scripts/email-to-todoist.js Current time: Thursd ### Session: 7cf8c68d... Time: 2026-04-15T23:10:59.920Z Topics: memory, github, email, openclaw Messages: 12 Summary: [cron:d1270ff8-498b-4256-a322-b4d3187822ed OpenClaw Backup to GitHub] Run backup script for OpenClaw: 1. Configure git in /home/john/.openclaw/worksp Decisions: rejected ### Session: 52290b19... Time: 2026-04-15T23:10:59.919Z Topics: arr, docker, openclaw, ideas Messages: 4 Summary: [cron:20eac432-7d92-4121-af71-7458d14ac7f6 YouTube Ideas",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.2314819070352627,
+      "totalScore": 1.80963123381047,
       "maxScore": 0.6320125030003415,
       "firstRecalledAt": "2026-04-21T18:09:14.200Z",
-      "lastRecalledAt": "2026-04-23T23:34:34.818Z",
+      "lastRecalledAt": "2026-04-25T12:03:18.535Z",
       "queryHashes": [
         "1171a50fb52b"
       ],
       "recallDays": [
         "2026-04-21",
         "2026-04-24",
-        "2026-04-23"
+        "2026-04-23",
+        "2026-04-25"
       ],
       "conceptTags": [
         "backup",
@@ -155269,19 +155270,21 @@
       "endLine": 14,
       "source": "memory",
       "snippet": "# March 3, 2026 ## Today's Events - Calendar to Todoist sync failed: OAuth scope insufficient (needs calendar.readonly) - Email to Todoist also likely broken (same OAuth issue) - Both need re-authentication with calendar scope ## Systems Status - Dashboard: http://192.168.1.146:5000 (arr-dashboard-v2 container) - **Blocker**: Google OAuth needs calendar scope for Calendar to Todoist ## TODO - Re-auth Google OAuth with calendar.readonly scope for both calendar-to-todoist and email-to-todoist scripts",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.8523039698600768,
-      "maxScore": 0.4261519849300384,
+      "totalScore": 1.3085817277431486,
+      "maxScore": 0.45627775788307184,
       "firstRecalledAt": "2026-04-23T20:32:35.899Z",
-      "lastRecalledAt": "2026-04-24T21:02:22.692Z",
+      "lastRecalledAt": "2026-04-25T13:32:46.291Z",
       "queryHashes": [
-        "122ac7f2bf62"
+        "122ac7f2bf62",
+        "7f80f19c0b22"
       ],
       "recallDays": [
         "2026-04-23",
-        "2026-04-24"
+        "2026-04-24",
+        "2026-04-25"
       ],
       "conceptTags": [
         "calendar.readonly",
@@ -185719,6 +185722,68 @@
         "cron:fe28d320",
         "1b8c",
         "476b"
+      ]
+    },
+    "memory:memory/archived/2026-03-12.md:24:37": {
+      "key": "memory:memory/archived/2026-03-12.md:24:37",
+      "path": "memory/archived/2026-03-12.md",
+      "startLine": 24,
+      "endLine": 37,
+      "source": "memory",
+      "snippet": "- Gmail OAuth token expired (alerted john) - Calendar/Todoist sync still broken due to OAuth scope issues - Vector memory disabled (Gemini 403 errors) ### Research Activity - Multiple research files created today (research-1771623589373.md, research-1771851867819.md, etc.) - All research files successfully synced to Google Drive ## Heartbeat Summary (23:00) - Dashboard: OK (port 5000) - Kanban: Active with regular ticket processing - Cron jobs: 32 total, 1 timeout error (gdrive-sync) - Gmail OAuth: Expired - needs re-auth",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.7081729438512707,
+      "maxScore": 0.7081729438512707,
+      "firstRecalledAt": "2026-04-25T13:32:46.291Z",
+      "lastRecalledAt": "2026-04-25T13:32:46.291Z",
+      "queryHashes": [
+        "7f80f19c0b22"
+      ],
+      "recallDays": [
+        "2026-04-25"
+      ],
+      "conceptTags": [
+        "calendar/todoist",
+        "research-1771623589373.md",
+        "research-1771851867819.md",
+        "gdrive-sync",
+        "re-auth",
+        "gmail",
+        "oauth",
+        "token"
+      ]
+    },
+    "memory:memory/archived/2026-03-01.md:1:10": {
+      "key": "memory:memory/archived/2026-03-01.md:1:10",
+      "path": "memory/archived/2026-03-01.md",
+      "startLine": 1,
+      "endLine": 10,
+      "source": "memory",
+      "snippet": "# March 1, 2026 ## Weekend Notes - Heartbeat: 18:07, 21:27, 21:47, 22:44 (Sunday evening) - Dashboard: healthy (responding) ## Cron Jobs - **gdrive-sync**: Ran sync script - 1/6 files uploaded, 5 failed (Service Account quota issue) - **Email to Todoist**: Failing - Gmail OAuth token expired (multiple attempts)",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.41001656055450436,
+      "maxScore": 0.41001656055450436,
+      "firstRecalledAt": "2026-04-25T13:32:46.291Z",
+      "lastRecalledAt": "2026-04-25T13:32:46.291Z",
+      "queryHashes": [
+        "7f80f19c0b22"
+      ],
+      "recallDays": [
+        "2026-04-25"
+      ],
+      "conceptTags": [
+        "gdrive-sync",
+        "1/6",
+        "march",
+        "weekend",
+        "heartbeat",
+        "sunday",
+        "evening",
+        "dashboard"
       ]
     }
   }
