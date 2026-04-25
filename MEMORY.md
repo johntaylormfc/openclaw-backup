@@ -38,6 +38,21 @@ GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM | OAuth (Gmail needs re-auth) |
 
 ---
 
+## 2026-04-25 Daily Review
+### What Went Well
+- ✅ Dashboard stable all day
+- ✅ WhatsApp reconnecting reliably after 499 disconnects
+- ✅ Gateway watchdog keepalive working (no false DOWN detections)
+- ✅ All cron jobs executed without errors
+
+### What Could Be Improved
+- WhatsApp 499 disconnects ~every 30 min - reconnecting each time, not critical
+
+### Patterns/Learnings
+- WhatsApp 499 pattern: brief disconnect, auto-reconnect within ~3s
+
+---
+
 ## 2026-04-24 Daily Review
 ### What Went Well
 - ✅ gateway-watchdog keepalive added - fixed stale log causing false DOWN detections

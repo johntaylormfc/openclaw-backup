@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-25T13:32:46.291Z",
+  "updatedAt": "2026-04-25T22:00:19.784Z",
   "entries": {
     "memory:memory/archived/2026-03-27.md:266:301": {
       "key": "memory:memory/archived/2026-03-27.md:266:301",
@@ -137,21 +137,23 @@
       "endLine": 46,
       "source": "memory",
       "snippet": "# 2026-03-28 - Weekend Notes ## Activity (past 24h) - Heartbeat (Fri 27 Mar 16:02 UTC): Dashboard healthy, Kanban empty, Ideas=0 - Paradise City import interrupted - manual copy stalled due to NFS slowness, S1E3 imported via rescan ## Weekend Status - Saturday morning, system operational - No active tasks in kanban/new ## Learnings None new --- ## Sessions 2026-03-28 ### Session: fcc2874c... Time: 2026-03-28T20:33:06.815Z Topics: openclaw, health Messages: 3 Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway ### Session: f5685109... Time: 2026-03-28T20:33:06.815Z Topics: opencl",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.1406434137805601,
+      "totalScore": 1.5276507068856855,
       "maxScore": 0.7481862087234159,
       "firstRecalledAt": "2026-04-15T23:12:31.140Z",
-      "lastRecalledAt": "2026-04-23T17:02:46.918Z",
+      "lastRecalledAt": "2026-04-25T22:00:19.784Z",
       "queryHashes": [
         "c363a3ab62b2",
-        "f2be94d6e5bc"
+        "f2be94d6e5bc",
+        "31ac3bfc00d3"
       ],
       "recallDays": [
         "2026-04-16",
         "2026-04-15",
-        "2026-04-23"
+        "2026-04-23",
+        "2026-04-25"
       ],
       "conceptTags": [
         "gateway",
@@ -155236,16 +155238,17 @@
       "endLine": 156,
       "source": "memory",
       "snippet": "Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway ### Session: 9b9dbf02... Time: 2026-03-28T20:33:06.809Z Topics: openclaw, health Messages: 3 Summary: [cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Satu ### Session: 8ff1b289... Time: 2026-03-28T20:33:06.808Z Topics: openclaw, health Messages: 3 Summary: [cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Satu ### Session: 8a8e5588... Time: 2",
-      "recallCount": 3,
+      "recallCount": 4,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.4162561297416687,
+      "totalScore": 1.8657992750406265,
       "maxScore": 0.48398550152778624,
       "firstRecalledAt": "2026-04-23T20:32:35.899Z",
-      "lastRecalledAt": "2026-04-25T08:33:15.016Z",
+      "lastRecalledAt": "2026-04-25T18:02:19.851Z",
       "queryHashes": [
         "122ac7f2bf62",
-        "1de41d7f3f0b"
+        "1de41d7f3f0b",
+        "e5ff6fb7b798"
       ],
       "recallDays": [
         "2026-04-23",
