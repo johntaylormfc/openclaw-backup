@@ -11,7 +11,6 @@ Sonarr :8989 | Radarr :7878 | Prowlarr :9696 | keys: memory/credentials.md
 ## GSPro 192.168.1.228
 WinRM bot/BotBotBot! p5985 | SSH bot/BotBotBot! | admin john/M0therwell9!
 
-
 ## Credentials
 keys: memory/credentials.md | OpenCF PID 176958 Beelink | DNS openclaw.bcdev.co.uk pending
 
@@ -24,211 +23,82 @@ Ideas→kanban | PRs→GitHub | WhatsApp | backup b.dashboard | never restore DB
 ## Open
 GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM | OAuth (Gmail needs re-auth) | DNS CNAME pending
 
-## 2026-04-14 RDP Black Screen Fix (Beelink)
-- Fix: `xfwm4 --replace --display=:10.0` + `xfdesktop --display=:10.0`
-- RDP client fallback: Display→Colors=High(16-bit), Experience→untick bitmap caching
+## 2026-04-26 Weekly Summary
+
+### What Went Well
+- ✅ Snapshot backups working (Apr 19, 20, 21, 22, 25) - 1.0-1.7 MB range
+- ✅ Hermes file handoff live (Apr 21) - test-hw-001 completed successfully
+- ✅ Gateway watchdog keepalive added (Apr 23) - fixed false DOWN detections
+- ✅ WhatsApp auto-reconnecting reliably after 499 disconnects (~30min cycles)
+- ✅ Dashboard stable all week
+
+### What Could Be Improved
+- WhatsApp 499 disconnects every ~30 min - self-healing, not critical
+- fe28d320 cron job still skipping (persistent payload.kind misconfigured)
+- Gmail OAuth needs manual browser flow
+- Drive OAuth scope error since Apr 14
+
+### New This Week
+- Hermes task handoff: cron 64e0a4372611, skill task-handoff, script hermes_handoff.js
+- Gateway watchdog: */4 cron touches gateway.log to prevent stale log false alarms
+
+### Stale Issues
+- GLApproval AL0219 encoding: 8 .al files need UTF-8 NO BOM on GSPro
+- DNS CNAME pending: openclaw.bcdev.co.uk
+
+---
+
+## 2026-04-25 Daily Review
+- ✅ Snapshot backup (1.7 MB), WhatsApp reconnecting after 499s, gateway watchdog working
+- WhatsApp 499 disconnects ~every 30 min, auto-reconnects within ~3s
+
+## 2026-04-24 Daily Review
+- ✅ Dashboard stable, WhatsApp reconnecting reliably, gateway watchdog keepalive working
+- All cron jobs executed without errors
+
+## 2026-04-23 Daily Review
+- ✅ Snapshot backup (1.4 MB), gateway-watchdog keepalive added
+- WhatsApp briefly disconnected (428) then self-healed
+- fe28d320 cron job still skipping
+
+## 2026-04-22 Daily Review
+- ✅ Snapshot backup successful (1.4 MB)
+- All cron jobs executed without errors
+- Active dev session: ARR, dashboard, GitHub work
+
+## 2026-04-21 - Hermes Handoff Live
+- ✅ Snapshot backup (1.3 MB)
+- Hermes file handoff confirmed working: test-hw-001 completed at 07:03 UTC
+- Cron 64e0a4372611 "OpenClaw Task Poller" every 5m
+- Script: /home/john/.openclaw/workspace/scripts/hermes_handoff.js
+
+## 2026-04-20 Daily Review
+- ✅ Snapshot backup (1.2 MB)
+- 3 new kanban ideas: IDEA-0165, 0166, 0167
+
+## 2026-04-19 Weekly Summary (Apr 13-19)
+- ✅ Snapshot backup working (Apr 16, 18, 19)
+- Auto-Recovery cron optimized (~12s, no timeouts)
+- Transmission container fixed - healthcheck retuned
+- Dashboard enhancements: ARR Queue, Cron Health, Activity Feed panels
+- hermes+OpenClaw config verified - separate ports
+
+---
+
+## Patterns/Learnings
+- WhatsApp 499 pattern: brief disconnect, auto-reconnect within ~3s
+- RAM pressure triggers hermes SIGKILL - monitor free memory
+- Gateway log staleness causes false DOWN detections - fixed with */4 cron
+- Snapshot backups every 2 days: consistent 1.0-1.7 MB range
+- fe28d320 cron job persistent failure - needs permanent fix
 
 ## Open Issues
-
 - GLApproval AL0219 encoding: 8 .al files need re-encode UTF-8 NO BOM on GSPRO
 - Gmail OAuth: needs manual browser flow (`gog auth add` at TTY)
 - Drive OAuth scope error (since Apr 14) - needs re-auth
 - DNS CNAME pending for openclaw.bcdev.co.uk
 - fe28d320 cron job keeps skipping (misconfigured payload.kind)
 
----
-
-## 2026-04-25 Daily Review
-### What Went Well
-- ✅ Dashboard stable all day
-- ✅ WhatsApp reconnecting reliably after 499 disconnects
-- ✅ Gateway watchdog keepalive working (no false DOWN detections)
-- ✅ All cron jobs executed without errors
-
-### What Could Be Improved
-- WhatsApp 499 disconnects ~every 30 min - reconnecting each time, not critical
-
-### Patterns/Learnings
-- WhatsApp 499 pattern: brief disconnect, auto-reconnect within ~3s
-
----
-
-## 2026-04-24 Daily Review
-### What Went Well
-- ✅ gateway-watchdog keepalive added - fixed stale log causing false DOWN detections
-- ✅ WhatsApp gateway connected successfully after brief 428 status disconnect
-- ✅ ARR log monitor running reliably
-- ✅ All cron jobs executed without errors
-
-### What Could Be Improved
-- WhatsApp notifications returning 404 (channel not configured) - not critical
-- fe28d320 cron job still skipping (persistent misconfigured payload.kind issue)
-
-### Patterns/Learnings
-- Gateway log staleness (not gateway itself) was causing false DOWN detections - fixed with */4 cron to touch gateway.log
-- WhatsApp briefly disconnected (status 428) then reconnected - system self-healed
-
-## 2026-04-23 Daily Review
-### What Went Well
-- ✅ Snapshot backup successful (1.4 MB, 02:04 UTC)
-- ✅ All cron jobs executed without errors (auto-recovery, healthcheck, triage, memory log)
-- ✅ Dashboard functions normal (DB backup, snapshot, kanban processing)
-- ✅ GitHub backup and Drive backup working
-- ✅ Email to Todoist pipeline working
-
-### What Could Be Improved
-- fe28d320 cron job still skipping (persistent misconfigured payload.kind issue)
-- Gmail OAuth still needs manual browser flow
-- Drive OAuth scope error unresolved since Apr 14
-
-### Patterns/Learnings
-- Snapshot backup size varies (0.8 MB Apr 16 → 1.4 MB Apr 22) - may indicate more files being backed up
-- fe28d320 cron job has been consistently failing for weeks - needs permanent fix
-- System is highly autonomous - minimal intervention needed
-
----
-
-## 2026-04-18 Daily Review
-### What Went Well
-- ✅ Snapshot backup successful (~1.0 MB, 03:05 UTC)
-- ✅ All cron jobs running normally (healthcheck, log monitor, triage, email/calendar sync)
-- ✅ System healthy - no errors in daily triage
-- ✅ Weekend operations stable
-
-### What Could Be Improved
-- Limited activity - John away for weekend, minimal automation work
-- No new dashboard deployments (build in progress but not completed)
-
-### Patterns/Learnings
-- Weekend mode: system self-heals, minimal automation active
-- Snapshot backups running reliably (every 2 days: 16, 18, 19)
-
----
-
-## 2026-04-19 Weekly Summary
-
-### What Went Well
-- ✅ Snapshot backup working reliably (Apr 16, 18, 19 all successful)
-- ✅ Auto-Recovery cron optimized - runs in ~12s, no timeouts
-- ✅ Transmission container fixed - healthcheck retuned, now healthy
-- ✅ Dashboard enhancements - ARR Queue, Cron Health, Activity Feed panels
-- ✅ Dashboard z-index fix deployed (glass-card layering)
-- ✅ hermes+OpenClaw config verified - separate ports (18789 vs 44803), no conflicts
-- ✅ System healthy - 41 OK jobs, 0 error jobs most of week
-
-### What Could Be Improved
-- Gmail OAuth still needs manual browser flow (John at TTY)
-- Drive OAuth scope error unresolved since Apr 14
-- hermes transient SIGKILL on Apr 17 (RAM pressure - 1.1GB free, 20GB swap)
-- fe28d320 cron job keeps skipping (misconfigured payload.kind)
-
-### Patterns/Learnings
-- RAM pressure triggers hermes SIGKILL - monitor free memory
-- MiniMax API transient overloads - jobs auto-retry successfully
-- Dashboard z-index issues with glass-card - add relative z-50 to header
-- Auto-recovery direct exec > agentTurn (faster, more reliable)
-- Snapshot backups: tarball creation + Drive upload both working
-
-## 2026-04-17 Review
-### What Went Well
-- ✅ Auto-Recovery cron optimized - runs in ~12s, no more timeouts
-- ✅ Transmission container fixed - healthcheck retuned, now healthy
-- ✅ Ideas queue quality improved - tightened web search filter
-- ✅ Dashboard enhancements - ARR Queue, Cron Health, Activity Feed panels
-- ✅ Dashboard z-index fix deployed (glass-card layering)
-- ✅ hermes+OpenClaw config verified - separate ports, no conflicts
-- ✅ System healthy - 41 OK jobs, 0 error jobs most of day
-
-### What Could Be Improved
-- Gmail OAuth still needs manual browser flow (John at TTY)
-- Drive OAuth scope error unresolved since Apr 14
-- hermes transient SIGKILL at 15:51 - RAM pressure issue
-- fe28d320 cron job keeps skipping (misconfigured payload.kind)
-
-### Patterns/Learnings
-- RAM pressure triggers hermes SIGKILL - monitor free memory
-- MiniMax API transient overloads - jobs auto-retry successfully
-- Dashboard z-index issues with glass-card - add relative z-50 to header
-- Auto-recovery direct exec > agentTurn (faster, more reliable)
-
-## 2026-04-20 Daily Review (Apr 20)
-### What Went Well
-- ✅ Snapshot backup successful (1.2 MB, 03:06 UTC)
-- ✅ All cron jobs executed without errors (healthcheck, triage, memory log, email sync)
-- ✅ Dashboard DB backup running on schedule
-- ✅ Active development session: docker, dashboard, GitHub, ARR work
-- ✅ Three new kanban ideas generated (IDEA-0165, 0166, 0167)
-
-### What Could Be Improved
-- No critical issues - system running smoothly
-- Consider consolidating some cron jobs for efficiency
-
-### Patterns/Learnings
-- Snapshot backups every 2 days consistently working (16, 18, 19, 20)
-- System maintains health autonomously during weekdays
-- fe28d320 cron job still skipping (persistent misconfigured payload.kind issue)
-
----
-
-## 2026-04-20 Daily Review (Apr 19)
-### What Went Well
-- ✅ All cron jobs running normally through weekend
-- ✅ Auto-recovery health checks passing (23:00-08:00)
-- ✅ No alerts or recovery events triggered
-- ✅ Weekend system stable
-
-### What Could Be Improved
-- Gateway last heartbeat still stale (2026-03-27) - but gateway responds
-- No new work completed - quiet weekend
-
-### Patterns/Learnings
-- Weekend cron jobs maintaining system health autonomously
-- hermes transient SIGKILL on Apr 17 (RAM pressure - 1.1GB free, 20GB swap)
-- fe28d320 cron job keeps skipping (misconfigured payload.kind)
-
-## Promoted From Short-Term Memory (2026-04-20)
-
-<!-- openclaw-memory-promotion:memory:memory/2026-04-15.md:4:7 -->
-- Time: 2026-04-15T23:10:59.934Z Topics: arr, docker, dashboard, memory, github, email, openclaw, health, bc, ideas Messages: 683 [score=0.812 recalls=0 avg=0.620 source=memory/2026-04-15.md:4-6]
-<!-- openclaw-memory-promotion:memory:memory/2026-04-15.md:8:8 -->
-- Decisions: rejected; approve; approved; close; will follow [score=0.812 recalls=0 avg=0.620 source=memory/2026-04-15.md:8-8]
-<!-- openclaw-memory-promotion:memory:memory/2026-04-15.md:11:14 -->
-- Time: 2026-04-15T23:10:59.923Z Topics: arr, docker, dashboard, openclaw, health Messages: 4 Summary: [cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Thur [score=0.812 recalls=0 avg=0.620 source=memory/2026-04-15.md:11-14]
-<!-- openclaw-memory-promotion:memory:memory/2026-04-15.md:17:20 -->
-- Time: 2026-04-15T23:10:59.922Z Topics: arr, docker, dashboard, memory, github, email, openclaw, health, bc, ideas Messages: 10 [score=0.812 recalls=0 avg=0.620 source=memory/2026-04-15.md:17-19]
-<!-- openclaw-memory-promotion:memory:memory/2026-04-15.md:24:27 -->
-- Time: 2026-04-15T23:10:59.922Z Topics: docker, dashboard, github, openclaw, ideas Messages: 9 Summary: [cron:007bd1be-d806-4058-8cf5-61a2e583cca0 Process next Kanban ticket] Read and follow /home/john/.openclaw/workspace/RUN_NEXT_TICKET_CRON.md and proc [score=0.812 recalls=0 avg=0.620 source=memory/2026-04-15.md:24-27]
-<!-- openclaw-memory-promotion:memory:memory/2026-04-13.md:5:5 -->
-- **Time:** 03:02 Europe/London (02:02 UTC) [score=0.807 recalls=0 avg=0.620 source=memory/2026-04-13.md:5-5]
-<!-- openclaw-memory-promotion:memory:memory/2026-04-13.md:9:10 -->
-- Error: ENOENT: no such file or directory, open '/home/john/.openclaw/workspace/config/google-oauth-token.json' Script: /home/john/.openclaw/workspace/scripts/drive-openclaw-backup.js [score=0.807 recalls=0 avg=0.620 source=memory/2026-04-13.md:9-10]
-<!-- openclaw-memory-promotion:memory:memory/2026-04-13.md:13:13 -->
-- **Root Cause:** Google OAuth token file missing at expected path `config/google-oauth-token.json`. [score=0.807 recalls=0 avg=0.620 source=memory/2026-04-13.md:13-13]
-
-## Promoted From Short-Term Memory (2026-04-21)
-
-<!-- openclaw-memory-promotion:memory:memory/2026-04-15.md:21:21 -->
-- Decisions: reject; rejected; will be; should go [score=0.826 recalls=0 avg=0.620 source=memory/2026-04-15.md:21-21]
-<!-- openclaw-memory-promotion:memory:memory/2026-04-16.md:3:5 -->
-- - **Result:** ✅ Success - **File:** openclaw-snapshot_2026-04-16T02-04-19.tar.gz (0.8 MB) - **Uploaded to:** Google Drive ## Light Sleep <!-- openclaw:dreaming:light:start --> - Candidate: Snapshot Backup — 02:04 UTC: **Result:** ✅ Success; **File:** openclaw-snapshot_2026-04-16T02-04-19.tar.gz (0.8 MB); **Uploaded to:** Google Drive [score=0.822 recalls=0 avg=0.620 source=memory/2026-04-16.md:3-9]
-<!-- openclaw-memory-promotion:memory:memory/2026-04-16.md:475:478 -->
-- Time: 2026-04-16T20:34:01.077Z Topics: arr, docker, github, openclaw, health Messages: 3 Summary: [cron:cron-triage-30m-001 Cron Error Triage] Run triage: ~/.openclaw/workspace/tools/openclaw_cron_triage.sh Current time: Thursday, April 16th, 2026 [score=0.812 recalls=0 avg=0.620 source=memory/2026-04-16.md:475-478]
-
-## Promoted From Short-Term Memory (2026-04-22)
-
-<!-- openclaw-memory-promotion:memory:memory/2026-04-16.md:479:479 -->
-- Decisions: will copy [score=0.816 recalls=0 avg=0.620 source=memory/2026-04-16.md:479-479]
-
-## Promoted From Short-Term Memory (2026-04-23)
-
-<!-- openclaw-memory-promotion:memory:memory/2026-04-17.md:473:475 -->
-- - Candidate: Possible Lasting Truths: # 2026-04-13 - OpenClaw Snapshot Backup ## Backup Status: FAILED **Time:** 03:02 Europe/London (02:02 UTC) **Error:** ``` Error: ENOENT: no such file or directory, open '/home/john/.openclaw/workspace/config/google-oauth-token.json' Script: /home/john/.op - confidence: 0.62 - evidence: memory/2026-04-16.md:464-466 [score=0.829 recalls=0 avg=0.620 source=memory/2026-04-17.md:18-20]
-
-## Promoted From Short-Term Memory (2026-04-25)
-
-<!-- openclaw-memory-promotion:memory:memory/2026-04-18.md:16:19 -->
-- [snapshot] Creating openclaw-snapshot_2026-04-18T02-05-41.tar.gz... [snapshot] Created 1.0 MB [snapshot] Uploaded: openclaw-snapshot_2026-04-18T02-05-41.tar.gz [snapshot] Done. [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-18.md:16-19]
-<!-- openclaw-memory-promotion:memory:memory/2026-04-18.md:22:22 -->
-- **Notes:** Backup created and uploaded successfully (~1.0 MB). [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-18.md:22-22]
-<!-- openclaw-memory-promotion:memory:memory/2026-04-18.md:29:32 -->
-- Time: 2026-04-18T20:34:40.065Z Topics: openclaw, health Messages: 4 Summary: [cron:33c0c409-d4fd-44af-b2a1-040e1486e72d ARR Log Monitor] Run: /home/john/.openclaw/workspace/scripts/arr-log-monitor.sh echo "Log monitor run comp [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-18.md:29-32]
+## 2026-04-14 RDP Black Screen Fix (Beelink)
+- Fix: `xfwm4 --replace --display=:10.0` + `xfdesktop --display=:10.0`
+- RDP client fallback: Display→Colors=High(16-bit), Experience→untick bitmap caching
