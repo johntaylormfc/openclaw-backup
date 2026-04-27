@@ -48,6 +48,11 @@ GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM | OAuth (Gmail needs re-auth) |
 
 ---
 
+## 2026-04-26 Daily Review
+- ✅ Cron jobs executed: healthcheck, ARR log monitor, dashboard backup, calendar-to-todoist, email-to-todoist
+- ✅ WhatsApp auto-reconnecting reliably after ~499 disconnects
+- fe28d320 cron job still skipping (persistent payload.kind misconfigured)
+
 ## 2026-04-25 Daily Review
 - ✅ Snapshot backup (1.7 MB), WhatsApp reconnecting after 499s, gateway watchdog working
 - WhatsApp 499 disconnects ~every 30 min, auto-reconnects within ~3s
