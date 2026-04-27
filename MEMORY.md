@@ -102,3 +102,10 @@ GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM | OAuth (Gmail needs re-auth) |
 ## 2026-04-14 RDP Black Screen Fix (Beelink)
 - Fix: `xfwm4 --replace --display=:10.0` + `xfdesktop --display=:10.0`
 - RDP client fallback: Display→Colors=High(16-bit), Experience→untick bitmap caching
+
+## Promoted From Short-Term Memory (2026-04-27)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-04-20.md:24:27 -->
+- Time: 2026-04-20T20:34:19.753Z Topics: dashboard, memory, openclaw, health, ideas Messages: 3 Summary: [cron:healthcheck-hourly-001 Hourly Health Snapshot] Run healthcheck: ~/.openclaw/workspace/tools/openclaw_healthcheck.sh Current time: Monday, April [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-20.md:24-27]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-20.md:31:34 -->
+- Time: 2026-04-20T20:34:19.752Z Topics: docker, dashboard, github, openclaw, health, ideas Messages: 608 [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-20.md:31-33]
