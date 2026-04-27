@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-27T02:03:33.377Z",
+  "updatedAt": "2026-04-27T14:02:36.491Z",
   "entries": {
     "memory:memory/archived/2026-03-27.md:266:301": {
       "key": "memory:memory/archived/2026-03-27.md:266:301",
@@ -155284,13 +155284,13 @@
       "endLine": 156,
       "source": "memory",
       "snippet": "Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway ### Session: 9b9dbf02... Time: 2026-03-28T20:33:06.809Z Topics: openclaw, health Messages: 3 Summary: [cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Satu ### Session: 8ff1b289... Time: 2026-03-28T20:33:06.808Z Topics: openclaw, health Messages: 3 Summary: [cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Satu ### Session: 8a8e5588... Time: 2",
-      "recallCount": 4,
+      "recallCount": 5,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.8657992750406265,
+      "totalScore": 2.3319345891475676,
       "maxScore": 0.48398550152778624,
       "firstRecalledAt": "2026-04-23T20:32:35.899Z",
-      "lastRecalledAt": "2026-04-25T18:02:19.851Z",
+      "lastRecalledAt": "2026-04-27T14:02:36.491Z",
       "queryHashes": [
         "122ac7f2bf62",
         "1de41d7f3f0b",
@@ -155299,7 +155299,8 @@
       "recallDays": [
         "2026-04-23",
         "2026-04-24",
-        "2026-04-25"
+        "2026-04-25",
+        "2026-04-27"
       ],
       "conceptTags": [
         "gateway",
