@@ -123,3 +123,29 @@ GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM | OAuth (Gmail needs re-auth) |
 - **OpenClaw side script:** `/home/john/.openclaw/workspace/scripts/hermes_handoff.js` [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-21.md:15-15]
 <!-- openclaw-memory-promotion:memory:memory/2026-04-21.md:20:23 -->
 - **Handoff flow working:** OpenClaw → writes JSON to ~/.hermes/tasks/in/{id}.json → Hermes cron (every 5m) picks it up, skill task-handoff loads → Hermes processes task, writes result to ~/.hermes/tasks/out/{id}.json [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-21.md:20-23]
+
+---
+
+## 2026-04-27 Daily Review
+
+### What Went Well
+- ✅ Gateway watchdog passed all checks (08:05–18:10 BST)
+- ✅ Dashboard .146:5000 responding
+- ✅ ARR stack: all containers healthy
+- ✅ OpenClaw updated to 2026.4.25 (aa36ee6), gateway restarted successfully
+- ✅ Cron jobs executed: healthcheck, ARR log monitor, dashboard backup, calendar-to-todoist, email-to-todoist, session transcript capture
+- ✅ WhatsApp auto-reconnecting after 499 disconnects (~30 min cycles)
+
+### What Could Be Improved
+- WhatsApp 499 disconnects every ~30 min (self-healing, known issue)
+- Several cron jobs failing at WhatsApp announce step: Daily Review (23:00), ARR Config Backup (03:00), MiniMax Guard (03:15), EMT Token Check (06:00), Backup to GiDrive (06:00)
+- fe28d320 cron job still skipping (persistent payload.kind misconfigured)
+
+### New Patterns/Learnings
+- WhatsApp channel instability persists but self-heals reliably
+- Gateway uptime stable at ~271k-385k seconds after restart
+
+### Stale Issues
+- GLApproval AL0219 encoding: 8 .al files need UTF-8 NO BOM on GSPro
+- DNS CNAME pending: openclaw.bcdev.co.uk
+- fe28d320 cron job skipping
