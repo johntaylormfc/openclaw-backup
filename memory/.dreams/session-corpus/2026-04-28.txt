@@ -1,0 +1,4 @@
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L60] Assistant: 👍
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L62] Assistant: 👍
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L64] Assistant: Done.
+[main/sessions/e5246270-1962-428a-896e-bd38f2564e39.jsonl#L111] Assistant: [assistant turn failed before producing content]

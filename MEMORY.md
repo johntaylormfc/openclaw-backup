@@ -114,3 +114,12 @@ GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM | OAuth (Gmail needs re-auth) |
 - Time: 2026-04-20T20:34:19.753Z Topics: dashboard, memory, openclaw, health, ideas Messages: 3 Summary: [cron:healthcheck-hourly-001 Hourly Health Snapshot] Run healthcheck: ~/.openclaw/workspace/tools/openclaw_healthcheck.sh Current time: Monday, April [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-20.md:24-27]
 <!-- openclaw-memory-promotion:memory:memory/2026-04-20.md:31:34 -->
 - Time: 2026-04-20T20:34:19.752Z Topics: docker, dashboard, github, openclaw, health, ideas Messages: 608 [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-20.md:31-33]
+
+## Promoted From Short-Term Memory (2026-04-28)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-04-21.md:10:10 -->
+- **Confirmed working:** [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-21.md:10-10]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-21.md:15:15 -->
+- **OpenClaw side script:** `/home/john/.openclaw/workspace/scripts/hermes_handoff.js` [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-21.md:15-15]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-21.md:20:23 -->
+- **Handoff flow working:** OpenClaw → writes JSON to ~/.hermes/tasks/in/{id}.json → Hermes cron (every 5m) picks it up, skill task-handoff loads → Hermes processes task, writes result to ~/.hermes/tasks/out/{id}.json [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-21.md:20-23]
