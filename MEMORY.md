@@ -149,3 +149,14 @@ GLApproval AL0219→re-encode 8 .al UTF-8 NO BOM | OAuth (Gmail needs re-auth) |
 - GLApproval AL0219 encoding: 8 .al files need UTF-8 NO BOM on GSPro
 - DNS CNAME pending: openclaw.bcdev.co.uk
 - fe28d320 cron job skipping
+
+## Promoted From Short-Term Memory (2026-04-29)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-04-22.md:25:28 -->
+- Time: 2026-04-22T21:20:02.314Z Topics: docker, github, openclaw, health Messages: 9 Summary: [cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Output the result. [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-22.md:25-28]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-22.md:32:35 -->
+- Time: 2026-04-22T21:20:02.314Z Topics: memory, openclaw Messages: 3 Summary: [cron:a26f16a2-e5b6-4d31-86d3-031670712bc3 Daily Memory Log] Run: node /home/john/.openclaw/workspace/scripts/daily-memory-log.js This reads session- [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-22.md:32-35]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-22.md:38:41 -->
+- Time: 2026-04-22T21:20:02.314Z Topics: dashboard, memory, github, openclaw Messages: 6 Summary: [cron:bea36ad2-b3dc-4d8a-80a3-d7822e61fa5e Drive Backup] Execute: node /home/john/.openclaw/workspace/scripts/drive-backup.js Current time: Wednesday, [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-22.md:38-41]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-22.md:29:29 -->
+- Decisions: will be; will fix; will remove [score=0.840 recalls=0 avg=0.620 source=memory/2026-04-22.md:29-29]

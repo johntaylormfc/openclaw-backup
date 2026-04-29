@@ -1,0 +1,36 @@
+[main/sessions/070154b5-0b8c-4507-9448-01701a9c0479.jsonl#L8] Assistant: No events scheduled in the next 48 hours — nothing to sync.
+[main/sessions/24724de5-659f-447d-bffe-afa7829c8eba.jsonl#L10] Assistant: ✅ Snapshot backup complete. Created and uploaded `openclaw-snapshot_2026-04-29T02-06-06.tar.gz` (2.0 MB), pruned 1 old snapshot from 2026-04-22. Logged to memory/2026-04-29.md.
+[main/sessions/27ca47b8-97ac-425e-8860-b3715467feef.jsonl#L8] Assistant: Log monitor run complete — no issues detected. ✅
+[main/sessions/288399d1-6d71-45a8-a4ed-f8c3111f63dd.jsonl#L8] Assistant: No new tasks to create — 0 events in the next 48 hours, 15 existing Todoist tasks already synced.
+[main/sessions/2e3d5fd2-02d7-4bdf-b2db-a4566edfb47f.jsonl#L8] Assistant: Log monitor run complete — no issues detected.
+[main/sessions/3326fc12-0593-4316-bdfc-9013c5b47c29.jsonl#L8] Assistant: No new emails to process — the 1 recent email found already has a corresponding Todoist task.
+[main/sessions/3bed9fb2-120f-4856-af3f-3ab1ea67245c.jsonl#L8] Assistant: Backup script started. Let me check its progress:
+[main/sessions/3bed9fb2-120f-4856-af3f-3ab1ea67245c.jsonl#L10] Assistant: ✅ **Drive backup completed successfully** - Dashboard DB ✓ - Memory files (7) ✓ - Core files (6) ✓ Saved to Google Drive → `OpenClaw/`
+[main/sessions/3cb2c047-1edb-43f6-a2c0-64c1216b3688.jsonl#L10] Assistant: Ran successfully. Found 1 recent email but no new tasks created (either duplicate or not from monitored domains). Next run in 30 minutes.
+[main/sessions/40f08f1a-dc64-413a-8f3b-634de4255ac3.jsonl#L8] Assistant: No events in the next 48 hours — nothing to sync. ✅
+[main/sessions/4e896fdd-db18-470b-a2cc-6aa0eb9cc6f7.jsonl#L8] Assistant: Done. Backup created at `/home/john/ARR/backups/dashboard-20260429-0105.db`. 🦞
+[main/sessions/560fc41f-c182-4c91-8427-fa4ffe65a0e8.jsonl#L8] Assistant: Ran successfully — no recent emails found, no new Todoist tasks created.
+[main/sessions/5651a2a8-38dd-481a-82da-41b447354c7a.jsonl#L8] Assistant: ✅ **Cron Health: All Clear** - **Total:** 44 jobs - **Healthy:** 44 | **Disabled:** 8 | **Issues:** 0 - All systems operational.
+[main/sessions/620bb819-3d1a-4e77-9577-b99a0bfb93b6.jsonl#L12] Assistant: Backup created: `dashboard-20260429-0105.db` (274KB) ✅
+[main/sessions/63ca35c7-41f2-4914-bddd-1b155506c776.jsonl#L12] Assistant: ✅ **ARR backup completed successfully** - Local backup: `/home/john/ARR/backups/arr_backup_20260429_030026.tar.gz` (40.9 MB) - Uploaded to Google Drive - Pruned 2 old backups from Drive
+[main/sessions/69b569aa-c9aa-4534-ab10-af7b40b4a760.jsonl#L8] Assistant: Done. 0 events in the next 48 hours, 0 tasks created.
+[main/sessions/6a8d0398-bc30-4e97-b7b1-06142024fb95.jsonl#L8] Assistant: Nothing to sync — no calendar events in the next 48 hours, so 0 new tasks created. ✅
+[main/sessions/77309d22-c14e-4631-9eab-8036654fd0a8.jsonl#L8] Assistant: Log monitor run complete — script finished with no issues to report.
+[main/sessions/807f5a8e-9eae-4834-b861-d46463b19e1b.jsonl#L8] Assistant: Done — 0 recent emails, 0 new tasks created.
+[main/sessions/8dec2dc6-1631-4c6e-ac45-e55bfa16d1bd.jsonl#L16] Assistant: ✅ **ARR Log Monitor — run complete** - **Time:** 02:04 BST (29 Apr) - **Result:** Clean — no errors detected across all containers - **Last alert:** FLARESOLVERR at 00:33 (INFO-level request log, non-critical) - **Containers checked:** sonarr, radarr, prowlarr, sabnzbd
+[main/sessions/928df8e9-6481-49bc-858e-2b8c173f209e.jsonl#L8] Assistant: ✅ Dashboard snapshot complete — backup `ui-20260429-0006` created.
+[main/sessions/9d406355-7008-4361-8fdb-d202fb22d2d6.jsonl#L8] Assistant: ✅ Cron health check passed — 44 jobs tracked, 0 issues, 8 intentionally disabled. All clear.
+[main/sessions/a297c4d3-ed65-4f19-a4a0-6da2f897471c.jsonl#L8] Assistant: Done. 0 events in the next 48 hours, 0 new tasks created (15 existing Todoist tasks checked).
+[main/sessions/ad7176ff-2edd-4239-9efb-a2da93f4fe70.jsonl#L10] Assistant: **Hourly Health Snapshot** 🦞 | Check | Status | |-------|--------| | **Gateway** | ✅ Running (pid 340373) | | **Connectivity** | ✅ Probe ok | | **Disk** | 180G/444G (43%) | | **Memory** | 6.9Gi/27Gi | | **Uptime** | 5 days, 10:23 | **Issues in last hour:** - WhatsApp 
+[main/sessions/ade50563-2a4d-4596-9c93-e2739cea8d62.jsonl#L8] Assistant: Done — dashboard DB backed up to `/home/john/ARR/backups/dashboard-20260428-2305.db`.
+[main/sessions/b025c487-5e72-41c9-b831-1e78212d847f.jsonl#L12] Assistant: ✅ Log monitor completed — no errors detected this run. Last alert was **00:33** (FLARESOLVERR, cooldown still active).
+[main/sessions/b9b4b7bf-8774-4fb9-a7b7-cc4975a99b49.jsonl#L6] Assistant: Running hourly health snapshot...
+[main/sessions/b9b4b7bf-8774-4fb9-a7b7-cc4975a99b49.jsonl#L8] Assistant: 🛟 **Hourly Health Snapshot** | Check | Status | |-------|--------| | **Gateway** | ✅ Running (pid 340373) | | **Disk** | ✅ 180G/444G (43%) | | **Memory** | ✅ 6.9Gi/27Gi | | **Uptime** | ✅ 5 days, 11:24 | | **Errors (last hour)** | ⚠️ 5 — WhatsApp Web 408 timeouts (aut
+[main/sessions/ba4e51d2-f766-4613-a51b-8d20c7ebfbed.jsonl#L8] Assistant: ✅ **Cron Health Check — All Good** - **44** total jobs - **0** issues - **8** disabled (expected) - **0** failures Everything running clean. 🦞
+[main/sessions/cbc87bc8-f677-475b-9f35-526bce56bc26.jsonl#L8] Assistant: No events in the next 48 hours — nothing to sync. ✅
+[main/sessions/d9047fee-2ed8-4732-808f-037029eb6f06.jsonl#L8] Assistant: No recent emails found for any of the three domains. No new Todoist tasks created.
+[main/sessions/e445d591-e5f4-46a2-af8b-fb491cbbde24.jsonl#L10] Assistant: **Hourly Health Snapshot** 🦞 | Check | Status | |-------|--------| | Gateway | ✅ Running (pid 340373) | | Connectivity probe | ✅ OK | | Disk | 180G/444G (43%) | | Memory | 6.9Gi/27Gi | | Uptime | 5 days, 9:24 | | Load | 0.88, 0.70, 0.51 | **Errors (last hour):** Whats
+[main/sessions/f70b4ffc-dce1-4270-b2bc-5b241b51eb02.jsonl#L12] Assistant: Log monitor run complete. No errors detected in the last 30 minutes — all containers (sonarr, radarr, prowlarr, sabnzbd, transmission, flaresolverr, readarr, bazarr, ombi, overseerr, jellyseerr, tautulli) are quiet. 🦞
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L143] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L148] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L153] Assistant: ✓
