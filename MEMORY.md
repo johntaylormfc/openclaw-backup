@@ -74,3 +74,14 @@ Ideas→kanban | PRs→GitHub | WhatsApp | backup b.dashboard | never restore DB
 - Post-restart Docker healthcheck hook for gateway watchdog
 - fe28d320 cron payload.kind fix
 - Drive OAuth scope error resolution (read-only vs read-write scope)
+
+## Promoted From Short-Term Memory (2026-04-30)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-04-23.md:3:3 -->
+- Gateway log kept going stale every ~15 min causing false DOWN detections. Added */4 cron to touch gateway.log. WhatsApp notifications returning 404 (channel not configured). [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-23.md:3-3]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-23.md:20:23 -->
+- Time: 2026-04-23T20:33:14.523Z Topics: openclaw Messages: 1 Summary: [cron:95c94692-2469-43c1-81fc-1913481b378d Session Transcript Capture] Capture session transcripts: cd /home/john/.openclaw/workspace/scripts && node [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-23.md:20-23]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-23.md:26:29 -->
+- Time: 2026-04-23T20:33:14.523Z Topics: dashboard, memory, openclaw, health Messages: 4 Summary: [cron:healthcheck-hourly-001 Hourly Health Snapshot] Run healthcheck: ~/.openclaw/workspace/tools/openclaw_healthcheck.sh Current time: Thursday, Apri [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-23.md:26-29]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-23.md:33:36 -->
+- Time: 2026-04-23T20:33:14.522Z Topics: email, openclaw, bc Messages: 3 Summary: [cron:5d6d8f30-d40e-4330-a623-1d0cd5ba2635 Email to Todoist] Run: node /home/john/.openclaw/workspace/scripts/email-to-todoist.js Current time: Thursd [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-23.md:33-36]

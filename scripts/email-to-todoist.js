@@ -27,7 +27,14 @@ function fetch(url, options = {}) {
         const response = {
           ok: res.statusCode >= 200 && res.statusCode < 300,
           status: res.statusCode,
-          json: () => Promise.resolve(JSON.parse(data)),
+          json: () => {
+            if (!data || data.trim() === '') return Promise.resolve(null);
+            try {
+              return Promise.resolve(JSON.parse(data));
+            } catch (e) {
+              return Promise.reject(new Error(`JSON parse error: ${e.message}`));
+            }
+          },
           text: () => Promise.resolve(data)
         };
         resolve(response);
@@ -45,9 +52,9 @@ const STATE_FILE = '/tmp/email-cron-lastrun.json';
 // Domains to monitor
 const MONITORED_DOMAINS = ['galloway-macleod.co.uk', 'bcdev.co.uk', 'bcdevltd.com'];
 
-// Load credentials - create new token file if missing
+// Load credentials - create new token file if missing or empty
 const tokenPath = `${CONFIG_PATH}/google-oauth-token.json`;
-if (!fs.existsSync(tokenPath)) {
+if (!fs.existsSync(tokenPath) || fs.statSync(tokenPath).size === 0) {
   console.log('❌ No OAuth token found. Starting OAuth flow...\n');
   
   const credsPath = `${CONFIG_PATH}/google-oauth.json`;
