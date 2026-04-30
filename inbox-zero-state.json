@@ -1,11 +1,6 @@
 {
-  "lastRun": "{\"totalUnread\":19,\"oldestAll\":4,\"heavy7\":[],\"stale30\":[]}",
+  "lastRun": "{\"totalUnread\":15,\"oldestAll\":5,\"heavy7\":[],\"stale30\":[]}",
   "history": [
-    {
-      "date": "2026-04-17",
-      "totalUnread": 0,
-      "oldestDays": 0
-    },
     {
       "date": "2026-04-17",
       "totalUnread": 18,
@@ -70,6 +65,11 @@
       "date": "2026-04-28",
       "totalUnread": 19,
       "oldestAll": 4
+    },
+    {
+      "date": "2026-04-29",
+      "totalUnread": 15,
+      "oldestAll": 5
     }
   ]
 }

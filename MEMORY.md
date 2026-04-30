@@ -49,3 +49,28 @@ Ideas→kanban | PRs→GitHub | WhatsApp | backup b.dashboard | never restore DB
 ## 2026-04-29 Promotions
 - hermes_handoff.js working (OpenClaw ↔ Hermes task handoff)
 - Gateway uptime ~271k-385k seconds after restart
+
+## 2026-04-30 Daily Review (Apr 29)
+### What went well
+- Snapshot backup ✅ (2.0 MB to Drive, 1 old snapshot pruned)
+- ARR weekly backup ✅ (40.9 MB)
+- Gateway uptime strong (~39.8h before restart, recovered in ~5min)
+- WhatsApp 499 cycling continues to self-heal — pattern now stable
+- MiniMax Guard check passed | Inbox Zero held | Use Case Hunter quiet
+
+### What could be improved
+- Gateway ~5min downtime (Apr 29) — no Docker/ARR healthcheck triggered
+  → **Opportunity:** Add post-restart Docker health verification step to gateway watchdog
+- fe28d320 cron job still skipping (known, low priority)
+- No Drive health verification after snapshot upload (scope error since Apr 14 persists)
+
+### New patterns/learnings
+- Gateway restart cycles are healthy — new PID up quickly, WhatsApp recovers
+- Snapshot upload to Drive succeeds even with known OAuth scope issue
+  → implies scope error is non-blocking for Drive writes (maybe read-only flag)
+- ARR Docker containers unaffected by gateway restart — isolation is good
+
+### Ideas (pending review)
+- Post-restart Docker healthcheck hook for gateway watchdog
+- fe28d320 cron payload.kind fix
+- Drive OAuth scope error resolution (read-only vs read-write scope)
