@@ -10,3 +10,9 @@
 - Same issue as email-to-todoist and drive-openclaw-backup (both failed with same error today)
 - All three scripts share the same OAuth token file
 - Manual re-auth required: `node /home/john/.openclaw/workspace/scripts/calendar-to-todoist.js --reauth`
+
+## 2026-05-01 04:33 UTC - Token Empty (Recurring)
+- **Error:** Token file `/home/john/.openclaw/secure/google-oauth-token.json` is 0 bytes
+- **Symptom:** Infinite loop of "Token file is empty. Initiating re-authorization..."
+- **Fix:** Re-run with `--reauth` and complete the OAuth flow in a browser
+- **Notified:** SMS sent to john at +447967688452
