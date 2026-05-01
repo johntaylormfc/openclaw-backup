@@ -9,16 +9,72 @@ const fs = require('fs');
 const path = require('path');
 
 const CONFIG_PATH = '/home/john/.openclaw/workspace/config';
-const STATE_FILE = '/tmp/calendar-cron-lastrun.json';
+
+// Check for --reauth flag FIRST, before any token checks
+if (process.argv.includes('--reauth')) {
+  console.log('=== Re-authorization Required ===');
+  console.log('Generating new authorization URL...\n');
+  
+  const credsData = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/google-oauth.json`, 'utf8'));
+  
+  const SCOPES = [
+    'https://www.googleapis.com/auth/gmail.readonly',
+    'https://www.googleapis.com/auth/calendar.readonly',
+    'https://www.googleapis.com/auth/drive.readonly'
+  ];
+
+  const oauth2Client = new google.auth.OAuth2(
+    credsData.web.client_id,
+    credsData.web.client_secret,
+    'http://localhost'
+  );
+
+  const authUrl = oauth2Client.generateAuthUrl({
+    access_type: 'offline',
+    scope: SCOPES,
+    prompt: 'consent'
+  });
+  
+  console.log('Please visit this URL to authorize:');
+  console.log(authUrl);
+  console.log('\nThen enter the authorization code:');
+  
+  const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+  
+  readline.question('Code: ', async (code) => {
+    try {
+      const { tokens } = await oauth2Client.getToken(code);
+      oauth2Client.setCredentials(tokens);
+      
+      // Save new tokens
+      const newCreds = {
+        access_token: tokens.access_token,
+        refresh_token: tokens.refresh_token,
+        scope: tokens.scope || SCOPES.join(' '),
+        expiry_date: tokens.expiry_date
+      };
+      fs.writeFileSync(`${CONFIG_PATH}/google-oauth-token.json`, JSON.stringify(newCreds, null, 2));
+      console.log('✅ New tokens saved successfully!');
+      console.log('You can now run the sync again.');
+    } catch (err) {
+      console.error('Error getting tokens:', err.message);
+    }
+    readline.close();
+  });
+  process.exit(0);
+}
 
 // Load credentials - token from token file, client from credentials file
-const tokenPath = '/home/john/.openclaw/secure/google-oauth-token.json';
+const tokenPath = `${CONFIG_PATH}/google-oauth-token.json`;
 const tokenDataRaw = fs.readFileSync(tokenPath, 'utf8');
 
 if (!tokenDataRaw.trim()) {
   console.log('⚠️  Token file is empty. Initiating re-authorization...');
-  require('child_process').execSync(`node ${__filename} --reauth`, { stdio: 'inherit' });
-  process.exit(0);
+  console.log('Run with --reauth flag to generate a new authorization URL.');
+  process.exit(1);
 }
 
 const tokenData = JSON.parse(tokenDataRaw);
@@ -83,48 +139,6 @@ oauth2Client.request = async (...args) => {
 
 const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
 const TODOIST_API = 'https://api.todoist.com/api/v1/tasks';
-
-// Check for --reauth flag
-if (process.argv.includes('--reauth')) {
-  console.log('=== Re-authorization Required ===');
-  console.log('Generating new authorization URL...\n');
-  const authUrl = oauth2Client.generateAuthUrl({
-    access_type: 'offline',
-    scope: SCOPES,
-    prompt: 'consent'
-  });
-  console.log('Please visit this URL to authorize:');
-  console.log(authUrl);
-  console.log('\nThen enter the authorization code:');
-  
-  const readline = require('readline').createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-  
-  readline.question('Code: ', async (code) => {
-    try {
-      const { tokens } = await oauth2Client.getToken(code);
-      oauth2Client.setCredentials(tokens);
-      
-      // Save new tokens
-      const newCreds = {
-        ...gmailCreds,
-        access_token: tokens.access_token,
-        refresh_token: tokens.refresh_token,
-        scopes: tokens.scope || SCOPES.join(' '),
-        expiry_date: tokens.expiry_date
-      };
-      fs.writeFileSync(`${CONFIG_PATH}/google-oauth-token.json`, JSON.stringify(newCreds, null, 2));
-      console.log('✅ New tokens saved successfully!');
-      console.log('You can now run the sync again.');
-    } catch (err) {
-      console.error('Error getting tokens:', err.message);
-    }
-    readline.close();
-  });
-  process.exit(0);
-}
 
 async function getExistingTasks() {
   const response = await fetch(TODOIST_API, {
