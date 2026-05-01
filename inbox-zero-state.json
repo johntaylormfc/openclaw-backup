@@ -1,11 +1,6 @@
 {
-  "lastRun": "{\"totalUnread\":49,\"oldestAll\":6,\"heavy7\":[],\"stale30\":[]}",
+  "lastRun": "{\"totalUnread\":19,\"oldestAll\":7,\"heavy7\":[],\"stale30\":[{\"sender\":\"alexandrospsaltoulis@galloway-macleod.co.uk\",\"count\":2,\"oldestDays\":7}]}",
   "history": [
-    {
-      "date": "2026-04-17",
-      "totalUnread": 18,
-      "oldestAll": 3
-    },
     {
       "date": "2026-04-18",
       "totalUnread": 9,
@@ -70,6 +65,11 @@
       "date": "2026-04-30",
       "totalUnread": 49,
       "oldestAll": 6
+    },
+    {
+      "date": "2026-05-01",
+      "totalUnread": 19,
+      "oldestAll": 7
     }
   ]
 }
