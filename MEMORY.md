@@ -75,8 +75,6 @@ Ideas→kanban | PRs→GitHub | WhatsApp | backup b.dashboard | never restore DB
 - fe28d320 cron payload.kind fix
 - Drive OAuth scope error resolution (read-only vs read-write scope)
 
-## Promoted From Short-Term Memory (2026-04-30)
-
 <!-- openclaw-memory-promotion:memory:memory/2026-04-23.md:3:3 -->
 - Gateway log kept going stale every ~15 min causing false DOWN detections. Added */4 cron to touch gateway.log. WhatsApp notifications returning 404 (channel not configured). [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-23.md:3-3]
 <!-- openclaw-memory-promotion:memory:memory/2026-04-23.md:20:23 -->
