@@ -16,3 +16,11 @@
 - **Symptom:** Infinite loop of "Token file is empty. Initiating re-authorization..."
 - **Fix:** Re-run with `--reauth` and complete the OAuth flow in a browser
 - **Notified:** SMS sent to john at +447967688452
+
+## 2026-05-02 08:34 UTC - Token Empty (Recurring)
+- **Error:** Token file empty (`/home/john/.openclaw/secure/google-oauth-token.json` is 0 bytes)
+- **Status:** Needs re-authentication
+- **Action Required:** Run `node /home/john/.openclaw/workspace/scripts/calendar-to-todoist.js --reauth` and provide the authorization code
+- **Reauth URL:** already saved in `/home/john/.openclaw/workspace/config/google-oauth-reauth-url.txt`
+- **Note:** WhatsApp not connected, Telegram bot has no chats. User notification failed.
+
