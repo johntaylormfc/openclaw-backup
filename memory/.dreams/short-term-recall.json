@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-02T07:36:53.173Z",
+  "updatedAt": "2026-05-02T18:40:17.695Z",
   "entries": {
     "memory:memory/archived/2026-03-27.md:266:301": {
       "key": "memory:memory/archived/2026-03-27.md:266:301",
@@ -154348,19 +154348,20 @@
       "endLine": 14,
       "source": "memory",
       "snippet": "# March 3, 2026 ## Today's Events - Calendar to Todoist sync failed: OAuth scope insufficient (needs calendar.readonly) - Email to Todoist also likely broken (same OAuth issue) - Both need re-authentication with calendar scope ## Systems Status - Dashboard: http://192.168.1.146:5000 (arr-dashboard-v2 container) - **Blocker**: Google OAuth needs calendar scope for Calendar to Todoist ## TODO - Re-auth Google OAuth with calendar.readonly scope for both calendar-to-todoist and email-to-todoist scripts",
-      "recallCount": 6,
+      "recallCount": 7,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 2.7360012471675867,
-      "maxScore": 0.4878954708576202,
+      "totalScore": 3.229014825820922,
+      "maxScore": 0.49301357865333556,
       "firstRecalledAt": "2026-04-23T20:32:35.899Z",
-      "lastRecalledAt": "2026-05-02T07:36:53.173Z",
+      "lastRecalledAt": "2026-05-02T18:40:17.695Z",
       "queryHashes": [
         "122ac7f2bf62",
         "7f80f19c0b22",
         "9a6dc1f99e0c",
         "9ba47ea56306",
-        "71fea0cc8d17"
+        "71fea0cc8d17",
+        "7d2e1e21a547"
       ],
       "recallDays": [
         "2026-04-23",
@@ -184670,18 +184671,20 @@
       "endLine": 37,
       "source": "memory",
       "snippet": "- Gmail OAuth token expired (alerted john) - Calendar/Todoist sync still broken due to OAuth scope issues - Vector memory disabled (Gemini 403 errors) ### Research Activity - Multiple research files created today (research-1771623589373.md, research-1771851867819.md, etc.) - All research files successfully synced to Google Drive ## Heartbeat Summary (23:00) - Dashboard: OK (port 5000) - Kanban: Active with regular ticket processing - Cron jobs: 32 total, 1 timeout error (gdrive-sync) - Gmail OAuth: Expired - needs re-auth",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.7081729438512707,
-      "maxScore": 0.7081729438512707,
+      "totalScore": 1.4623300230522733,
+      "maxScore": 0.7541570792010026,
       "firstRecalledAt": "2026-04-25T13:32:46.291Z",
-      "lastRecalledAt": "2026-04-25T13:32:46.291Z",
+      "lastRecalledAt": "2026-05-02T18:40:17.695Z",
       "queryHashes": [
-        "7f80f19c0b22"
+        "7f80f19c0b22",
+        "7d2e1e21a547"
       ],
       "recallDays": [
-        "2026-04-25"
+        "2026-04-25",
+        "2026-05-02"
       ],
       "conceptTags": [
         "calendar/todoist",
@@ -258559,15 +258562,16 @@
       "endLine": 548,
       "source": "memory",
       "snippet": "Topics: docker, dashboard, github, openclaw, health, ideas Messages: 397 Summary: System: [2026-04-11 04:28:40 GMT+1] Execute: openclaw cron list --json 2>&1 | jq '.jobs' > /tmp/arr-cronjobs.json && docker cp /tmp/arr-cronjobs.json ### Session: f0fcad37... Time: 2026-04-17T20:34:39.103Z Topics: arr, docker, dashboard, github, email, openclaw, health Messages: 3 Summary: [cron:cron-triage-30m-001 Cron Error Triage] Run triage: ~/.openclaw/workspace/tools/openclaw_cron_triage.sh Current time: Friday, April 17th, 2026 - Decisions: rejected; will resume; will retry ### Session: ea30f538... Time: 2026-04-17T20:34:39.102Z Topics: arr, docker, dashboard, memory, github, email, openclaw, mission-c",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.44643115401268,
+      "totalScore": 0.892169764637947,
       "maxScore": 0.44643115401268,
       "firstRecalledAt": "2026-05-02T07:36:53.173Z",
-      "lastRecalledAt": "2026-05-02T07:36:53.173Z",
+      "lastRecalledAt": "2026-05-02T18:40:17.695Z",
       "queryHashes": [
-        "71fea0cc8d17"
+        "71fea0cc8d17",
+        "7d2e1e21a547"
       ],
       "recallDays": [
         "2026-05-02"

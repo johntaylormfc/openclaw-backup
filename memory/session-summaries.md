@@ -1,6 +1,45 @@
 # Session Summaries
 
-_Last updated: 2026-05-01T20:40:51.069Z_
+_Last updated: 2026-05-02T20:35:53.671Z_
+
+## 2026-05-02 | email, openclaw, health, bc | 5 msgs
+> Decisions: reject; will be; will work
+> [cron:5d6d8f30-d40e-4330-a623-1d0cd5ba2635 Email to Todoist] Run: node /home/john/.openclaw/workspace/scripts/email-to-todoist.js Current time: Saturd
+
+## 2026-05-02 | email, openclaw | 5 msgs
+> Decisions: close; will give; will work
+> [cron:5905f716-4342-4453-ac2e-a4652c43a5f3 Calendar to Todoist] Run: node /home/john/.openclaw/workspace/scripts/calendar-to-todoist.js Current time:
+
+## 2026-05-02 | email, openclaw | 2 msgs
+> Decisions: will be
+> [cron:5d6d8f30-d40e-4330-a623-1d0cd5ba2635 Email to Todoist] Run: node /home/john/.openclaw/workspace/scripts/email-to-todoist.js Current time: Saturd
+
+## 2026-05-02 | docker, dashboard, openclaw | 311 msgs
+> System: [2026-04-27 08:05:22 GMT+1] Execute: openclaw cron list --json 2>&1 | jq '.jobs' > /tmp/arr-cronjobs.json && docker cp /tmp/arr-cronjobs.json
+
+## 2026-05-02 | dashboard, openclaw | 3 msgs
+> [cron:3ab0b6ce-8680-42d2-8215-615a4641c507 Dashboard DB Backup] Execute: cp /home/john/ARR/dashboard-data/dashboard.db /home/john/ARR/backups/dashboar
+
+## 2026-05-02 | openclaw, health | 3 msgs
+> [cron:f74cac9c-c88a-46ab-8ea5-0fcee980a2c4 Cron Health Monitor] Check cron job health: node /home/john/.openclaw/workspace/scripts/cron-monitor.js Cur
+
+## 2026-05-02 | arr, docker, dashboard, memory, email, openclaw, health, bc, ideas | 2948 msgs
+> Decisions: rejected; closed; will fail
+> System: [2026-04-27 08:05:40 GMT+1] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js System:  System: This checks gateway health a
+
+## 2026-05-02 | openclaw | 1 msgs
+> [cron:95c94692-2469-43c1-81fc-1913481b378d Session Transcript Capture] Capture session transcripts: cd /home/john/.openclaw/workspace/scripts && node
+
+## 2026-05-02 | arr, docker, memory, openclaw, health | 5 msgs
+> Decisions: Should I
+> [cron:healthcheck-hourly-001 Hourly Health Snapshot] Run healthcheck: ~/.openclaw/workspace/tools/openclaw_healthcheck.sh Current time: Saturday, May
+
+## 2026-05-02 | email, openclaw | 4 msgs
+> Decisions: should work; will be
+> [cron:5905f716-4342-4453-ac2e-a4652c43a5f3 Calendar to Todoist] Run: node /home/john/.openclaw/workspace/scripts/calendar-to-todoist.js Current time:
+
+## 2026-05-02 | openclaw, health | 6 msgs
+> [cron:33c0c409-d4fd-44af-b2a1-040e1486e72d ARR Log Monitor] Run: /home/john/.openclaw/workspace/scripts/arr-log-monitor.sh echo "Log monitor run comp
 
 ## 2026-05-01 | openclaw | 1 msgs
 > [cron:95c94692-2469-43c1-81fc-1913481b378d Session Transcript Capture] Capture session transcripts: cd /home/john/.openclaw/workspace/scripts && node
@@ -65,43 +104,4 @@ _Last updated: 2026-05-01T20:40:51.069Z_
 
 ## 2026-04-30 | arr, docker, openclaw, health | 5 msgs
 > [cron:33c0c409-d4fd-44af-b2a1-040e1486e72d ARR Log Monitor] Run: /home/john/.openclaw/workspace/scripts/arr-log-monitor.sh echo "Log monitor run comp
-
-## 2026-04-30 | docker, email, openclaw, health | 29 msgs
-> Decisions: will resume
-> Is plex working ok? NAMES     STATUS                  PORTS plex      Up 30 hours (healthy) 200 Yeah, Plex is fine 🦞 - **Container:** Up 30 hours, h
-
-## 2026-04-30 | email, openclaw | 3 msgs
-> Decisions: will be; will complete; should work
-> [cron:5d6d8f30-d40e-4330-a623-1d0cd5ba2635 Email to Todoist] Run: node /home/john/.openclaw/workspace/scripts/email-to-todoist.js Current time: Thursd
-
-## 2026-04-30 | arr, docker, dashboard, memory, email, openclaw, health, bc, ideas | 1695 msgs
-> Decisions: rejected; closed; will fail
-> System: [2026-04-27 08:05:40 GMT+1] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js System:  System: This checks gateway health a
-
-## 2026-04-30 | openclaw | 1 msgs
-> [cron:95c94692-2469-43c1-81fc-1913481b378d Session Transcript Capture] Capture session transcripts: cd /home/john/.openclaw/workspace/scripts && node
-
-## 2026-04-30 | openclaw, health | 3 msgs
-> [cron:33c0c409-d4fd-44af-b2a1-040e1486e72d ARR Log Monitor] Run: /home/john/.openclaw/workspace/scripts/arr-log-monitor.sh echo "Log monitor run comp
-
-## 2026-04-30 | email, openclaw | 3 msgs
-> Decisions: will be
-> [cron:5d6d8f30-d40e-4330-a623-1d0cd5ba2635 Email to Todoist] Run: node /home/john/.openclaw/workspace/scripts/email-to-todoist.js Current time: Thursd
-
-## 2026-04-30 | email, openclaw | 20 msgs
-> Decisions: will be
-> [cron:1a783a28-4b33-406d-a523-510349dc501d Morning Gmail Check] Check if Gmail OAuth is working, if not remind john to re-authenticate Current time: T
-
-## 2026-04-30 | docker, dashboard, memory, github, email, openclaw, health, ideas | 257 msgs
-> 🌅 *Good morning, John!* _Monday 27 April_ 🌤 _Weather:_ weather data source not available 📋 _Todoist_ ✅ No overdue tasks 🐳 _Containers_ (25 tota
-
-## 2026-04-30 | dashboard, memory, email, openclaw, health, ideas | 19 msgs
-> Decisions: close; should still; will work
-> [cron:bea36ad2-b3dc-4d8a-80a3-d7822e61fa5e Drive Backup] Execute: node /home/john/.openclaw/workspace/scripts/drive-backup.js Current time: Thursday,
-
-## 2026-04-30 | openclaw | 1 msgs
-> [cron:95c94692-2469-43c1-81fc-1913481b378d Session Transcript Capture] Capture session transcripts: cd /home/john/.openclaw/workspace/scripts && node
-
-## 2026-04-30 | github, email, openclaw | 10 msgs
-> [cron:d1270ff8-498b-4256-a322-b4d3187822ed OpenClaw Backup to GitHub] Run backup script for OpenClaw: 1. Configure git in /home/john/.openclaw/worksp
 

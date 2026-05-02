@@ -17,10 +17,13 @@
 - **Fix:** Re-run with `--reauth` and complete the OAuth flow in a browser
 - **Notified:** SMS sent to john at +447967688452
 
-## 2026-05-02 08:34 UTC - Token Empty (Recurring)
-- **Error:** Token file empty (`/home/john/.openclaw/secure/google-oauth-token.json` is 0 bytes)
+## 2026-05-02 19:35 UTC - Token Empty (Recurring)
+- **Error:** Token file `/home/john/.openclaw/secure/google-oauth-token.json` is 0 bytes
+- **Symptom:** Script exits with "Token file is empty. Initiating re-authorization..."
 - **Status:** Needs re-authentication
-- **Action Required:** Run `node /home/john/.openclaw/workspace/scripts/calendar-to-todoist.js --reauth` and provide the authorization code
+- **Action Required:** Re-run with `--reauth` and complete the OAuth flow in a browser
 - **Reauth URL:** already saved in `/home/john/.openclaw/workspace/config/google-oauth-reauth-url.txt`
-- **Note:** WhatsApp not connected, Telegram bot has no chats. User notification failed.
+- **Problem:** Manual browser-based OAuth (stdin prompt) cannot complete in this non-interactive cron environment
+- **Possible Fix:** Try automated `run-oauth-pw.js` (uses Playwright + Xvfb) or provide a fresh token file manually
+- **Notification:** Telegram/WhatsApp notification attempted but may fail if no chats configured
 
