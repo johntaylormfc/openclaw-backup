@@ -1,8 +1,1 @@
-=== Re-authorization Required ===
-Generating new authorization URL...
-
-Please visit this URL to authorize:
 https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fgmail.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.readonly&prompt=consent&response_type=code&client_id=784690914094-oculuegghv5t57r25e514s7du6c3bnek.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost
-
-Then enter the authorization code:
-Code: 

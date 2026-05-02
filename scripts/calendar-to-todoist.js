@@ -7,6 +7,7 @@
 const { google } = require('googleapis');
 const fs = require('fs');
 const path = require('path');
+const readline = require('readline');
 
 const CONFIG_PATH = '/home/john/.openclaw/workspace/config';
 
@@ -35,16 +36,19 @@ if (process.argv.includes('--reauth')) {
     prompt: 'consent'
   });
   
+  // Save the URL for reference
+  fs.writeFileSync(`${CONFIG_PATH}/google-oauth-reauth-url.txt`, authUrl);
+  
   console.log('Please visit this URL to authorize:');
   console.log(authUrl);
-  console.log('\nThen enter the authorization code:');
+  console.log('\nThen enter the authorization code (or Ctrl+C to cancel):');
   
-  const readline = require('readline').createInterface({
+  const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
   });
   
-  readline.question('Code: ', async (code) => {
+  rl.question('Code: ', async (code) => {
     try {
       const { tokens } = await oauth2Client.getToken(code);
       oauth2Client.setCredentials(tokens);
@@ -56,19 +60,28 @@ if (process.argv.includes('--reauth')) {
         scope: tokens.scope || SCOPES.join(' '),
         expiry_date: tokens.expiry_date
       };
-      fs.writeFileSync(`${CONFIG_PATH}/google-oauth-token.json`, JSON.stringify(newCreds, null, 2));
+      
+      // Write to secure location
+      fs.writeFileSync('/home/john/.openclaw/secure/google-oauth-token.json', JSON.stringify(newCreds, null, 2));
       console.log('✅ New tokens saved successfully!');
       console.log('You can now run the sync again.');
     } catch (err) {
       console.error('Error getting tokens:', err.message);
     }
-    readline.close();
+    rl.close();
+  });
+  
+  // Keep process alive for input
+  process.stdin.resume();
+  process.on('SIGINT', () => {
+    console.log('\nCancelled.');
+    process.exit(0);
   });
   process.exit(0);
 }
 
-// Load credentials - token from token file, client from credentials file
-const tokenPath = `${CONFIG_PATH}/google-oauth-token.json`;
+// Load credentials - token from secure path, client from credentials file
+const tokenPath = '/home/john/.openclaw/secure/google-oauth-token.json';
 const tokenDataRaw = fs.readFileSync(tokenPath, 'utf8');
 
 if (!tokenDataRaw.trim()) {
@@ -129,7 +142,7 @@ oauth2Client.request = async (...args) => {
       gmailCreds.access_token = credentials.access_token;
       gmailCreds.refresh_token = credentials.refresh_token || gmailCreds.refresh_token;
       gmailCreds.expiry_date = credentials.expiry_date;
-      fs.writeFileSync(`${CONFIG_PATH}/google-oauth-token.json`, JSON.stringify(gmailCreds, null, 2));
+      fs.writeFileSync('/home/john/.openclaw/secure/google-oauth-token.json', JSON.stringify(gmailCreds, null, 2));
       console.log('✅ Token refreshed and saved');
       return await originalRequest(...args);
     }

@@ -216,3 +216,4 @@
 [main/sessions/4b80dd37-4e10-4c39-994c-4477b98fc2da.jsonl#L170] Assistant: Dashboard ✅ | Containers healthy ✅ | WhatsApp ✅ | EMT: £876.58 (+4.5%) ▲ HEARTBEAT_OK
 [main/sessions/4b80dd37-4e10-4c39-994c-4477b98fc2da.jsonl#L176] Assistant: Dashboard ✅ | Containers healthy ✅ | WhatsApp ✅ HEARTBEAT_OK
 [main/sessions/4b80dd37-4e10-4c39-994c-4477b98fc2da.jsonl#L177] Assistant: 3 new ARR ideas added for review: - ARR Docker Healthcheck Automation (auto-restart on stalled queue) - ARR WhatsApp Daily Digest (daily download summary) - ARR Hardlink Disk Space Saver (hardlinks to save disk space)
+[main/sessions/a03e5da2-1e1e-4af0-af73-3d87a6f04e08.jsonl#L8] Assistant: No results found — the YouTube search for "Sonarr Radarr Plex Docker media server" came up empty. This could mean: - YouTube is rate-limiting or blocking the scrape - The temp file path doesn't exist or is being cleared too fast Want me to check the script logic or try
