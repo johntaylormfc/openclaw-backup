@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-03T12:33:30.194Z",
+  "updatedAt": "2026-05-03T20:03:39.438Z",
   "entries": {
     "memory:memory/archived/2026-03-27.md:266:301": {
       "key": "memory:memory/archived/2026-03-27.md:266:301",
@@ -96217,18 +96217,21 @@
       "endLine": 406,
       "source": "memory",
       "snippet": "Topics: dashboard, github, openclaw, health, ideas Messages: 3 Summary: [cron:ba5191d7-2d02-4504-9218-894e4a560de2 Auto-Pickup New Kanban Tickets] Run /home/john/.openclaw/workspace/scripts/pick-up-new-tickets.sh and repor Decisions: will be; should go ### Session: 204346f2... Time: 2026-03-26T11:12:08.136Z Topics: email, openclaw Messages: 3 Summary: [cron:5905f716-4342-4453-ac2e-a4652c43a5f3 Calendar to Todoist] Run: node /home/john/.openclaw/workspace/scripts/calendar-to-todoist.js Current time: ### Session: 1da252c1... Time: 2026-03-26T11:12:08.136Z Topics: email, openclaw, bc Messages: 3 Summary: [cron:5d6d8f30-d40e-4330-a623-1d0cd5ba2635 Email to Todoist] Run: node /home/john/.opencl",
-      "recallCount": 1,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.4245022267103195,
-      "maxScore": 0.4245022267103195,
+      "totalScore": 1.2947903364896773,
+      "maxScore": 0.4377003759145736,
       "firstRecalledAt": "2026-04-21T11:33:19.569Z",
-      "lastRecalledAt": "2026-04-21T11:33:19.569Z",
+      "lastRecalledAt": "2026-05-03T20:03:39.438Z",
       "queryHashes": [
-        "68c7ff911b74"
+        "68c7ff911b74",
+        "a85fa394b77a",
+        "29b2c5b3e622"
       ],
       "recallDays": [
-        "2026-04-21"
+        "2026-04-21",
+        "2026-05-03"
       ],
       "conceptTags": [
         "auto-pickup",
@@ -272359,6 +272362,163 @@
         "home/john",
         "europe/london",
         "86-86"
+      ]
+    },
+    "memory:memory/archived/2026-04-16.md:466:490": {
+      "key": "memory:memory/archived/2026-04-16.md:466:490",
+      "path": "memory/archived/2026-04-16.md",
+      "startLine": 466,
+      "endLine": 490,
+      "source": "memory",
+      "snippet": "- Summary: [cron:f74cac9c-c88a-46ab-8ea5-0fcee980a2c4 Cron Health Monitor] Check cron job health: cd /home/john/.openclaw/workspace/scripts && node cron-monitor. ### Session: b2988404... Time: 2026-03-27T03:04:44.080Z Topics: openclaw, health Messages: 3 Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway ### Session: b19badcb... Time: 2026-03-27T03:04:44.080Z Topics: openclaw, health Messages: 4 Summary: [cron:fe28d320-1b8c-476b-a36c-cbae3e0516ac Gateway Watchdog] Run: node /home/john/.openclaw/workspace/scripts/gateway-watchdog.js This checks gateway Decisions: reject; will notify ##",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8816373139619826,
+      "maxScore": 0.44227145016193387,
+      "firstRecalledAt": "2026-05-03T19:35:19.158Z",
+      "lastRecalledAt": "2026-05-03T20:03:39.438Z",
+      "queryHashes": [
+        "a85fa394b77a",
+        "29b2c5b3e622"
+      ],
+      "recallDays": [
+        "2026-05-03"
+      ],
+      "conceptTags": [
+        "gateway",
+        "home/john",
+        "openclaw/workspace/scripts",
+        "cron-monitor",
+        "2026-03-27t03",
+        "44.080z",
+        "summary",
+        "cron:f74cac9c"
+      ]
+    },
+    "memory:memory/archived/2026-04-15.md:25:58": {
+      "key": "memory:memory/archived/2026-04-15.md:25:58",
+      "path": "memory/archived/2026-04-15.md",
+      "startLine": 25,
+      "endLine": 58,
+      "source": "memory",
+      "snippet": "Topics: docker, dashboard, github, openclaw, ideas Messages: 9 Summary: [cron:007bd1be-d806-4058-8cf5-61a2e583cca0 Process next Kanban ticket] Read and follow /home/john/.openclaw/workspace/RUN_NEXT_TICKET_CRON.md and proc Decisions: approved; Approve; Reject; rejected; must reflect ### Session: af95f4f9... Time: 2026-04-15T23:10:59.922Z Topics: openclaw Messages: 2 Summary: [cron:95c94692-2469-43c1-81fc-1913481b378d Session Transcript Capture] Capture session transcripts: cd /home/john/.openclaw/workspace/scripts && node ### Session: 997a4070... Time: 2026-04-15T23:10:59.921Z Topics: dashboard, github, openclaw, ideas Messages: 3 Summary: [cron:ba5191d7-2d02-4504-9218-894e4a560de2 Auto-Pi",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.8673950821161269,
+      "maxScore": 0.4345059394836426,
+      "firstRecalledAt": "2026-05-03T19:35:19.158Z",
+      "lastRecalledAt": "2026-05-03T20:03:39.438Z",
+      "queryHashes": [
+        "a85fa394b77a",
+        "29b2c5b3e622"
+      ],
+      "recallDays": [
+        "2026-05-03"
+      ],
+      "conceptTags": [
+        "home/john",
+        "2026-04-15t23",
+        "59.922z",
+        "openclaw/workspace/scripts",
+        "59.921z",
+        "auto-pi",
+        "topics",
+        "docker"
+      ]
+    },
+    "memory:memory/2026-05-03.md:1:48": {
+      "key": "memory:memory/2026-05-03.md:1:48",
+      "path": "memory/2026-05-03.md",
+      "startLine": 1,
+      "endLine": 48,
+      "source": "memory",
+      "snippet": "# 2026-05-03 - Weekend Notes ## Status - Weekend day: Sunday - Dashboard: healthy - Last heartbeat: 2026-03-27 (older data) - Recent: Calendar-to-Todoist cron ran May 1, Dashboard DB backup Apr 30 ## Notes - Paradise City import stalled (NFS slowness) - S1E3 done, S1E2,4,5,6 pending - GLApproval AL0219 still needs UTF-8 NO BOM fix on GSPro - DNS CNAME pending: openclaw.bcdev.co.uk - Gmail OAuth needs manual browser flow ## 2026-05-03 Evening Summary (18:37 UTC) ### Gateway - Steady ~190,833s uptime (~53 hours, PID 1492) - No restarts since May 1 morning recovery at ~08:47 UTC — going on 3 days straight - Stable through the day ### System Health - Gateway stable all day - Watchdog ran eve",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.40699669785440273,
+      "maxScore": 0.40699669785440273,
+      "firstRecalledAt": "2026-05-03T19:35:38.517Z",
+      "lastRecalledAt": "2026-05-03T19:35:38.517Z",
+      "queryHashes": [
+        "7294c281144b"
+      ],
+      "recallDays": [
+        "2026-05-03"
+      ],
+      "conceptTags": [
+        "backup",
+        "gateway",
+        "calendar-to-todoist",
+        "utf-8",
+        "openclaw.bcdev.co.uk",
+        "weekend",
+        "status",
+        "day"
+      ]
+    },
+    "memory:memory/archived/2026-03-31.md:1:40": {
+      "key": "memory:memory/archived/2026-03-31.md:1:40",
+      "path": "memory/archived/2026-03-31.md",
+      "startLine": 1,
+      "endLine": 40,
+      "source": "memory",
+      "snippet": "## GLApproval AL Compilation (March 31) ### Status: BLOCKED — string literal errors on clean-looking files ### Environment - GSPRO (192.168.1.228): hosts BC containers (NOT Beelink) - glapproval container: healthy, http://192.168.1.228:8093/BC/?tenant=default - Port: 8080→8093 inside container - Beelink has NO BC containers ### Source Files - GSPRO: `C:\\ProgramData\\BcContainerHelper\\Extensions\\glapproval\\my\\GLAccApproval\\src\\` - Container: `C:/run/my/GLAccApproval/src/` (bind mount) - 8 files: 3 Codeunit, 2 Page, 1 Enum, 1 TableExt, 1 Permission - app.json id: c1d42f3a-5c7e-4f8a-b9e1-2f3a4c5d6e7f ### Compiler - alcwork: `C:/run/my/alcwork/alc.exe` (container) | GSPRO path same - Version",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.38236798048019405,
+      "maxScore": 0.38236798048019405,
+      "firstRecalledAt": "2026-05-03T19:35:38.517Z",
+      "lastRecalledAt": "2026-05-03T19:35:38.517Z",
+      "queryHashes": [
+        "7294c281144b"
+      ],
+      "recallDays": [
+        "2026-05-03"
+      ],
+      "conceptTags": [
+        "clean-looking",
+        "192.168.1.228",
+        "8093/bc",
+        "run/my/glaccapproval/src",
+        "app.json",
+        "run/my/alcwork/alc.exe",
+        "glapproval",
+        "compilation"
+      ]
+    },
+    "memory:memory/archived/2026-03-29.md:109:145": {
+      "key": "memory:memory/archived/2026-03-29.md:109:145",
+      "path": "memory/archived/2026-03-29.md",
+      "startLine": 109,
+      "endLine": 145,
+      "source": "memory",
+      "snippet": "Summary: [cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Sund ### Session: a1c57c9b... Time: 2026-03-29T20:35:25.623Z Topics: email, openclaw Messages: 3 Summary: [cron:5d6d8f30-d40e-4330-a623-1d0cd5ba2635 Email to Todoist] Run: node /home/john/.openclaw/workspace/scripts/email-to-todoist.js Current time: Sunday Decisions: will be; will work ### Session: a0864bc6... Time: 2026-03-29T20:35:25.623Z Topics: openclaw, health Messages: 3 Summary: [cron:b32c33b3-8ccf-466b-92a4-e7c3ca64a8b3 Auto-Recovery Monitor] Run: node /home/john/.openclaw/workspace/scripts/auto-recovery.js Current time: Sund ##",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.3696417212486267,
+      "maxScore": 0.3696417212486267,
+      "firstRecalledAt": "2026-05-03T19:35:38.517Z",
+      "lastRecalledAt": "2026-05-03T19:35:38.517Z",
+      "queryHashes": [
+        "7294c281144b"
+      ],
+      "recallDays": [
+        "2026-05-03"
+      ],
+      "conceptTags": [
+        "auto-recovery",
+        "home/john",
+        "2026-03-29t20",
+        "25.623z",
+        "summary",
+        "cron:b32c33b3",
+        "8ccf",
+        "466b"
       ]
     }
   }

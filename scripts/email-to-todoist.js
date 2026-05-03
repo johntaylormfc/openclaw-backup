@@ -67,6 +67,10 @@ if (process.argv.includes('--reauth')) {
 }
 
 // Token path for regular execution
+const CONFIG_PATH = '/home/john/.openclaw/workspace/config';
+const STATE_FILE = `${CONFIG_PATH}/email-to-todoist-state.json`;
+const MONITORED_DOMAINS = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/monitored-domains.json`, 'utf8')).domains;
+
 const tokenPath = '/home/john/.openclaw/secure/google-oauth-token.json';
 const configTokenPath = '/home/john/.openclaw/workspace/config/google-oauth-token.json';
 
