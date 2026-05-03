@@ -25,11 +25,13 @@ Ideas→kanban | PRs→GitHub | WhatsApp | backup b.dashboard | never restore DB
 - Drive OAuth: empty token file → immediate crash; scope error since Apr 14 (writes ok, reads fail)
 - fe28d320 cron job skipping (payload.kind misconfigured)
 - DNS CNAME pending: openclaw.bcdev.coin
+- **NEW 2026-05-01:** Drive backup failed — root cause: empty token file (google-oauth-token.json is 0 bytes), not scope error
 
 ## Working Patterns
 - WhatsApp 499 self-heals within ~3s
 - Snapshot backups every 2 days: 1.0-2.0 MB
 - Gateway log staleness → false DOWN (fixed via watchdog cron)
+- **NEW:** Drive backup has dual failure modes: (1) empty token = instant crash, (2) scope error = writes work, reads fail → distinct troubleshooting needed
 
 ## Promoted From Short-Term Memory (2026-05-02)
 
@@ -41,3 +43,8 @@ Ideas→kanban | PRs→GitHub | WhatsApp | backup b.dashboard | never restore DB
 - Time: 2026-04-25T20:33:24.973Z Topics: memory, email, openclaw Messages: 45 Summary: System: [2026-04-25 14:32:13 GMT+1] WhatsApp gateway disconnected (status 499) System: [2026-04-25 14:32:16 GMT+1] WhatsApp gateway connected as +4479 [score=0.835 recalls=0 avg=0.620 source=memory/2026-04-25.md:29-32]
 <!-- openclaw-memory-promotion:memory:memory/2026-04-25.md:35:38 -->
 - Time: 2026-04-25T20:33:24.973Z Topics: arr, docker, openclaw, health Messages: 5 Summary: [cron:33c0c409-d4fd-44af-b2a1-040e1486e72d ARR Log Monitor] Run: /home/john/.openclaw/workspace/scripts/arr-log-monitor.sh echo "Log monitor run comp [score=0.835 recalls=0 avg=0.620 source=memory/2026-04-25.md:35-38]
+
+## Promoted From Short-Term Memory (2026-05-03)
+
+<!-- openclaw-memory-promotion:memory:memory/archived/2026-03-03.md:1:14 -->
+- # March 3, 2026 ## Today's Events - Calendar to Todoist sync failed: OAuth scope insufficient (needs calendar.readonly) - Email to Todoist also likely broken (same OAuth issue) - Both need re-authentication with calendar scope ## Systems Status - Dashboard: http://192.168.1.146:5000 (arr-dashboard-v2 container) - **Blocker**: Google OAuth needs calendar scope for Calendar to Todoist ## TODO - Re-auth Google OAuth with calendar.readonly scope for both calendar-to-todoist and email-to-todoist scripts [score=0.855 recalls=7 avg=0.461 source=memory/archived/2026-03-03.md:1-14]
