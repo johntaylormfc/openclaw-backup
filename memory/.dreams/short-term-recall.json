@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-03T09:35:31.697Z",
+  "updatedAt": "2026-05-03T12:33:30.194Z",
   "entries": {
     "memory:memory/archived/2026-03-27.md:266:301": {
       "key": "memory:memory/archived/2026-03-27.md:266:301",
@@ -17300,18 +17300,20 @@
       "endLine": 24,
       "source": "memory",
       "snippet": "# 2026-03-14 - Weekend Notes ## Weekend Status - **Day**: Saturday - **Time**: 10:00 - **Status**: Weekend memory capture running ## Recent Activity (from March 12) - OpenClaw GitHub backup completed (19 files, +2223/-176 lines) - Research sync to Google Drive successful (7 files) - GitHub branch mismatch issue (main vs master) - WhatsApp API confirmed on port 9001 (not 5000) - Gmail OAuth token expired - re-auth completed - Cron jobs: 32 active, 1 timeout (gdrive-sync) ## Blockers (from March 12) - Gmail OAuth token expired (alerted john) - Calendar/Todoist sync broken (OAuth scope issues) - Vector memory disabled (Gemini 403 errors) ## Today's Notes - Memory capture cron executed at 10",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.42565458118915556,
-      "maxScore": 0.42565458118915556,
+      "totalScore": 1.1319538875303317,
+      "maxScore": 0.706299306341176,
       "firstRecalledAt": "2026-04-16T17:04:18.335Z",
-      "lastRecalledAt": "2026-04-16T17:04:18.335Z",
+      "lastRecalledAt": "2026-05-03T12:07:47.815Z",
       "queryHashes": [
-        "80e6095e0d2a"
+        "80e6095e0d2a",
+        "63de06c742d9"
       ],
       "recallDays": [
-        "2026-04-16"
+        "2026-04-16",
+        "2026-05-03"
       ],
       "conceptTags": [
         "backup",
@@ -154348,13 +154350,13 @@
       "endLine": 14,
       "source": "memory",
       "snippet": "# March 3, 2026 ## Today's Events - Calendar to Todoist sync failed: OAuth scope insufficient (needs calendar.readonly) - Email to Todoist also likely broken (same OAuth issue) - Both need re-authentication with calendar scope ## Systems Status - Dashboard: http://192.168.1.146:5000 (arr-dashboard-v2 container) - **Blocker**: Google OAuth needs calendar scope for Calendar to Todoist ## TODO - Re-auth Google OAuth with calendar.readonly scope for both calendar-to-todoist and email-to-todoist scripts",
-      "recallCount": 8,
+      "recallCount": 9,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 3.715501365065574,
+      "totalScore": 4.200368395447731,
       "maxScore": 0.49301357865333556,
       "firstRecalledAt": "2026-04-23T20:32:35.899Z",
-      "lastRecalledAt": "2026-05-03T07:38:29.604Z",
+      "lastRecalledAt": "2026-05-03T12:07:47.815Z",
       "queryHashes": [
         "122ac7f2bf62",
         "7f80f19c0b22",
@@ -154362,7 +154364,8 @@
         "9ba47ea56306",
         "71fea0cc8d17",
         "7d2e1e21a547",
-        "6c31987a8a64"
+        "6c31987a8a64",
+        "63de06c742d9"
       ],
       "recallDays": [
         "2026-04-23",
@@ -184674,20 +184677,22 @@
       "endLine": 37,
       "source": "memory",
       "snippet": "- Gmail OAuth token expired (alerted john) - Calendar/Todoist sync still broken due to OAuth scope issues - Vector memory disabled (Gemini 403 errors) ### Research Activity - Multiple research files created today (research-1771623589373.md, research-1771851867819.md, etc.) - All research files successfully synced to Google Drive ## Heartbeat Summary (23:00) - Dashboard: OK (port 5000) - Kanban: Active with regular ticket processing - Cron jobs: 32 total, 1 timeout error (gdrive-sync) - Gmail OAuth: Expired - needs re-auth",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 1.4623300230522733,
-      "maxScore": 0.7541570792010026,
+      "totalScore": 2.2235224473054656,
+      "maxScore": 0.7611924242531922,
       "firstRecalledAt": "2026-04-25T13:32:46.291Z",
-      "lastRecalledAt": "2026-05-02T18:40:17.695Z",
+      "lastRecalledAt": "2026-05-03T12:07:47.815Z",
       "queryHashes": [
         "7f80f19c0b22",
-        "7d2e1e21a547"
+        "7d2e1e21a547",
+        "63de06c742d9"
       ],
       "recallDays": [
         "2026-04-25",
-        "2026-05-02"
+        "2026-05-02",
+        "2026-05-03"
       ],
       "conceptTags": [
         "calendar/todoist",
@@ -242331,18 +242336,19 @@
       "endLine": 14,
       "source": "memory",
       "snippet": "# March 2, 2026 ## Today's Events - Google OAuth re-authenticated successfully - Gmail API now working - WhatsApp messaging tested and working - Sessions linked: dmScope changed from \"per-channel-peer\" to \"main\" to share context between WhatsApp and webchat ## TODO Tomorrow - Remind john: Fix Email to Todoist cron - needs Gmail OAuth refresh token setup ## Systems Status - Dashboard: http://192.168.1.146:4000 (arr-dashboard container) - Gmail: OAuth working (refreshed today)",
-      "recallCount": 4,
+      "recallCount": 5,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 2.3757086279198525,
+      "totalScore": 3.100459277728252,
       "maxScore": 0.744363313188394,
       "firstRecalledAt": "2026-04-30T17:35:52.853Z",
-      "lastRecalledAt": "2026-05-03T09:35:31.697Z",
+      "lastRecalledAt": "2026-05-03T12:33:30.194Z",
       "queryHashes": [
         "9a6dc1f99e0c",
         "1dba1f322a1c",
         "8334a4715200",
-        "aaa5a8b37c85"
+        "aaa5a8b37c85",
+        "c8c7669d7139"
       ],
       "recallDays": [
         "2026-04-30",
@@ -258610,19 +258616,21 @@
       "endLine": 548,
       "source": "memory",
       "snippet": "Topics: docker, dashboard, github, openclaw, health, ideas Messages: 397 Summary: System: [2026-04-11 04:28:40 GMT+1] Execute: openclaw cron list --json 2>&1 | jq '.jobs' > /tmp/arr-cronjobs.json && docker cp /tmp/arr-cronjobs.json ### Session: f0fcad37... Time: 2026-04-17T20:34:39.103Z Topics: arr, docker, dashboard, github, email, openclaw, health Messages: 3 Summary: [cron:cron-triage-30m-001 Cron Error Triage] Run triage: ~/.openclaw/workspace/tools/openclaw_cron_triage.sh Current time: Friday, April 17th, 2026 - Decisions: rejected; will resume; will retry ### Session: ea30f538... Time: 2026-04-17T20:34:39.102Z Topics: arr, docker, dashboard, memory, github, email, openclaw, mission-c",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.892169764637947,
+      "totalScore": 1.3221972554922101,
       "maxScore": 0.44643115401268,
       "firstRecalledAt": "2026-05-02T07:36:53.173Z",
-      "lastRecalledAt": "2026-05-02T18:40:17.695Z",
+      "lastRecalledAt": "2026-05-03T12:07:47.815Z",
       "queryHashes": [
         "71fea0cc8d17",
-        "7d2e1e21a547"
+        "7d2e1e21a547",
+        "63de06c742d9"
       ],
       "recallDays": [
-        "2026-05-02"
+        "2026-05-02",
+        "2026-05-03"
       ],
       "conceptTags": [
         "tmp/arr-cronjobs.json",
