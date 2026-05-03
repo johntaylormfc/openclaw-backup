@@ -22,29 +22,30 @@ Ideas→kanban | PRs→GitHub | WhatsApp | backup b.dashboard | never restore DB
 
 ## Open Issues
 - GLApproval AL0219 encoding: 8 .al files need UTF-8 NO BOM on GSPro
-- Drive OAuth: empty token file → immediate crash; scope error since Apr 14 (writes ok, reads fail)
+- Drive OAuth: empty token file → immediate crash (google-oauth-token.json = 0 bytes)
 - fe28d320 cron job skipping (payload.kind misconfigured)
-- DNS CNAME pending: openclaw.bcdev.coin
-- **NEW 2026-05-01:** Drive backup failed — root cause: empty token file (google-oauth-token.json is 0 bytes), not scope error
+- DNS CNAME pending: openclaw.bcdev.co.uk
+- Gmail OAuth: needs manual browser flow
 
 ## Working Patterns
 - WhatsApp 499 self-heals within ~3s
 - Snapshot backups every 2 days: 1.0-2.0 MB
 - Gateway log staleness → false DOWN (fixed via watchdog cron)
-- **NEW:** Drive backup has dual failure modes: (1) empty token = instant crash, (2) scope error = writes work, reads fail → distinct troubleshooting needed
-
-## Promoted From Short-Term Memory (2026-05-02)
-
-<!-- openclaw-memory-promotion:memory:memory/2026-04-25.md:17:20 -->
-- Time: 2026-04-25T20:33:24.974Z Topics: docker, dashboard, openclaw Messages: 21 Summary: System: [2026-04-25 15:04:37 GMT+1] Execute: openclaw cron list --json 2>&1 | jq '.jobs' > /tmp/arr-cronjobs.json && docker cp /tmp/arr-cronjobs.json [score=0.835 recalls=0 avg=0.620 source=memory/2026-04-25.md:17-20]
-<!-- openclaw-memory-promotion:memory:memory/2026-04-25.md:23:26 -->
-- Time: 2026-04-25T20:33:24.974Z Topics: email, openclaw, bc Messages: 7 Summary: [cron:5d6d8f30-d40e-4330-a623-1d0cd5ba2635 Email to Todoist] Run: node /home/john/.openclaw/workspace/scripts/email-to-todoist.js Current time: Saturd [score=0.835 recalls=0 avg=0.620 source=memory/2026-04-25.md:23-26]
-<!-- openclaw-memory-promotion:memory:memory/2026-04-25.md:29:32 -->
-- Time: 2026-04-25T20:33:24.973Z Topics: memory, email, openclaw Messages: 45 Summary: System: [2026-04-25 14:32:13 GMT+1] WhatsApp gateway disconnected (status 499) System: [2026-04-25 14:32:16 GMT+1] WhatsApp gateway connected as +4479 [score=0.835 recalls=0 avg=0.620 source=memory/2026-04-25.md:29-32]
-<!-- openclaw-memory-promotion:memory:memory/2026-04-25.md:35:38 -->
-- Time: 2026-04-25T20:33:24.973Z Topics: arr, docker, openclaw, health Messages: 5 Summary: [cron:33c0c409-d4fd-44af-b2a1-040e1486e72d ARR Log Monitor] Run: /home/john/.openclaw/workspace/scripts/arr-log-monitor.sh echo "Log monitor run comp [score=0.835 recalls=0 avg=0.620 source=memory/2026-04-25.md:35-38]
+- **NEW 2026-05-01:** Drive backup dual failure modes: (1) empty token = instant crash, (2) scope error = writes work, reads fail
 
 ## Promoted From Short-Term Memory (2026-05-03)
 
-<!-- openclaw-memory-promotion:memory:memory/archived/2026-03-03.md:1:14 -->
-- # March 3, 2026 ## Today's Events - Calendar to Todoist sync failed: OAuth scope insufficient (needs calendar.readonly) - Email to Todoist also likely broken (same OAuth issue) - Both need re-authentication with calendar scope ## Systems Status - Dashboard: http://192.168.1.146:5000 (arr-dashboard-v2 container) - **Blocker**: Google OAuth needs calendar scope for Calendar to Todoist ## TODO - Re-auth Google OAuth with calendar.readonly scope for both calendar-to-todoist and email-to-todoist scripts [score=0.855 recalls=7 avg=0.461 source=memory/archived/2026-03-03.md:1-14]
+<!-- openclaw-memory-promotion:memory:memory/2026-05-03.md:1:14 -->
+- Time: 2026-05-03T03:09:00.000Z Topics: drive, openclaw, backup Messages: 10 Summary: Backup Failure (03:09 UTC): Script: drive-openclaw-backup.js Error: SyntaxError: Unexpected end of JSON input at JSON.parse Root Cause: /home/john/.openclaw/secure/google-oauth-token.json is empty (0 bytes). Impact: Snapshot backup could not run. Action Required: Re-authenticate Google Drive API. [score=0.855 recalls=0 avg=0.621 source=memory/2026-05-03.md:1-14]
+
+<!-- openclaw-memory-promotion:memory:memory/2026-05-02.md:30:34 -->
+- Time: 2026-05-02T18:37:00.000Z Topics: openclaw, health Messages: 5 Summary: 2026-05-02 Evening Summary: Gateway steady ~142,192s uptime (~39.5 hours). No restarts today — stable since May 1 recovery. Watchdog running every 5 min. WhatsApp: no disconnections. [score=0.848 recalls=0 avg=0.621 source=memory/2026-05-02.md:30-34]
+
+<!-- openclaw-memory-promotion:memory:memory/2026-05-02.md:42:46 -->
+- Time: 2026-05-02T20:35:53.665Z Topics: email, openclaw Messages: 5 Summary: [cron:5d6d8f30-d40e-4330-a623-1d0cd5ba2635 Email to Todoist] Run: node /home/john/.openclaw/workspace/scripts/email-to-todoist.js Decisions: reject; will be; will work; should auto [score=0.839 recalls=0 avg=0.621 source=memory/2026-05-02.md:42-46]
+
+<!-- openclaw-memory-promotion:memory:memory/2026-05-02.md:46:50 -->
+- Time: 2026-05-02T20:35:53.667Z Topics: email, openclaw Messages: 5 Summary: [cron:5905f716-4342-4453-ac2e-a4652c43a5f3 Calendar to Todoist] Run: node /home/john/.openclaw/workspace/scripts/calendar-to-todoist.js Current time: Decisions: close; will give; will work [score=0.839 recalls=0 avg=0.621 source=memory/2026-05-02.md:46-50]
+
+<!-- openclaw-memory-promotion:memory:memory/2026-05-01.md:1:12 -->
+- Time: 2026-05-01T18:37:00.000Z Topics: openclaw, health Messages: 6 Summary: 2026-05-01 End of Day Summary: Gateway steady ~94,041s uptime (~26.1 hours). No restarts since morning recovery at ~08:47 UTC. WhatsApp: zero disconnections. Watchdog every 5 min without incident. [score=0.839 recalls=0 avg=0.621 source=memory/2026-05-01.md:1-12]

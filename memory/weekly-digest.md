@@ -1,32 +1,31 @@
 # Weekly Memory Digest
-**Week:** 2026-04-19 to 2026-04-25
-**Memory files:** 8
+**Week:** 2026-04-26 to 2026-05-02
+**Memory files:** 7
 
 ## Topics Worked On
-- OpenClaw Snapshot Backup - 03:06 (Europe/London)
+- Gateway Watchdog
+- System Status
+- Notes
+- OpenClaw Update
+- 2026-04-27 Daily Review
 - Sessions Today
-- Sessions 2026-04-20
-- Session: febd755d...
-- Session: f189c3be...
-- Session: ea30f538...
-- Session: dc0f578a...
-- Session: bfffa0c3...
-- Session: b6a70767...
-- Session: 97fe26de...
-- Snapshot Backup (02:04 UTC)
-- 2026-04-21 15:33 UTC - Hermes File Handoff Live
-- Sessions 2026-04-21
-- Session: f473a451...
-- Session: f404d2f0...
+- Sessions 2026-04-27
+- Session: e5246270...
+- 03:05 - Snapshot Backup
+- Sessions 2026-04-28
+- Session: e1b47e86...
+- Session: e161c9a4...
+- Session: b87fb5d7...
+- Session: 9c2f59f9...
+- Session: 936ec236...
 
 ## Files Updated
-- 2026-04-20.md
-- 2026-04-21.md
-- 2026-04-22.md
-- 2026-04-23.md
-- 2026-04-24.md
-- 2026-04-25.md
-- golfscorer-spark-prompt.md
+- 2026-04-27.md
+- 2026-04-28.md
+- 2026-04-29.md
+- 2026-04-30.md
+- 2026-05-01.md
+- calendar-to-todoist-errors.md
 - session-summaries.md
 
 ## Decisions Made This Week

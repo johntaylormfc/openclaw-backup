@@ -9,62 +9,14 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 
-// polyfill fetch using https module
-function fetch(url, options = {}) {
-  return new Promise((resolve, reject) => {
-    const urlObj = new URL(url);
-    const opts = {
-      hostname: urlObj.hostname,
-      port: urlObj.port || 443,
-      path: urlObj.pathname + urlObj.search,
-      method: options.method || 'GET',
-      headers: options.headers || {}
-    };
-    const req = https.request(opts, (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        const response = {
-          ok: res.statusCode >= 200 && res.statusCode < 300,
-          status: res.statusCode,
-          json: () => {
-            if (!data || data.trim() === '') return Promise.resolve(null);
-            try {
-              return Promise.resolve(JSON.parse(data));
-            } catch (e) {
-              return Promise.reject(new Error(`JSON parse error: ${e.message}`));
-            }
-          },
-          text: () => Promise.resolve(data)
-        };
-        resolve(response);
-      });
-    });
-    req.on('error', reject);
-    if (options.body) req.write(options.body);
-    req.end();
-  });
-}
-
-const CONFIG_PATH = '/home/john/.openclaw/workspace/config';
-const STATE_FILE = '/tmp/email-cron-lastrun.json';
-
-// Domains to monitor
-const MONITORED_DOMAINS = ['galloway-macleod.co.uk', 'bcdev.co.uk', 'bcdevltd.com'];
-
-// Load credentials - create new token file if missing or empty
-const tokenPath = `${CONFIG_PATH}/google-oauth-token.json`;
-if (!fs.existsSync(tokenPath) || fs.statSync(tokenPath).size === 0) {
-  console.log('❌ No OAuth token found. Starting OAuth flow...\n');
+// Check for --reauth flag FIRST, before any token checks
+if (process.argv.includes('--reauth')) {
+  console.log('=== Re-authorization Required ===');
+  console.log('Generating new authorization URL...\n');
   
-  const credsPath = `${CONFIG_PATH}/google-oauth.json`;
-  if (!fs.existsSync(credsPath)) {
-    console.error('❌ No OAuth credentials found at:', credsPath);
-    process.exit(1);
-  }
-  
-  const creds = JSON.parse(fs.readFileSync(credsPath, 'utf8'));
-  const { client_id, client_secret } = creds.web;
+  const CONFIG_PATH = '/home/john/.openclaw/workspace/config';
+  const credsData = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/google-oauth.json`, 'utf8'));
+  const { client_id, client_secret } = credsData.web;
   
   const oauth2Client = new google.auth.OAuth2(client_id, client_secret, 'http://localhost');
   
@@ -77,6 +29,8 @@ if (!fs.existsSync(tokenPath) || fs.statSync(tokenPath).size === 0) {
     ]
   });
   
+  fs.writeFileSync('/home/john/.openclaw/workspace/config/google-oauth-reauth-url.txt', authUrl);
+  
   console.log('🔗 Open this URL in your browser to authenticate:\n');
   console.log(authUrl + '\n');
   console.log('⏳ After authenticating, you will be redirected to a blank page.');
@@ -88,18 +42,45 @@ if (!fs.existsSync(tokenPath) || fs.statSync(tokenPath).size === 0) {
   rl.question('Paste the full redirect URL: ', async (code) => {
     try {
       const { tokens } = await oauth2Client.getToken(code);
-      fs.writeFileSync(tokenPath, JSON.stringify(tokens, null, 2));
-      console.log('\n✅ Token saved! Run the script again to process emails.');
-      process.exit(0);
+      oauth2Client.setCredentials(tokens);
+      
+      // Save new tokens to secure path (matching calendar-to-todoist)
+      const newCreds = {
+        access_token: tokens.access_token,
+        refresh_token: tokens.refresh_token,
+        scope: tokens.scope || 'https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/calendar.readonly https://www.googleapis.com/auth/drive.readonly',
+        token_type: 'Bearer',
+        expiry_date: tokens.expiry_date
+      };
+      
+      fs.writeFileSync('/home/john/.openclaw/secure/google-oauth-token.json', JSON.stringify(newCreds, null, 2));
+      console.log('\n✅ New tokens saved! Run the script again to process emails.');
     } catch (err) {
-      console.error('❌ Error getting token:', err.message);
-      process.exit(1);
+      console.error('❌ Error getting tokens:', err.message);
     }
+    rl.close();
   });
+  
+  // Keep process alive for input
+  setTimeout(() => {}, 60000);
   process.exit(0);
 }
 
-const gmailCreds = JSON.parse(fs.readFileSync(tokenPath, 'utf8'));
+// Token path for regular execution
+const tokenPath = '/home/john/.openclaw/secure/google-oauth-token.json';
+const configTokenPath = '/home/john/.openclaw/workspace/config/google-oauth-token.json';
+
+// Check if token exists in secure path, fall back to config path
+let effectiveTokenPath = fs.existsSync(tokenPath) ? tokenPath : configTokenPath;
+
+const gmailCredsRaw = fs.readFileSync(effectiveTokenPath, 'utf8');
+if (!gmailCredsRaw.trim()) {
+  console.log('⚠️  Token file is empty. Initiating re-authorization...');
+  console.log('Run with --reauth flag to generate a new authorization URL.');
+  process.exit(1);
+}
+
+const gmailCreds = JSON.parse(gmailCredsRaw);
 const credsData = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/google-oauth.json`, 'utf8'));
 const todoistKey = JSON.parse(fs.readFileSync(`${CONFIG_PATH}/todoist.json`, 'utf8')).todoist.api_key;
 
@@ -131,7 +112,7 @@ oauth2Client.request = async (...args) => {
       gmailCreds.access_token = credentials.access_token;
       gmailCreds.refresh_token = credentials.refresh_token || gmailCreds.refresh_token;
       gmailCreds.expiry_date = credentials.expiry_date;
-      fs.writeFileSync(`${CONFIG_PATH}/google-oauth-token.json`, JSON.stringify(gmailCreds, null, 2));
+      fs.writeFileSync(tokenPath, JSON.stringify(gmailCreds, null, 2));
       console.log('✅ Token refreshed and saved');
       return await originalRequest(...args);
     }
