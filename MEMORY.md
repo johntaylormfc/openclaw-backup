@@ -33,6 +33,19 @@ Ideas→kanban | PRs→GitHub | WhatsApp | backup b.dashboard | never restore DB
 - Gateway log staleness → false DOWN (fixed via watchdog cron)
 - **NEW 2026-05-01:** Drive backup dual failure modes: (1) empty token = instant crash, (2) scope error = writes work, reads fail
 
+## Promoted From Short-Term Memory (2026-05-04)
+
+### May 3rd Learnings
+- Gateway rock solid: 55+ hours uptime, no restarts over weekend
+- WhatsApp: zero disconnections, self-heals within ~3s
+- fe28d320 cron still skipping (payload.kind misconfigured - recurring issue)
+
+### May 2nd Learnings
+- Drive backup failed: Google OAuth token still empty (recurring since May 1st)
+- Token refresh script `refresh-google-token.js` missing from workspace
+- Gateway stable: 43+ hours uptime, no restarts needed
+- WhatsApp: zero disconnections, self-heals within ~3s
+
 ## Promoted From Short-Term Memory (2026-05-03)
 
 ### May 2nd Learnings

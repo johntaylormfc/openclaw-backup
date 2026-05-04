@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-04T15:37:23.036Z",
+  "updatedAt": "2026-05-04T22:04:29.489Z",
   "entries": {
     "memory:memory/archived/2026-03-27.md:266:301": {
       "key": "memory:memory/archived/2026-03-27.md:266:301",
@@ -228175,20 +228175,22 @@
       "endLine": 16,
       "source": "memory",
       "snippet": "# 2026-02-16 ## Daily Review (Feb 15) **Yesterday**: Sunday - no activity (weekend) ### Weekly Patterns Noted - Weekends (Sat-Sun) consistently show no activity - Last active day: Friday Feb 13 ### Action Taken - Added \"Weekend Activity Pattern\" idea to kanban for john's consideration ### Kanban Ideas Added - Weekend Activity Pattern: whether to accept rest periods or schedule maintenance tasks",
-      "recallCount": 2,
+      "recallCount": 3,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.8624093204736709,
+      "totalScore": 1.2772706806659697,
       "maxScore": 0.4370890885591507,
       "firstRecalledAt": "2026-04-28T02:11:35.758Z",
-      "lastRecalledAt": "2026-05-03T02:30:30.965Z",
+      "lastRecalledAt": "2026-05-04T22:04:29.489Z",
       "queryHashes": [
         "4c4f6642a572",
-        "12fce9499c74"
+        "12fce9499c74",
+        "48117d99cff0"
       ],
       "recallDays": [
         "2026-04-28",
-        "2026-05-03"
+        "2026-05-03",
+        "2026-05-04"
       ],
       "conceptTags": [
         "sat-sun",
@@ -272507,18 +272509,20 @@
       "endLine": 48,
       "source": "memory",
       "snippet": "# 2026-05-03 - Weekend Notes ## Status - Weekend day: Sunday - Dashboard: healthy - Last heartbeat: 2026-03-27 (older data) - Recent: Calendar-to-Todoist cron ran May 1, Dashboard DB backup Apr 30 ## Notes - Paradise City import stalled (NFS slowness) - S1E3 done, S1E2,4,5,6 pending - GLApproval AL0219 still needs UTF-8 NO BOM fix on GSPro - DNS CNAME pending: openclaw.bcdev.co.uk - Gmail OAuth needs manual browser flow ## 2026-05-03 Evening Summary (18:37 UTC) ### Gateway - Steady ~190,833s uptime (~53 hours, PID 1492) - No restarts since May 1 morning recovery at ~08:47 UTC — going on 3 days straight - Stable through the day ### System Health - Gateway stable all day - Watchdog ran eve",
-      "recallCount": 1,
+      "recallCount": 2,
       "dailyCount": 0,
       "groundedCount": 0,
-      "totalScore": 0.40699669785440273,
+      "totalScore": 0.7718841759194187,
       "maxScore": 0.40699669785440273,
       "firstRecalledAt": "2026-05-03T19:35:38.517Z",
-      "lastRecalledAt": "2026-05-03T19:35:38.517Z",
+      "lastRecalledAt": "2026-05-04T22:04:29.489Z",
       "queryHashes": [
-        "7294c281144b"
+        "7294c281144b",
+        "48117d99cff0"
       ],
       "recallDays": [
-        "2026-05-03"
+        "2026-05-03",
+        "2026-05-04"
       ],
       "conceptTags": [
         "backup",
@@ -284258,6 +284262,37 @@
         "oauth",
         "token",
         "has"
+      ]
+    },
+    "memory:memory/archived/2026-04-15.md:76:112": {
+      "key": "memory:memory/archived/2026-04-15.md:76:112",
+      "path": "memory/archived/2026-04-15.md",
+      "startLine": 76,
+      "endLine": 112,
+      "source": "memory",
+      "snippet": "Time: 2026-04-15T23:10:59.919Z Topics: openclaw, health Messages: 3 Summary: [cron:33c0c409-d4fd-44af-b2a1-040e1486e72d ARR Log Monitor] Run: /home/john/.openclaw/workspace/scripts/arr-log-monitor.sh echo \"Log monitor run comp ### Session: 26ac9be4... Time: 2026-04-15T23:10:59.918Z Topics: dashboard, memory, openclaw Messages: 8 Summary: [cron:bea36ad2-b3dc-4d8a-80a3-d7822e61fa5e Drive Backup] Execute: cd /home/john/.openclaw/workspace/scripts && node drive-backup.js Current time: Thur ### Session: 1a3a4d80... Time: 2026-04-15T23:10:59.918Z Topics: email, openclaw Messages: 3 Summary: [cron:5905f716-4342-4453-ac2e-a4652c43a5f3 Calendar to Todoist] Run: node /home/john/.openclaw/workspace/s",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.35664042234420773,
+      "maxScore": 0.35664042234420773,
+      "firstRecalledAt": "2026-05-04T22:04:29.489Z",
+      "lastRecalledAt": "2026-05-04T22:04:29.489Z",
+      "queryHashes": [
+        "48117d99cff0"
+      ],
+      "recallDays": [
+        "2026-05-04"
+      ],
+      "conceptTags": [
+        "backup",
+        "2026-04-15t23",
+        "59.919z",
+        "home/john",
+        "59.918z",
+        "openclaw/workspace/scripts",
+        "drive-backup.js",
+        "openclaw/workspace/s"
       ]
     }
   }
