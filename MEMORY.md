@@ -35,6 +35,12 @@ Ideas→kanban | PRs→GitHub | WhatsApp | backup b.dashboard | never restore DB
 
 ## Promoted From Short-Term Memory (2026-05-03)
 
+### May 2nd Learnings
+- Drive backup failed: Google OAuth token still empty (recurring since May 1st)
+- Token refresh script `refresh-google-token.js` missing from workspace
+- Gateway stable: 43+ hours uptime, no restarts needed
+- WhatsApp: zero disconnections, self-heals within ~3s
+
 <!-- openclaw-memory-promotion:memory:memory/2026-05-03.md:1:14 -->
 - Time: 2026-05-03T03:09:00.000Z Topics: drive, openclaw, backup Messages: 10 Summary: Backup Failure (03:09 UTC): Script: drive-openclaw-backup.js Error: SyntaxError: Unexpected end of JSON input at JSON.parse Root Cause: /home/john/.openclaw/secure/google-oauth-token.json is empty (0 bytes). Impact: Snapshot backup could not run. Action Required: Re-authenticate Google Drive API. [score=0.855 recalls=0 avg=0.621 source=memory/2026-05-03.md:1-14]
 

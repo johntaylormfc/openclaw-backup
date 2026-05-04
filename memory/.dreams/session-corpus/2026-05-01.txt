@@ -371,3 +371,15 @@
 [main/sessions/ff285060-3856-4207-b1a2-7bdc5f2af2cf.jsonl#L10] Assistant: Done — backed up to `dashboard-20260501-2311.db` (~274KB).
 [main/sessions/ffb75db3-02c2-4aff-b172-e6407e7c9258.jsonl#L8] Assistant: JSON parse error - likely a config/credentials file is empty. Let me check what's being loaded:
 [main/sessions/ffb75db3-02c2-4aff-b172-e6407e7c9258.jsonl#L14] Assistant: The OAuth token file is empty (0 bytes). The backup can't run without valid tokens. **What's wrong:** - `/home/john/.openclaw/secure/google-oauth-token.json` → 0 bytes (empty) - `/home/john/.openclaw/workspace/config/google-oauth.json` → exists (458 bytes) **Fix needed
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L293] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L298] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L303] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L308] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L313] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L318] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L323] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L328] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L333] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L338] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L343] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L348] Assistant: ✓
