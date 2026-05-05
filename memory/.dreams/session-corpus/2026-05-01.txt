@@ -383,3 +383,6 @@
 [main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L338] Assistant: ✓
 [main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L343] Assistant: ✓
 [main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L348] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L355] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L362] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L369] Assistant: ✓

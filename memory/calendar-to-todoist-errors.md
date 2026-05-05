@@ -27,3 +27,9 @@
 - **Possible Fix:** Try automated `run-oauth-pw.js` (uses Playwright + Xvfb) or provide a fresh token file manually
 - **Notification:** Telegram/WhatsApp notification attempted but may fail if no chats configured
 
+
+## 2026-05-05 04:03 UTC
+- **Error:** `invalid_grant`
+- **Status:** Token revoked by Google, needs re-auth
+- **Reauth URL:** Available at `/home/john/.openclaw/secure/google-oauth-reauth-url.txt`
+- **Fix:** Run `node /home/john/.openclaw/workspace/scripts/calendar-to-todoist.js --reauth`

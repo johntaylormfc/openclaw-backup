@@ -68,3 +68,10 @@ Ideas→kanban | PRs→GitHub | WhatsApp | backup b.dashboard | never restore DB
 
 <!-- openclaw-memory-promotion:memory:memory/2026-05-01.md:1:12 -->
 - Time: 2026-05-01T18:37:00.000Z Topics: openclaw, health Messages: 6 Summary: 2026-05-01 End of Day Summary: Gateway steady ~94,041s uptime (~26.1 hours). No restarts since morning recovery at ~08:47 UTC. WhatsApp: zero disconnections. Watchdog every 5 min without incident. [score=0.839 recalls=0 avg=0.621 source=memory/2026-05-01.md:1-12]
+
+## Promoted From Short-Term Memory (2026-05-05)
+
+<!-- openclaw-memory-promotion:memory:memory/archived/2026-03-02.md:1:14 -->
+- # March 2, 2026 ## Today's Events - Google OAuth re-authenticated successfully - Gmail API now working - WhatsApp messaging tested and working - Sessions linked: dmScope changed from "per-channel-peer" to "main" to share context between WhatsApp and webchat ## TODO Tomorrow - Remind john: Fix Email to Todoist cron - needs Gmail OAuth refresh token setup ## Systems Status - Dashboard: http://192.168.1.146:4000 (arr-dashboard container) - Gmail: OAuth working (refreshed today) [score=0.851 recalls=6 avg=0.596 source=memory/archived/2026-03-02.md:1-14]
+<!-- openclaw-memory-promotion:memory:memory/archived/2026-03-12.md:24:37 -->
+- - Gmail OAuth token expired (alerted john) - Calendar/Todoist sync still broken due to OAuth scope issues - Vector memory disabled (Gemini 403 errors) ### Research Activity - Multiple research files created today (research-1771623589373.md, research-1771851867819.md, etc.) - All research files successfully synced to Google Drive ## Heartbeat Summary (23:00) - Dashboard: OK (port 5000) - Kanban: Active with regular ticket processing - Cron jobs: 32 total, 1 timeout error (gdrive-sync) - Gmail OAuth: Expired - needs re-auth [score=0.849 recalls=4 avg=0.682 source=memory/archived/2026-03-12.md:24-37]

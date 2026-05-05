@@ -135,16 +135,33 @@ oauth2Client.request = async (...args) => {
     }
     
     if (e.code === 401 || status === 401) {
-      console.log('🔄 Token expired, refreshing...');
-      const { credentials } = await oauth2Client.refreshAccessToken();
-      oauth2Client.setCredentials(credentials);
-      // Save refreshed tokens
-      gmailCreds.access_token = credentials.access_token;
-      gmailCreds.refresh_token = credentials.refresh_token || gmailCreds.refresh_token;
-      gmailCreds.expiry_date = credentials.expiry_date;
-      fs.writeFileSync('/home/john/.openclaw/secure/google-oauth-token.json', JSON.stringify(gmailCreds, null, 2));
-      console.log('✅ Token refreshed and saved');
-      return await originalRequest(...args);
+      console.log('🔄 Token expired/invalid, refreshing...');
+      try {
+        const { credentials } = await oauth2Client.refreshAccessToken();
+        oauth2Client.setCredentials(credentials);
+        // Save refreshed tokens
+        gmailCreds.access_token = credentials.access_token;
+        gmailCreds.refresh_token = credentials.refresh_token || gmailCreds.refresh_token;
+        gmailCreds.expiry_date = credentials.expiry_date;
+        fs.writeFileSync('/home/john/.openclaw/secure/google-oauth-token.json', JSON.stringify(gmailCreds, null, 2));
+        console.log('✅ Token refreshed and saved');
+        return await originalRequest(...args);
+      } catch (refreshErr) {
+        // Refresh failed - likely invalid_grant (token revoked/expired)
+        console.log('❌ Token refresh failed:', refreshErr.message);
+        console.log('⚠️  Need to re-authorize. Check for auth URL:');
+        const authUrlFile = '/home/john/.openclaw/secure/google-oauth-reauth-url.txt';
+        if (fs.existsSync(authUrlFile)) {
+          console.log(fs.readFileSync(authUrlFile, 'utf8'));
+        }
+        // Write flag file for external monitor to pick up
+        fs.writeFileSync('/home/john/.openclaw/secure/calendar-sync-needs-reauth.flag', JSON.stringify({
+          script: 'calendar-to-todoist.js',
+          error: refreshErr.message,
+          time: new Date().toISOString()
+        }));
+        process.exit(1);
+      }
     }
     throw e;
   }

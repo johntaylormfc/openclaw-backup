@@ -301,3 +301,12 @@
 [main/sessions/fe5b7bff-5f89-4397-a9c3-11bff5788077.jsonl#L10] Assistant: ## Hourly Health Snapshot — 04:12 UTC | Check | Status | |---|---| - **Uptime:** 19h 27m, 1 user, load avg 1.30/1.29/1.26 ✅ - **⚠️ WhatsApp WebSocket error:** ETIMEDOUT — channel exited at 04:10. Likely a linked device disconnect or temporary network timeout. Gateway s
 [main/sessions/feaf8ac9-9017-4e00-a41d-ba1b060b392b.jsonl#L14] Assistant: **ARR Config Backup complete** ✅ - **Local backup:** `/home/john/ARR/backups/arr_backup_20260502_030155.tar.gz` — 9.1 MB - **Drive upload:** Failed — token file is empty (needs re-auth) The local backup is good. The Drive script failed because `google-oauth-token.json`
 [main/sessions/fec9edab-8062-45b7-baf3-21caec858e7f.jsonl#L8] Assistant: OAuth token is missing — the script needs to complete an auth flow interactively, which cron can't do. **To fix this permanently**, you need to run the script once manually to authenticate, then the token will be saved: ```bash node /home/john/.openclaw/workspace/scrip
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L376] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L383] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L388] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L395] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L402] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L409] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L416] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L423] Assistant: ✓
+[main/sessions/e1b47e86-7caf-4648-a956-04a6be1efc46.jsonl#L430] Assistant: ✓
