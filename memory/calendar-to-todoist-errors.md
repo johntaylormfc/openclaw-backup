@@ -33,3 +33,9 @@
 - **Status:** Token revoked by Google, needs re-auth
 - **Reauth URL:** Available at `/home/john/.openclaw/secure/google-oauth-reauth-url.txt`
 - **Fix:** Run `node /home/john/.openclaw/workspace/scripts/calendar-to-todoist.js --reauth`
+
+## 2026-05-05 05:02 UTC - invalid_grant
+- **Error:** `invalid_grant` during token refresh
+- **Status:** Token expired/revoked, needs re-authentication
+- **Reauth URL:** already saved in `/home/john/.openclaw/secure/google-oauth-reauth-url.txt`
+- **Action Required:** Manual browser auth needed - run with `--reauth` interactively OR use `run-oauth-pw.js` if available
